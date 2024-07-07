@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: floor
+    uniqueID: 1878787287
+    locked: 0
+  - name: garbage
+    uniqueID: 1904972429
+    locked: 0
