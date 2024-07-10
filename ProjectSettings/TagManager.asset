@@ -47,3 +47,6 @@ TagManager:
   - name: garbage
     uniqueID: 1904972429
     locked: 0
+  - name: player
+    uniqueID: 402503165
+    locked: 0
