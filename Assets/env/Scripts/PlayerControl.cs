@@ -27,11 +27,11 @@ public class PlayerControl : MonoBehaviour
        
         if (math.abs(rig.velocity.x) > 0 || rig.velocity.y != 0)
         {
-            ani.SetBool("isRunning",true);
+            ani.SetBool("move",true);
         }
         else
         {
-            ani.SetBool("isRunning",false);
+            ani.SetBool("move",false);
         }
 
         if (!isFlip)
