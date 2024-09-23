@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -57,5 +58,16 @@ public class PlayerControl : MonoBehaviour
     {
         InputX = context.ReadValue<Vector2>().x;
         InputY = context.ReadValue<Vector2>().y;
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        ani.SetBool("attack",true);
+        
+    }
+    public void Attack_end()
+    {
+        ani.SetBool("attack",false);
+        
     }
 }
