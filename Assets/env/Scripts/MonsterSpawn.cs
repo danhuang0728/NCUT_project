@@ -5,7 +5,7 @@ using UnityEngine;
 public class spawn : MonoBehaviour
 {
     
-    public GameObject monsterPrefab;   // 怪物預製物
+    public GameObject monsterPrefab;   // 引用怪物
     public Transform[] spawnPoints;    // 生成點的陣列
     public float spawnInterval = 5f;   // 生成間隔時間
     public float limit;
@@ -40,6 +40,7 @@ public class spawn : MonoBehaviour
 
         // 生成怪物
         Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+        monsterPrefab.SetActive(true);
         monster++;
     }
 }
