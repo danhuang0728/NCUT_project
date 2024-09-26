@@ -14,14 +14,25 @@ public class monsterMove : MonoBehaviour
 
     // Update is called once per frame
     public Transform player1;
+    public GameObject monster;
     public float movespeed;
+
+    public float HP;
     void Update()
     {
-        
+        if (HP == 0)
+        {
+            MonsterDead(monster);
+        }
         
 
     }
-    public void slimeMove()
+
+    public void MonsterDead(GameObject monster)
+    {
+        monster.SetActive(false);
+    }
+    public void slimeMove()  //移動函數
     {
         previousXPosition = transform.position.x; //previousXPosition 為移動前位置
         for (int i=0 ; i < 5 ;i++){

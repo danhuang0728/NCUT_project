@@ -39,8 +39,8 @@ public class spawn : MonoBehaviour
         Transform spawnPoint = spawnPoints[spawnIndex];
 
         // 生成怪物
-        Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
-        monsterPrefab.SetActive(true);
+        GameObject copyMonster = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+        copyMonster.SetActive(true);
         monster++;
     }
 }
