@@ -44,11 +44,11 @@ TagManager:
   - name: wall
     uniqueID: 457195927
     locked: 0
-  - name: player
-    uniqueID: 402503165
-    locked: 0
   - name: Monster
     uniqueID: 357606223
+    locked: 0
+  - name: player
+    uniqueID: 402503165
     locked: 0
   - name: decorate
     uniqueID: 4250941897
