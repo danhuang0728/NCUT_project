@@ -11,7 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
 
    public void PLayGame()
    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        SceneManager.LoadScene("SampleScene");
    }
    public void Option()
    {
