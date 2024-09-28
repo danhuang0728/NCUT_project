@@ -10,6 +10,10 @@ using UnityEngine.InputSystem.XR;
 public class PlayerControl : MonoBehaviour
 {
     public float speed = 5f;
+    public Transform AttackPoint;
+    public LayerMask MonsterLayer;
+    public float AttackRange;
+    public monsterMove slime_Scripts;
     private float InputX;
     private float InputY;
     private bool isFlip = false;
@@ -60,14 +64,32 @@ public class PlayerControl : MonoBehaviour
         InputY = context.ReadValue<Vector2>().y;
     }
 
+    public void demageCheck(){
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
+
+        // 如果有怪物進入範圍
+        foreach (Collider2D monster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
+        {
+            monsterMove cloneSlime_Scripts = monster.GetComponent<monsterMove>(); //讀取在攻擊範圍內的怪物腳本
+            cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+            //Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
+
+        }
+
+    }
+
     public void Attack(InputAction.CallbackContext context)
     {
         ani.SetBool("attack",true);
-        
+       
     }
     public void Attack_end()
     {
         ani.SetBool("attack",false);
         
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(AttackPoint.position,AttackRange);    
     }
 }
