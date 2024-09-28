@@ -13,7 +13,8 @@ public class PlayerControl : MonoBehaviour
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
     public float AttackRange;
-    public monsterMove slime_Scripts;
+    private monsterMove slime_Scripts;
+    private NormalMonster_setting normalMonster_setting; 
     private float InputX;
     private float InputY;
     private bool isFlip = false;
@@ -64,19 +65,43 @@ public class PlayerControl : MonoBehaviour
         InputY = context.ReadValue<Vector2>().y;
     }
 
+    public void ALLdemageCheck(){
+        demageCheck();
+        demageCheck2();
+    }
     public void demageCheck(){
         Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
 
-        // 如果有怪物進入範圍
-        foreach (Collider2D monster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
+        // 如果有怪物進入範圍   (確定史萊姆類型的)
+        foreach (Collider2D slimemonster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
         {
-            monsterMove cloneSlime_Scripts = monster.GetComponent<monsterMove>(); //讀取在攻擊範圍內的怪物腳本
-            cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
-            //Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
+            monsterMove cloneSlime_Scripts = slimemonster.GetComponent<monsterMove>(); //讀取在攻擊範圍內的怪物腳本
+            if (cloneSlime_Scripts != null)
+                {           
+                    cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                    Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
+                }
+            else{break;}
 
         }
 
     }
+    public void demageCheck2(){
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
+        // 如果有怪物進入範圍   (確定一班怪物類型的)
+        
+        foreach (Collider2D Normalmonster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
+        {
+            
+            NormalMonster_setting clone_Scripts = Normalmonster.GetComponent<NormalMonster_setting>(); //讀取在攻擊範圍內的怪物腳本
+                if (clone_Scripts != null){
+            clone_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+            Debug.Log("怪物HP: " + clone_Scripts.HP);
+                }
+
+        }
+        
+    }   
 
     public void Attack(InputAction.CallbackContext context)
     {
