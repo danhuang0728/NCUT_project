@@ -32412,8 +32412,8 @@ MonoBehaviour:
   - {fileID: 1900341483}
   - {fileID: 2090069577}
   - {fileID: 109202923}
-  spawnInterval: 5
-  limit: 5
+  spawnInterval: 1
+  limit: 50
 --- !u!1 &453397167
 GameObject:
   m_ObjectHideFlags: 0
@@ -100399,8 +100399,8 @@ MonoBehaviour:
   - {fileID: 494270186}
   - {fileID: 822964065}
   - {fileID: 23497337}
-  spawnInterval: 5
-  limit: 5
+  spawnInterval: 1
+  limit: 50
 --- !u!1 &1978170122
 GameObject:
   m_ObjectHideFlags: 0
@@ -108242,7 +108242,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7d844c9cb4bda24a8861008739350b3, type: 2}
+  - {fileID: 2100000, guid: 804dc3d5d7e7ad04da593654a3da7451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

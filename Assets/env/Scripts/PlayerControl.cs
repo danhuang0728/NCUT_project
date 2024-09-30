@@ -120,10 +120,17 @@ public class PlayerControl : MonoBehaviour
         
         foreach (Collider2D Normalmonster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
         {
-            
+            Renderer targetRenderer = Normalmonster.GetComponent<Renderer>(); //抓取複製怪的renderer
             NormalMonster_setting clone_Scripts = Normalmonster.GetComponent<NormalMonster_setting>(); //讀取在攻擊範圍內的怪物腳本
             if (clone_Scripts != null){
                 clone_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                if (targetRenderer != null)
+                {
+                    // 获取材质实例（确保不会修改共享材质）
+                    Material mat = targetRenderer.material;
+                    // 打擊特效       
+                    StartCoroutine(SetBoolWithDelay(mat,targetRenderer));  
+                }
                 Debug.Log("怪物HP: " + clone_Scripts.HP);
             }
 
