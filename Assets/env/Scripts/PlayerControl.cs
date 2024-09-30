@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
     public float AttackRange;
+    public float Knockback_strength;
 
     //--------------------打擊特效開關的bool-----------------------------
     public string boolPropertyName = "_hitBool";
@@ -97,6 +98,7 @@ public class PlayerControl : MonoBehaviour
         {
             Renderer targetRenderer = slimemonster.GetComponent<Renderer>(); //抓取複製怪的renderer
             monsterMove cloneSlime_Scripts = slimemonster.GetComponent<monsterMove>(); //讀取在攻擊範圍內的怪物腳本
+            Transform slime_T = slimemonster.GetComponent<Transform>();
             if (cloneSlime_Scripts != null)
             {           
                 cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
@@ -109,6 +111,11 @@ public class PlayerControl : MonoBehaviour
                 }
                 Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
             }
+            if (slime_T != null){                      //對史萊姆的擊退設定
+                Vector3 direction = slime_T.position - transform.position; // slime 到玩家的方向
+                direction.Normalize();
+                slime_T.position = Vector3.MoveTowards(slime_T.position, slime_T.position + direction, 10 * Knockback_strength * Time.deltaTime);   
+            }
             else{break;}
 
         }
@@ -116,12 +123,13 @@ public class PlayerControl : MonoBehaviour
     }
     public void demageCheck2(){        //一般平移怪物傷害判定
         Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
-        // 如果有怪物進入範圍   (確定一班怪物類型的)
+        // 如果有怪物進入範圍   (確定一般怪物類型的)
         
         foreach (Collider2D Normalmonster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
         {
             Renderer targetRenderer = Normalmonster.GetComponent<Renderer>(); //抓取複製怪的renderer
             NormalMonster_setting clone_Scripts = Normalmonster.GetComponent<NormalMonster_setting>(); //讀取在攻擊範圍內的怪物腳本
+            Transform Normal_T = Normalmonster.GetComponent<Transform>();
             if (clone_Scripts != null){
                 clone_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
                 if (targetRenderer != null)
@@ -132,6 +140,11 @@ public class PlayerControl : MonoBehaviour
                     StartCoroutine(SetBoolWithDelay(mat,targetRenderer));  
                 }
                 Debug.Log("怪物HP: " + clone_Scripts.HP);
+            }
+            if (Normal_T != null){                      //對一般的擊退設定
+                Vector3 direction = Normal_T.position - transform.position; // 一般怪物 到玩家的方向
+                direction.Normalize();
+                Normal_T.position = Vector3.MoveTowards(Normal_T.position, Normal_T.position + direction, 100 * Knockback_strength * Time.deltaTime);   
             }
 
         }

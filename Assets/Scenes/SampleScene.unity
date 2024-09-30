@@ -36967,6 +36967,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   AttackRange: 1
+  Knockback_strength: 1
   boolPropertyName: _hitBool
 --- !u!114 &816854416
 MonoBehaviour:
@@ -81547,7 +81548,7 @@ MonoBehaviour:
   player1: {fileID: 816854421}
   monster: {fileID: 1607392823}
   movespeed: 10
-  HP: 5
+  HP: 2
 --- !u!1001 &1618688567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108351,7 +108352,7 @@ MonoBehaviour:
   player1: {fileID: 816854421}
   monster: {fileID: 2126707162}
   movespeed: 1
-  HP: 5
+  HP: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

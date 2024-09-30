@@ -41,7 +41,6 @@ public class monsterMove : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player1.position, movespeed * Time.deltaTime );
         }
     
-
         float currentXPosition = transform.position.x;  //currentXPosition 為移動後的位置
         if (currentXPosition < previousXPosition) //x變大往左移動
         {
