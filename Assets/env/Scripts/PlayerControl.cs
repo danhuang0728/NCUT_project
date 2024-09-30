@@ -7,12 +7,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
+
 public class PlayerControl : MonoBehaviour
 {
     public float speed = 5f;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
     public float AttackRange;
+
+    //--------------------打擊特效開關的bool-----------------------------
+    public string boolPropertyName = "_hitBool";
+    //--------------------------------------------------------
+
     private monsterMove slime_Scripts;
     private NormalMonster_setting normalMonster_setting; 
     private float InputX;
@@ -21,12 +27,12 @@ public class PlayerControl : MonoBehaviour
 
     private Rigidbody2D rig;
     private Animator ani;
-
     private void Start() 
     {
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
     }
+    
     private void Update() 
     {
         rig.velocity = new Vector2(speed * InputX , speed * InputY);    
@@ -65,28 +71,50 @@ public class PlayerControl : MonoBehaviour
         InputY = context.ReadValue<Vector2>().y;
     }
 
-    public void ALLdemageCheck(){
+    
+    private IEnumerator SetBoolWithDelay(Material mat ,Renderer targetRenderer)   //開啟hit特效然後0.1秒後關閉
+    {
+        mat = targetRenderer.material;
+        // 设置布尔值为 true
+        mat.SetInt(boolPropertyName, 1);
+        
+        // 等待 0.1 秒
+        yield return new WaitForSeconds(0.2f);  //hit閃白時間 
+
+        // 设置布尔值为 false
+        mat.SetInt(boolPropertyName, 0);
+    }
+
+    public void ALLdemageCheck(){     
         demageCheck();
         demageCheck2();
     }
-    public void demageCheck(){
+    public void demageCheck(){          //史萊姆傷害判定
         Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
 
         // 如果有怪物進入範圍   (確定史萊姆類型的)
         foreach (Collider2D slimemonster in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
         {
+            Renderer targetRenderer = slimemonster.GetComponent<Renderer>(); //抓取複製怪的renderer
             monsterMove cloneSlime_Scripts = slimemonster.GetComponent<monsterMove>(); //讀取在攻擊範圍內的怪物腳本
             if (cloneSlime_Scripts != null)
             {           
-                    cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
-                    Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
+                cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                if (targetRenderer != null)
+                {
+                    // 获取材质实例（确保不会修改共享材质）
+                    Material mat = targetRenderer.material;
+                    // 打擊特效       
+                    StartCoroutine(SetBoolWithDelay(mat,targetRenderer));  
+                }
+                Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
             }
             else{break;}
 
         }
 
     }
-    public void demageCheck2(){
+    public void demageCheck2(){        //一般平移怪物傷害判定
         Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
         // 如果有怪物進入範圍   (確定一班怪物類型的)
         
