@@ -77,10 +77,10 @@ public class PlayerControl : MonoBehaviour
         {
             monsterMove cloneSlime_Scripts = slimemonster.GetComponent<monsterMove>(); //讀取在攻擊範圍內的怪物腳本
             if (cloneSlime_Scripts != null)
-                {           
+            {           
                     cloneSlime_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
                     Debug.Log("怪物HP: " + cloneSlime_Scripts.HP);
-                }
+            }
             else{break;}
 
         }
@@ -94,10 +94,10 @@ public class PlayerControl : MonoBehaviour
         {
             
             NormalMonster_setting clone_Scripts = Normalmonster.GetComponent<NormalMonster_setting>(); //讀取在攻擊範圍內的怪物腳本
-                if (clone_Scripts != null){
-            clone_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
-            Debug.Log("怪物HP: " + clone_Scripts.HP);
-                }
+            if (clone_Scripts != null){
+                clone_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                Debug.Log("怪物HP: " + clone_Scripts.HP);
+            }
 
         }
         
