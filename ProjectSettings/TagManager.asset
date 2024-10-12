@@ -47,10 +47,7 @@ TagManager:
   - name: Monster
     uniqueID: 357606223
     locked: 0
-  - name: player
-    uniqueID: 402503165
-    locked: 0
-  - name: decorate
+  - name: gameobject
     uniqueID: 4250941897
     locked: 0
   - name: Default
