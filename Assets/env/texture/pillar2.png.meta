@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1407e0f10890b640893b15afe1915cb
+guid: e2cdce00fe137af4b83ed7034c4d373b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,127 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: torch_floor_0
+      name: pillar2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 37
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 114
+        height: 224
+      alignment: 9
+      pivot: {x: 0.5022369, y: 0.37477228}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bd9ad67f6e7fe24390158c57c76ef4b
-      internalID: 545609416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: torch_floor_1
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 0
-        width: 37
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4dbfbbc78135f224ab26f97281b20bea
-      internalID: -1616475002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: torch_floor_2
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 0
-        width: 37
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fed356a6bf9033348aa4797b58caae7b
-      internalID: 139568661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: torch_floor_3
-      rect:
-        serializedVersion: 2
-        x: 111
-        y: 0
-        width: 37
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b93be9660aff65344b3ff14992c10bfe
-      internalID: -439920462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: torch_floor_4
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 0
-        width: 37
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c40706fadcf533b41be7ab7001bc90e9
-      internalID: 952319212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: torch_floor_5
-      rect:
-        serializedVersion: 2
-        x: 185
-        y: 0
-        width: 37
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 748767c42233be04f8c57ba457518e3c
-      internalID: 698887831
+      spriteID: 3064031bb07cb1f4ca2a0f1bc0110ebd
+      internalID: -188830500
       vertices: []
       indices: 
       edges: []
@@ -259,12 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      torch_floor_0: 545609416
-      torch_floor_1: -1616475002
-      torch_floor_2: 139568661
-      torch_floor_3: -439920462
-      torch_floor_4: 952319212
-      torch_floor_5: 698887831
+      pillar2_0: -188830500
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
