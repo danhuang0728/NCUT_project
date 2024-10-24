@@ -6,6 +6,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
 
 
 public class PlayerControl : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask MonsterLayer;
     public float AttackRange;
     public float Knockback_strength;
+    public int HP;
 
     //--------------------打擊特效開關的bool-----------------------------
     public string boolPropertyName = "_hitBool";
@@ -32,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
+        StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
     }
     
     private void Update() 
@@ -63,9 +66,20 @@ public class PlayerControl : MonoBehaviour
                 transform.Rotate(0.0f,180.0f,0.0f);
             }
         }
-      
+        
+
+        
 
     }
+    IEnumerator hurtDelay(){  //設定每0.2秒就會執行一次受傷判定
+        if (rig.IsTouchingLayers(MonsterLayer))
+        {
+            HP = HP - 5; 
+        }
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(hurtDelay());
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         InputX = context.ReadValue<Vector2>().x;
