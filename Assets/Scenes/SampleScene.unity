@@ -1408,8 +1408,8 @@ MonoBehaviour:
   monsterlayer:
     serializedVersion: 2
     m_Bits: 8
-  levelminTime: 2
-  levelmaxTime: 3
+  levelminTime: 10
+  levelmaxTime: 15
 --- !u!50 &46987389
 Rigidbody2D:
   serializedVersion: 4
@@ -36534,8 +36534,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.016449988, y: 0.0397, z: 0}
-    m_Extent: {x: 0.54085, y: 0.5904, z: 0}
+    m_Center: {x: 0.009499997, y: 0.0431, z: 0}
+    m_Extent: {x: 0.53779995, y: 0.5992, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -108500,8 +108500,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.016849995, y: 0.042649984, z: 0}
-    m_Extent: {x: 0.54225, y: 0.59595, z: 0}
+    m_Center: {x: 0.014799982, y: 0.043300003, z: 0}
+    m_Extent: {x: 0.544, y: 0.59580004, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

@@ -21,6 +21,11 @@ public class LevelTrigger : MonoBehaviour
         collider2d = GetComponent<Collider2D>(); 
         trapControlls = FindObjectsOfType<TrapControll>(); //一次抓取全部linktrap的物件
         spawns = FindObjectsOfType<spawn>();
+        foreach (spawn repOb in spawns) //避免玩家還沒進入區域就開始生怪
+            {
+                repOb.enabled = false;
+            }
+        
     }
 
     void Update()
@@ -43,6 +48,10 @@ public class LevelTrigger : MonoBehaviour
         }
     }
     IEnumerator levelstart(int leveltime){  //leaveltime為房間的運作時間
+        foreach (spawn repOb in spawns) //修改全部重生點為開啟狀態
+            {
+                repOb.enabled = true;
+            }
         
         yield return new WaitForSeconds(leveltime); 
         ClearAllClones(); 
