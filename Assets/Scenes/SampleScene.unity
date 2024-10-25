@@ -1405,8 +1405,11 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 64
-  levelminTime: 180
-  levelmaxTime: 300
+  monsterlayer:
+    serializedVersion: 2
+    m_Bits: 8
+  levelminTime: 2
+  levelmaxTime: 3
 --- !u!50 &46987389
 Rigidbody2D:
   serializedVersion: 4
@@ -35869,8 +35872,8 @@ MonoBehaviour:
   - {fileID: 1053694635}
   - {fileID: 478305233}
   - {fileID: 1390241758}
-  spawnInterval: 1
-  limit: 5
+  spawnInterval: 3
+  limit: 50
 --- !u!1 &478305232
 GameObject:
   m_ObjectHideFlags: 0
@@ -36531,8 +36534,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.019349992, y: 0.04334998, z: 0}
-    m_Extent: {x: 0.54315, y: 0.59555, z: 0}
+    m_Center: {x: 0.016449988, y: 0.0397, z: 0}
+    m_Extent: {x: 0.54085, y: 0.5904, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -108497,8 +108500,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0042000115, y: 0.043900013, z: 0}
-    m_Extent: {x: 0.5418, y: 0.5981, z: 0}
+    m_Center: {x: 0.016849995, y: 0.042649984, z: 0}
+    m_Extent: {x: 0.54225, y: 0.59595, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -111490,8 +111493,8 @@ MonoBehaviour:
   - {fileID: 494270186}
   - {fileID: 822964065}
   - {fileID: 23497337}
-  spawnInterval: 1
-  limit: 5
+  spawnInterval: 3
+  limit: 50
 --- !u!1001 &1973476333
 PrefabInstance:
   m_ObjectHideFlags: 0
