@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
@@ -17,6 +18,8 @@ public class PlayerControl : MonoBehaviour
     public float AttackRange;
     public float Knockback_strength;
     public int HP;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     //--------------------打擊特效開關的bool-----------------------------
     public string boolPropertyName = "_hitBool";
@@ -92,6 +95,7 @@ public class PlayerControl : MonoBehaviour
         mat = targetRenderer.material;
         // 设置布尔值为 true
         mat.SetInt(boolPropertyName, 1);
+        audioSource.PlayOneShot(audioClip, 0.7f); // 打擊音效
         
         // 等待 0.1 秒
         yield return new WaitForSeconds(0.2f);  //hit閃白時間 
