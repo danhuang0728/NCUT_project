@@ -13,7 +13,7 @@ public class MusicSlider : MonoBehaviour
 public void  SetMusicVolume()
 {
  float volume = musicSlider.value;
- mymixer.SetFloat("music",volume);
+ mymixer.SetFloat("Volume",volume);
 }
     // Update is called once per frame
 

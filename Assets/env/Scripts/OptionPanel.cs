@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class OptionPanel : MonoBehaviour
+public class OptionPanel :MonoBehaviour
 {
     public TMP_Dropdown ResDropDown;
     public Toggle FullScreenToggle;
