@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] float remainingTime;
     void Update()
     {
-        
+        remainingTime -= Time.deltaTime;
+        int minutes = Mathf.FloorToInt(remainingTime/60);
+        int seconds = Mathf.FloorToInt(remainingTime%60);
+        timerText.text = string.Format("{0:00}:{1:00}",minutes,seconds);
     }
 }
