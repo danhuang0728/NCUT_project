@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - wall
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: gameobject
     uniqueID: 4250941897
+    locked: 0
+  - name: Boss
+    uniqueID: 1361452707
     locked: 0
   - name: Default
     uniqueID: 0
