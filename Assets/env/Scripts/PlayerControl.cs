@@ -77,10 +77,17 @@ public class PlayerControl : MonoBehaviour
     IEnumerator hurtDelay(){  //設定每0.2秒就會執行一次受傷判定
         if (rig.IsTouchingLayers(MonsterLayer))
         {
-            HP = HP - 5; 
+            TakeDamage(5);
         }
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(hurtDelay());
+    }
+   // 扣血方法
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+        Debug.Log("玩家受到傷害: " + damage + ", 目前血量: " + HP);
+        //你可以在這裡加入其他受傷的特效, 或是播放受傷音效
     }
 
     public void Move(InputAction.CallbackContext context)
