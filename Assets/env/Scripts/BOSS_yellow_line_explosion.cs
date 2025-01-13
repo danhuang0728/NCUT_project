@@ -21,7 +21,7 @@ public class BOSS_yellow_line_explosion : MonoBehaviour
     private Transform bossSkin;    // bossSkin 物件的 Transform 元件
      private Transform numTransform;    // num 物件的 Transform 元件
 
-    void Start()
+    void Start()    //初始化
     {
         // 在 Start 方法中找到玩家的 Transform 元件
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -75,7 +75,7 @@ public class BOSS_yellow_line_explosion : MonoBehaviour
 
         // 等待 0.7 秒
         yield return new WaitForSeconds(0.7f);
-        //動畫播放1秒 結束後銷毀
+        //BOSS底下火焰動畫播放0.35秒 結束後銷毀
           Destroy(yellowEyeAttack, 0.35f);
 
         // 取得爆炸線條位置
@@ -104,14 +104,14 @@ public class BOSS_yellow_line_explosion : MonoBehaviour
     }
     IEnumerator SpawnLineExplosions(Vector3 y_pos)
      {
-         // 在每一條線上產生爆炸
-        for (float x = 290f; x >= 256f; x -= 1f)
+         // 在每一條線上產生爆炸   爆炸與爆炸的間隔用x控制
+        for (float x = 290f; x >= 256f; x -= 3f)
          {
                Vector3 position = new Vector3(x, y_pos.y ,0);
              // 在爆炸點位置產生警告圖示
             GameObject warningIcon = Instantiate(warningIconPrefab, position, Quaternion.identity);
            // 延遲一段時間
-           float randomDelay = Random.Range(0.08f,0.08f);
+           float randomDelay = Random.Range(0.1f,0.1f);
               yield return new WaitForSeconds(randomDelay);
              StartCoroutine(SpawnExplosion(warningIcon));
          }
