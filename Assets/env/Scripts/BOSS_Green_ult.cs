@@ -15,12 +15,12 @@ public class BOSS_Green_ult : MonoBehaviour
      public float attackCooldown = 10f; // 攻擊間隔冷卻(秒)
     private float attackTimer = 0f;    
     public Transform Centerpoint; // 中心點
-    private PlayerControl playerControl;
+    public GameObject playerObject;
     public float attackRadius = 1f;
 
     void Start()
     {
-        playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
+
     }
 
     // Update is called once per frame
@@ -65,15 +65,22 @@ public class BOSS_Green_ult : MonoBehaviour
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(centerPosition, attackRadius, playerlayer);
         foreach (Collider2D hitPlayer in hitPlayers)
         {
-            // 取得玩家的 PlayerControl 腳本
-             PlayerControl playerControl = hitPlayer.GetComponent<PlayerControl>();
-              // 如果成功取得 PlayerControl 腳本, 則呼叫  ImmobilizePlayer 方法
-            if (playerControl != null)
+            // 取得玩家的 GameObject
+            GameObject playerGO = hitPlayer.gameObject;
+
+            // 取得 Rigidbody2D 组件
+            Rigidbody2D playerRB = playerGO.GetComponent<Rigidbody2D>();
+
+            // 确保 Rigidbody2D 存在后调用方法
+            if (playerRB != null)
             {
-                StartCoroutine(ImmobilizePlayer(playerControl));
+                StartCoroutine(ImmobilizePlayer(playerRB));
+            }
+            else
+            {
+                Debug.LogWarning("Rigidbody2D not found on object: " + playerGO.name);
             }
         }
-
         
         //藤蔓特效銷毀
         Destroy(vine, 0f);
@@ -87,15 +94,15 @@ public class BOSS_Green_ult : MonoBehaviour
          Gizmos.DrawWireSphere(Centerpoint.position, attackRadius);
     }
 
-     IEnumerator ImmobilizePlayer(PlayerControl playerControl){
+     IEnumerator ImmobilizePlayer(Rigidbody2D playerRigidbody){
           // 玩家定身
         Debug.Log("Player immobilized");
-         playerControl.speed = 0f;
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         // 延遲一段時間
         yield return new WaitForSeconds(3f);
 
         // 移除定身效果
-        playerControl.speed = 5f;
+        playerRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.None;
         Debug.Log("Player can move");
      }
 
