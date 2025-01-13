@@ -15,12 +15,12 @@ public class BOSS_Green_ult : MonoBehaviour
      public float attackCooldown = 10f; // 攻擊間隔冷卻(秒)
     private float attackTimer = 0f;    
     public Transform Centerpoint; // 中心點
-    public PlayerControl playerControl;
+    private PlayerControl playerControl;
     public float attackRadius = 1f;
 
     void Start()
     {
-        playerControl = FindObjectOfType<PlayerControl>();
+        playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
