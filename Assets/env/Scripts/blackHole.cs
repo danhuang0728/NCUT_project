@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlackHole : MonoBehaviour
@@ -16,41 +17,68 @@ public class BlackHole : MonoBehaviour
     public float attackRadius;
     public Transform blackhole_position;
     public Rigidbody2D player_;
-     private List<GameObject> spawnedObjects = new List<GameObject>();
+    private GameObject spawnedObject;
+    public Vector2 randomPosition;
+    public int blackhole_Count=1;
 
 
 
     void Start()
     {
-        StartCoroutine(BlackHoleIE());
+        for (int i=0;i<blackhole_Count;i++)
+        {
+            create_BlackHole();
+        }
+        
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha7)) // 按下數字鍵 7 觸發攻擊
+        {     
+            Recreate_BlackHole(spawnedObject);    
+            for (int i=0;i<blackhole_Count;i++)
+            {
+                create_BlackHole();
+            }
+        }
+    }
+    void create_BlackHole()
+    {
+        randomPosition = new Vector2(
+                Random.Range(spawnAreaCenter.x - spawnAreaSize.x / 2, spawnAreaCenter.x + spawnAreaSize.x / 2),
+                Random.Range(spawnAreaCenter.y - spawnAreaSize.y / 2, spawnAreaCenter.y + spawnAreaSize.y / 2)
+        );
+        StartCoroutine(BlackHoleIE());
+    }
+    void Recreate_BlackHole(GameObject gameObject)
+    {
+        GameObject[] spawnedObjects = GameObject.FindGameObjectsWithTag("BlackHoleSpawnedObject");
+        foreach (GameObject obj in spawnedObjects)
+        {
+            Destroy(obj);
+        }
+
     }
 
     IEnumerator BlackHoleIE()
     {
-        // 计算随机位置
-        Vector2 randomPosition = new Vector2(
-            Random.Range(spawnAreaCenter.x - spawnAreaSize.x / 2, spawnAreaCenter.x + spawnAreaSize.x / 2),
-            Random.Range(spawnAreaCenter.y - spawnAreaSize.y / 2, spawnAreaCenter.y + spawnAreaSize.y / 2)
-        );
-        
-        // 生成黑洞組件
-        GameObject spawnedObject = Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
-        Debug.Log("randompoS:"+randomPosition);
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(randomPosition, attackRadius, playerLayer);
-        foreach (Collider2D hitPlayer in  hitPlayers)
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(randomPosition, 5, playerLayer);
+        foreach (Collider2D player in hitMonsters)  //避免身在玩家底下 
         {
-            // 取得玩家的 Transform
-            Debug.Log("玩家在範圍內");
-            Transform playerTransfrom = hitPlayer.transform;
-            movePlayerToBlackHole(playerTransfrom,randomPosition);    
-        }   
-        yield return new WaitForSeconds(5f);
-        //Destroy(spawnedObject, 0f);
+            create_BlackHole();
+            break;
+        }
+        // 生成黑洞組件
+        spawnedObject = Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
+        spawnedObject.tag = "BlackHoleSpawnedObject";
+       
+        yield return new WaitForSeconds(10f);
+        GameObject[] spawnedObjects = GameObject.FindGameObjectsWithTag("BlackHoleSpawnedObject");
+        foreach (GameObject obj in spawnedObjects)
+        {
+            Destroy(obj);
+        }
             
         
     }
@@ -58,14 +86,6 @@ public class BlackHole : MonoBehaviour
     
 
     // 可视化生成范围（在编辑器中显示）
-
-    public void movePlayerToBlackHole(Transform player, Vector3 centerPoint)
-    {
-        Debug.Log("吸");
-        Vector3 direction = (player.transform.position - centerPoint).normalized;
-        player_.AddForce(direction * 5);
-
-    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0, 1, 0, 0.5f); // 绿色半透明

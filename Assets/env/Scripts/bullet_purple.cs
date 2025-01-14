@@ -23,7 +23,7 @@ public class bullet_purple : MonoBehaviour
         {
             if(other.CompareTag("Player"))
             {
-                PlayerControl playerControl = GetComponent<PlayerControl>();
+                PlayerControl playerControl = other.GetComponent<PlayerControl>();
             // 如果成功取得 PlayerControl 腳本, 則呼叫 TakeDamage 方法
                 if (playerControl != null)
                     {

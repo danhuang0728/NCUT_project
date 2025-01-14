@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -8,6 +9,9 @@ public class Boss : MonoBehaviour
     public float bulletSpeed = 5f; // 子彈速度
     private float fireTimer = 0f; // 發射計時器
 
+    void Start()
+    {
+    }
     void Update()
     {
         fireTimer += Time.deltaTime;
@@ -37,5 +41,13 @@ public class Boss : MonoBehaviour
 
         // 設定子彈的旋轉角度
         bullet.transform.rotation = Quaternion.Euler(0, 0, fireAngle);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 碰到玩家或牆壁就銷毀子彈
+        if (other.CompareTag("Player") || other.CompareTag("wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
