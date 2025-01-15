@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public float speed = 5f;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
+    public LayerMask BossMonsterLayer;
     public float AttackRange;
     public float Knockback_strength;
     public int HP;
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
     //--------------------------------------------------------
 
     private monsterMove slime_Scripts;
+    private BossFlower bossFlower;
     private NormalMonster_setting normalMonster_setting; 
     private float InputX;
     private float InputY;
@@ -114,6 +116,7 @@ public class PlayerControl : MonoBehaviour
     public void ALLdemageCheck(){     
         demageCheck();
         demageCheck2();
+        demageCheck3();
     }
     public void demageCheck(){          //史萊姆傷害判定
         Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
@@ -174,6 +177,33 @@ public class PlayerControl : MonoBehaviour
 
         }
         
+    }   
+
+    public void demageCheck3(){          //bossflower傷害判定
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, BossMonsterLayer); 
+
+        // 如果有怪物進入範圍   (確定bossflower的)
+        foreach (Collider2D bossFlower in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
+        {
+            Renderer targetRenderer = bossFlower.GetComponent<Renderer>(); //抓取複製怪的renderer
+            BossFlower cloneflower_Scripts = bossFlower.GetComponent<BossFlower>(); //讀取在攻擊範圍內的怪物腳本
+            if (cloneflower_Scripts != null)
+            {           
+                cloneflower_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                if (targetRenderer != null)
+                {
+                    // 获取材质实例（确保不会修改共享材质）
+                    Material mat = targetRenderer.material;
+                    // 打擊特效       
+                    StartCoroutine(SetBoolWithDelay(mat,targetRenderer));  
+                }
+                Debug.Log("怪物HP: " + cloneflower_Scripts.HP);
+            }
+        
+            else{break;}
+
+        }
+
     }   
 
     public void Attack(InputAction.CallbackContext context)
