@@ -10,13 +10,17 @@ public class LevelTrigger : MonoBehaviour
     public LayerMask monsterlayer;
     public int levelminTime = 180;
     public int levelmaxTime = 300;
-
+    public string block = "";
     private int levelTime = 0;
     private TrapControll[] trapControlls;  //一次抓取全部linktrap的TrapControll腳本
     private spawn[] spawns; 
 
+
+    public GameObject spawn_interval;
+
     void Start()
     {
+       
         
         collider2d = GetComponent<Collider2D>(); 
         trapControlls = FindObjectsOfType<TrapControll>(); //一次抓取全部linktrap的物件
@@ -42,15 +46,20 @@ public class LevelTrigger : MonoBehaviour
 
             foreach (TrapControll trap in trapControlls) //修改全部trap物件裡的的bool為true
             {
-                trap.close = true;  
+                trap.close = true;
             }   
             
         }
     }
     IEnumerator levelstart(int leveltime){  //leaveltime為房間的運作時間
+    Debug.Log(block);
         foreach (spawn repOb in spawns) //修改全部重生點為開啟狀態
             {
+                if (repOb.gameObject.name.Contains(block))
+                {
                 repOb.enabled = true;
+                Debug.Log($"{repOb.gameObject.name} 的生成腳本已啟動");
+                }
             }
         
         yield return new WaitForSeconds(leveltime); 
