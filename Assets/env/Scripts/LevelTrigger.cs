@@ -7,19 +7,30 @@ public class LevelTrigger : MonoBehaviour
     public Collider2D collider2d;
     public LayerMask player;
     public LayerMask monsterlayer;
-    public int levelminTime = 180;
-    public int levelmaxTime = 300;
+    public int levelminTime = 240;
+    public int levelmaxTime = 240;
     public string block = "";
     private int levelTime = 0;
     private TrapControll[] trapControlls; // 一次抓取全部linktrap的TrapControll腳本
+
+    
     private spawn[] spawns;
 
     private spawn targetSpawn; // 目標 Spawn 腳本
+
+    private spawn targetSpawn2; // 抓SK Spawn 腳本
+
+    private spawn targetSpawn3; // 抓Spider Spawn 腳本
+
+
 
     void Start()
     {
         // 獲取指定名稱的物件並取得其 Spawn 腳本
         Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime) (1_2)");
+        Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK) (1_2)"); 
+        Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider) (1_2)");
+
         if (targetTransform != null)
         {
             targetSpawn = targetTransform.GetComponent<spawn>();
@@ -34,8 +45,42 @@ public class LevelTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogError("找不到 MonsterSpawnPoint(Slime)(1_2) 物件");
+            Debug.LogError("找不到 MonsterSpawnPoint (Slime) (1_2) 物件");
         }
+        if (targetTransform2 != null)
+        {
+            targetSpawn2 = targetTransform2.GetComponent<spawn>();    //記得是targetTransform2 222222
+            if (targetSpawn2 != null)
+            {
+                Debug.Log($"找到 Spawn 腳本: {targetSpawn2.name}");
+            }
+            else
+            {
+                Debug.LogError("目標物件沒有 Spawn 腳本");
+            }
+        }
+        else
+        {
+            Debug.LogError("找不到 MonsterSpawnPoint (SK) (1_2) 物件");
+        }
+
+        if (targetTransform2 != null)
+        {
+            targetSpawn3 = targetTransform3.GetComponent<spawn>();    //記得是targetTransform3 333333333
+            if (targetSpawn3 != null)
+            {
+                Debug.Log($"找到 Spawn 腳本: {targetSpawn3.name}");
+            }
+            else
+            {
+                Debug.LogError("目標物件沒有 Spawn 腳本");
+            }
+        }
+        else
+        {
+            Debug.LogError("MonsterSpawnPoint (spider) (1_2)");
+        }
+
 
         collider2d = GetComponent<Collider2D>();
         trapControlls = FindObjectsOfType<TrapControll>(); // 一次抓取全部linktrap的物件
@@ -79,26 +124,40 @@ public class LevelTrigger : MonoBehaviour
         }
 
         float remainingTime = leveltime;
-        float maxInterval = 7f; // 最大生成間隔
-        float minInterval = 0.1f; // 最小生成間隔
+        float maxInterval = 6f; // 最大生成間隔
+        float minInterval = 0.15f; // 最小生成間隔
 
         // 隨著時間流逝調整 spawnInterval
         while (remainingTime > 0)
-        {
+{
             remainingTime -= Time.deltaTime;
 
             // 動態計算新的生成間隔
             float newInterval = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime));
+            float newInterval2 = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime * 0.6f)); // 加快進度
+            float newInterval3 = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime * 1.1f)); // 減緩進度
 
             // 更新目標 spawn 的生成間隔
             if (targetSpawn != null)
             {
                 targetSpawn.spawnInterval = newInterval;
-                Debug.Log($"剩餘時間：{remainingTime:F2} 秒，新生成間隔：{newInterval:F2} 秒");
+                Debug.Log($"剩餘時間：{remainingTime:F2} 秒，Slime新生成間隔：{newInterval:F2} 秒");
             }
 
-            yield return null;
-        }
+             if (targetSpawn2 != null)
+            {
+                targetSpawn2.spawnInterval = newInterval2;
+                Debug.Log($"剩餘時間：{remainingTime:F2} 秒，SK新生成間隔：{newInterval2:F2} 秒");
+            }
+
+             if (targetSpawn3 != null)
+             {
+                targetSpawn3.spawnInterval = newInterval3;
+                Debug.Log($"剩餘時間：{remainingTime:F2} 秒，Spider新生成間隔：{newInterval3:F2} 秒");
+            }
+
+                yield return null;
+}
 
         // 關卡結束
         ClearAllClones();
