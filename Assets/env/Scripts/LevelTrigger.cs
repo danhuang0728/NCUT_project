@@ -22,15 +22,17 @@ public class LevelTrigger : MonoBehaviour
 
     private spawn targetSpawn3; // 抓Spider Spawn 腳本
 
+ 
+
 
 
     void Start()
     {
         // 獲取指定名稱的物件並取得其 Spawn 腳本
-        Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime) (1_2)");
-        Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK) (1_2)"); 
-        Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider) (1_2)");
-
+        Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime)" + block);
+        Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK)" + block); 
+        Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider)" + block);
+        Debug.Log("test" +targetTransform3);
         if (targetTransform != null)
         {
             targetSpawn = targetTransform.GetComponent<spawn>();
@@ -49,7 +51,7 @@ public class LevelTrigger : MonoBehaviour
         }
         if (targetTransform2 != null)
         {
-            targetSpawn2 = targetTransform2.GetComponent<spawn>();    //記得是targetTransform2 222222
+            targetSpawn2 = targetTransform2.GetComponent<spawn>();   //targetTransform2 
             if (targetSpawn2 != null)
             {
                 Debug.Log($"找到 Spawn 腳本: {targetSpawn2.name}");
@@ -64,9 +66,9 @@ public class LevelTrigger : MonoBehaviour
             Debug.LogError("找不到 MonsterSpawnPoint (SK) (1_2) 物件");
         }
 
-        if (targetTransform2 != null)
+        if (targetTransform3 != null)
         {
-            targetSpawn3 = targetTransform3.GetComponent<spawn>();    //記得是targetTransform3 333333333
+            targetSpawn3 = targetTransform3.GetComponent<spawn>();    //targetTransform3 
             if (targetSpawn3 != null)
             {
                 Debug.Log($"找到 Spawn 腳本: {targetSpawn3.name}");
@@ -80,7 +82,7 @@ public class LevelTrigger : MonoBehaviour
         {
             Debug.LogError("MonsterSpawnPoint (spider) (1_2)");
         }
-
+        
 
         collider2d = GetComponent<Collider2D>();
         trapControlls = FindObjectsOfType<TrapControll>(); // 一次抓取全部linktrap的物件
@@ -134,7 +136,7 @@ public class LevelTrigger : MonoBehaviour
 
             // 動態計算新的生成間隔
             float newInterval = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime));
-            float newInterval2 = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime * 0.6f)); // 加快進度
+            float newInterval2 = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime * 0.65f)); // 加快進度  
             float newInterval3 = Mathf.Lerp(maxInterval, minInterval, 1 - (remainingTime / leveltime * 1.1f)); // 減緩進度
 
             // 更新目標 spawn 的生成間隔
@@ -147,13 +149,13 @@ public class LevelTrigger : MonoBehaviour
              if (targetSpawn2 != null)
             {
                 targetSpawn2.spawnInterval = newInterval2;
-                Debug.Log($"剩餘時間：{remainingTime:F2} 秒，SK新生成間隔：{newInterval2:F2} 秒");
+                //Debug.Log($"剩餘時間：{remainingTime:F2} 秒，SK新生成間隔：{newInterval2:F2} 秒");
             }
 
              if (targetSpawn3 != null)
              {
                 targetSpawn3.spawnInterval = newInterval3;
-                Debug.Log($"剩餘時間：{remainingTime:F2} 秒，Spider新生成間隔：{newInterval3:F2} 秒");
+                //Debug.Log($"剩餘時間：{remainingTime:F2} 秒，Spider新生成間隔：{newInterval3:F2} 秒");
             }
 
                 yield return null;
