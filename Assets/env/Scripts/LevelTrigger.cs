@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class LevelTrigger : MonoBehaviour
 {
     public Collider2D collider2d;
     public LayerMask player;
     public LayerMask monsterlayer;
-    public int levelminTime = 240;
-    public int levelmaxTime = 240;
+    public int levelminTime = 180;
+    public int levelmaxTime = 180;
+
+    public GameObject canvas;  // 連結 Canvas 物件
+    private Timer timerScript;
+
     public string block = "";
     private int levelTime = 0;
     private TrapControll[] trapControlls; // 一次抓取全部linktrap的TrapControll腳本
+
+    
 
     
     private spawn[] spawns;
@@ -32,7 +40,11 @@ public class LevelTrigger : MonoBehaviour
         Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime)" + block);
         Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK)" + block); 
         Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider)" + block);
-        Debug.Log("test" +targetTransform3);
+
+        // 取得 Timer 腳本
+        timerScript = canvas.GetComponent<Timer>();
+        
+
         if (targetTransform != null)
         {
             targetSpawn = targetTransform.GetComponent<spawn>();
@@ -121,6 +133,7 @@ public class LevelTrigger : MonoBehaviour
             if (repOb.gameObject.name.Contains(block))
             {
                 repOb.enabled = true;
+                timerScript.remainingTime= 180;
                 Debug.Log($"{repOb.gameObject.name} 的生成腳本已啟動");
             }
         }
@@ -131,7 +144,7 @@ public class LevelTrigger : MonoBehaviour
 
         // 隨著時間流逝調整 spawnInterval
         while (remainingTime > 0)
-{
+        {
             remainingTime -= Time.deltaTime;
 
             // 動態計算新的生成間隔
@@ -158,8 +171,8 @@ public class LevelTrigger : MonoBehaviour
                 //Debug.Log($"剩餘時間：{remainingTime:F2} 秒，Spider新生成間隔：{newInterval3:F2} 秒");
             }
 
-                yield return null;
-}
+            yield return null;
+        }
 
         // 關卡結束
         ClearAllClones();
