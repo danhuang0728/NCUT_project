@@ -127,7 +127,7 @@ public class BOSS_red_line_explosion : MonoBehaviour
         GameObject explosion = Instantiate(explosionPrefab, explosionPosition, Quaternion.identity);
 
         //偵測雷擊範圍內是否有玩家
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(explosionPosition, explosionRadius, playerLayer);
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(explosionPosition + new Vector3(0,-1,0), explosionRadius, playerLayer);
 
           // 對範圍內玩家造成傷害
          foreach (Collider2D hitPlayer in hitPlayers)

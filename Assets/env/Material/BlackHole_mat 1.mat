@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlackHole_MAT
+  m_Name: BlackHole_mat 1
   m_Shader: {fileID: 4800000, guid: 5f3ca21b5bdd9d3429caea28d8244024, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 551db141cb2754fef9847b894d857e71, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -41,21 +41,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BrightnessFalloff: 2
+    - _BrightnessFalloff: 3.66
     - _EdgeWidth: 0.02
     - _EnableExternalAlpha: 0
-    - _Glossiness: 0.5
-    - _GlowWidth: 23
+    - _Glossiness: 1
+    - _GlowWidth: 1.28
     - _HoleRadius: 0.44
-    - _LightRayIntensity: 1
+    - _LightRayIntensity: 29.35
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 0.92941177}
+    - _CoreColor: {r: 0.13019806, g: 0, b: 0.31132078, a: 1}
     - _CoreColorInner: {r: 0, g: 0, b: 0, a: 1}
-    - _CoreColorOuter: {r: 0.18743111, g: 0, b: 0.4056604, a: 1}
-    - _EdgeColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+    - _CoreColorOuter: {r: 0.09570955, g: 0, b: 0.23584908, a: 0.8352941}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
-    - _LightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightColor: {r: 0.076035365, g: 0, b: 0.18867922, a: 0.9019608}
     - _OuterGlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
