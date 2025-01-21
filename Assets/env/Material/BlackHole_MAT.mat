@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlackHole_MAT
-  m_Shader: {fileID: 4800000, guid: feae4cba71f12ae47964c9d391796bcb, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5f3ca21b5bdd9d3429caea28d8244024, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,11 +41,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BrightnessFalloff: 2
+    - _EdgeWidth: 0.02
     - _EnableExternalAlpha: 0
     - _Glossiness: 0.5
+    - _GlowWidth: 23
+    - _HoleRadius: 0.44
+    - _LightRayIntensity: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoreColorInner: {r: 0, g: 0, b: 0, a: 1}
+    - _CoreColorOuter: {r: 0.18743111, g: 0, b: 0.4056604, a: 1}
+    - _EdgeColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _LightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OuterGlowColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
