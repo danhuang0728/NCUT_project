@@ -6,6 +6,11 @@ public class NormalMonster_setting : MonoBehaviour
 {
     // Start is called before the first frame update
     private float previousXPosition; // 用來儲存物件的上一幀位置
+    public int monster_type; //區分水果or一般怪物 1==水果 0==一般
+    public int exp_type; //區分經驗值類別 初級,中級,高級
+    public GameObject LowExpPrefab;    // 低級經驗值預製體
+    public GameObject MediumExpPrefab;  // 中級經驗值預製體
+    public GameObject HighExpPrefab;    // 高級經驗值預製體
     bool isFlip = false;
     void Start()
     {
@@ -56,8 +61,52 @@ public class NormalMonster_setting : MonoBehaviour
     }
 
     public void MonsterDead(GameObject monster)
+{
+    monster.SetActive(false);
+
+    // 判斷怪物類型和經驗值等級
+    if (monster_type==0)  // 假設 monster_type = 0 代表一般怪物
     {
-        monster.SetActive(false);
+        switch (exp_type)
+        {
+            case 1:  // 低級經驗值
+                // 在這裡生成15經驗值的掉落物
+                Instantiate(LowExpPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("drop_exp");
+                break;
+            case 2:  // 中級經驗值
+                // 在這裡生成40經驗值的掉落物
+                Instantiate(MediumExpPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("drop_exp");
+                break;
+            case 3:  // 高級經驗值
+                // 在這裡生成100經驗值的掉落物
+                Instantiate(HighExpPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("drop_exp");
+                break;
+        }
     }
+    else if (monster_type==1)  // monster_type = 1 代表水果怪
+    {
+        switch (exp_type)
+        {
+            case 1:  // 低級經驗值
+                // 在這裡生成水果怪的15經驗值掉落物
+                // Instantiate(fruitLowExpPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("drop_exp");
+                break;
+            case 2:  // 中級經驗值
+                // 在這裡生成水果怪的40經驗值掉落物
+                // Instantiate(fruitMediumExpPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("drop_exp");
+                break;
+            case 3:  // 高級經驗值
+                // 在這裡生成水果怪的100經驗值掉落物
+                // Instantiate(fruitHighExpPrefab, transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("drop_exp");
+                break;
+        }
+    }
+}
 
 }
