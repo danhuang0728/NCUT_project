@@ -1,0 +1,2745 @@
+fileFormatVersion: 2
+guid: 58e26d6a1a7934740af7cccaa0bb7ded
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: weapon-Photoroom_0
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1140
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e31feb4dd5a1e4da61f8d99cf9c58d
+      internalID: 523075952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1140
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ebb284d9df6846439480adc4d13ae91
+      internalID: -847477524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1140
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 882f36f768ba5ad4593bd34810aae8b5
+      internalID: 1453635750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 1140
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d7fe5d5f8d1e7418bdbc434ee4b5c1
+      internalID: -54588499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 1140
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4415252400a49c7429c65209967ce793
+      internalID: -384796009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1140
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d904cc9cb02c8f143a8b5d17e321c03f
+      internalID: -1515855381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 1140
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8467a51b14706784f84d11f075ccba92
+      internalID: 953002309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 1140
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bfaaa703564a5d46872001fae47b84d
+      internalID: -127561177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 1140
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 289929006f1955e4a8d5166c2fc8f631
+      internalID: 234992780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1139
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e081e73b448d26740af1525da9a0439a
+      internalID: -854089864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1017
+        width: 105
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cd11603f9de1e042bdc7604a935083f
+      internalID: 1846794046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1017
+        width: 104
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9417af60fd110514fa404712be0ba811
+      internalID: 815598722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_12
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1017
+        width: 105
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cc35882e46726548ac88d990e4c9731
+      internalID: 1936949550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_13
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 1017
+        width: 104
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea443c7e88414d44486cc8f6221abcfd
+      internalID: 27581304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_14
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 1017
+        width: 105
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163efee12b90df8439dcd3eb42a8d8b2
+      internalID: -1134839452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_15
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1017
+        width: 104
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8617cba067eed40a170f2aaa18f89d
+      internalID: 1187569640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_16
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 1017
+        width: 98
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a488a71e20531547a329285f1233132
+      internalID: -1566056629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_17
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 1017
+        width: 100
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 510d24e0c844e1d44b0dcda8f497cae7
+      internalID: -1389900250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_18
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 1017
+        width: 104
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e986cbe32565b40b01dd623448037d
+      internalID: 1097898817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_19
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1017
+        width: 105
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60543cff49486184eb6b661352015587
+      internalID: 947462297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_20
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 895
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d1de65e9c23074ba10dcde86d7fd08
+      internalID: 423385633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_21
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 895
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53885427be35010438718c69dfce32c7
+      internalID: -1149715424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_22
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 894
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a66141c97320b4da53e3530b53cb08
+      internalID: 2127612779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_23
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 894
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf510a147e3d7b148b0c17a8b35f3f8b
+      internalID: -961391749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_24
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 894
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07e7e88fddf278741b168c6fe2943366
+      internalID: 136095862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_25
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 894
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c167b02015b68114ba6085e67d6326e2
+      internalID: 300467549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_26
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 894
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb677ab9a21c62a4096013dc3f0cb6cb
+      internalID: -1176279569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_27
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 894
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4761292f55ac71143bbea247143c5433
+      internalID: -1766501833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_28
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 894
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a19d1bc2103c14cb310286ea190e0e
+      internalID: 19938688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_29
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 894
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11261a9f21231c2488eb33a15e05ed31
+      internalID: 2057945066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_30
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85defc11e36bdc445aea7c8bf01f4736
+      internalID: 1924728480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_31
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b11cdcf2b8b49c64a8fe1ce3f1f38b9b
+      internalID: -1699177367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_32
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 778
+        width: 91
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f9b44c16505e240a609c06f2542d24
+      internalID: 1095881547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_33
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a49b5038b038fe4393f9a2f17e1d166
+      internalID: -2069126120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_34
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf076f9321dbf8d488fbf9e62635fea7
+      internalID: 501081108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_35
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b505aacee48eb4a803e4a67a3944f6
+      internalID: -259109422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_36
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0873c2f854d4844803e215f5965e6f
+      internalID: -999824723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_37
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661411dc628395a4489e5d3de0334e25
+      internalID: -551502606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_38
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 779
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0537c9a3eb19427408b6a1068c02ba46
+      internalID: -305069674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_39
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 779
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c217c4b3035b8344ebfceaae411ad09f
+      internalID: 1895659694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_40
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89665f1e5aa590e40bc75f99b6b2dc4c
+      internalID: -2098610338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_41
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 649
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2d17aada66bbc4fbb515db68be24f5
+      internalID: -1764069990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_42
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d929af8a90aa8d45a8657660e40fd1b
+      internalID: 1652720283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_43
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6105207b5360bd4f955072be83fbb08
+      internalID: 1435752474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_44
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028f09920af51104ca63af300ca8dc4b
+      internalID: -1127933828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_45
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 649
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1bb0d889f61cd44b86dd3de1b4c101c
+      internalID: 617653092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_46
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9485c35623f024c418dd1ece17def614
+      internalID: -1123302941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_47
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d5ca2598c4d4dd4f8bb23b4916440e9
+      internalID: 1390356145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_48
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 649
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2ddcd0d6cfde04499d625c940195fc
+      internalID: -420294108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_49
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 649
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d7361e184277644c98d0c9485789aad
+      internalID: 211471320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_50
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 550
+        width: 105
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ee04237275ac844a59217a988f3b04
+      internalID: 970302944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_51
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 551
+        width: 53
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42cbe04abfade874f95d123c3866c142
+      internalID: 1668996815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_52
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 605
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761c439381d3d3d488eab60a2fe90dee
+      internalID: -480191631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_53
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 527
+        width: 60
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75fa3e4a372e7e4cafe97cbd7c933dd
+      internalID: -1586457774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_54
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 537
+        width: 80
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40aba4928f276f94382d7b84eb9af528
+      internalID: -751797139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_55
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 581
+        width: 51
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435c583dc03adc14498d57216c8530b2
+      internalID: 1459360170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_56
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 527
+        width: 74
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21521fc344702f04e8a4fd2c98239915
+      internalID: 1939170545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_57
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 527
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d719e0182f6b96041b15f13f02c2bbd9
+      internalID: 1209147814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_58
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 574
+        width: 50
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979d711250d36914bbd0e1a6e1b3f4e4
+      internalID: 537339713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_59
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 558
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e064baa432bcb4468cd85cecd1cea24
+      internalID: -667901773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_60
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 602
+        width: 74
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c926e104442124d8628f99ef9939a3
+      internalID: 1651094037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_61
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 578
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63619ee5e545c9f4cb152ab21990aba0
+      internalID: -943335491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_62
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 578
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff2c6eed0ff37e4aaa93058211270ac
+      internalID: -1653572604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_63
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 527
+        width: 57
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cb1e96aa3959c428e35b841a20e2f4
+      internalID: 1370521153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_64
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 571
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80cd9a97f9479bf40933d6f025b85e4c
+      internalID: 955036429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_65
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 537
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5ab776a306beb42b65d109b757fed6
+      internalID: -1153182535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_66
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 527
+        width: 51
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6962b2eab26d34896a62b284bfea0e
+      internalID: 1810793915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_67
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 530
+        width: 51
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698d8e88c9613e8418744d06288cba78
+      internalID: 1959737053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_68
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 527
+        width: 39
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856521414b107f94282878c9eac44e38
+      internalID: 819004904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_69
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 527
+        width: 57
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be48883a9cc55204384eb80cef9f482f
+      internalID: -56984201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_70
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 527
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d4d96c02e1e8547b16b3ede97dca14
+      internalID: 96921582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_71
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 527
+        width: 36
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e72a470aa9f35408806f7c9afd661d
+      internalID: 5607132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_72
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 527
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d668fd847e22e9d4a80a858c5aa6b73a
+      internalID: 748028233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_73
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 527
+        width: 33
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ab1a789dc9fda42af6dd8a14a2fa89
+      internalID: -2031763605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_74
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 527
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f2b6057d43a554597ca2b63718f04a
+      internalID: 1292452553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_75
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 544
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05c7cec12fce814499ae6f6a2ca2e75
+      internalID: 452419203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_76
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 530
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b931e2eb5ea0f4382c59feba0dfc3a
+      internalID: -403360041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_77
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 527
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f1324ec07215548a8ff9e0508fd24f
+      internalID: 1933868208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_78
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 530
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a6a711d58d1b145912bc753dfbd3d8
+      internalID: -240172082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_79
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 404
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 412a17ea7c6475d4b9bc6d583bcaacaf
+      internalID: 1253778559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_80
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 404
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b23fc248d7f535246a4305164cec59bf
+      internalID: -853507240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_81
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 404
+        width: 105
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cacc492953c122844b3cd204f66d212f
+      internalID: -1830258142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_82
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 404
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438109975dd2bd147be7db2555c9ee6e
+      internalID: -2037485481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_83
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 404
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a9b0c991bd17a945ae147064371a3a5
+      internalID: 2055771082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_84
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 404
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fc80903535b8543b08c2f4f91bf920
+      internalID: 2124676815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_85
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 404
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4283b8a650e19bd47bec70e2958118db
+      internalID: 352531195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_86
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 404
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa174bb6bcecb8f4c8db4f92f1f49841
+      internalID: -1570176998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_87
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 404
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df71961fc06cde94daa7c260e4c66c0c
+      internalID: -756868606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_88
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 404
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ad287384483a54d9432194550721bc
+      internalID: 760460101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_89
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 285
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a0310001ebe1f469cf74a3ca6f79c4
+      internalID: 777164268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_90
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 285
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d7f93861facab14da0dbcf3ff573a1b
+      internalID: -260824257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_91
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 282
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847198fb0f16b8b4abfec48e5bb0eed7
+      internalID: 1237892975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_92
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 282
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78de0d747173ea44fa89f09e3ea0c747
+      internalID: -1754699084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_93
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 282
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce85c38dd0ed43b44af9808c6095f743
+      internalID: -1639166781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_94
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 285
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e63b1b8fbf893448c9a6902d604a0c
+      internalID: -2084031680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_95
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 282
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8665d3253e3d7554a918f002d8ed21f4
+      internalID: 1890636348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_96
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 282
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f89e8c4b87f99204ab853d112fa8ae15
+      internalID: -2134212621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_97
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 282
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526ef83402fa1be4fb55ff75b0b30d5c
+      internalID: -2120773951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_98
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 282
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c84911ada2b1b43b4049be933f3f43
+      internalID: -1250881139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_99
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 159
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a02d81b64cea84babfbf4c377058b2
+      internalID: -1160370928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_100
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b0d8f230efa7645924440d06e57c49
+      internalID: -1401068905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_101
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 159
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a412d1418855a724eb1a5cb819d747a6
+      internalID: -1220596515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_102
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 159
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd9e1559a09f8142a5d5b9514e184e6
+      internalID: -1588848089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_103
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 159
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70401b192bdfad42a6bc72453f1d829
+      internalID: 878131224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_104
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 159
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b65dba0f4f5cad54d9b5063eb89669bf
+      internalID: -708956975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_105
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 159
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b3033cb400b76b49a5ee85bc5b043bd
+      internalID: -1339611467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_106
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 159
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1d2e0a2f23b2345a8e310824ab56a6
+      internalID: -849478707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_107
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 159
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8e778a659fbf649938ef709d406916
+      internalID: -1846510226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_108
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 159
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b19cb5fa3bcb794bb682619f77f14a0
+      internalID: 1858851639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_109
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 37
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52bcf07a47181248b714191df9e3da7
+      internalID: 1977722718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_110
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 37
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b19b70721e957a14599f16b4a49cd62c
+      internalID: 414176989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_111
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 37
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e615fd1b087364eb884f844e9cceb2
+      internalID: 2006225861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_112
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 37
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f47cf664b19ffe04daf33f15aec7f473
+      internalID: -723622789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_113
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 37
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c358cede784c84bb6450485225b5ba
+      internalID: -480721811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_114
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 37
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b056624b95948184c9cea8cb2c4acc14
+      internalID: 1730973720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_115
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 37
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a3c7a53848731246a5bfb14c8650d48
+      internalID: -321859430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_116
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 37
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c7b7a1ac26f1ce4bb69c12c71068eb0
+      internalID: -929509539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_117
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 37
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9595c9b978e6cce48bdaba8c93c0bfd9
+      internalID: -87744637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon-Photoroom_118
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 37
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f331488e2382832459855534fc806f00
+      internalID: 18023287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      weapon-Photoroom_0: 523075952
+      weapon-Photoroom_1: -847477524
+      weapon-Photoroom_10: 1846794046
+      weapon-Photoroom_100: -1401068905
+      weapon-Photoroom_101: -1220596515
+      weapon-Photoroom_102: -1588848089
+      weapon-Photoroom_103: 878131224
+      weapon-Photoroom_104: -708956975
+      weapon-Photoroom_105: -1339611467
+      weapon-Photoroom_106: -849478707
+      weapon-Photoroom_107: -1846510226
+      weapon-Photoroom_108: 1858851639
+      weapon-Photoroom_109: 1977722718
+      weapon-Photoroom_11: 815598722
+      weapon-Photoroom_110: 414176989
+      weapon-Photoroom_111: 2006225861
+      weapon-Photoroom_112: -723622789
+      weapon-Photoroom_113: -480721811
+      weapon-Photoroom_114: 1730973720
+      weapon-Photoroom_115: -321859430
+      weapon-Photoroom_116: -929509539
+      weapon-Photoroom_117: -87744637
+      weapon-Photoroom_118: 18023287
+      weapon-Photoroom_12: 1936949550
+      weapon-Photoroom_13: 27581304
+      weapon-Photoroom_14: -1134839452
+      weapon-Photoroom_15: 1187569640
+      weapon-Photoroom_16: -1566056629
+      weapon-Photoroom_17: -1389900250
+      weapon-Photoroom_18: 1097898817
+      weapon-Photoroom_19: 947462297
+      weapon-Photoroom_2: 1453635750
+      weapon-Photoroom_20: 423385633
+      weapon-Photoroom_21: -1149715424
+      weapon-Photoroom_22: 2127612779
+      weapon-Photoroom_23: -961391749
+      weapon-Photoroom_24: 136095862
+      weapon-Photoroom_25: 300467549
+      weapon-Photoroom_26: -1176279569
+      weapon-Photoroom_27: -1766501833
+      weapon-Photoroom_28: 19938688
+      weapon-Photoroom_29: 2057945066
+      weapon-Photoroom_3: -54588499
+      weapon-Photoroom_30: 1924728480
+      weapon-Photoroom_31: -1699177367
+      weapon-Photoroom_32: 1095881547
+      weapon-Photoroom_33: -2069126120
+      weapon-Photoroom_34: 501081108
+      weapon-Photoroom_35: -259109422
+      weapon-Photoroom_36: -999824723
+      weapon-Photoroom_37: -551502606
+      weapon-Photoroom_38: -305069674
+      weapon-Photoroom_39: 1895659694
+      weapon-Photoroom_4: -384796009
+      weapon-Photoroom_40: -2098610338
+      weapon-Photoroom_41: -1764069990
+      weapon-Photoroom_42: 1652720283
+      weapon-Photoroom_43: 1435752474
+      weapon-Photoroom_44: -1127933828
+      weapon-Photoroom_45: 617653092
+      weapon-Photoroom_46: -1123302941
+      weapon-Photoroom_47: 1390356145
+      weapon-Photoroom_48: -420294108
+      weapon-Photoroom_49: 211471320
+      weapon-Photoroom_5: -1515855381
+      weapon-Photoroom_50: 970302944
+      weapon-Photoroom_51: 1668996815
+      weapon-Photoroom_52: -480191631
+      weapon-Photoroom_53: -1586457774
+      weapon-Photoroom_54: -751797139
+      weapon-Photoroom_55: 1459360170
+      weapon-Photoroom_56: 1939170545
+      weapon-Photoroom_57: 1209147814
+      weapon-Photoroom_58: 537339713
+      weapon-Photoroom_59: -667901773
+      weapon-Photoroom_6: 953002309
+      weapon-Photoroom_60: 1651094037
+      weapon-Photoroom_61: -943335491
+      weapon-Photoroom_62: -1653572604
+      weapon-Photoroom_63: 1370521153
+      weapon-Photoroom_64: 955036429
+      weapon-Photoroom_65: -1153182535
+      weapon-Photoroom_66: 1810793915
+      weapon-Photoroom_67: 1959737053
+      weapon-Photoroom_68: 819004904
+      weapon-Photoroom_69: -56984201
+      weapon-Photoroom_7: -127561177
+      weapon-Photoroom_70: 96921582
+      weapon-Photoroom_71: 5607132
+      weapon-Photoroom_72: 748028233
+      weapon-Photoroom_73: -2031763605
+      weapon-Photoroom_74: 1292452553
+      weapon-Photoroom_75: 452419203
+      weapon-Photoroom_76: -403360041
+      weapon-Photoroom_77: 1933868208
+      weapon-Photoroom_78: -240172082
+      weapon-Photoroom_79: 1253778559
+      weapon-Photoroom_8: 234992780
+      weapon-Photoroom_80: -853507240
+      weapon-Photoroom_81: -1830258142
+      weapon-Photoroom_82: -2037485481
+      weapon-Photoroom_83: 2055771082
+      weapon-Photoroom_84: 2124676815
+      weapon-Photoroom_85: 352531195
+      weapon-Photoroom_86: -1570176998
+      weapon-Photoroom_87: -756868606
+      weapon-Photoroom_88: 760460101
+      weapon-Photoroom_89: 777164268
+      weapon-Photoroom_9: -854089864
+      weapon-Photoroom_90: -260824257
+      weapon-Photoroom_91: 1237892975
+      weapon-Photoroom_92: -1754699084
+      weapon-Photoroom_93: -1639166781
+      weapon-Photoroom_94: -2084031680
+      weapon-Photoroom_95: 1890636348
+      weapon-Photoroom_96: -2134212621
+      weapon-Photoroom_97: -2120773951
+      weapon-Photoroom_98: -1250881139
+      weapon-Photoroom_99: -1160370928
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

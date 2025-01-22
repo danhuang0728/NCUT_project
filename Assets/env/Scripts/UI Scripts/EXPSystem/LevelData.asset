@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5884f6c67a2c6674c9585867b71fa2c3, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  levels:
+  - level: 1
+    requiredExperience: 150
+    speed: 1.01
+  - level: 2
+    requiredExperience: 333
+    speed: 2.02
+  - level: 3
+    requiredExperience: 570
+    speed: 3.03
+  - level: 4
+    requiredExperience: 850
+    speed: 4.04
+  - level: 5
+    requiredExperience: 1168
+    speed: 5.05
+  - level: 6
+    requiredExperience: 1520
+    speed: 6.06
+  - level: 7
+    requiredExperience: 1902
+    speed: 7.0699997
+  - level: 8
+    requiredExperience: 2313
+    speed: 8.08
+  - level: 9
+    requiredExperience: 2750
+    speed: 9.09
+  - level: 10
+    requiredExperience: 3212
+    speed: 10.1
+  - level: 11
+    requiredExperience: 3698
+    speed: 11.11
+  - level: 12
+    requiredExperience: 4207
+    speed: 12.12
+  - level: 13
+    requiredExperience: 4737
+    speed: 13.13
+  - level: 14
+    requiredExperience: 5288
+    speed: 14.139999
+  - level: 15
+    requiredExperience: 5859
+    speed: 15.15
+  - level: 16
+    requiredExperience: 6450
+    speed: 16.16
+  - level: 17
+    requiredExperience: 7059
+    speed: 17.17
+  - level: 18
+    requiredExperience: 7687
+    speed: 18.18
+  - level: 19
+    requiredExperience: 8332
+    speed: 19.19
+  - level: 20
+    requiredExperience: 8994
+    speed: 20.2
+  - level: 21
+    requiredExperience: 9673
+    speed: 21.21
+  - level: 22
+    requiredExperience: 10369
+    speed: 22.22
+  - level: 23
+    requiredExperience: 11080
+    speed: 23.23
+  - level: 24
+    requiredExperience: 11808
+    speed: 24.24
+  - level: 25
+    requiredExperience: 12550
+    speed: 25.25
+  - level: 26
+    requiredExperience: 13307
+    speed: 26.26
+  - level: 27
+    requiredExperience: 14080
+    speed: 27.27
+  - level: 28
+    requiredExperience: 14866
+    speed: 28.279999
+  - level: 29
+    requiredExperience: 15667
+    speed: 29.289999
+  - level: 30
+    requiredExperience: 16482
+    speed: 30.3
+  - level: 31
+    requiredExperience: 17310
+    speed: 31.31
+  - level: 32
+    requiredExperience: 18152
+    speed: 32.32
+  - level: 33
+    requiredExperience: 19007
+    speed: 33.329998
+  - level: 34
+    requiredExperience: 19875
+    speed: 34.34
+  - level: 35
+    requiredExperience: 20756
+    speed: 35.35
+  - level: 36
+    requiredExperience: 21650
+    speed: 36.36
+  - level: 37
+    requiredExperience: 22556
+    speed: 37.37
+  - level: 38
+    requiredExperience: 23475
+    speed: 38.38
+  - level: 39
+    requiredExperience: 24405
+    speed: 39.39
+  - level: 40
+    requiredExperience: 25348
+    speed: 40.4
+  - level: 41
+    requiredExperience: 26303
+    speed: 41.41
+  - level: 42
+    requiredExperience: 27269
+    speed: 42.42
+  - level: 43
+    requiredExperience: 28247
+    speed: 43.43
+  - level: 44
+    requiredExperience: 29236
+    speed: 44.44
+  - level: 45
+    requiredExperience: 30237
+    speed: 45.45
+  - level: 46
+    requiredExperience: 31249
+    speed: 46.46
+  - level: 47
+    requiredExperience: 32272
+    speed: 47.47
+  - level: 48
+    requiredExperience: 33305
+    speed: 48.48
+  - level: 49
+    requiredExperience: 34350
+    speed: 49.489998
+  - level: 50
+    requiredExperience: 35405
+    speed: 50.5
+  - level: 51
+    requiredExperience: 36471
+    speed: 51.51
+  - level: 52
+    requiredExperience: 37548
+    speed: 52.52
+  - level: 53
+    requiredExperience: 38635
+    speed: 53.53
+  - level: 54
+    requiredExperience: 39732
+    speed: 54.54
+  - level: 55
+    requiredExperience: 40839
+    speed: 55.55
+  - level: 56
+    requiredExperience: 41957
+    speed: 56.559998
+  - level: 57
+    requiredExperience: 43084
+    speed: 57.57
+  - level: 58
+    requiredExperience: 44221
+    speed: 58.579998
+  - level: 59
+    requiredExperience: 45369
+    speed: 59.59
+  - level: 60
+    requiredExperience: 46526
+    speed: 60.6
+  - level: 61
+    requiredExperience: 47693
+    speed: 61.61
+  - level: 62
+    requiredExperience: 48869
+    speed: 62.62
+  - level: 63
+    requiredExperience: 50055
+    speed: 63.63
+  - level: 64
+    requiredExperience: 51250
+    speed: 64.64
+  - level: 65
+    requiredExperience: 52455
+    speed: 65.65
+  - level: 66
+    requiredExperience: 53669
+    speed: 66.659996
+  - level: 67
+    requiredExperience: 54892
+    speed: 67.67
+  - level: 68
+    requiredExperience: 56124
+    speed: 68.68
+  - level: 69
+    requiredExperience: 57366
+    speed: 69.69
+  - level: 70
+    requiredExperience: 58616
+    speed: 70.7
+  - level: 71
+    requiredExperience: 59876
+    speed: 71.71
+  - level: 72
+    requiredExperience: 61144
+    speed: 72.72
+  - level: 73
+    requiredExperience: 62421
+    speed: 73.729996
+  - level: 74
+    requiredExperience: 63707
+    speed: 74.74
+  - level: 75
+    requiredExperience: 65002
+    speed: 75.75
+  - level: 76
+    requiredExperience: 66305
+    speed: 76.76
+  - level: 77
+    requiredExperience: 67617
+    speed: 77.77
+  - level: 78
+    requiredExperience: 68938
+    speed: 78.78
+  - level: 79
+    requiredExperience: 70267
+    speed: 79.79
+  - level: 80
+    requiredExperience: 71604
+    speed: 80.8
+  - level: 81
+    requiredExperience: 72950
+    speed: 81.81
+  - level: 82
+    requiredExperience: 74304
+    speed: 82.82
+  - level: 83
+    requiredExperience: 75667
+    speed: 83.83
+  - level: 84
+    requiredExperience: 77037
+    speed: 84.84
+  - level: 85
+    requiredExperience: 78416
+    speed: 85.85
+  - level: 86
+    requiredExperience: 79803
+    speed: 86.86
+  - level: 87
+    requiredExperience: 81198
+    speed: 87.87
+  - level: 88
+    requiredExperience: 82601
+    speed: 88.88
+  - level: 89
+    requiredExperience: 84012
+    speed: 89.89
+  - level: 90
+    requiredExperience: 85431
+    speed: 90.9
+  - level: 91
+    requiredExperience: 86858
+    speed: 91.909996
+  - level: 92
+    requiredExperience: 88293
+    speed: 92.92
+  - level: 93
+    requiredExperience: 89736
+    speed: 93.93
+  - level: 94
+    requiredExperience: 91186
+    speed: 94.94
+  - level: 95
+    requiredExperience: 92645
+    speed: 95.95
+  - level: 96
+    requiredExperience: 94110
+    speed: 96.96
+  - level: 97
+    requiredExperience: 95584
+    speed: 97.97
+  - level: 98
+    requiredExperience: 97065
+    speed: 98.979996
+  - level: 99
+    requiredExperience: 98554
+    speed: 99.99
+  - level: 100
+    requiredExperience: 100050
+    speed: 101
