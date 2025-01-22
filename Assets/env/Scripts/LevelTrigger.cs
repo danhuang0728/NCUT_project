@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Timers;
 
 public class LevelTrigger : MonoBehaviour
 {
@@ -134,6 +135,7 @@ public class LevelTrigger : MonoBehaviour
             {
                 repOb.enabled = true;
                 timerScript.remainingTime= 180;
+                Debug.Log(timerScript);
                 Debug.Log($"{repOb.gameObject.name} 的生成腳本已啟動");
             }
         }
