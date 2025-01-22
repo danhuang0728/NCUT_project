@@ -12,6 +12,7 @@ using UnityEngine.Rendering;
 
 public class PlayerControl : MonoBehaviour
 {
+    public LevelManager levelManager;
     public float speed = 5f;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
@@ -44,6 +45,7 @@ public class PlayerControl : MonoBehaviour
     
     private void Update() 
     {
+        speed = levelManager.GetCurrentSpeed(); // 讀取當前等級的速度
         rig.velocity = new Vector2(speed * InputX , speed * InputY);    
        
         if (math.abs(rig.velocity.x) > 0 || rig.velocity.y != 0)

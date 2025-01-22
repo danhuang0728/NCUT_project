@@ -27,7 +27,8 @@ public class LevelData : ScriptableObject
         {
             int level = i + 1; // 等級從 1 開始
             int requiredExperience = Mathf.RoundToInt(100 * Mathf.Pow(level, 1.5f) + 50); // 使用公式計算經驗需求
-            float speed = level * 1.01f; // 假設每等級的血量獎勵為 1.1 倍
+            
+            float speed =CalculateSpeed(level); 
 
             levels[i] = new LevelInfo
             {
@@ -36,5 +37,16 @@ public class LevelData : ScriptableObject
                 speed = speed
             };
         } 
+    }
+    public static float CalculateSpeed(int level)  //照等級速度加成函數
+    {
+        float minSpeed = 5.0f;
+        float maxSpeed = 10.0f;
+        int minLevel = 1;
+        int maxLevel = 100;
+
+        // 使用公式計算速度
+        float speed = minSpeed + (level - minLevel) * (maxSpeed - minSpeed) / (maxLevel - minLevel);
+        return speed;
     }
 }
