@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - BlackHoleSpawnedObject
+  - Monster
   layers:
   - Default
   - TransparentFX

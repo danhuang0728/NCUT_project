@@ -25,7 +25,7 @@ public class NormalMonster_setting : MonoBehaviour
     public float HP;
     void Update()
     {
-        if (HP == 0)
+        if (HP <= 0)
         {
             MonsterDead(monster);
         }
