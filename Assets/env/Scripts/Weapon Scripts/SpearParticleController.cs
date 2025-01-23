@@ -45,18 +45,18 @@ public class SpearParticleController : MonoBehaviour
                 {
                     Material mat = renderer.material;
                     // 造成傷害
-                    StartCoroutine(playerControl.SetBoolWithDelay(mat,renderer));
+                    StartCoroutine(playerControl.SetBoolWithDelay(mat,renderer)); 
                     monster.HP -= damage;
                     
                 }
                 else
                 {
-                    Debug.Log("未找到 Monster 腳本");
+                    //Debug.Log("未找到 Monster 腳本");
                 }
             }
             else
             {
-                Debug.Log("碰撞到非怪物物件");
+                //Debug.Log("碰撞到非怪物物件");
             }
         }
     }
@@ -86,12 +86,12 @@ public class SpearParticleController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("未找到 Monster 腳本");
+                    //Debug.Log("未找到 Monster 腳本");
                 }
             }
             else
             {
-                Debug.Log("碰撞到非怪物物件");
+                //Debug.Log("碰撞到非怪物物件");
             }
         }
 

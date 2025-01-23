@@ -109,7 +109,7 @@ public class PlayerControl : MonoBehaviour
         audioSource.PlayOneShot(audioClip, 0.7f); // 打擊音效
         
         // 等待 0.1 秒
-        yield return new WaitForSeconds(0.2f);  //hit閃白時間 
+        yield return new WaitForSeconds(0.15f);  //hit閃白時間 
 
         // 设置布尔值为 false
         mat.SetInt(boolPropertyName, 0);
