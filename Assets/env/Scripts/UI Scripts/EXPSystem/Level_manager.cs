@@ -60,6 +60,8 @@ public class LevelManager : MonoBehaviour
     }
     public float GetCurrentSpeed()
     {
+        Debug.LogWarning(levelData);
+        Debug.LogWarning(experienceSystem);
         if (levelData == null || experienceSystem == null) return 0f;
 
         int currentLevel = experienceSystem.currentLevel;
