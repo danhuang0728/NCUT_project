@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     
-    private IEnumerator SetBoolWithDelay(Material mat ,Renderer targetRenderer)   //開啟hit特效然後0.1秒後關閉
+    public IEnumerator SetBoolWithDelay(Material mat ,Renderer targetRenderer)   //開啟hit特效然後0.1秒後關閉
     {
         mat = targetRenderer.material;
         // 设置布尔值为 true

@@ -202,7 +202,7 @@ public class LevelTrigger : MonoBehaviour
         // 遍歷所有物件，查找名稱包含 "Clone" 的物件
         foreach (GameObject obj in allObjects)
         {
-            if (obj.name.Contains("Clone")) // 替換為適當的名稱檢查
+            if (obj.CompareTag("Monster")) // 替換為適當的名稱檢查
             {
                 Destroy(obj);
             }
