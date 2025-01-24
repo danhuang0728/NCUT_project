@@ -8,18 +8,22 @@ using TMPro;
 public class NPCChat : MonoBehaviour
 {
     public GameObject dialoguePanel;
-    public TMPro.TextMeshProUGUI dialogueText; // 修改：從陣列改為單一 TextMeshProUGUI
+    public TMPro.TextMeshProUGUI dialogueText;
     public string[] dialogue;
     private int index;
     public float wordspeed;
-    public bool playerIsClose;
     public GameObject ContinueButton;
+    private InteractionPrompt interactionPrompt;
+
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
-        {
-            if (dialoguePanel.activeInHierarchy)
+        interactionPrompt = GetComponent<InteractionPrompt>();
+
+         if (interactionPrompt != null && Input.GetKeyDown(KeyCode.E) && interactionPrompt.isPlayerInRange)
+         {
+             if (dialoguePanel.activeInHierarchy)
             {
                 zeroText();
             }
@@ -28,10 +32,19 @@ public class NPCChat : MonoBehaviour
                 dialoguePanel.SetActive(true);
                 StartCoroutine(Typing());
             }
-        }
-        if(dialogueText.text == dialogue[index])
+         }
+          if (interactionPrompt != null)
         {
-            ContinueButton.SetActive(true);
+            if (interactionPrompt.isPlayerInRange)
+            {
+                // 玩家在範圍內時執行的程式碼
+                 Debug.Log("玩家在範圍內");
+            }
+            else
+            {
+                // 玩家不在範圍內時執行的程式碼
+                 Debug.Log("玩家不在範圍內");
+            }
         }
     }
 
@@ -44,14 +57,15 @@ public class NPCChat : MonoBehaviour
 
     IEnumerator Typing()
     {
-        if (index < dialogue.Length) // 確保 index 在有效範圍內
+        if (index < dialogue.Length)
         {
-            dialogueText.text = ""; // 清空當前文字
+            dialogueText.text = "";
             foreach (char letter in dialogue[index].ToCharArray())
             {
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(wordspeed);
             }
+                ContinueButton.SetActive(true); // 確認文字顯示完畢後，再顯示 ContinueButton
         }
     }
 
@@ -65,23 +79,6 @@ public class NPCChat : MonoBehaviour
         }
         else
         {
-            zeroText();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerIsClose = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerIsClose = false;
             zeroText();
         }
     }
