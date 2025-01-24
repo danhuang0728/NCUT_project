@@ -9,6 +9,7 @@ public class MagicBook : MonoBehaviour
     public float bulletSpeed = 5f; // 子彈速度
     private float fireTimer = 0f; // 發射計時器
     private float timer = 0f;
+    public bool Is_in_range = false;
 
 
 
@@ -25,8 +26,10 @@ public class MagicBook : MonoBehaviour
         // 每当timer达到1秒时发射
         if (timer >= 1f / fireRate)
         {
-            Debug.Log(timer);
-            FireBullet();
+            if (Is_in_range == true)
+            {
+                FireBullet();
+            }
             timer = 0f; // 重置计时器
         }
     }

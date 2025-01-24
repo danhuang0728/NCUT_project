@@ -103,7 +103,7 @@ public class GearWeapon : MonoBehaviour
                 if (renderer != null)
                 {
                     Material mat = renderer.material;
-                    StartCoroutine(playerControl.SetBoolWithDelay(mat,renderer));
+                    playerControl.SetBoolWithDelay_void(mat, renderer);
 
                     // 若需要延遲恢復顏色，可用協程
                     //StartCoroutine(ResetColorAfterDelay(renderer, Color.white, 0.3f));

@@ -122,16 +122,9 @@ public class PlayerControl : MonoBehaviour
         
         // 等待 0.1 秒
         yield return new WaitForSeconds(0.2f);  //hit閃白時間 
-
         // 设置布尔值为 false
         mat.SetInt(boolPropertyName, 0);
         
-        yield return new WaitForSeconds(0.15f);  //保險
-        mat.SetInt(boolPropertyName, 0);
-        yield return new WaitForSeconds(0.2f);  //保險
-        mat.SetInt(boolPropertyName, 0);
-        yield return new WaitForSeconds(0.2f);  //保險
-        mat.SetInt(boolPropertyName, 0);
     }
 
     public void ALLdemageCheck(){     
@@ -240,5 +233,9 @@ public class PlayerControl : MonoBehaviour
 
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(AttackPoint.position,AttackRange);    
+    }
+    public void SetBoolWithDelay_void(Material mat, Renderer renderer)
+    {
+        StartCoroutine(SetBoolWithDelay(mat, renderer));
     }
 }
