@@ -33,13 +33,14 @@ public class PlayerControl : MonoBehaviour
     private float InputX;
     private float InputY;
     private bool isFlip = false;
-
     private Rigidbody2D rig;
     private Animator ani;
+    private GameObject axeSlash;
     private void Start() 
     {
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
+        axeSlash = GameObject.Find("Axe_Slashh_0");
         StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
     }
     
@@ -59,18 +60,29 @@ public class PlayerControl : MonoBehaviour
 
         if (!isFlip)
         {
-            if (rig.velocity.x > 0)
+            if (rig.velocity.x > 0f)
             {
                 isFlip = true;
+                
                 transform.Rotate(0.0f,180.0f,0.0f);
+                //面向右邊
+                
+                if (axeSlash != null)
+                {
+                    axeSlash.transform.Rotate(0.0f, -180.0f, 0.0f);
+                }
             }
         }
         else
         {
-            if (rig.velocity.x < 0)
+            if (rig.velocity.x < 0f)
             {
                 isFlip = false;
                 transform.Rotate(0.0f,180.0f,0.0f);
+                if (axeSlash != null)
+                {
+                    axeSlash.transform.Rotate(0.0f, -180.0f, 0.0f);
+                }
             }
         }
         
@@ -109,9 +121,16 @@ public class PlayerControl : MonoBehaviour
         audioSource.PlayOneShot(audioClip, 0.7f); // 打擊音效
         
         // 等待 0.1 秒
-        yield return new WaitForSeconds(0.15f);  //hit閃白時間 
+        yield return new WaitForSeconds(0.2f);  //hit閃白時間 
 
         // 设置布尔值为 false
+        mat.SetInt(boolPropertyName, 0);
+        
+        yield return new WaitForSeconds(0.15f);  //保險
+        mat.SetInt(boolPropertyName, 0);
+        yield return new WaitForSeconds(0.2f);  //保險
+        mat.SetInt(boolPropertyName, 0);
+        yield return new WaitForSeconds(0.2f);  //保險
         mat.SetInt(boolPropertyName, 0);
     }
 

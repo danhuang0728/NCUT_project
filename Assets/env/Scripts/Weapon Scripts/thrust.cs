@@ -27,7 +27,7 @@ public class thrust : MonoBehaviour
                     StartCoroutine(playerControl.SetBoolWithDelay(mat,renderer));
 
                     // 若需要延遲恢復顏色，可用協程
-                    StartCoroutine(ResetColorAfterDelay(renderer, Color.white, 0.3f));
+                    //StartCoroutine(ResetColorAfterDelay(renderer, Color.white, 0.3f));
                 }
                 else
                 {
@@ -44,8 +44,9 @@ public class thrust : MonoBehaviour
             }
         }
     }
-
-    // 協程：在延遲後將材質顏色恢復
+}
+/*
+     協程：在延遲後將材質顏色恢復
     private System.Collections.IEnumerator ResetColorAfterDelay(Renderer renderer, Color originalColor, float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -56,3 +57,4 @@ public class thrust : MonoBehaviour
         }
     }
 }
+*/

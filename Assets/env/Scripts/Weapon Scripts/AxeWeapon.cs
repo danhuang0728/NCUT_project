@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Weapon : MonoBehaviour
+{
+    private Transform player;
+    public float delaySeconds = 3f; // Time between animation plays
+
+    private Animator animator;
+    private GameObject axeSlash;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        axeSlash = GameObject.Find("Axe_Slashh_0");
+        if (axeSlash != null)
+        {
+            animator = axeSlash.GetComponent<Animator>();
+        }
+        StartCoroutine(PlayAnimationPeriodically());
+    }
+
+    private IEnumerator PlayAnimationPeriodically()
+    {
+        while (true)
+        {
+            if (animator != null)
+            {
+                animator.Play("axe_swing", -1, 0f);
+                
+            }
+            yield return new WaitForSeconds(delaySeconds);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = new Vector3(player.position.x , player.position.y + 0.3f, player.position.z);
+    }
+}

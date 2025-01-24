@@ -59,6 +59,9 @@ public class GearWeapon : MonoBehaviour
     public float radius = 2f;           // 旋轉半徑
     public float damage = 1f;          // 傷害值
     public float knockbackForce = 5f;   // 擊退力道
+    
+    private PlayerControl playerControl; //抓玩家腳本
+    
 
     private Transform player;
     private float currentAngle;
@@ -66,6 +69,7 @@ public class GearWeapon : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerControl = player.GetComponent<PlayerControl>();
         currentAngle = startAngle;
     }
 
@@ -94,7 +98,16 @@ public class GearWeapon : MonoBehaviour
             {
                 // 造成傷害
                 monster.HP -= damage;
+                // 取得 Renderer 組件
+                Renderer renderer = other.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    Material mat = renderer.material;
+                    StartCoroutine(playerControl.SetBoolWithDelay(mat,renderer));
 
+                    // 若需要延遲恢復顏色，可用協程
+                    //StartCoroutine(ResetColorAfterDelay(renderer, Color.white, 0.3f));
+                }
                 // 擊退效果
                 Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
                 Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
