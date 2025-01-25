@@ -4,7 +4,14 @@ using UnityEngine;
 using System;
 
 public class AudioManager : MonoBehaviour
-{
+{  
+   [System.Serializable]
+   public class Sound
+   {
+    public string name;
+    public AudioClip clip;
+    public float volume = 1.0f; // 預設音量為 1.0
+   }
    public static AudioManager Instance;
    public Sound[] musicSounds,sfxSounds;
    public AudioSource musicSource,sfxSource;
@@ -14,7 +21,7 @@ public class AudioManager : MonoBehaviour
       {
          if(Instance==null)
          {
-            Instance= this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
          }
          else
@@ -24,9 +31,14 @@ public class AudioManager : MonoBehaviour
       }
    }
    private void Start()
-   {
-      PlayMusic("Music");
-
+   {  
+      // 將 BOSS_music 的音量設為 30%
+      Sound bossMusic = Array.Find(musicSounds, x => x.name == "BOSS_music");
+      if (bossMusic != null)
+      {
+         bossMusic.volume = 0.3f;
+      }
+      PlayMusic("BOSS_music");
    }
    public void PlayMusic(string name)
    {
@@ -54,6 +66,10 @@ public class AudioManager : MonoBehaviour
          sfxSource.PlayOneShot(s.clip);
 
       }
+   }
+   public void axe_swing()
+   {
+      PlaySFX("axe_swing");
    }
    public void ToggleMusic()
    {

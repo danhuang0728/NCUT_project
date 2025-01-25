@@ -10,11 +10,17 @@ public class Weapon : MonoBehaviour
     private Animator animator;
     private GameObject axeSlash;
 
+    public float damage = 1f; // 傷害值
+    public float knockbackForce = 10f; // 擊退力度
+    private Collider2D attackCollider; // 武器的 Collider，用於檢測碰撞區域
+    public PlayerControl playerControl; // 抓玩家腳本（處理變色延遲等）
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         axeSlash = GameObject.Find("Axe_Slashh_0");
+        attackCollider = GetComponent<Collider2D>(); // 取得武器的 Collider
         if (axeSlash != null)
         {
             animator = axeSlash.GetComponent<Animator>();
@@ -28,10 +34,55 @@ public class Weapon : MonoBehaviour
         {
             if (animator != null)
             {
-                animator.Play("axe_swing", -1, 0f);
-                
+                animator.Play("axe_swing", -1, 0f);         // 斧頭動畫
+                AudioManager.Instance.PlaySFX("axe_swing"); // 斧頭揮擊音效
             }
             yield return new WaitForSeconds(delaySeconds);
+        }
+    }
+    // Animation Event 綁定的方法
+    public void CheckCollision()
+    {
+        // 檢測所有與攻擊範圍碰撞的物體
+        List<Collider2D> hitObjects = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        Physics2D.OverlapCollider(attackCollider, filter, hitObjects);
+        foreach (Collider2D other in hitObjects)
+        {
+            // 確認碰撞到的物件是怪物且不是玩家
+            if (other.CompareTag("Monster") && !other.CompareTag("Player"))
+            {
+                NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
+                if (monster != null)
+                {
+                    // 處理傷害
+                    monster.HP -= damage;
+                    Debug.Log("Hit Monster: " + monster);
+
+                    // 處理材質變色效果
+                    Renderer renderer = other.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        Material mat = renderer.material;
+                        playerControl.SetBoolWithDelay_void(mat, renderer);
+
+                        // 如果需要延遲恢復顏色，也可以用協程處理
+                        // StartCoroutine(ResetColorAfterDelay(renderer, Color.white, 0.3f));
+                    }
+                    else
+                    {
+                        Debug.Log("Renderer not found on this Monster.");
+                    }
+
+                    // 處理擊退效果
+                    Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
+                    Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
+                    if (monsterRb != null)
+                    {
+                        monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+                    }
+                }
+            }
         }
     }
 
