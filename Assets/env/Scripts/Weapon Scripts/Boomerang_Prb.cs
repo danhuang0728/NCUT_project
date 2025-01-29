@@ -16,8 +16,17 @@ public class Boomerang_Prb : MonoBehaviour
         if (other.CompareTag("Monster"))
         {
             NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
+            BossFlower bossFlower = other.GetComponent<BossFlower>();
             Renderer renderer = other.GetComponent<Renderer>();
             
+            if (bossFlower != null)
+            {
+                Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
+                bossFlower.HP -= damage;
+                playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+                Destroy(gameObject);
+            }
+
             if (monster != null)
             {
                 // 造成傷害

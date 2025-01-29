@@ -12,6 +12,13 @@ public class thrust : MonoBehaviour
         if (other.CompareTag("Monster") && !other.CompareTag("Player"))
         {
             NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
+            BossFlower bossFlower = other.GetComponent<BossFlower>();
+            if (bossFlower != null)
+            {
+                Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
+                bossFlower.HP -= damage;
+                playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+            }
             if (monster != null)
             {
                 monster.HP -= damage;

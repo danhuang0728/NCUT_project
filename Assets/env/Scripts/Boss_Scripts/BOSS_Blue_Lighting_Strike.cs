@@ -73,9 +73,7 @@ public class BOSS_Blue_Lighting_Strike : MonoBehaviour
         yield return new WaitForSeconds(warningTime);
 
         // 在警告圖示的位置產生雷擊特效
-        GameObject lightningStrike = Instantiate(lightningStrikePrefab, lightningPosition, Quaternion.identity);
-        // **將雷擊特效旋轉 90 度**
-        lightningStrike.transform.Rotate(Vector3.forward * 90);
+        GameObject lightningStrike = Instantiate(lightningStrikePrefab, lightningPosition + new Vector3(0, 4f, 0), Quaternion.identity);
 
         //偵測雷擊範圍內是否有玩家
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(lightningPosition, lightningRadius, playerLayer);

@@ -10,6 +10,7 @@ public class Sword_attack : MonoBehaviour
     private float cooldown = 0.5f; // 冷却时间
     private float lastPlayTime = -0.5f; // 上次播放时间
     public PlayerControl playerControl;
+    public BossFlower bossFlower;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +57,16 @@ public class Sword_attack : MonoBehaviour
                 if (hitCollider.CompareTag("Monster"))
                 {
                     NormalMonster_setting monster = hitCollider.GetComponent<NormalMonster_setting>();
+                    BossFlower bossFlower = hitCollider.GetComponent<BossFlower>();
                     Renderer renderer = hitCollider.GetComponent<Renderer>(); // 获取 Renderer 组件
-                    
+                    if (bossFlower != null)
+                    {
+                        Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
+                        bossFlower.HP -= 1;
+                        playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+                    }
+
+
                     if (monster != null && renderer != null)
                     {
                         monster.HP -= 1; // 將怪物的HP減少1
@@ -69,10 +78,10 @@ public class Sword_attack : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
-    void OnDrawGizmos()
+    void OnDrawGizmos()  // 繪製輔助線
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(GetComponent<Collider2D>().bounds.center, 3f);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(GetComponent<Collider2D>().bounds.center, 3f);
     }
     
 

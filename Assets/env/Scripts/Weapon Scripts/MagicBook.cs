@@ -10,6 +10,7 @@ public class MagicBook : MonoBehaviour
     private float fireTimer = 0f; // 發射計時器
     private float timer = 0f;
     public bool Is_in_range = false;
+    public int level = 2; // 武器等級
 
 
 
@@ -52,15 +53,37 @@ public class MagicBook : MonoBehaviour
         // 计算子弹的发射角度
         float fireAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // 产生子弹
+        // 产生中间的子弹
         GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-
-        // 设置子弹速度
         bulletRb.velocity = direction * bulletSpeed;
-
-        // 设置子弹的旋转角度
         bullet.transform.rotation = Quaternion.Euler(0, 0, fireAngle);
+
+        // 如果等级为2，产生左右两边的子弹
+        if (level == 2)
+        {
+            // 左边子弹 (-30度)
+            float leftAngle = fireAngle - 30f;
+            Vector2 leftDirection = new Vector2(
+                Mathf.Cos(leftAngle * Mathf.Deg2Rad),
+                Mathf.Sin(leftAngle * Mathf.Deg2Rad)
+            );
+            GameObject leftBullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
+            Rigidbody2D leftBulletRb = leftBullet.GetComponent<Rigidbody2D>();
+            leftBulletRb.velocity = leftDirection * bulletSpeed;
+            leftBullet.transform.rotation = Quaternion.Euler(0, 0, leftAngle);
+
+            // 右边子弹 (+30度)
+            float rightAngle = fireAngle + 30f;
+            Vector2 rightDirection = new Vector2(
+                Mathf.Cos(rightAngle * Mathf.Deg2Rad),
+                Mathf.Sin(rightAngle * Mathf.Deg2Rad)
+            );
+            GameObject rightBullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
+            Rigidbody2D rightBulletRb = rightBullet.GetComponent<Rigidbody2D>();
+            rightBulletRb.velocity = rightDirection * bulletSpeed;
+            rightBullet.transform.rotation = Quaternion.Euler(0, 0, rightAngle);
+        }
     }
 
     GameObject FindNearestMonster()

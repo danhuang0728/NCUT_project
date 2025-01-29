@@ -41,13 +41,21 @@ public class SpearParticleController : MonoBehaviour
 
                 // 獲取 Monster 腳本並調用 TakeDamage 方法
                 NormalMonster_setting monster = hitCollider.GetComponent<NormalMonster_setting>();
+                BossFlower bossFlower = hitCollider.GetComponent<BossFlower>();
+
+                if (bossFlower != null)
+                {
+                    Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
+                    bossFlower.HP -= damage;
+                    playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+                }
+
                 if (monster != null)
                 {
                     Material mat = renderer.material;
                     // 造成傷害
                     StartCoroutine(playerControl.SetBoolWithDelay(mat,renderer)); 
                     monster.HP -= damage;
-                    
                 }
                 else
                 {
@@ -75,6 +83,13 @@ public class SpearParticleController : MonoBehaviour
                 Renderer renderer = hitCollider.GetComponent<Renderer>();
                 // 獲取 Monster 腳本並調用 TakeDamage 方法
                 NormalMonster_setting monster = hitCollider.GetComponent<NormalMonster_setting>();
+                BossFlower bossFlower = hitCollider.GetComponent<BossFlower>();
+                if (bossFlower != null)
+                {
+                    Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
+                    bossFlower.HP -= damage;
+                    playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+                }
                 if (monster != null)
                 {
                     Material mat = renderer.material;

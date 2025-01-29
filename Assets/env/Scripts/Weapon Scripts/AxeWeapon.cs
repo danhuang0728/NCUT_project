@@ -49,10 +49,30 @@ public class Weapon : MonoBehaviour
         Physics2D.OverlapCollider(attackCollider, filter, hitObjects);
         foreach (Collider2D other in hitObjects)
         {
-            // 確認碰撞到的物件是怪物且不是玩家
-            if (other.CompareTag("Monster") && !other.CompareTag("Player"))
+            // 確認碰撞到的物件是怪物
+            if (other.CompareTag("Monster"))
             {
                 NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
+                BossFlower bossFlower = other.GetComponent<BossFlower>(); // 加入對 BossFlower 的判定
+                Debug.Log("monster:"+monster);
+                Debug.Log("bossFlower:"+bossFlower);
+
+
+                if (bossFlower != null)
+
+
+                {
+                    Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
+                    if (renderer_flower != null) // 確保 renderer_flower 存在
+                    {
+                        bossFlower.HP -= damage;
+                        playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+                    }
+                    else
+                    {
+                        Debug.Log("Renderer not found on BossFlower.");
+                    }
+                }
                 if (monster != null)
                 {
                     // 處理傷害
@@ -65,9 +85,6 @@ public class Weapon : MonoBehaviour
                     {
                         Material mat = renderer.material;
                         playerControl.SetBoolWithDelay_void(mat, renderer);
-
-                        // 如果需要延遲恢復顏色，也可以用協程處理
-                        // StartCoroutine(ResetColorAfterDelay(renderer, Color.white, 0.3f));
                     }
                     else
                     {
