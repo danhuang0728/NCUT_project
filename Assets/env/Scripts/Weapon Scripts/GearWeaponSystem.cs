@@ -9,14 +9,49 @@ public class GearWeaponSystem : MonoBehaviour
     public int gearCount = 3;           // 齒輪數量
     public float rotateSpeed = 100f;    // 旋轉速度
     public float radius = 2f;           // 旋轉半徑
+    public float coolDownTime = 10f;    // 冷卻時間
+    public float durationTime = 5f;    // 持續時間
+    [Header("等級設定")]
+    [Range(1, 5)] public int level = 1;
+    private int lastLevel = 1;
+    private float coolDownTimer = 0f;
+    private float durationTimer = 0f;
+    private bool isActive = false;
     private List<GameObject> gears = new List<GameObject>();  // 儲存所有齒輪
     private Transform player;
     private float angle = 0f;
+    public float damage = 1f;          // 傷害值
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        UpdateLevelParameters();  // 初始化等級參數
         SpawnGears();
+    }
+
+    void Update()
+    {
+        CheckLevelUpdate();  // 每幀檢查等級變化
+        if (!isActive)
+        {
+            coolDownTimer += Time.deltaTime;
+            if (coolDownTimer >= coolDownTime)
+            {
+                isActive = true;
+                coolDownTimer = 0f;
+                SpawnGears();
+            }
+        }
+        else
+        {
+            durationTimer += Time.deltaTime;
+            if (durationTimer >= durationTime)
+            {
+                isActive = false;
+                durationTimer = 0f;
+                DestroyGears();
+            }
+        }
     }
 
     void SpawnGears()
@@ -39,7 +74,64 @@ public class GearWeaponSystem : MonoBehaviour
             gearScript.startAngle = startAngle;
             gearScript.rotateSpeed = rotateSpeed;
             gearScript.radius = radius;
+            gearScript.damage = damage;
             gears.Add(newGear);
+        }
+    }
+
+    // 新增銷毀齒輪的方法
+    void DestroyGears()
+    {
+        foreach (var gear in gears)
+        {
+            if (gear != null)
+                Destroy(gear);
+        }
+        gears.Clear();
+    }
+
+    // 新增等級參數更新方法
+    void UpdateLevelParameters()
+    {
+        switch (level)
+        {
+            case 1:
+                SetParameters(2, 125f, 4f, 15f, 3f, 1f);
+                break;
+            case 2:
+                SetParameters(3, 150f, 4f, 15f, 6f, 30f);
+                break;
+            case 3:
+                SetParameters(3, 200f, 4f, 15f, 8f, 50f);
+                break;
+            case 4:
+                SetParameters(4, 200f, 4f, 15f, 10f, 50f);
+                break;
+            case 5:
+                SetParameters(5, 300f, 4f, 15f, 10f, 50f);
+                break;
+        }
+    }
+
+    void SetParameters(int count, float speed, float radius, float cooldown, float duration, float dmg)
+    {
+        gearCount = count;
+        rotateSpeed = speed;
+        this.radius = radius;
+        coolDownTime = cooldown;
+        durationTime = duration;
+        damage = dmg;
+    }
+
+    // 新增等級變化檢測
+    void CheckLevelUpdate()
+    {
+        if (level != lastLevel)
+        {
+            lastLevel = level;
+            UpdateLevelParameters();
+            DestroyGears();
+            SpawnGears();
         }
     }
 
@@ -52,6 +144,8 @@ public class GearWeaponSystem : MonoBehaviour
 }
 
 // 修改後的齒輪個體腳本
+/*
+
 public class GearWeapon : MonoBehaviour
 {
     public float startAngle = 0f;       // 起始角度
@@ -128,3 +222,4 @@ public class GearWeapon : MonoBehaviour
         }
     }
 }
+*/
