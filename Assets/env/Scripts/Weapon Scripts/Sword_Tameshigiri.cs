@@ -49,12 +49,6 @@ public class Sword_Tameshigiri : MonoBehaviour
                 float randomAngle = Random.Range(0f, 360f);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
                 GameObject shinyInstance = Instantiate(Shiny_effect, monsterPosition, randomRotation);
-                
-                // 新增出血特效，放到最近怪物的子物件底下
-                GameObject bloodInstance = Instantiate(blood_effect, monsterPosition , Quaternion.identity);
-                bloodInstance.transform.position = nearestMonster.transform.position;
-                Destroy(bloodInstance, 0.5f);  // 0.1秒后销毁出血特效
-
                 yield return new WaitForSeconds(0.1f);
                 Destroy(shinyInstance, 0.2f);
             }
@@ -95,19 +89,38 @@ public class Sword_Tameshigiri : MonoBehaviour
                 playerController.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
             }
             if (monster != null)
-
             {
-
-                // 造成傷害
-                monster.HP -= damage;
-                //閃白效果
-                playerController.SetBoolWithDelay_void(material, renderer);
-                // 擊退效果
-                Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
-                Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
-                if (monsterRb != null)
+                float randomAngle = Random.Range(0f, 360f);
+                Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
+                GameObject nearestMonster = FindNearestMonster();
+                if (nearestMonster != null) // 添加空值检查
                 {
-                    monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+                    Vector3 monsterPosition = nearestMonster.transform.position;
+                    //新增出血特效，放到最近怪物位置
+                    GameObject bloodInstance = Instantiate(blood_effect, monsterPosition, randomRotation);
+                    ParticleSystem bloodParticleSystem = bloodInstance.GetComponent<ParticleSystem>();
+                    if (bloodParticleSystem != null)
+                    {
+                        var main = bloodParticleSystem.main;
+                        main.startRotation = randomRotation.eulerAngles.z * Mathf.Deg2Rad; // 设置粒子系统的起始旋转
+                    }
+                    bloodInstance.transform.position = nearestMonster.transform.position;
+                    Destroy(bloodInstance, 0.5f);  // 0.5秒后销毁出血特效
+                    // 造成傷害
+                    monster.HP -= damage;
+                    //閃白效果
+                    playerController.SetBoolWithDelay_void(material, renderer);
+                    // 擊退效果
+                    Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
+                    Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
+                    if (monsterRb != null)
+                    {
+                        monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("未找到最近的怪物！"); // 添加调试信息
                 }
             }
         }
