@@ -94,16 +94,16 @@ public class BOSS_Green_ult : MonoBehaviour
          Gizmos.DrawWireSphere(Centerpoint.position, attackRadius);
     }
 
-     IEnumerator ImmobilizePlayer(Rigidbody2D playerRigidbody){
-          // 玩家定身
-        Debug.Log("Player immobilized");
+     IEnumerator ImmobilizePlayer(Rigidbody2D playerRigidbody)
+     {
+        //Debug.Log("Player immobilized");
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         // 延遲一段時間
         yield return new WaitForSeconds(3f);
 
         // 移除定身效果
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        Debug.Log("Player can move");
+        //Debug.Log("Player can move");
      }
 
 }

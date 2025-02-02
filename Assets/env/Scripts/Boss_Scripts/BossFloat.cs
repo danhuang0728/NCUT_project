@@ -47,6 +47,7 @@ public class BossFloat : MonoBehaviour
         // 檢查血量並控制動畫器
         if (mainHp <= 18 && !blueTriggered && eyesAnimator_blue != null)
         {
+            //Debug.Log("藍眼開啟");
             blueTriggered = true; // 標記已觸發
             eyesAnimator_blue.enabled = true;
             boss_Main_Controll.stage = 1;
@@ -94,6 +95,7 @@ public class BossFloat : MonoBehaviour
 
         if (mainHp <= 0)
         {
+            //Debug.Log("BOSS 死亡");
             MonsterDead(monster);
         }
     }

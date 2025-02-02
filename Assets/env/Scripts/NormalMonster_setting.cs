@@ -71,19 +71,26 @@ public class NormalMonster_setting : MonoBehaviour
         {
             case 1:  // 低級經驗值
                 // 在這裡生成15經驗值的掉落物
-                Instantiate(LowExpPrefab, transform.position, Quaternion.identity);
+                GameObject expObject = Instantiate(LowExpPrefab, transform.position, Quaternion.identity);
+                expObject.SetActive(true);
                 AudioManager.Instance.PlaySFX("drop_exp");
                 break;
+
             case 2:  // 中級經驗值
                 // 在這裡生成40經驗值的掉落物
-                Instantiate(MediumExpPrefab, transform.position, Quaternion.identity);
+                GameObject expObject2 = Instantiate(MediumExpPrefab, transform.position, Quaternion.identity);
+                expObject2.SetActive(true);
                 AudioManager.Instance.PlaySFX("drop_exp");
                 break;
+
             case 3:  // 高級經驗值
+
                 // 在這裡生成100經驗值的掉落物
-                Instantiate(HighExpPrefab, transform.position, Quaternion.identity);
+                GameObject expObject3 = Instantiate(HighExpPrefab, transform.position, Quaternion.identity);
+                expObject3.SetActive(true);
                 AudioManager.Instance.PlaySFX("drop_exp");
                 break;
+
         }
     }
     else if (monster_type==1)  // monster_type = 1 代表水果怪

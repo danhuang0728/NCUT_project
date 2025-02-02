@@ -63,7 +63,7 @@ public class Boss_Main_Controll : MonoBehaviour
         
         if (timer > 10 )
         {
-            Debug.Log("倒數重抽");
+            //Debug.Log("倒數重抽");
             lottery();
             timer = 0;
         } 
@@ -89,15 +89,15 @@ public class Boss_Main_Controll : MonoBehaviour
         Shuffle(skills);
         skills_pool.Clear();
         int skills_amount = 1;
-        Debug.Log("總技能量:"+skills.Count);
+        //Debug.Log("總技能量:"+skills.Count);
         if (skills.Count > 1)
         {
             skills_amount = Random.Range(2, skills.Count - 1);   //抽技能施放數量 -1為扣掉self
         }
-        Debug.Log("抽到的施放技能量:" + skills_amount);
+        //Debug.Log("抽到的施放技能量:" + skills_amount);
         for (int i = 0; i < skills_amount; i++)
         {
-            Debug.Log(skills[i]);
+            //Debug.Log(skills[i]);
             skills_pool.Add(skills[i]);   
 
         }

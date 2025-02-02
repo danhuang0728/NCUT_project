@@ -21,7 +21,7 @@ public class BossFlower : MonoBehaviour
         if (HP <= 0)
         {
             bossFloat.mainHp = bossFloat.mainHp - 1; 
-            Debug.Log("BOSS_HP:"+bossFloat.mainHp);
+            //Debug.Log("BOSS_HP:"+bossFloat.mainHp);
             MonsterDead(monster);
         }
     }

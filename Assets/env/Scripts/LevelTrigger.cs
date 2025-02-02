@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Timers;
-
 public class LevelTrigger : MonoBehaviour
 {
     public Collider2D collider2d;
@@ -12,17 +11,16 @@ public class LevelTrigger : MonoBehaviour
     public LayerMask monsterlayer;
     public int levelminTime = 180;
     public int levelmaxTime = 180;
+    [SerializeField] private Transform playerTransform; 
 
-    public GameObject canvas;  // 連結 Canvas 物件
+
+    [SerializeField] private GameObject canvas;  // 連結 Canvas 物件
     private Timer timerScript;
 
-    public string block = "";
     private int levelTime = 0;
     private TrapControll[] trapControlls; // 一次抓取全部linktrap的TrapControll腳本
+    private bool isLevelActive = false; 
 
-    
-
-    
     private spawn[] spawns;
 
     private spawn targetSpawn; // 目標 Spawn 腳本
@@ -31,16 +29,22 @@ public class LevelTrigger : MonoBehaviour
 
     private spawn targetSpawn3; // 抓Spider Spawn 腳本
 
- 
+#if UNITY_EDITOR
+    [StringDropdown("(1_2)", "(1_3)", "(1_4)", "(1_5)", "(1_6)", "(1_7)", "(1_8)", "(1_9)", "(1_10)")] // 根据实际关卡设计修改选项
+#endif
+    [SerializeField] private string selectedOption = "(1_1)"; // 设置默认值
 
 
 
     void Start()
     {
         // 獲取指定名稱的物件並取得其 Spawn 腳本
-        Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime)" + block);
-        Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK)" + block); 
-        Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider)" + block);
+        Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime)" + selectedOption);
+        Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK)" + selectedOption); 
+        Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider)" + selectedOption);
+        canvas = GameObject.Find("Canvas");
+        playerTransform = GameObject.Find("player1").transform;
+
 
         // 取得 Timer 腳本
         timerScript = canvas.GetComponent<Timer>();
@@ -51,32 +55,32 @@ public class LevelTrigger : MonoBehaviour
             targetSpawn = targetTransform.GetComponent<spawn>();
             if (targetSpawn != null)
             {
-                Debug.Log($"找到 Spawn 腳本: {targetSpawn.name}");
+                //Debug.Log($"找到 Spawn 腳本: {targetSpawn.name}");
             }
             else
             {
-                Debug.LogError("目標物件沒有 Spawn 腳本");
+                //Debug.LogError("目標物件沒有 Spawn 腳本");
             }
         }
         else
         {
-            Debug.LogError("找不到 MonsterSpawnPoint (Slime) (1_2) 物件");
+            //Debug.LogError("找不到 MonsterSpawnPoint (Slime) (1_2) 物件");
         }
         if (targetTransform2 != null)
         {
             targetSpawn2 = targetTransform2.GetComponent<spawn>();   //targetTransform2 
             if (targetSpawn2 != null)
             {
-                Debug.Log($"找到 Spawn 腳本: {targetSpawn2.name}");
+                //Debug.Log($"找到 Spawn 腳本: {targetSpawn2.name}");
             }
             else
             {
-                Debug.LogError("目標物件沒有 Spawn 腳本");
+                //Debug.LogError("目標物件沒有 Spawn 腳本");
             }
         }
         else
         {
-            Debug.LogError("找不到 MonsterSpawnPoint (SK) (1_2) 物件");
+            //Debug.LogError("找不到 MonsterSpawnPoint (SK) (1_2) 物件");
         }
 
         if (targetTransform3 != null)
@@ -84,16 +88,16 @@ public class LevelTrigger : MonoBehaviour
             targetSpawn3 = targetTransform3.GetComponent<spawn>();    //targetTransform3 
             if (targetSpawn3 != null)
             {
-                Debug.Log($"找到 Spawn 腳本: {targetSpawn3.name}");
+                //Debug.Log($"找到 Spawn 腳本: {targetSpawn3.name}");
             }
             else
             {
-                Debug.LogError("目標物件沒有 Spawn 腳本");
+                //Debug.LogError("目標物件沒有 Spawn 腳本");
             }
         }
         else
         {
-            Debug.LogError("MonsterSpawnPoint (spider) (1_2)");
+            //Debug.LogError("MonsterSpawnPoint (spider) (1_2)");
         }
         
 
@@ -115,7 +119,6 @@ public class LevelTrigger : MonoBehaviour
                 collider2d.enabled = false;
             }
             levelTime = UnityEngine.Random.Range(levelminTime, levelmaxTime); // 關卡的隨機時間設定
-
             StartCoroutine(levelstart(levelTime));
 
             foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
@@ -125,18 +128,19 @@ public class LevelTrigger : MonoBehaviour
         }
     }
 
+
     IEnumerator levelstart(int leveltime)
+
     {
         //Debug.Log($"關卡開始，持續時間：{leveltime} 秒");
-
         foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
         {
-            if (repOb.gameObject.name.Contains(block))
+            if (repOb.gameObject.name.Contains(selectedOption))
             {
                 repOb.enabled = true;
                 timerScript.remainingTime= 180;
-                Debug.Log(timerScript);
-                Debug.Log($"{repOb.gameObject.name} 的生成腳本已啟動");
+                //Debug.Log(timerScript);
+                //Debug.Log($"{repOb.gameObject.name} 的生成腳本已啟動");
             }
         }
 
@@ -178,6 +182,7 @@ public class LevelTrigger : MonoBehaviour
 
         // 關卡結束
         ClearAllClones();
+        StartCoroutine(MoveExpObjectsTowardsPlayerCoroutine());
 
         foreach (spawn repOb in spawns) // 修改全部重生點為關閉狀態
         {
@@ -208,4 +213,32 @@ public class LevelTrigger : MonoBehaviour
             }
         }
     }
+    private IEnumerator MoveExpObjectsTowardsPlayerCoroutine()
+    {
+        GameObject[] expObjects = GameObject.FindGameObjectsWithTag("exp"); // 獲取所有tag為exp的物件
+        Transform playerPosition = playerTransform; // 獲取玩家的位置
+
+        while (true) // 持續移動物件
+        {
+            for (int i = expObjects.Length - 1; i >= 0; i--) // 反向遍歷以避免清除物件時影響迴圈
+            {
+                GameObject expObject = expObjects[i];
+                if (expObject != null) // 確保物件存在
+                {
+                    // 計算物件到玩家的方向
+                    Vector3 direction = (playerPosition.position - expObject.transform.position).normalized;
+                    // 移動物件
+                    expObject.transform.position += direction * 10f * Time.deltaTime; // 根據速度移動物件
+                }
+                else
+                {
+                    // 如果物件已被清除，則從陣列中移除
+                    expObjects[i] = expObjects[expObjects.Length - 1]; // 將最後一個物件移到當前位置
+                    System.Array.Resize(ref expObjects, expObjects.Length - 1); // 縮小陣列大小
+                }
+            }
+            yield return null; // 等待下一幀
+        }
+    }
+ 
 }

@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
       Sound s =Array.Find(musicSounds, x=> x.name == name);
       if (s==null)
       {
-         Debug.Log("Sound Not Found");
+         //Debug.Log("Sound Not Found");
       }
       else 
       {
@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
       Sound s = Array.Find(sfxSounds,x=> x.name == name);
       if (s==null)
       {
-         Debug.Log("Sound Not Found");
+        //Debug.Log("Sound Not Found");
       }
       else
       {

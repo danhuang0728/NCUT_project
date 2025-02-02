@@ -28,7 +28,7 @@ public class BOSS_blue_explosion : MonoBehaviour
 
         if (blueEye == null)
         {
-            Debug.LogError("Error: Blue eye object 'eyeball_blue_0' not found under 'eyes' GameObject");
+            //Debug.LogError("Error: Blue eye object 'eyeball_blue_0' not found under 'eyes' GameObject");
         }
         if(player == null){
             Debug.LogError("Error: Player object not found or has incorrect Tag");

@@ -24,9 +24,10 @@ public class BOSS_Blue_Lighting_Strike : MonoBehaviour
         // 在 Start 方法中找到藍眼物件的 Transform 元件
         blueEye = transform.Find("eyes")?.Find("eyeball_blue_0");
 
+        // 注释错误提示
         if (blueEye == null)
         {
-            Debug.LogError("Error: Blue eye object 'eyeball_blue_0' not found under 'eyes' GameObject");
+            //Debug.LogError("Error: Blue eye object 'eyeball_blue_0' not found under 'eyes' GameObject");
         }
         if(player == null){
             Debug.LogError("Error: Player object not found or has incorrect Tag");
