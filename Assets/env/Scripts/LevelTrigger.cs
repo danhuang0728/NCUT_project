@@ -130,7 +130,6 @@ public class LevelTrigger : MonoBehaviour
 
 
     IEnumerator levelstart(int leveltime)
-
     {
         //Debug.Log($"關卡開始，持續時間：{leveltime} 秒");
         foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
@@ -240,5 +239,4 @@ public class LevelTrigger : MonoBehaviour
             yield return null; // 等待下一幀
         }
     }
- 
 }
