@@ -35,6 +35,7 @@ public class MagicBook : MonoBehaviour
             }
             timer = 0f; // 重置计时器
         }
+        ProcessLevel(level);
     }
 
     void FireBullet()
