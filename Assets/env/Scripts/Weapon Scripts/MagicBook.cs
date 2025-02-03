@@ -5,23 +5,25 @@ using UnityEngine;
 public class MagicBook : MonoBehaviour
 {
     public GameObject bulletPrefab; // 子彈 Prefab
+    public MagicBook_Prb magicBook_Prb;
     public float fireRate = 1f; // 發射頻率 (每秒發射多少顆子彈)
     public float bulletSpeed = 5f; // 子彈速度
     private float fireTimer = 0f; // 發射計時器
     private float timer = 0f;
     public bool Is_in_range = false;
-    public int level = 2; // 武器等級
-
-
+    [Range(1,5)]
+    public int level = 1; // 武器等級
+    private Transform player_t;
+    public int spreadBulletCount = 5; // 在90度范围内发射的子弹数量
 
     void Start()
     {
-        
-       
+        player_t = GameObject.Find("player1").transform;
     }
 
     void Update()
     {
+        transform.position = player_t.transform.position;
         timer += Time.deltaTime;
 
         // 每当timer达到1秒时发射
@@ -44,45 +46,44 @@ public class MagicBook : MonoBehaviour
             return;
         }
 
-        // 计算子弹起始位置 (在BOSS附近)
-        Vector3 bulletPosition = transform.position;
+        // 计算基础方向（保持原逻辑）
+        Vector2 baseDirection = (nearestMonster.transform.position - transform.position).normalized;
+        float baseAngle = Mathf.Atan2(baseDirection.y, baseDirection.x) * Mathf.Rad2Deg;
 
-        // 计算目标方向
-        Vector2 direction = (nearestMonster.transform.position - transform.position).normalized;
-
-        // 计算子弹的发射角度
-        float fireAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // 产生中间的子弹
-        GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
-        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.velocity = direction * bulletSpeed;
-        bullet.transform.rotation = Quaternion.Euler(0, 0, fireAngle);
-
-        // 如果等级为2，产生左右两边的子弹
-        if (level == 2)
+        // 处理子弹数量为1的特殊情况
+        if (spreadBulletCount == 1)
         {
-            // 左边子弹 (-30度)
-            float leftAngle = fireAngle - 30f;
-            Vector2 leftDirection = new Vector2(
-                Mathf.Cos(leftAngle * Mathf.Deg2Rad),
-                Mathf.Sin(leftAngle * Mathf.Deg2Rad)
-            );
-            GameObject leftBullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
-            Rigidbody2D leftBulletRb = leftBullet.GetComponent<Rigidbody2D>();
-            leftBulletRb.velocity = leftDirection * bulletSpeed;
-            leftBullet.transform.rotation = Quaternion.Euler(0, 0, leftAngle);
+            // 直接发射一颗正对目标的子弹
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            bullet.SetActive(true);
+            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+            bulletRb.velocity = baseDirection * bulletSpeed;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, baseAngle);
+            return;
+        }
 
-            // 右边子弹 (+30度)
-            float rightAngle = fireAngle + 30f;
-            Vector2 rightDirection = new Vector2(
-                Mathf.Cos(rightAngle * Mathf.Deg2Rad),
-                Mathf.Sin(rightAngle * Mathf.Deg2Rad)
-            );
-            GameObject rightBullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
-            Rigidbody2D rightBulletRb = rightBullet.GetComponent<Rigidbody2D>();
-            rightBulletRb.velocity = rightDirection * bulletSpeed;
-            rightBullet.transform.rotation = Quaternion.Euler(0, 0, rightAngle);
+        // 生成扇形子弹（数量≥2时）
+        float totalSpread = 90f; // 总扩散角度
+        float angleStep = totalSpread / (spreadBulletCount - 1); // 使用安全的分母
+        float startAngle = baseAngle - totalSpread / 2; // 起始角度（左边）
+
+        for (int i = 0; i < spreadBulletCount; i++)
+        {
+            // 计算当前子弹角度
+            float currentAngle = startAngle + angleStep * i;
+            
+            // 将角度转换为方向
+            Vector2 dir = new Vector2(
+                Mathf.Cos(currentAngle * Mathf.Deg2Rad),
+                Mathf.Sin(currentAngle * Mathf.Deg2Rad)
+            ).normalized;
+
+            // 生成子弹
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            bullet.SetActive(true);
+            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+            bulletRb.velocity = dir * bulletSpeed;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
         }
     }
 
@@ -103,6 +104,39 @@ public class MagicBook : MonoBehaviour
         }
 
         return nearestMonster;
+    }
+    public void ProcessLevel(int level)
+    {
+        if(level == 1)
+        {
+            fireRate = 1f;
+            magicBook_Prb.damage = 8;
+            spreadBulletCount = 1;
+        }
+        else if(level == 2)
+        {
+            fireRate = 1f;
+            magicBook_Prb.damage = 15;
+            spreadBulletCount = 3;
+        }
+        else if(level == 3)
+        {
+            fireRate = 1f;
+            magicBook_Prb.damage = 25;
+            spreadBulletCount = 3;
+        }
+        else if(level == 4)
+        {
+            fireRate = 1.25f;
+            magicBook_Prb.damage = 35;
+            spreadBulletCount = 5;
+        }
+        else if(level == 5)
+        {
+            fireRate = 1.5f;
+            magicBook_Prb.damage = 40;
+            spreadBulletCount = 5;
+        }
     }
 
 }

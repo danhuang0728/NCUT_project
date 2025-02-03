@@ -5,21 +5,26 @@ using UnityEngine;
 public class BoomerangController : MonoBehaviour
 {
     public GameObject bulletPrefab; // 子彈 Prefab
-    public float fireRate = 1f; // 發射頻率 (每秒發射多少顆子彈)
-    public float bulletSpeed = 5f; // 子彈速度
+    public Boomerang_Prb boomerang_Prb;
+    private float fireRate = 1f; // 發射頻率 (每秒發射多少顆子彈)
+    public float bulletSpeed = 15f; // 子彈速度
     private float timer = 0f;
     public bool Is_in_range = false;
+    [Range(1, 6)]
+    public int level; // 武器等級 (6為無限)
+    private int count = 1;
+    private Transform player_t;
 
 
 
     void Start()
     {
-        
-       
+        player_t = GameObject.Find("player1").transform;
     }
 
     void Update()
     {
+        transform.position = player_t.transform.position;
         timer += Time.deltaTime;
 
         // 每当timer达到1秒时发射
@@ -27,12 +32,15 @@ public class BoomerangController : MonoBehaviour
         {
             if (Is_in_range == true)
             {
-                FireBullet();
+                StartCoroutine(Fire());
             }
             // 重置计时器
             timer = 0f;
+
         }
+        ProcessLevel(level);
     }
+
 
     void FireBullet()
     {
@@ -54,6 +62,7 @@ public class BoomerangController : MonoBehaviour
 
         // 产生子弹
         GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
+        bullet.SetActive(true);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
         // 设置子弹速度
@@ -81,4 +90,58 @@ public class BoomerangController : MonoBehaviour
 
         return nearestMonster;
     }
+    public void ProcessLevel(int level)
+    {
+        if(level == 1)
+        {
+            fireRate = 0.33f;
+            boomerang_Prb.damage = 5;
+            boomerang_Prb.MaxBounce = 3;
+        }
+        else if(level == 2)
+        {
+            fireRate = 0.5f;
+            boomerang_Prb.damage = 10;
+            boomerang_Prb.MaxBounce = 3;
+        }
+
+        else if(level == 3)
+        {
+            fireRate = 1f;
+            boomerang_Prb.damage = 20;
+            boomerang_Prb.MaxBounce = 5;
+        }
+        else if(level == 4)
+        {
+            fireRate = 1f;
+            boomerang_Prb.damage = 30;
+            boomerang_Prb.MaxBounce = 7;
+            count = 2;
+        }
+        else if(level == 5)
+        {
+            fireRate = 1f;
+            boomerang_Prb.damage = 50;
+            boomerang_Prb.MaxBounce = 7;
+            count = 3;
+        }
+        else if(level == 6) //為俄羅斯方塊升級
+        {
+            fireRate = 1f;
+            boomerang_Prb.damage = 50;
+            boomerang_Prb.MaxBounce = 7;
+            count = 1000;
+        }
+
+    }
+    IEnumerator Fire()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            yield return new WaitForSeconds(0.15f);
+            FireBullet();
+        }
+    }
+
+
 }
