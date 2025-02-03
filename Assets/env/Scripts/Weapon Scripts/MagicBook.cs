@@ -7,11 +7,11 @@ public class MagicBook : MonoBehaviour
     public GameObject bulletPrefab; // 子彈 Prefab
     public MagicBook_Prb magicBook_Prb;
     public float fireRate = 1f; // 發射頻率 (每秒發射多少顆子彈)
-    public float bulletSpeed = 5f; // 子彈速度
+    public float bulletSpeed = 15f; // 子彈速度
     private float fireTimer = 0f; // 發射計時器
     private float timer = 0f;
     public bool Is_in_range = false;
-    [Range(1,5)]
+    [Range(1,6)]
     public int level = 1; // 武器等級
     private Transform player_t;
     public int spreadBulletCount = 5; // 在90度范围内发射的子弹数量
@@ -36,6 +36,7 @@ public class MagicBook : MonoBehaviour
             timer = 0f; // 重置计时器
         }
         ProcessLevel(level);
+        
     }
 
     void FireBullet()
@@ -79,12 +80,15 @@ public class MagicBook : MonoBehaviour
                 Mathf.Sin(currentAngle * Mathf.Deg2Rad)
             ).normalized;
 
-            // 生成子弹
+            // 生成子弹并设定子弹速度
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             bullet.SetActive(true);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.velocity = dir * bulletSpeed;
             bullet.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+            if (bulletRb != null)
+            {
+                bulletRb.velocity = dir * bulletSpeed;
+            }
         }
     }
 
@@ -113,30 +117,42 @@ public class MagicBook : MonoBehaviour
             fireRate = 1f;
             magicBook_Prb.damage = 8;
             spreadBulletCount = 1;
+            bulletSpeed = 15f;
         }
         else if(level == 2)
         {
             fireRate = 1f;
             magicBook_Prb.damage = 15;
             spreadBulletCount = 3;
+            bulletSpeed = 15f;
         }
         else if(level == 3)
         {
             fireRate = 1f;
             magicBook_Prb.damage = 25;
             spreadBulletCount = 3;
+            bulletSpeed = 15f;
         }
         else if(level == 4)
         {
             fireRate = 1.25f;
             magicBook_Prb.damage = 35;
             spreadBulletCount = 5;
+            bulletSpeed = 15f;
         }
         else if(level == 5)
         {
             fireRate = 1.5f;
             magicBook_Prb.damage = 40;
             spreadBulletCount = 5;
+            bulletSpeed = 15f;
+        }
+        else if(level == 6)
+        {
+            fireRate = 1.5f;
+            magicBook_Prb.damage = 40;
+            spreadBulletCount = 5;
+            bulletSpeed = 5f;
         }
     }
 
