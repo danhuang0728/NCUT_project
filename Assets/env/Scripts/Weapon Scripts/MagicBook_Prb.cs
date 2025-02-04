@@ -11,6 +11,7 @@ public class MagicBook_Prb : MonoBehaviour
     public MagicBook magicBook;
     [Range(1f,100f)]
     public float attractionForce = 10f; // 可根据需要调整力的大小
+    private float time = 0f;
 
 
     void Start()
@@ -53,8 +54,14 @@ public class MagicBook_Prb : MonoBehaviour
                 }
             }
         }
+        time += Time.deltaTime;
+        if (time >= 5f)
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
+
     {
         if (other.CompareTag("Monster"))
         {

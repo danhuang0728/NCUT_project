@@ -7,19 +7,22 @@ public class healthbar : MonoBehaviour
 {
 
     public Slider slider;
-    public int health;
+    public float health;
     
+
     private PlayerControl playerControl; //套用玩家的主角本讀取初始生命變數
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(float health)
     {
         slider.maxValue=health;
         slider.value=health;
     }
-    
-    public void sethealth(int health)
+
+
+    public void sethealth(float health)
     {
         slider.value = health;
     }
+
     private void Start() {
         
         SetMaxHealth(100); //初始血量值為100

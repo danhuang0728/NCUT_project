@@ -19,9 +19,10 @@ public class PlayerControl : MonoBehaviour
     public LayerMask BossMonsterLayer;
     public float AttackRange;
     public float Knockback_strength;
-    public int HP;
+    public float HP;
     public AudioSource audioSource;
     public AudioClip audioClip;
+
 
     //--------------------打擊特效開關的bool-----------------------------
     public string boolPropertyName = "_hitBool";
@@ -36,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rig;
     private Animator ani;
     private GameObject axeSlash;
+    public bool Legend_speed = false;
     private void Start() 
     {
         rig = GetComponent<Rigidbody2D>();    
@@ -47,8 +49,12 @@ public class PlayerControl : MonoBehaviour
     private void Update() 
     {
         speed = levelManager.GetCurrentSpeed(); // 讀取當前等級的速度
+        if(Legend_speed == true){
+            speed += 5;
+        }
         rig.velocity = new Vector2(speed * InputX , speed * InputY);    
        
+
         if (math.abs(rig.velocity.x) > 0 || rig.velocity.y != 0)
         {
             ani.SetBool("move",true);
@@ -95,6 +101,7 @@ public class PlayerControl : MonoBehaviour
         {
             TakeDamage(5);
         }
+
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(hurtDelay());
     }
@@ -102,6 +109,9 @@ public class PlayerControl : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        Renderer targetRenderer = rig.GetComponent<Renderer>();
+        Material mat = targetRenderer.material;
+        StartCoroutine(SetBoolWithDelay_red(mat,targetRenderer));
         Debug.Log("玩家受到傷害: " + damage + ", 目前血量: " + HP);
         //你可以在這裡加入其他受傷的特效, 或是播放受傷音效
     }
@@ -113,7 +123,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     
-    public IEnumerator SetBoolWithDelay(Material mat ,Renderer targetRenderer)   //開啟hit特效然後0.1秒後關閉
+    public IEnumerator SetBoolWithDelay(Material mat ,Renderer targetRenderer)   //開啟hit(白色)特效然後0.1秒後關閉
     {
         mat = targetRenderer.material;
         // 设置布尔值为 true
@@ -122,6 +132,19 @@ public class PlayerControl : MonoBehaviour
         
         // 等待 0.1 秒
         yield return new WaitForSeconds(0.2f);  //hit閃白時間 
+        // 设置布尔值为 false
+        mat.SetInt(boolPropertyName, 0);
+        
+    }
+    public IEnumerator SetBoolWithDelay_red(Material mat ,Renderer targetRenderer)   //開啟hit(紅色)特效然後0.1秒後關閉
+    {
+        mat = targetRenderer.material;
+        // 设置布尔值为 true
+
+        mat.SetInt(boolPropertyName, 1);
+        
+        // 等待 0.1 秒
+        yield return new WaitForSeconds(0.2f);  //hit閃紅時間 
         // 设置布尔值为 false
         mat.SetInt(boolPropertyName, 0);
         
