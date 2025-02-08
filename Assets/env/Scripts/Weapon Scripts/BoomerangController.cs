@@ -12,6 +12,7 @@ public class BoomerangController : MonoBehaviour
     public bool Is_in_range = false;
     [Range(1, 6)]
     public int level; // 武器等級 (6為無限)
+    public bool is_levelUP = false;
     private int count = 1;
     private Transform player_t;
 
@@ -36,6 +37,8 @@ public class BoomerangController : MonoBehaviour
             }
             // 重置计时器
             timer = 0f;
+
+
 
         }
         ProcessLevel(level);
@@ -97,20 +100,25 @@ public class BoomerangController : MonoBehaviour
             fireRate = 0.33f;
             boomerang_Prb.damage = 5;
             boomerang_Prb.MaxBounce = 3;
+            count = 1;
         }
         else if(level == 2)
         {
             fireRate = 0.5f;
             boomerang_Prb.damage = 10;
             boomerang_Prb.MaxBounce = 3;
+            count = 1;
         }
+
 
         else if(level == 3)
         {
             fireRate = 1f;
             boomerang_Prb.damage = 20;
             boomerang_Prb.MaxBounce = 5;
+            count = 1;
         }
+
         else if(level == 4)
         {
             fireRate = 1f;
@@ -125,16 +133,14 @@ public class BoomerangController : MonoBehaviour
             boomerang_Prb.MaxBounce = 7;
             count = 3;
         }
-        else if(level == 6) //為俄羅斯方塊升級
+        if(is_levelUP == true)
         {
-            fireRate = 1f;
-            boomerang_Prb.damage = 50;
-            boomerang_Prb.MaxBounce = 7;
-            count = 1000;
+            boomerang_Prb.MaxBounce = 1000;
         }
 
     }
     IEnumerator Fire()
+
     {
         for (int i = 0; i < count; i++)
         {

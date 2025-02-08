@@ -13,6 +13,7 @@ public class GearWeaponSystem : MonoBehaviour
     public float durationTime = 5f;    // 持續時間
     [Header("等級設定")]
     [Range(1, 5)] public int level = 1;
+    public bool is_levelUP = false;
     private int lastLevel = 1;
     private float coolDownTimer = 0f;
     private float durationTimer = 0f;
@@ -32,9 +33,20 @@ public class GearWeaponSystem : MonoBehaviour
     void Update()
     {
         CheckLevelUpdate();  // 每幀檢查等級變化
-        if (!isActive)
+        if(is_levelUP == true)
+        {
+            durationTime = float.PositiveInfinity; // 設為無限大
+        }
+        else
+        {
+            durationTime = 5f;
+        }
+
+        if (isActive == false)
         {
             coolDownTimer += Time.deltaTime;
+
+
             if (coolDownTimer >= coolDownTime)
             {
                 isActive = true;

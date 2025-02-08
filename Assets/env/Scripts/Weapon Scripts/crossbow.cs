@@ -9,11 +9,24 @@ public class crossbow : MonoBehaviour
     public float spawnInterval = 3f; // 每n秒執行一次
     private float spawnTimer;
     public bool Is_in_range = false;
+    private Arrow arrow;
+    private crossbow_Prb crossbow_Prb;
+    [Range(1, 6)]
+    public int level = 1;
+
+
+
+
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        arrow = transform.Find("arrow").GetComponent<Arrow>();
+        crossbow_Prb = transform.Find("crossbow_body").GetComponent<crossbow_Prb>();
         transform.position = player.position;
     }
+
+
 
     void Update()
     {
@@ -26,7 +39,9 @@ public class crossbow : MonoBehaviour
                 spawnTimer = spawnInterval; // 只在范围内重置计时器
             }
         }
+        ProcessLevel(level);
     }
+
 
     void SpawnCrossbow()
     {
@@ -62,5 +77,50 @@ public class crossbow : MonoBehaviour
         }
 
         return nearestMonster;
+    }
+    public void ProcessLevel(int level)
+    {
+        if(level == 1)
+        {
+            crossbow_Prb.fireRate = 1f;
+            arrow.damage = 5;
+          
+
+
+        }
+        else if(level == 2)
+        {
+            crossbow_Prb.fireRate =2f;
+            arrow.damage = 10;
+         
+
+
+        }
+
+        else if(level == 3)
+        {
+            crossbow_Prb.fireRate = 3f;
+            arrow.damage = 20;
+            
+
+
+        }
+        else if(level == 4)
+        {
+            crossbow_Prb.fireRate = 3f;
+            arrow.damage = 30;
+
+
+
+        }
+        else if(level == 5)
+        {
+            crossbow_Prb.fireRate = 5f;
+            arrow.damage = 50;
+
+
+
+        }
+
     }
 }

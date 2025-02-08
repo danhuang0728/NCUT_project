@@ -26,7 +26,7 @@ public class MagicBook_Prb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (magicBook.level == 6)
+        if (magicBook.is_levelUP == true)
         {
             GameObject nearestMonster = FindNearestMonster();
             if (nearestMonster != null)

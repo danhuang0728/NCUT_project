@@ -13,6 +13,7 @@ public class MagicBook : MonoBehaviour
     public bool Is_in_range = false;
     [Range(1,6)]
     public int level = 1; // 武器等級
+    public bool is_levelUP = false;
     private Transform player_t;
     public int spreadBulletCount = 5; // 在90度范围内发射的子弹数量
 
@@ -117,43 +118,44 @@ public class MagicBook : MonoBehaviour
             fireRate = 1f;
             magicBook_Prb.damage = 8;
             spreadBulletCount = 1;
-            bulletSpeed = 15f;
+   
         }
         else if(level == 2)
         {
             fireRate = 1f;
             magicBook_Prb.damage = 15;
             spreadBulletCount = 3;
-            bulletSpeed = 15f;
+           
         }
         else if(level == 3)
         {
             fireRate = 1f;
             magicBook_Prb.damage = 25;
             spreadBulletCount = 3;
-            bulletSpeed = 15f;
+           
         }
         else if(level == 4)
         {
             fireRate = 1.25f;
             magicBook_Prb.damage = 35;
             spreadBulletCount = 5;
-            bulletSpeed = 15f;
+         
         }
         else if(level == 5)
         {
             fireRate = 1.5f;
             magicBook_Prb.damage = 40;
             spreadBulletCount = 5;
-            bulletSpeed = 15f;
         }
-        else if(level == 6)
+        if(is_levelUP == true)
         {
-            fireRate = 1.5f;
-            magicBook_Prb.damage = 40;
-            spreadBulletCount = 5;
             bulletSpeed = 5f;
         }
+        else
+        {
+            bulletSpeed = 15f;
+        }
     }
+
 
 }
