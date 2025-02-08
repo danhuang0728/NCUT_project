@@ -11,9 +11,9 @@ public class crossbow : MonoBehaviour
     public bool Is_in_range = false;
     private Arrow arrow;
     private crossbow_Prb crossbow_Prb;
-    [Range(1, 6)]
+    [Range(1, 5)]
     public int level = 1;
-
+    public bool is_levelUP = false;
 
 
 
@@ -39,7 +39,7 @@ public class crossbow : MonoBehaviour
                 spawnTimer = spawnInterval; // 只在范围内重置计时器
             }
         }
-        ProcessLevel(level);
+        ProcessLevel(level,is_levelUP);
     }
 
 
@@ -78,48 +78,84 @@ public class crossbow : MonoBehaviour
 
         return nearestMonster;
     }
-    public void ProcessLevel(int level)
+    public void ProcessLevel(int level,bool is_levelUP)
     {
         if(level == 1)
         {
-            crossbow_Prb.fireRate = 1f;
-            arrow.damage = 5;
-          
+            if(is_levelUP == false)
+            {
+                crossbow_Prb.fireRate = 1f;
+                arrow.damage = 5;
 
-
+            }
+            else
+            {
+                crossbow_Prb.fireRate = 3f;
+                arrow.damage = 5;
+            }
         }
         else if(level == 2)
         {
-            crossbow_Prb.fireRate =2f;
-            arrow.damage = 10;
-         
+            if(is_levelUP == false)
+            {
+                crossbow_Prb.fireRate = 2f;
 
+                arrow.damage = 10;
+            }
+            else
+            {
+                crossbow_Prb.fireRate = 6f;
+                arrow.damage = 10;
+            }
 
         }
 
         else if(level == 3)
         {
-            crossbow_Prb.fireRate = 3f;
-            arrow.damage = 20;
-            
+            if(is_levelUP == false)
+            {
+                crossbow_Prb.fireRate = 3f;
+                arrow.damage = 20;
+            }
+
+            else
+            {
+                crossbow_Prb.fireRate = 9f;
+                arrow.damage = 20;
+            }
+
 
 
         }
         else if(level == 4)
         {
-            crossbow_Prb.fireRate = 3f;
-            arrow.damage = 30;
+            if(is_levelUP == false)
+            {
+                crossbow_Prb.fireRate = 3f;
 
+                arrow.damage = 30;
+            }
+            else
+            {
+                crossbow_Prb.fireRate = 9f;
+                arrow.damage = 30;
+            }
 
 
         }
         else if(level == 5)
         {
-            crossbow_Prb.fireRate = 5f;
-            arrow.damage = 50;
+            if(is_levelUP == false)
+            {
+                crossbow_Prb.fireRate = 5f;
 
-
-
+                arrow.damage = 50;
+            }
+            else
+            {
+                crossbow_Prb.fireRate = 15f;
+                arrow.damage = 50;
+            }
         }
 
     }

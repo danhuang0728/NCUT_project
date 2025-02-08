@@ -59,6 +59,7 @@ public class Weapon_Manager : MonoBehaviour
     public bool crossbow = false;
     [Range(1, 5)]
     public int crossbow_level = 1;
+    [Tooltip("加速連射")]  public bool is_crossbow_levelUP_1 = false;
     GameObject crossbow_weapon;
     crossbow crossbow_script;
 
@@ -88,15 +89,16 @@ public class Weapon_Manager : MonoBehaviour
         setActiveWeapon(Axe, axe_weapon);
         setActiveWeapon(crossbow, crossbow_weapon);
         circle_weapon_system.level = circle_level;
-        circle_weapon_system.is_levelUP = is_circle_levelUP_1; // 圓環武器進化
+        circle_weapon_system.is_levelUP = is_circle_levelUP_1; // 圓環武器進化(無限時間)
 
         boomerang_controller.level = boomerang_level;
-        boomerang_controller.is_levelUP = is_boomerang_levelUP_1; // 回旋標武器進化
+        boomerang_controller.is_levelUP = is_boomerang_levelUP_1; // 回旋標武器進化(無限彈射)
         
         magicbook_script.level = magicbook_level;
-        magicbook_script.is_levelUP = is_magicbook_levelUP_1; // 魔法書武器進化
+        magicbook_script.is_levelUP = is_magicbook_levelUP_1; // 魔法書武器進化(火球追蹤)
 
         crossbow_script.level = crossbow_level;
+        crossbow_script.is_levelUP = is_crossbow_levelUP_1; // 弩箭砲台武器進化(加速連社)
 
 
 
