@@ -9,28 +9,31 @@ public class Weapon_Manager : MonoBehaviour
     public bool circle = false;
     [Range(1, 5)]
     public int circle_level = 1;
-    public bool is_circle_levelUP_1 = false;
+    [Tooltip("無限時間")]  public bool is_circle_levelUP_1 = false;
     GameObject circle_weapon;
     GearWeaponSystem circle_weapon_system;
     
+
 
     // 回旋標武器：包含啟用開關與等級設定
     [Header("回旋標武器")]
     public bool Boomerang = false;
     [Range(1, 5)]
     public int boomerang_level = 1;
-    public bool is_boomerang_levelUP_1 = false;
+    [Tooltip("無限彈射")]  public bool is_boomerang_levelUP_1 = false;
     GameObject boomerang_weapon;
     BoomerangController boomerang_controller;
+
 
     // 魔法書武器：包含啟用開關與等級設定
     [Header("魔法書武器")]
     public bool MagicBook = false;
     [Range(1, 5)]
     public int magicbook_level = 1;
-    public bool is_magicbook_levelUP_1 = false;
+    [Tooltip("火球追蹤")]  public bool is_magicbook_levelUP_1 = false;
     GameObject magicbook_weapon;
     MagicBook magicbook_script;
+
 
 
     // 西洋劍武器：包含啟用開關與等級設定
@@ -92,7 +95,7 @@ public class Weapon_Manager : MonoBehaviour
         
         magicbook_script.level = magicbook_level;
         magicbook_script.is_levelUP = is_magicbook_levelUP_1; // 魔法書武器進化
-        
+
         crossbow_script.level = crossbow_level;
 
 
