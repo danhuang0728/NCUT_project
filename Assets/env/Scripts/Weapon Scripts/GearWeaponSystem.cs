@@ -30,6 +30,8 @@ public class GearWeaponSystem : MonoBehaviour
         SpawnGears();
     }
 
+
+
     void Update()
     {
         CheckLevelUpdate();  // 每幀檢查等級變化
@@ -66,11 +68,12 @@ public class GearWeaponSystem : MonoBehaviour
         }
     }
 
-    void SpawnGears()
+    public void SpawnGears()
     {
         // 清除現有齒輪
         foreach (var gear in gears)
         {
+
             if (gear != null)
                 Destroy(gear);
         }
@@ -92,10 +95,11 @@ public class GearWeaponSystem : MonoBehaviour
     }
 
     // 新增銷毀齒輪的方法
-    void DestroyGears()
+    public void DestroyGears()
     {
         foreach (var gear in gears)
         {
+
             if (gear != null)
                 Destroy(gear);
         }

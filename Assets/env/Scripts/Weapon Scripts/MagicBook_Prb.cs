@@ -26,11 +26,12 @@ public class MagicBook_Prb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (magicBook.is_levelUP == true)
+        if (magicBook.is_levelUP1 == true)
         {
             GameObject nearestMonster = FindNearestMonster();
             if (nearestMonster != null)
             {
+
                 // 计算指向最近怪物的方向
                 Vector2 direction = (nearestMonster.transform.position - transform.position).normalized;
                 
@@ -52,6 +53,13 @@ public class MagicBook_Prb : MonoBehaviour
                     // 更新物體的旋轉
                     transform.rotation = Quaternion.Euler(0, 0, newAngle);
                 }
+            }
+        }
+        if (magicBook.is_levelUP2 == true)
+        {
+            if (transform.localScale.x < 1.1f)
+            {
+                transform.localScale *= 5f;
             }
         }
         time += Time.deltaTime;
@@ -84,22 +92,32 @@ public class MagicBook_Prb : MonoBehaviour
 
                 // 造成傷害
                 monster.HP -= damage;
+                if(magicBook.is_levelUP2 == true)
+                {
+                    monster.burn_monster_start(5);
+                }
                 //閃白效果
                 playerController.SetBoolWithDelay_void(material, renderer);
                 // 擊退效果
                 Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
                 Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
+
+
                 if (monsterRb != null)
                 {
                     monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
                 }
             }
-            Destroy(gameObject);
+            if (magicBook.is_levelUP2 == false)
+            {
+                Destroy(gameObject);
+            }
         }
         if (other.CompareTag("wall"))
         {
             Destroy(gameObject);
         }
+
     }
     GameObject FindNearestMonster()
     {

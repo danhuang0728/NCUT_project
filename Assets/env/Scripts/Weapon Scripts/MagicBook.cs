@@ -13,9 +13,11 @@ public class MagicBook : MonoBehaviour
     public bool Is_in_range = false;
     [Range(1,6)]
     public int level = 1; // 武器等級
-    public bool is_levelUP = false;
+    public bool is_levelUP1 = false;
+    public bool is_levelUP2 = false;
     private Transform player_t;
     public int spreadBulletCount = 5; // 在90度范围内发射的子弹数量
+
 
     void Start()
     {
@@ -147,13 +149,19 @@ public class MagicBook : MonoBehaviour
             magicBook_Prb.damage = 40;
             spreadBulletCount = 5;
         }
-        if(is_levelUP == true)
+        if(is_levelUP1 == true)
         {
             bulletSpeed = 5f;
         }
         else
         {
             bulletSpeed = 15f;
+        }
+        if(is_levelUP2 == true)
+        {
+            fireRate = 0.5f;
+            magicBook_Prb.damage = 1;
+            spreadBulletCount = 1;
         }
     }
 

@@ -31,6 +31,7 @@ public class Weapon_Manager : MonoBehaviour
     [Range(1, 5)]
     public int magicbook_level = 1;
     [Tooltip("火球追蹤")]  public bool is_magicbook_levelUP_1 = false;
+    [Tooltip("巨大火球")]  public bool is_magicbook_levelUP_2 = false;
     GameObject magicbook_weapon;
     MagicBook magicbook_script;
 
@@ -63,6 +64,7 @@ public class Weapon_Manager : MonoBehaviour
     GameObject crossbow_weapon;
     crossbow crossbow_script;
 
+    private bool hasSpawnedCircleGears = false;
 
     void Start()
     {
@@ -82,12 +84,28 @@ public class Weapon_Manager : MonoBehaviour
 
     void Update()
     {
+        if(circle == false)  // 處理圓環武器開關問題
+        {
+            circle_weapon_system.DestroyGears();
+            hasSpawnedCircleGears = false;
+        }
+        else
+        {
+            if (!hasSpawnedCircleGears) // 確保只執行一次
+            {
+                circle_weapon_system.SpawnGears();
+                hasSpawnedCircleGears = true;
+            }
+        }
         setActiveWeapon(circle, circle_weapon);
         setActiveWeapon(Boomerang, boomerang_weapon);
         setActiveWeapon(MagicBook, magicbook_weapon);
         setActiveWeapon(thrust, thrust_weapon);
         setActiveWeapon(Axe, axe_weapon);
+
         setActiveWeapon(crossbow, crossbow_weapon);
+
+
         circle_weapon_system.level = circle_level;
         circle_weapon_system.is_levelUP = is_circle_levelUP_1; // 圓環武器進化(無限時間)
 
@@ -95,12 +113,11 @@ public class Weapon_Manager : MonoBehaviour
         boomerang_controller.is_levelUP = is_boomerang_levelUP_1; // 回旋標武器進化(無限彈射)
         
         magicbook_script.level = magicbook_level;
-        magicbook_script.is_levelUP = is_magicbook_levelUP_1; // 魔法書武器進化(火球追蹤)
+        magicbook_script.is_levelUP1 = is_magicbook_levelUP_1; // 魔法書武器進化(火球追蹤)
+        magicbook_script.is_levelUP2 = is_magicbook_levelUP_2; // 魔法書武器進化(巨大火球)
 
         crossbow_script.level = crossbow_level;
         crossbow_script.is_levelUP = is_crossbow_levelUP_1; // 弩箭砲台武器進化(加速連社)
-
-
 
     }
     void setActiveWeapon(bool weapon, GameObject weapon_object)

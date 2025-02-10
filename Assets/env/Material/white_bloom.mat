@@ -41,10 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BloomIntensity: 0.43
+    - _BloomIntensity: 0.84
     - _EnableExternalAlpha: 0
     - _MoveSpeed: 0
-    - _Threshold: 0.904
+    - _Threshold: 1
     - _WaveFrequency: 0.63
     m_Colors:
     - _BloomColor: {r: 1, g: 1, b: 1, a: 1}

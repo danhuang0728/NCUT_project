@@ -7,20 +7,19 @@ public class NormalMonster_setting : MonoBehaviour
 {
     // Start is called before the first frame update
     private float previousXPosition; // 用來儲存物件的上一幀位置
+    private PlayerControl playerControl;
     public int monster_type; //區分水果or一般怪物 1==水果 0==一般
     public int exp_type; //區分經驗值類別 初級,中級,高級
     public GameObject LowExpPrefab;    // 低級經驗值預製體
     public GameObject MediumExpPrefab;  // 中級經驗值預製體
     public GameObject HighExpPrefab;    // 高級經驗值預製體
-    private GameObject burn_effect;  // 燃燒效果
+    [SerializeField]private GameObject burn_effect;  // 燃燒效果
     bool isFlip = false;
     void Start()
     {
         burn_effect = GameObject.Find("fire_0");
+        playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
     }
-
-
-
 
 
     // Update is called once per frame
@@ -67,20 +66,28 @@ public class NormalMonster_setting : MonoBehaviour
     }
     public IEnumerator burn_monster(int burn_time)
     {
-        if(burn_effect != null)
+        
+        GameObject burnEffectClone = Instantiate(burn_effect, transform.position, transform.rotation);
+        Material material = this.GetComponent<Renderer>().material;
+        burnEffectClone.transform.SetParent(transform);
+        burnEffectClone.transform.localPosition = new Vector3(0f, -0.01f, 0f);
+        for(int i=0;i<burn_time;i++)
+
         {
-            GameObject burnEffectClone = Instantiate(burn_effect, transform.position, transform.rotation);
-            burnEffectClone.SetActive(true);
-            burnEffectClone.transform.SetParent(transform);
-            burnEffectClone.transform.localPosition = new Vector3(0f, 0f, 0f);
-            for(int i=0;i<burn_time;i++)
-            {
-                HP -= 1;
-                yield return new WaitForSeconds(1);
-            }
-            Destroy(burnEffectClone);
+            HP -= 1;
+            playerControl.SetBoolWithDelay_void(material, this.GetComponent<Renderer>());
+            yield return new WaitForSeconds(1f);
         }
+
+
+        Destroy(burnEffectClone);
     }
+
+    public void burn_monster_start(int burn_time) // 避免別的腳本引用協程發生問題
+    {
+        StartCoroutine(burn_monster(burn_time));
+    }
+
 
 
 
