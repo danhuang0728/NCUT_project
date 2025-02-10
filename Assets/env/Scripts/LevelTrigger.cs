@@ -203,6 +203,8 @@ public class LevelTrigger : MonoBehaviour
         // 獲取所有場景中的物件
         GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
 
+
+
         // 遍歷所有物件，查找名稱包含 "Clone" 的物件
         foreach (GameObject obj in allObjects)
         {
@@ -239,4 +241,5 @@ public class LevelTrigger : MonoBehaviour
             yield return null; // 等待下一幀
         }
     }
+    
 }
