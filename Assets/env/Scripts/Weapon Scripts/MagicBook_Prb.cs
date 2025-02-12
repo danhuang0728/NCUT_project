@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class MagicBook_Prb : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class MagicBook_Prb : MonoBehaviour
     [Range(1f,100f)]
     public float attractionForce = 10f; // 可根据需要调整力的大小
     private float time = 0f;
+    public Light2D light2D;
 
 
     void Start()
@@ -60,6 +62,11 @@ public class MagicBook_Prb : MonoBehaviour
             if (transform.localScale.x < 1.1f)
             {
                 transform.localScale *= 5f;
+            foreach (Transform child in transform)
+            {
+                child.GetComponent<Light2D>().pointLightOuterRadius *= 5f;
+                child.transform.position = new Vector3(child.transform.position.x, child.transform.position.y - 0.44f, child.transform.position.z);
+            }
             }
         }
         time += Time.deltaTime;

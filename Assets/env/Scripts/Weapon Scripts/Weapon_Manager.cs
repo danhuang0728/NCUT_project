@@ -63,21 +63,38 @@ public class Weapon_Manager : MonoBehaviour
     [Tooltip("加速連射")]  public bool is_crossbow_levelUP_1 = false;
     GameObject crossbow_weapon;
     crossbow crossbow_script;
+    // 主手武器：包含啟用開關與等級設定
+    [Header("主手進化武器")]
+    [Tooltip("亂砍")]public bool main_hand1 = false;
+    GameObject main_hand1_weapon; // 亂砍武器
+    [Tooltip("居合")]public bool main_hand2 = false;
+    GameObject main_hand2_weapon; // 居合武器
+    [Range(1, 5)]
+    public int main_hand_level1 = 1;
+    public int main_hand_level2 = 1;
 
     private bool hasSpawnedCircleGears = false;
+    private float initialAttackRange;
+    private PlayerControl playerControl;
 
     void Start()
     {
+        playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
+
         circle_weapon = transform.Find("circle").gameObject;
         boomerang_weapon = transform.Find("Boomerang").gameObject;
         magicbook_weapon = transform.Find("MagicBook").gameObject;
         thrust_weapon = transform.Find("thrust").gameObject;
         axe_weapon = transform.Find("Axe_Slashh_0").gameObject;
         crossbow_weapon = transform.Find("crossbow").gameObject;
+        main_hand1_weapon = transform.Find("sword_attack").gameObject;
+        main_hand2_weapon = transform.Find("Tameshigiri").gameObject;
         circle_weapon_system = circle_weapon.GetComponent<GearWeaponSystem>();
         boomerang_controller = boomerang_weapon.GetComponent<BoomerangController>();
         magicbook_script = magicbook_weapon.GetComponent<MagicBook>();
         crossbow_script = crossbow_weapon.GetComponent<crossbow>();
+
+        initialAttackRange = playerControl.AttackRange; // 儲存改變前的攻擊範圍
     }
 
 
@@ -102,8 +119,18 @@ public class Weapon_Manager : MonoBehaviour
         setActiveWeapon(MagicBook, magicbook_weapon);
         setActiveWeapon(thrust, thrust_weapon);
         setActiveWeapon(Axe, axe_weapon);
-
         setActiveWeapon(crossbow, crossbow_weapon);
+        setActiveWeapon(main_hand1, main_hand1_weapon);
+        if(main_hand1 == true) // 亂砍武器開啟時，攻擊範圍為0 改為使用亂砍的判定大小
+        {
+            playerControl.AttackRange = 0f;
+        }
+        else
+        {
+            playerControl.AttackRange = initialAttackRange;
+        }
+
+        setActiveWeapon(main_hand2, main_hand2_weapon);
 
 
         circle_weapon_system.level = circle_level;
