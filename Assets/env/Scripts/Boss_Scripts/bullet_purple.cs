@@ -6,6 +6,7 @@ using UnityEngine;
 public class bullet_purple : MonoBehaviour
 {
     public float speed = 5f; // 子彈速度
+    public float damage = 2f; // 子彈傷害
     private Rigidbody2D rb; // 子彈的 Rigidbody
 
     void Start()
@@ -27,7 +28,7 @@ public class bullet_purple : MonoBehaviour
             // 如果成功取得 PlayerControl 腳本, 則呼叫 TakeDamage 方法
                 if (playerControl != null)
                     {
-                        playerControl.TakeDamage(2);
+                        playerControl.TakeDamage(damage);
                     }
             }
             Destroy(gameObject);

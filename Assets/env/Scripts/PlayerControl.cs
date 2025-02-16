@@ -106,7 +106,7 @@ public class PlayerControl : MonoBehaviour
         StartCoroutine(hurtDelay());
     }
    // 扣血方法
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
         Renderer targetRenderer = rig.GetComponent<Renderer>();
