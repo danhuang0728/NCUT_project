@@ -34,6 +34,7 @@ public class crossbow_Prb : MonoBehaviour
         if (timer >= 1f / fireRate)
         {
             FireBullet();
+            AudioManager.Instance.PlaySFX("crossbow_shoot");
             timer = 0f; // 重置计时器
         }
 

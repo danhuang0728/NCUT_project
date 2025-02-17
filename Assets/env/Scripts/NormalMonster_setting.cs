@@ -13,7 +13,7 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject LowExpPrefab;    // 低級經驗值預製體
     public GameObject MediumExpPrefab;  // 中級經驗值預製體
     public GameObject HighExpPrefab;    // 高級經驗值預製體
-    [SerializeField]private GameObject burn_effect;  // 燃燒效果
+    private GameObject burn_effect;  // 燃燒效果
     bool isFlip = false;
     void Start()
     {
