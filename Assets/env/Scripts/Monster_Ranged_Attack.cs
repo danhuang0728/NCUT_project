@@ -11,6 +11,7 @@ public class Monster_Ranged_Attack : MonoBehaviour
     private float timer = 0f;
     public float fireRate = 1f;
     public float attackRange = 5f; // 攻擊範圍半徑
+    public float angle_Offset = 0f; //偏移角度補償
     private float init_speed;
     void Start()
     {
@@ -77,7 +78,7 @@ public class Monster_Ranged_Attack : MonoBehaviour
         bulletRb.velocity = direction * bulletSpeed;
 
         // 设置子弹的旋转角度
-        bullet.transform.rotation = Quaternion.Euler(0, 0, fireAngle);
+        bullet.transform.rotation = Quaternion.Euler(0, 0, fireAngle + angle_Offset);
     }
     GameObject FindNearestPlayer()
     {
