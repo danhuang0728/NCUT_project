@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     public float Knockback_strength;
     public float HP;
     public AudioSource audioSource;
+    public float attack_damage;
     public AudioClip audioClip;
 
 
@@ -196,7 +197,7 @@ public class PlayerControl : MonoBehaviour
             NormalMonster_setting clone_Scripts = Normalmonster.GetComponent<NormalMonster_setting>(); //讀取在攻擊範圍內的怪物腳本
             Transform Normal_T = Normalmonster.GetComponent<Transform>();
             if (clone_Scripts != null){
-                clone_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                clone_Scripts.HP -= attack_damage;                      //改變攻擊範圍內怪物的HP變數
                 if (targetRenderer != null)
                 {
                     // 获取材质实例（确保不会修改共享材质）
@@ -226,7 +227,7 @@ public class PlayerControl : MonoBehaviour
             BossFlower cloneflower_Scripts = bossFlower.GetComponent<BossFlower>(); //讀取在攻擊範圍內的怪物腳本
             if (cloneflower_Scripts != null)
             {           
-                cloneflower_Scripts.HP -= 1;                      //改變攻擊範圍內怪物的HP變數
+                cloneflower_Scripts.HP -= attack_damage;                      //改變攻擊範圍內怪物的HP變數
                 if (targetRenderer != null)
                 {
                     // 获取材质实例（确保不会修改共享材质）
