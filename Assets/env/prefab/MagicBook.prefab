@@ -322,6 +322,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   knockbackForce: 5
-  magicBook: {fileID: 0}
+  magicBook: {fileID: 8157480688551100885}
   attractionForce: 10
-  light2D: {fileID: 0}
+  light2D: {fileID: 1292010288917813588}
