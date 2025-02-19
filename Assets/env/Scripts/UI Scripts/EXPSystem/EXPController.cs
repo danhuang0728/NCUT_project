@@ -25,6 +25,18 @@ public class ExperienceSystem : MonoBehaviour
         UpdateUI();
     }
 
+    void Update()   //測試升級
+    {
+        // 检测按下数字键9
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            currentLevel++;
+            Debug.Log("Level up Now level: " + currentLevel);
+            FindObjectOfType<SelectionManager>().OpenPanel(); // 打开三选一界面
+            UpdateUI(); // 更新UI以反映新的等级
+        }
+    }
+
     public void AddExperience(int amount)
     {
         currentExperience += amount;
@@ -38,6 +50,7 @@ public class ExperienceSystem : MonoBehaviour
         {
             currentExperience -= GetRequiredExperience();
             currentLevel++;
+            FindObjectOfType<SelectionManager>().OpenPanel();
             Debug.Log("Level Up! Now level: " + currentLevel);
         }
     }
