@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214576d40c40df74eb2471988cbcfb9c, type: 3}
   m_Name: Damage _Uncommon
   m_EditorClassIdentifier: 
-  variableName: Damage _Uncommon
+  variableName: "\u653B\u64CA\u529B"
   stringValue: 123
   minValue: 1
   maxValue: 2.5
   image: {fileID: 21300000, guid: 08d0e399742f2fa478bd0b1818ef4cbe, type: 3}
-  description: 
+  description: 2.6
   powerUpType: 1
   rarity: 1

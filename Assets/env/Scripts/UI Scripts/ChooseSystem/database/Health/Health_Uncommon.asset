@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214576d40c40df74eb2471988cbcfb9c, type: 3}
   m_Name: Health_Uncommon
   m_EditorClassIdentifier: 
-  variableName: Health_Uncommon
+  variableName: "\u751F\u547D"
   stringValue: 123
   minValue: 10
   maxValue: 20
   image: {fileID: 21300000, guid: ad69d6dd2929f6643b4606ce6e74c8cf, type: 3}
-  description: 
+  description: 12.6
   powerUpType: 5
   rarity: 1

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214576d40c40df74eb2471988cbcfb9c, type: 3}
   m_Name: Damage _Epic
   m_EditorClassIdentifier: 
-  variableName: Damage _Epic
+  variableName: "\u653B\u64CA\u529B"
   stringValue: 123
   minValue: 2.5
   maxValue: 4
   image: {fileID: 21300000, guid: bc69aecdd626b574d9e1e6b64ed8955e, type: 3}
-  description: 
+  description: 4.6
   powerUpType: 1
   rarity: 2

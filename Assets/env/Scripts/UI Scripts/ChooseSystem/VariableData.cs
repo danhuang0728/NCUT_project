@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [CreateAssetMenu(fileName = "VariableData", menuName = "Custom/Variable Data")]
 public class VariableData : ScriptableObject
@@ -46,6 +47,7 @@ public class VariableData : ScriptableObject
         }
     }
     public string description;
+
     public PowerUpType powerUpType; // 新增能力值類型欄位
     public Rarity rarity; //新增稀有度
     // 可以加入更多不同類型的變數
@@ -56,10 +58,9 @@ public class VariableData : ScriptableObject
         description = _randomValue.ToString("F1"); // F1 表示顯示一位小數
     }
 
-    public void UpdateRandomValue()
+    public void ResetRandomValue()
     {
-        _randomValue = Mathf.Round(Random.Range(minValue, maxValue + 1) * 10f) / 10f;
-        description = _randomValue.ToString("F1");
-        Debug.Log("Updated randomValue: " + _randomValue);
+        _randomValue = 0;
+        description = "";
     }
 }
