@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2340e14b3c738f743a90fe1a94cf22fc, type: 3}
   m_Name: VariableDatabase
   m_EditorClassIdentifier: 
-  variableDataList: []
+  variableDataList:
+  - {fileID: 11400000, guid: f58ebe02ba9cad143b2b676fe43ed743, type: 2}
+  - {fileID: 11400000, guid: f58ebe02ba9cad143b2b676fe43ed743, type: 2}
+  - {fileID: 11400000, guid: f58ebe02ba9cad143b2b676fe43ed743, type: 2}

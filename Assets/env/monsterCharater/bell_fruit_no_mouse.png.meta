@@ -115,7 +115,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 84
+        width: 90
         height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -134,9 +134,9 @@ TextureImporter:
       name: bell_fruit_no_mouse_1
       rect:
         serializedVersion: 2
-        x: 95
+        x: 90
         y: 0
-        width: 83
+        width: 90
         height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -155,9 +155,9 @@ TextureImporter:
       name: bell_fruit_no_mouse_2
       rect:
         serializedVersion: 2
-        x: 187
+        x: 180
         y: 0
-        width: 83
+        width: 90
         height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -176,9 +176,9 @@ TextureImporter:
       name: bell_fruit_no_mouse_3
       rect:
         serializedVersion: 2
-        x: 275
+        x: 270
         y: 0
-        width: 79
+        width: 90
         height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
