@@ -93,11 +93,34 @@ public class SelectionManager : MonoBehaviour
 
       for(int i = 0; i < count; i++)
       {
-        //決定稀有度判斷{}
+        //決定稀有度判斷
+        int roll = Random.Range(1, 101);
+        VariableData.Rarity rarity = VariableData.Rarity.Common;
+        if (roll <= 1) //傳說稀有度 1%
+        {
+          rarity = VariableData.Rarity.Legendary;
+        }
+        if (roll > 1 && roll <= 11) //史詩稀有度10%
+        {
+          rarity = VariableData.Rarity.Epic;
+        }
+        if (roll > 11 && roll <= 36) //稀有稀有度25%
+        {
+          rarity = VariableData.Rarity.Uncommon;
+        }
+        if(roll > 36 ) //普通稀有度64% 
+        {
+          rarity = VariableData.Rarity.Common;
+        }
         int randomIndex = Random.Range(0, availableData.Count);
-        //判定是否為抽到的稀有度{}
+        //判定是否為抽到的稀有度
+        while(availableData[randomIndex].rarity != rarity)
+        {
+          randomIndex = Random.Range(0, availableData.Count);
+        }
         selection.Add(availableData[randomIndex]);
         availableData.RemoveAt(randomIndex);
+        
       }
       return selection;
     }
@@ -139,17 +162,17 @@ public class SelectionManager : MonoBehaviour
       // 示例：呼叫 PlayerManager 的增加能力值函式
       switch(selectedData.powerUpType)
       {
-          case VariableData.PowerUpType.Attack:
+          case VariableData.PowerUpType.Damage:
           //PlayerManager.Instance.IncreaseAttack(selectedData.powerIncreaseAmount);
-          Debug.Log("Increase Attack:" + selectedData.powerIncreaseAmount);
+          Debug.Log("Increase Damage:" + selectedData.powerIncreaseAmount);
           break;
-          case VariableData.PowerUpType.Defense:
+          case VariableData.PowerUpType.Critical_Damage:
            // PlayerManager.Instance.IncreaseDefense(selectedData.powerIncreaseAmount);
-             Debug.Log("Increase Defense:" + selectedData.powerIncreaseAmount);
+             Debug.Log("Increase Critical Damage:" + selectedData.powerIncreaseAmount);
           break;
-           case VariableData.PowerUpType.Speed:
+           case VariableData.PowerUpType.Critical_Hit_Rate:
             //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
-             Debug.Log("Increase Speed:" + selectedData.powerIncreaseAmount);
+             Debug.Log("Increase Critical Hit Rate:" + selectedData.powerIncreaseAmount);
           break;
            case VariableData.PowerUpType.Health:
              //PlayerManager.Instance.IncreaseHealth(selectedData.powerIncreaseAmount);
