@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   variableName: 
-  intValue: 0
-  floatValue: 0
   stringValue: 
+  minValue: 0
+  maxValue: 0
   image: {fileID: 0}
-  powerIncreaseAmount: 0
   description: 
-  powerUpType: 0
+  powerUpType: 1
+  rarity: 0

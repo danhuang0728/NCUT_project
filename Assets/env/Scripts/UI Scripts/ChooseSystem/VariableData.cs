@@ -12,14 +12,34 @@ public class VariableData : ScriptableObject
         Health
         // 可以加入更多能力值類型
     }
-
+    //新增稀有度
+    public enum Rarity
+    {
+        Common,
+        Uncommon,
+        Epic,
+        Legendary
+    }
     public string variableName;
-    public int intValue;
-    public float floatValue;
     public string stringValue;
+    //最大最小值
+    public int minValue;
+    public int maxValue;
     public Sprite image;
-    public int powerIncreaseAmount;
+    private int _randomValue;
+    public int powerIncreaseAmount
+    {
+        get
+        {
+            if (_randomValue == 0)
+            {
+                _randomValue = Random.Range(minValue, maxValue + 1);
+            }
+            return _randomValue;
+        }
+    }
     public string description;
     public PowerUpType powerUpType; // 新增能力值類型欄位
+    public Rarity rarity; //新增稀有度
     // 可以加入更多不同類型的變數
 }

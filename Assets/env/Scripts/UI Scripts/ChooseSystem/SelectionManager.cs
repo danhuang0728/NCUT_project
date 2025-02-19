@@ -76,8 +76,8 @@ public class SelectionManager : MonoBehaviour
 
     private List<VariableData> SelectRandomData(int count)
     {
-       List<VariableData> selection = new List<VariableData>();
-        if(variableDatabase == null || variableDatabase.variableDataList == null || variableDatabase.variableDataList.Count == 0)
+      List<VariableData> selection = new List<VariableData>();
+      if(variableDatabase == null || variableDatabase.variableDataList == null || variableDatabase.variableDataList.Count == 0)
         {
             Debug.LogError("No data found");
             return selection;
@@ -88,35 +88,38 @@ public class SelectionManager : MonoBehaviour
         return variableDatabase.variableDataList; // return all data if not enough
       }
 
-        List<VariableData> availableData = new List<VariableData>(variableDatabase.variableDataList);
+      // 創建一個新的列表來存儲可用的資料,避免直接修改原始資料庫
+      List<VariableData> availableData = new List<VariableData>(variableDatabase.variableDataList);
 
-        for(int i = 0; i < count; i++)
-        {
-            int randomIndex = Random.Range(0, availableData.Count);
-            selection.Add(availableData[randomIndex]);
-            availableData.RemoveAt(randomIndex);
-        }
-        return selection;
+      for(int i = 0; i < count; i++)
+      {
+        //決定稀有度判斷{}
+        int randomIndex = Random.Range(0, availableData.Count);
+        //判定是否為抽到的稀有度{}
+        selection.Add(availableData[randomIndex]);
+        availableData.RemoveAt(randomIndex);
+      }
+      return selection;
     }
 
-      public void ButtonClicked(int panelIndex)
+    public void ButtonClicked(int panelIndex)
     {
-        // 在這裡處理按鈕點擊事件，例如：
-        Debug.Log("Panel " + (panelIndex+1) + " clicked!");
-        selectedOption = GetSelectedDataByIndex(panelIndex);
-         if(selectedOption != null)
-            {
-              IncreasePlayerPower(selectedOption);
-             ClosePanel();
-             }
-         else{
-            Debug.LogError("Selected option is null.");
-           }
+      // 在這裡處理按鈕點擊事件，例如：
+      Debug.Log("Panel " + (panelIndex+1) + " clicked!");
+      selectedOption = GetSelectedDataByIndex(panelIndex);
+        if(selectedOption != null)
+          {
+            IncreasePlayerPower(selectedOption);
+            ClosePanel();
+            }
+        else{
+          Debug.LogError("Selected option is null.");
+          }
 
     }
 
 
-     private VariableData GetSelectedDataByIndex(int index)
+    private VariableData GetSelectedDataByIndex(int index)
     {
         if(variableDatabase == null || variableDatabase.variableDataList == null || variableDatabase.variableDataList.Count <= index)
         {
