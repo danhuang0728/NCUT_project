@@ -30,7 +30,7 @@ public class ExperienceSystem : MonoBehaviour
         // 检测按下数字键9
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            currentLevel++;
+            currentLevel++; //升級
             Debug.Log("Level up Now level: " + currentLevel);
             FindObjectOfType<SelectionManager>().OpenPanel(); // 打开三选一界面
             UpdateUI(); // 更新UI以反映新的等级
@@ -49,7 +49,7 @@ public class ExperienceSystem : MonoBehaviour
         while (currentExperience >= GetRequiredExperience())
         {
             currentExperience -= GetRequiredExperience();
-            currentLevel++;
+            currentLevel++; //升級
             FindObjectOfType<SelectionManager>().OpenPanel();
             Debug.Log("Level Up! Now level: " + currentLevel);
         }

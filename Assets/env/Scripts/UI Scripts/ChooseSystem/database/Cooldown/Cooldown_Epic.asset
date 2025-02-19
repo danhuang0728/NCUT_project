@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214576d40c40df74eb2471988cbcfb9c, type: 3}
   m_Name: Cooldown_Epic
   m_EditorClassIdentifier: 
-  variableName: Cooldown_Epic
+  variableName: "\u51B7\u537B\u6642\u9593"
   stringValue: 123
   minValue: 4
   maxValue: 7
-  image: {fileID: 0}
-  description: 
+  image: {fileID: 21300000, guid: b8051fbf016a6f34a9b1a2660aa1d148, type: 3}
+  description: 6.8
   powerUpType: 6
   rarity: 2
