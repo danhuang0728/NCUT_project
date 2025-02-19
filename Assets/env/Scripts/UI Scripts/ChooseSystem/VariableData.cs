@@ -6,10 +6,14 @@ public class VariableData : ScriptableObject
     public enum PowerUpType
     {
         None,
-        Attack,
-        Defense,
+        Damage,
+        Critical_Damage,
+        Critical_Hit_Rate,
         Speed,
-        Health
+        Health,
+        Cooldown,
+        Life_Steal,
+        Gold,
         // 可以加入更多能力值類型
     }
     //新增稀有度
@@ -23,11 +27,11 @@ public class VariableData : ScriptableObject
     public string variableName;
     public string stringValue;
     //最大最小值
-    public int minValue;
-    public int maxValue;
+    public float minValue;
+    public float maxValue;
     public Sprite image;
-    private int _randomValue;
-    public int powerIncreaseAmount
+    private float _randomValue;
+    public float powerIncreaseAmount
     {
         get
         {

@@ -139,17 +139,17 @@ public class SelectionManager : MonoBehaviour
       // 示例：呼叫 PlayerManager 的增加能力值函式
       switch(selectedData.powerUpType)
       {
-          case VariableData.PowerUpType.Attack:
+          case VariableData.PowerUpType.Damage:
           //PlayerManager.Instance.IncreaseAttack(selectedData.powerIncreaseAmount);
-          Debug.Log("Increase Attack:" + selectedData.powerIncreaseAmount);
+          Debug.Log("Increase Damage:" + selectedData.powerIncreaseAmount);
           break;
-          case VariableData.PowerUpType.Defense:
+          case VariableData.PowerUpType.Critical_Damage:
            // PlayerManager.Instance.IncreaseDefense(selectedData.powerIncreaseAmount);
-             Debug.Log("Increase Defense:" + selectedData.powerIncreaseAmount);
+             Debug.Log("Increase Critical Damage:" + selectedData.powerIncreaseAmount);
           break;
-           case VariableData.PowerUpType.Speed:
+           case VariableData.PowerUpType.Critical_Hit_Rate:
             //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
-             Debug.Log("Increase Speed:" + selectedData.powerIncreaseAmount);
+             Debug.Log("Increase Critical Hit Rate:" + selectedData.powerIncreaseAmount);
           break;
            case VariableData.PowerUpType.Health:
              //PlayerManager.Instance.IncreaseHealth(selectedData.powerIncreaseAmount);
