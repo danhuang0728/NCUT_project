@@ -8,9 +8,11 @@ public class SelectionManager : MonoBehaviour
 {
     public VariableDatabase variableDatabase; // 新增能力提升資料庫
     public GameObject[] optionPanels; // 三個選項 Panel
+    public GameObject[] optionBorders; // 三個選項 border
     public TextMeshProUGUI[] textFields; // 三個文字欄位
     public Image[] images;   // 三個圖片欄位
     public GameObject optionPanelParent; // 儲存選單的父物件
+    public GameObject background; // 背景
     private VariableData selectedOption; // 儲存選取的選項
     private bool isPanelOpen = false; // 確認選單是否打開
 
@@ -18,20 +20,22 @@ public class SelectionManager : MonoBehaviour
     void Start()
     {
         UpdateUI();
-         if (optionPanelParent != null)
+        if (optionPanelParent != null)
           {
+            background.SetActive(false);
             optionPanelParent.SetActive(false);
-        }
+          }
     }
 
     public void OpenPanel()
     {
         UpdateUI();
         isPanelOpen = true;
-         if (optionPanelParent != null)
+        if (optionPanelParent != null)
           {
+            background.SetActive(true);
             optionPanelParent.SetActive(true);
-        }
+          }
          PauseGame();
 
     }
@@ -42,6 +46,7 @@ public class SelectionManager : MonoBehaviour
           if (optionPanelParent != null)
           {
             optionPanelParent.SetActive(false);
+            background.SetActive(false);
         }
         isPanelOpen = false;
         ResumeGame();
@@ -68,10 +73,18 @@ public class SelectionManager : MonoBehaviour
             Debug.LogError("A null data was detected.");
             return;
         }
-        textFields[i].text = selectedData[i].variableName + "\n" +
+        
+        // 設定文字內容
+        textFields[i].text = selectedData[i].variableName + "\n" + 
                              selectedData[i].description;
+        
+        // 根據稀有度設定顏色 ▼▼▼
+        //textFields[i].color = GetRarityColor(selectedData[i].rarity); //文字顏色  
+        optionPanels[i].GetComponent<Image>().color = GetRarityColor(selectedData[i].rarity); //選項背景顏色
+        optionBorders[i].GetComponent<Image>().color = GetRarityColor(selectedData[i].rarity); //選項邊框顏色
+        // 顏色設定結束 ▲▲▲
 
-        images[i].sprite = selectedData[i].image; // 設定圖片
+        images[i].sprite = selectedData[i].image;
       }
     }
 
@@ -163,25 +176,41 @@ public class SelectionManager : MonoBehaviour
       // 示例：呼叫 PlayerManager 的增加能力值函式
       switch(selectedData.powerUpType)
       {
-          case VariableData.PowerUpType.Damage:
-          //PlayerManager.Instance.IncreaseAttack(selectedData.powerIncreaseAmount);
-          Debug.Log("Increase Damage:" + selectedData.powerIncreaseAmount);
-          break;
-          case VariableData.PowerUpType.Critical_Damage:
-           // PlayerManager.Instance.IncreaseDefense(selectedData.powerIncreaseAmount);
-             Debug.Log("Increase Critical Damage:" + selectedData.powerIncreaseAmount);
-          break;
-           case VariableData.PowerUpType.Critical_Hit_Rate:
-            //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
-             Debug.Log("Increase Critical Hit Rate:" + selectedData.powerIncreaseAmount);
-          break;
-           case VariableData.PowerUpType.Health:
-             //PlayerManager.Instance.IncreaseHealth(selectedData.powerIncreaseAmount);
-            Debug.Log("Increase Health:" + selectedData.powerIncreaseAmount);
-            break;
-          default:
-           Debug.LogWarning("Unknown power up type");
-          break;
+        case VariableData.PowerUpType.Damage:
+        //PlayerManager.Instance.IncreaseAttack(selectedData.powerIncreaseAmount);
+        Debug.Log("Increase Damage:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Critical_Damage:
+          // PlayerManager.Instance.IncreaseDefense(selectedData.powerIncreaseAmount);
+            Debug.Log("Increase Critical Damage:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Critical_Hit_Rate:
+        //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
+          Debug.Log("Increase Critical Hit Rate:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Health:
+          //PlayerManager.Instance.IncreaseHealth(selectedData.powerIncreaseAmount);
+        Debug.Log("Increase Health:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Speed:
+        //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
+        Debug.Log("Increase Speed:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Cooldown:
+        //PlayerManager.Instance.IncreaseCooldown(selectedData.powerIncreaseAmount);
+        Debug.Log("Increase Cooldown:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Life_Steal:
+        //PlayerManager.Instance.IncreaseLifeSteal(selectedData.powerIncreaseAmount);
+        Debug.Log("Increase Life Steal:" + selectedData.powerIncreaseAmount);
+        break;
+        case VariableData.PowerUpType.Gold:
+        //PlayerManager.Instance.IncreaseGold(selectedData.powerIncreaseAmount);
+        Debug.Log("Increase Gold:" + selectedData.powerIncreaseAmount);
+        break;
+        default:
+          Debug.LogWarning("Unknown power up type");
+        break;
       }
     }
 
@@ -195,4 +224,21 @@ public class SelectionManager : MonoBehaviour
       {
         Time.timeScale = 1;
       }
+
+    private Color32 GetRarityColor(VariableData.Rarity rarity)
+    {
+        switch(rarity)
+        {
+            case VariableData.Rarity.Common:
+                return new Color32(255, 255, 255, 255);
+            case VariableData.Rarity.Uncommon:
+                return new Color32(0, 255, 0, 255);
+            case VariableData.Rarity.Epic:
+                return new Color32(128, 0, 128, 255);
+            case VariableData.Rarity.Legendary:
+                return new Color32(255, 215, 0, 255);
+            default:
+                return new Color32(255, 255, 255, 255);
+        }
+    }
 }

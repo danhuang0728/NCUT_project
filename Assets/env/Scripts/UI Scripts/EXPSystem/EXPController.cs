@@ -9,6 +9,7 @@ public class ExperienceSystem : MonoBehaviour
     public int currentExperience = 0;
 
     public Image experienceBarImage; // 使用 Image 而非 Slider
+    public Slider experienceBar;
     public TMPro.TextMeshProUGUI expText; // 顯示當前經驗值的 Text
 
     private List<LevelData.LevelInfo> levelInfos;
@@ -20,7 +21,6 @@ public class ExperienceSystem : MonoBehaviour
             Debug.LogError("Error: LevelData has not been assigned!");
             return;
         }
-
         levelInfos = new List<LevelData.LevelInfo>(levelData.levels);
         UpdateUI();
     }
@@ -40,6 +40,8 @@ public class ExperienceSystem : MonoBehaviour
     public void AddExperience(int amount)
     {
         currentExperience += amount;
+        SetExperienceBar();
+        experienceBar.value = currentExperience;
         CheckLevelUp();
         UpdateUI();
     }
@@ -87,5 +89,10 @@ public class ExperienceSystem : MonoBehaviour
     public void IncreaseExperience(int amount) 
     {
         AddExperience(amount);
+    }
+    void SetExperienceBar() // 設定經驗值條上下限
+    {
+        experienceBar.maxValue = GetRequiredExperience();
+        experienceBar.minValue = 0;
     }
 }

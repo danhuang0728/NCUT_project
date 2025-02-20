@@ -1,0 +1,5 @@
+Canvas → Render Mode → Screen Space Overlay
+Canvas → Sorting Layer → 設定為最上層
+Canvas → Order in Layer → 設定大於其他UI元素 
+Image → Material → 確認使用修改後的UI/EpicBloom材質
+Image → Raycast Target → 取消勾選(避免點擊事件被遮擋) 
