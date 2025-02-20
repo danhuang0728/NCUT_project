@@ -39,7 +39,6 @@ public class VariableData : ScriptableObject
             if (_randomValue == 0)
             {
                 _randomValue = Mathf.Round(Random.Range(minValue, maxValue + 1) * 10f) / 10f; //四捨五入到小數點後一位
-                OnValidate();
                 Debug.Log("randomValue:"+_randomValue);
             }
             return _randomValue;
@@ -56,11 +55,5 @@ public class VariableData : ScriptableObject
     {
         _randomValue = Mathf.Round(Random.Range(minValue, maxValue + 1) * 10f) / 10f; //四捨五入
         description = _randomValue.ToString("F1"); // F1 表示顯示一位小數
-    }
-
-    public void ResetRandomValue()
-    {
-        _randomValue = 0;
-        description = "";
     }
 }

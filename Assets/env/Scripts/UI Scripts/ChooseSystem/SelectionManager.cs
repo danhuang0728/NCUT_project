@@ -62,6 +62,7 @@ public class SelectionManager : MonoBehaviour
       List<VariableData> selectedData = SelectRandomData(3);
 
       for(int i = 0; i < 3; i++){
+        selectedData[i].OnValidate();
         if(selectedData[i] == null)
         {
             Debug.LogError("A null data was detected.");
