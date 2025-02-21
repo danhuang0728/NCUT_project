@@ -8,6 +8,7 @@ public class NormalMonster_setting : MonoBehaviour
     // Start is called before the first frame update
     private float previousXPosition; // 用來儲存物件的上一幀位置
     private PlayerControl playerControl;
+    public healthbar Healthbar;
     public int monster_type; //區分水果or一般怪物 1==水果 0==一般
     public int exp_type; //區分經驗值類別 初級,中級,高級
     public GameObject LowExpPrefab;    // 低級經驗值預製體
@@ -17,6 +18,8 @@ public class NormalMonster_setting : MonoBehaviour
     bool isFlip = false;
     void Start()
     {
+        Healthbar = GameObject.Find("healthbar").GetComponent<healthbar>();
+        Previous_health = HP;     //初始化先前血量
         burn_effect = GameObject.Find("fire_0");
         playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
     }
@@ -26,10 +29,45 @@ public class NormalMonster_setting : MonoBehaviour
     public Transform player1;
     public GameObject monster;
     public float movespeed;
-
+    private float Previous_health;
     public float HP;
+    private float Getting_damage;
+    private float Getting_damage_first;
+    private float critical_damage;
     void Update()
     {
+        if (Previous_health != HP) //偵測怪物血量是否改變
+        {
+            Getting_damage_first = Previous_health - HP; //計算怪物受到的傷害值
+            HP -= Getting_damage_first * playerControl.Calculating_Values_damage; //計算怪物受到的傷害值，並把加成傷害%數計算進去
+            Getting_damage = Previous_health - HP;   //計算怪物因加成傷害%數所受到的傷害值
+            float random_critical = Random.Range(0, 100);
+            if(playerControl.Calculating_Values_criticalHitRate > 50) //如果暴擊率大於50%，則暴擊率為50%
+            {
+                playerControl.Calculating_Values_criticalHitRate = 50;
+            }
+            if (playerControl.Calculating_Values_criticalHitRate > random_critical)
+            {
+                Debug.Log("暴擊!!");
+                critical_damage = Getting_damage *(2 + playerControl.Calculating_Values_criticalDamage); //計算暴擊傷害值
+            }
+            else
+            {
+                critical_damage = Getting_damage;
+            }       
+            HP -= critical_damage;
+            if (playerControl.HP < Healthbar.slider.maxValue)  //如果玩家血量小於最大血量，則吸血
+            {
+                playerControl.HP = playerControl.HP + critical_damage * (playerControl.Calculating_Values_lifeSteal/100); //吸血效果
+            }
+            else
+            {
+                playerControl.HP = Healthbar.slider.maxValue; //如果玩家血量大於最大血量，則血量為最大血量
+            }
+
+            Previous_health = HP;
+        }
+
         if (HP <= 0)
         {
             MonsterDead(monster);

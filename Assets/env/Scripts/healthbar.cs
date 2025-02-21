@@ -8,6 +8,8 @@ public class healthbar : MonoBehaviour
 
     public Slider slider;
     public float health;
+    public character_value_ingame characterValuesIngame;
+    public Character_Values_SETUP characterValues;
     
 
     private PlayerControl playerControl; //套用玩家的主角本讀取初始生命變數
@@ -35,6 +37,11 @@ public class healthbar : MonoBehaviour
                 sethealth(health);
             }
         }
+        UpdateMaxHealth();
+    }
+    private void UpdateMaxHealth()
+    {
+        slider.maxValue = 100 + characterValuesIngame.health + characterValues.health_addition;
     }
 
 

@@ -5,11 +5,13 @@ public class ToggleChildObjects : MonoBehaviour
 {
     public float enableDuration = 1f; // 啟用持續時間    #1.28剛好一輪戳完
     public float disableDuration = 3f; // 關閉持續時間
-
+    private character_value_ingame characterValuesIngame;
+    public Character_Values_SETUP characterValues;
     public Transform player;
 
     private void Start()
     {
+        characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
         StartCoroutine(ToggleChildren());
     }
 
@@ -54,7 +56,7 @@ public class ToggleChildObjects : MonoBehaviour
             }
 
             // 等待關閉持續時間
-            yield return new WaitForSeconds(disableDuration);
+            yield return new WaitForSeconds(disableDuration- (disableDuration * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)));
         }
     }
 }

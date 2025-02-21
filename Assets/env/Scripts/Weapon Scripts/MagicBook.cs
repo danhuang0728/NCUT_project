@@ -8,6 +8,8 @@ public class MagicBook : MonoBehaviour
     public MagicBook_Prb magicBook_Prb;
     public float fireRate = 1f; // 發射頻率 (每秒發射多少顆子彈)
     public float bulletSpeed = 15f; // 子彈速度
+    public Character_Values_SETUP characterValues;
+    private character_value_ingame characterValuesIngame;
     private float fireTimer = 0f; // 發射計時器
     private float timer = 0f;
     public bool Is_in_range = false;
@@ -21,6 +23,7 @@ public class MagicBook : MonoBehaviour
 
     void Start()
     {
+        characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
         player_t = GameObject.Find("player1").transform;
     }
 
@@ -117,36 +120,36 @@ public class MagicBook : MonoBehaviour
     {
         if(level == 1)
         {
-            fireRate = 1f;
-            magicBook_Prb.damage = 8;
+            fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
+            magicBook_Prb.damage = 8 ;
             spreadBulletCount = 1;
    
         }
         else if(level == 2)
         {
-            fireRate = 1f;
-            magicBook_Prb.damage = 15;
+            fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
+            magicBook_Prb.damage = 15 ;
             spreadBulletCount = 3;
            
         }
         else if(level == 3)
         {
-            fireRate = 1f;
-            magicBook_Prb.damage = 25;
+            fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
+            magicBook_Prb.damage = 25 ;
             spreadBulletCount = 3;
            
         }
         else if(level == 4)
         {
-            fireRate = 1.25f;
-            magicBook_Prb.damage = 35;
+            fireRate = 1.25f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
+            magicBook_Prb.damage = 35 ;
             spreadBulletCount = 5;
          
         }
         else if(level == 5)
         {
-            fireRate = 1.5f;
-            magicBook_Prb.damage = 40;
+            fireRate = 1.5f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
+            magicBook_Prb.damage = 40 ;
             spreadBulletCount = 5;
         }
         if(is_levelUP1 == true)
@@ -159,8 +162,8 @@ public class MagicBook : MonoBehaviour
         }
         if(is_levelUP2 == true)
         {
-            fireRate = 0.5f;
-            magicBook_Prb.damage = 1;
+            fireRate = 0.5f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
+            magicBook_Prb.damage = 1 ;
             spreadBulletCount = 1;
         }
     }

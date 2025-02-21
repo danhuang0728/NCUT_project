@@ -13,6 +13,8 @@ using UnityEngine.Rendering;
 public class PlayerControl : MonoBehaviour
 {
     public LevelManager levelManager;
+    public character_value_ingame characterValuesIngame;
+    public Character_Values_SETUP characterValues;
     public float speed = 5f;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
@@ -46,10 +48,18 @@ public class PlayerControl : MonoBehaviour
         axeSlash = GameObject.Find("Axe_Slashh_0");
         StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
     }
-    
+    public float Calculating_Values_damage; //計算加成傷害%數(給怪物腳本用)
+    public float Calculating_Values_lifeSteal; //計算加成吸血%數(給怪物腳本用)
+    public float Calculating_Values_criticalDamage; //計算加成暴擊傷害%數(給怪物腳本用)
+    public float Calculating_Values_criticalHitRate; //計算加成暴擊率%數(給怪物腳本用)
     private void Update() 
     {
-        speed = levelManager.GetCurrentSpeed(); // 讀取當前等級的速度
+        Calculating_Values_damage = characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage;
+        Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage;
+        Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage;
+        Calculating_Values_criticalHitRate = characterValuesIngame.criticalHitRate + characterValues.criticalHitRate_addition;
+        speed = levelManager.GetCurrentSpeed() * 
+        (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
         if(Legend_speed == true){
             speed += 5;
         }

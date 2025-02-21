@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEditor.IMGUI.Controls;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -13,40 +14,44 @@ public class SelectionManager : MonoBehaviour
     public Image[] images;   // 三個圖片欄位
     public GameObject optionPanelParent; // 儲存選單的父物件
     public GameObject background; // 背景
-    private VariableData selectedOption; // 儲存選取的選項
-    private bool isPanelOpen = false; // 確認選單是否打開
+    public Character_Values_SETUP characterValues; // 新增能力提升資料庫
+    public character_value_ingame characterValuesIngame; // 新增能力提升資料庫
+    private List<VariableData> selectedData; // 儲存選取的選項
+    private bool isPanelOpen = false; // 確認選單是否打
 
 
     void Start()
     {
-        UpdateUI();
-        if (optionPanelParent != null)
-          {
-            background.SetActive(false);
-            optionPanelParent.SetActive(false);
-          }
+      characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
+
+      UpdateUI();
+      if (optionPanelParent != null)
+        {
+          background.SetActive(false);
+          optionPanelParent.SetActive(false);
+        }
     }
 
     public void OpenPanel()
     {
-        UpdateUI();
-        isPanelOpen = true;
-        if (optionPanelParent != null)
-          {
-            background.SetActive(true);
-            optionPanelParent.SetActive(true);
-          }
-         PauseGame();
+      UpdateUI();
+      isPanelOpen = true;
+      if (optionPanelParent != null)
+        {
+          background.SetActive(true);
+          optionPanelParent.SetActive(true);
+        }
+        PauseGame();
 
     }
 
 
       public void ClosePanel()
     {
-          if (optionPanelParent != null)
-          {
-            optionPanelParent.SetActive(false);
-            background.SetActive(false);
+      if (optionPanelParent != null)
+        {
+          optionPanelParent.SetActive(false);
+          background.SetActive(false);
         }
         isPanelOpen = false;
         ResumeGame();
@@ -64,7 +69,7 @@ public class SelectionManager : MonoBehaviour
         return;
       }
       // 隨機選取三個不同的資料
-      List<VariableData> selectedData = SelectRandomData(3);
+      selectedData = SelectRandomData(3);
 
       for(int i = 0; i < 3; i++){
         selectedData[i].OnValidate();
@@ -90,6 +95,7 @@ public class SelectionManager : MonoBehaviour
 
     private List<VariableData> SelectRandomData(int count)
     {
+      
       List<VariableData> selection = new List<VariableData>();
       if(variableDatabase == null || variableDatabase.variableDataList == null || variableDatabase.variableDataList.Count == 0)
         {
@@ -141,71 +147,46 @@ public class SelectionManager : MonoBehaviour
 
     public void ButtonClicked(int panelIndex)
     {
-      // 在這裡處理按鈕點擊事件，例如：
-      Debug.Log("Panel " + (panelIndex+1) + " clicked!");
-      selectedOption = GetSelectedDataByIndex(panelIndex);
-        if(selectedOption != null)
-          {
-            IncreasePlayerPower(selectedOption);
-            ClosePanel();
-            }
-        else{
-          Debug.LogError("Selected option is null.");
-          }
-
+      ClosePanel();
+      IncreasePlayerPower(selectedData[panelIndex]);
     }
 
 
-    private VariableData GetSelectedDataByIndex(int index)
+    private void IncreasePlayerPower(VariableData selectedData) // 增加玩家能力值
     {
-        if(variableDatabase == null || variableDatabase.variableDataList == null || variableDatabase.variableDataList.Count <= index)
-        {
-          Debug.LogError("Data not found for index: " + index);
-           return null;
-        }
-        List<VariableData> selectedData = SelectRandomData(3);
-        return selectedData[index];
-    }
-
-     // 假設你已經有一個 PlayerManager 來管理玩家的能力值
-    private void IncreasePlayerPower(VariableData selectedData)
-    {
-      // 在這裡，你可以呼叫你的 PlayerManager 來增加玩家的能力值
-      // 這裡只是一個示例，你需要根據你的專案來實作
-      Debug.Log("增加能力值: " + selectedData.powerIncreaseAmount);
-      // 示例：呼叫 PlayerManager 的增加能力值函式
+      Debug.Log("增加能力值: " + selectedData.powerUpType);
       switch(selectedData.powerUpType)
       {
         case VariableData.PowerUpType.Damage:
-        //PlayerManager.Instance.IncreaseAttack(selectedData.powerIncreaseAmount);
+        characterValuesIngame.damage += selectedData.powerIncreaseAmount;
         Debug.Log("Increase Damage:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Critical_Damage:
-          // PlayerManager.Instance.IncreaseDefense(selectedData.powerIncreaseAmount);
+        characterValuesIngame.criticalDamage += selectedData.powerIncreaseAmount;
             Debug.Log("Increase Critical Damage:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Critical_Hit_Rate:
-        //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
+        characterValuesIngame.criticalHitRate += selectedData.powerIncreaseAmount;
           Debug.Log("Increase Critical Hit Rate:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Health:
-          //PlayerManager.Instance.IncreaseHealth(selectedData.powerIncreaseAmount);
+        characterValuesIngame.health += selectedData.powerIncreaseAmount;
         Debug.Log("Increase Health:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Speed:
-        //PlayerManager.Instance.IncreaseSpeed(selectedData.powerIncreaseAmount);
+        characterValuesIngame.speed += selectedData.powerIncreaseAmount;
         Debug.Log("Increase Speed:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Cooldown:
-        //PlayerManager.Instance.IncreaseCooldown(selectedData.powerIncreaseAmount);
+        characterValuesIngame.cooldown += selectedData.powerIncreaseAmount;
         Debug.Log("Increase Cooldown:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Life_Steal:
-        //PlayerManager.Instance.IncreaseLifeSteal(selectedData.powerIncreaseAmount);
+        characterValuesIngame.lifeSteal += selectedData.powerIncreaseAmount;
         Debug.Log("Increase Life Steal:" + selectedData.powerIncreaseAmount);
         break;
         case VariableData.PowerUpType.Gold:
-        //PlayerManager.Instance.IncreaseGold(selectedData.powerIncreaseAmount);
+        characterValuesIngame.gold += selectedData.powerIncreaseAmount;
         Debug.Log("Increase Gold:" + selectedData.powerIncreaseAmount);
         break;
         default:

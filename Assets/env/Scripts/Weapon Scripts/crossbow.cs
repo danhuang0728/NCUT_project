@@ -7,6 +7,8 @@ public class crossbow : MonoBehaviour
     public GameObject Crossbow_prb;  //弩的預置物
     private Transform player;
     public float spawnInterval = 3f; // 每n秒執行一次
+    private character_value_ingame characterValuesIngame;
+    public Character_Values_SETUP characterValues;
     private float spawnTimer;
     public bool Is_in_range = false;
     private Arrow arrow;
@@ -20,6 +22,7 @@ public class crossbow : MonoBehaviour
 
     void Start()
     {
+        characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         arrow = transform.Find("arrow").GetComponent<Arrow>();
         crossbow_Prb = transform.Find("crossbow_body").GetComponent<crossbow_Prb>();
@@ -30,6 +33,7 @@ public class crossbow : MonoBehaviour
 
     void Update()
     {
+        spawnInterval = 3f - (3f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage));
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0)
         {

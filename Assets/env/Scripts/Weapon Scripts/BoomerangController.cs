@@ -6,6 +6,8 @@ public class BoomerangController : MonoBehaviour
 {
     public GameObject bulletPrefab; // 子彈 Prefab
     public Boomerang_Prb boomerang_Prb;
+    private character_value_ingame characterValuesIngame;
+    public Character_Values_SETUP characterValues;
     private float fireRate = 1f; // 發射頻率 (每秒發射多少顆子彈)
     public float bulletSpeed = 15f; // 子彈速度
     private float timer = 0f;
@@ -21,6 +23,7 @@ public class BoomerangController : MonoBehaviour
     void Start()
     {
         player_t = GameObject.Find("player1").transform;
+        characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
     }
 
     void Update()
@@ -97,14 +100,14 @@ public class BoomerangController : MonoBehaviour
     {
         if(level == 1)
         {
-            fireRate = 0.33f;
+            fireRate = 0.33f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
             boomerang_Prb.damage = 5;
             boomerang_Prb.MaxBounce = 3;
             count = 1;
         }
         else if(level == 2)
         {
-            fireRate = 0.5f;
+            fireRate = 0.5f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
             boomerang_Prb.damage = 10;
             boomerang_Prb.MaxBounce = 3;
             count = 1;
@@ -113,7 +116,7 @@ public class BoomerangController : MonoBehaviour
 
         else if(level == 3)
         {
-            fireRate = 1f;
+            fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
             boomerang_Prb.damage = 20;
             boomerang_Prb.MaxBounce = 5;
             count = 1;
@@ -121,14 +124,14 @@ public class BoomerangController : MonoBehaviour
 
         else if(level == 4)
         {
-            fireRate = 1f;
+            fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
             boomerang_Prb.damage = 30;
             boomerang_Prb.MaxBounce = 7;
             count = 2;
         }
         else if(level == 5)
         {
-            fireRate = 1f;
+            fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
             boomerang_Prb.damage = 50;
             boomerang_Prb.MaxBounce = 7;
             count = 3;

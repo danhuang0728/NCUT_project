@@ -14,6 +14,8 @@ public class GearWeaponSystem : MonoBehaviour
     [Header("等級設定")]
     [Range(1, 5)] public int level = 1;
     public bool is_levelUP = false;
+    [SerializeField]private character_value_ingame characterValuesIngame;
+    [SerializeField]private Character_Values_SETUP characterValues;
     private int lastLevel = 1;
     private float coolDownTimer = 0f;
     private float durationTimer = 0f;
@@ -21,10 +23,11 @@ public class GearWeaponSystem : MonoBehaviour
     private List<GameObject> gears = new List<GameObject>();  // 儲存所有齒輪
     private Transform player;
     private float angle = 0f;
-    public float damage = 1f;          // 傷害值
+    public float damage = 1f;   // 傷害值
 
     void Start()
     {
+        characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         UpdateLevelParameters();  // 初始化等級參數
         SpawnGears();
@@ -34,6 +37,7 @@ public class GearWeaponSystem : MonoBehaviour
 
     void Update()
     {
+        UpdateLevelParameters();
         CheckLevelUpdate();  // 每幀檢查等級變化
         if(is_levelUP == true)
         {
@@ -112,19 +116,54 @@ public class GearWeaponSystem : MonoBehaviour
         switch (level)
         {
             case 1:
-                SetParameters(2, 125f, 4f, 15f, 3f, 1f);
+                SetParameters(
+                    count: 2,
+                    speed: 125f,
+                    radius: 4f,
+                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 3f,
+                    dmg: 1f 
+                );
                 break;
             case 2:
-                SetParameters(3, 150f, 4f, 15f, 6f, 30f);
+                SetParameters(
+                    count: 3,
+                    speed: 150f,
+                    radius: 4f,
+                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 6f,
+                    dmg: 30f 
+                );
                 break;
             case 3:
-                SetParameters(3, 200f, 4f, 15f, 8f, 50f);
+                SetParameters(
+                    count: 3,
+                    speed: 200f,
+                    radius: 4f,
+                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 8f,
+                    dmg: 50f 
+                );
                 break;
             case 4:
-                SetParameters(4, 200f, 4f, 15f, 10f, 50f);
+                SetParameters(
+                    count: 4,
+                    speed: 200f,
+                    radius: 4f,
+                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 10f,
+                    dmg: 50f 
+                );
                 break;
             case 5:
-                SetParameters(5, 300f, 4f, 15f, 10f, 50f);
+                SetParameters(
+                    count: 5,
+                    speed: 300f,
+                    radius: 4f,
+                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 10f,
+                    dmg: 50f 
+                );
                 break;
         }
     }
@@ -145,7 +184,6 @@ public class GearWeaponSystem : MonoBehaviour
         if (level != lastLevel)
         {
             lastLevel = level;
-            UpdateLevelParameters();
             DestroyGears();
             SpawnGears();
         }

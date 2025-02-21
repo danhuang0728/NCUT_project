@@ -9,7 +9,8 @@ public class Weapon : MonoBehaviour
 
     private Animator animator;
     private GameObject axeSlash;
-
+    private character_value_ingame characterValuesIngame;
+    public Character_Values_SETUP characterValues;
     public float damage = 1f; // 傷害值
     public float knockbackForce = 10f; // 擊退力度
     private Collider2D attackCollider; // 武器的 Collider，用於檢測碰撞區域
@@ -18,6 +19,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        characterValuesIngame = GameObject.Find("player1").GetComponent<character_value_ingame>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         axeSlash = GameObject.Find("Axe_Slashh_0");
         attackCollider = GetComponent<Collider2D>(); // 取得武器的 Collider
@@ -37,7 +39,7 @@ public class Weapon : MonoBehaviour
                 animator.Play("axe_swing", -1, 0f);         // 斧頭動畫
                 AudioManager.Instance.PlaySFX("axe_swing"); // 斧頭揮擊音效
             }
-            yield return new WaitForSeconds(delaySeconds);
+            yield return new WaitForSeconds(delaySeconds- (delaySeconds * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)));
         }
     }
     // Animation Event 綁定的方法
