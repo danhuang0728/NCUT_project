@@ -57,6 +57,7 @@ public class MagicBook : MonoBehaviour
         // 计算基础方向（保持原逻辑）
         Vector2 baseDirection = (nearestMonster.transform.position - transform.position).normalized;
         float baseAngle = Mathf.Atan2(baseDirection.y, baseDirection.x) * Mathf.Rad2Deg;
+        AudioManager.Instance.PlaySFX("fireball");
 
         // 处理子弹数量为1的特殊情况
         if (spreadBulletCount == 1)

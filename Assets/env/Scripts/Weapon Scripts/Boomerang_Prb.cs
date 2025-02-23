@@ -31,6 +31,7 @@ public class Boomerang_Prb : MonoBehaviour
             {
                 // 造成傷害
                 monster.HP -= damage;
+                AudioManager.Instance.PlaySFX("Boomerrang_hit");
 
                 // 擊退效果
                 Vector2 knockbackDir = (other.transform.position - transform.position).normalized;

@@ -139,7 +139,7 @@ public class PlayerControl : MonoBehaviour
         mat = targetRenderer.material;
         // 设置布尔值为 true
         mat.SetInt(boolPropertyName, 1);
-        audioSource.PlayOneShot(audioClip, 0.7f); // 打擊音效
+        AudioManager.Instance.PlaySFX("monsterHit"); // 打擊音效
         
         // 等待 0.1 秒
         yield return new WaitForSeconds(0.2f);  //hit閃白時間 

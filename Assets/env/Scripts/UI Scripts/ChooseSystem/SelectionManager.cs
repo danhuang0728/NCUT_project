@@ -35,6 +35,7 @@ public class SelectionManager : MonoBehaviour
     public void OpenPanel()
     {
       UpdateUI();
+      AudioManager.Instance.PlaySFX("Level_up");
       isPanelOpen = true;
       if (optionPanelParent != null)
         {
