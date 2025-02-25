@@ -16,7 +16,7 @@ MonoBehaviour:
   stringValue: 123
   minValue: 7
   maxValue: 15
-  image: {fileID: 0}
-  description: 9.0
+  image: {fileID: 21300000, guid: 283b337214b0bc5429599191b03845ae, type: 3}
+  description: 8.1
   powerUpType: 3
   rarity: 2
