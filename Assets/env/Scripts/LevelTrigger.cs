@@ -34,7 +34,9 @@ public class LevelTrigger : MonoBehaviour
 #endif
     [SerializeField] private string selectedOption = "(1_1)"; // 设置默认值
 
-
+    [SerializeField] private GameObject[] shopItemPrefabs; // 在Inspector中设置可能出现的物品预制体
+    [SerializeField] private Transform[] spawnPoints; // 在Inspector中设置4个生成点
+    private bool itemsSpawned = false;
 
     void Start()
     {
@@ -182,6 +184,7 @@ public class LevelTrigger : MonoBehaviour
         // 關卡結束
         ClearAllClones();
         StartCoroutine(MoveExpObjectsTowardsPlayerCoroutine());
+        SpawnShopItems();
 
         foreach (spawn repOb in spawns) // 修改全部重生點為關閉狀態
         {
@@ -242,4 +245,28 @@ public class LevelTrigger : MonoBehaviour
         }
     }
     
+    private void SpawnShopItems()
+    {
+        if (itemsSpawned) return;
+        itemsSpawned = true;
+
+        // 确保有足够的生成点
+        if (spawnPoints.Length < 4)
+        {
+            Debug.LogError("需要设置4个生成点!");
+            return;
+        }
+
+        // 在4个位置生成随机物品
+        for (int i = 0; i < 4; i++)
+        {
+            if (shopItemPrefabs.Length > 0)
+            {
+                // 随机选择一个物品预制体
+                GameObject itemPrefab = shopItemPrefabs[Random.Range(0, shopItemPrefabs.Length)];
+                // 在指定位置生成物品
+                Instantiate(itemPrefab, spawnPoints[i].position, Quaternion.identity);
+            }
+        }
+    }
 }
