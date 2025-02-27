@@ -18,7 +18,7 @@ TagManager:
   - Player
   - BossFlower
   - crossbow
-  - 
+  - bk
   - 
   - 
   - 
@@ -51,9 +51,6 @@ TagManager:
   - name: Monster
     uniqueID: 357606223
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: gameobject
     uniqueID: 4250941897
     locked: 0
@@ -63,6 +60,12 @@ TagManager:
   - name: weapon
     uniqueID: 2935672739
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: UI
     uniqueID: 4118476713
+    locked: 0
+  - name: CamaraSortingLayer
+    uniqueID: 695990343
     locked: 0

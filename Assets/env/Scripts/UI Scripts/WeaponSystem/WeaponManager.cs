@@ -47,16 +47,16 @@ public class WeaponManager : MonoBehaviour
             cooldownMasks[i].fillAmount = 0;
             cooldownMasks[i].enabled = false;
             inCooldowns[i] = false;
-            skillIndexMap[weaponSkillDatabase.weaponSkills[i].skillId] = i;
+            skillIndexMap[weaponSkillDatabase.weaponSkills[i].weaponID] = i;
         }
     }
 
     void Update()
     {
-        UpdateCooldown();
+        //UpdateCooldown();
         ActivatePassiveSkills();
     }
-
+    /*
     void UpdateCooldown()
     {
         for (int i = 0; i < weaponSkillDatabase.weaponSkills.Length; i++)
@@ -75,6 +75,8 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
+    */
+
     
      void ActivatePassiveSkills()
      {
