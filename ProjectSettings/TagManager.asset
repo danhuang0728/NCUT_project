@@ -51,9 +51,6 @@ TagManager:
   - name: Monster
     uniqueID: 357606223
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: gameobject
     uniqueID: 4250941897
     locked: 0
@@ -62,6 +59,9 @@ TagManager:
     locked: 0
   - name: weapon
     uniqueID: 2935672739
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: UI
     uniqueID: 4118476713
