@@ -8,8 +8,6 @@ public class CameraToPlayer : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("player1");
-        Debug.Log(player.GetComponent<Transform>().position.x);
-        Debug.Log(player.GetComponent<Transform>().position.y);
     }
 
     // Update is called once per frame
