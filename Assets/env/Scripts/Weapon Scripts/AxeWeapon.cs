@@ -56,8 +56,7 @@ public class Weapon : MonoBehaviour
             {
                 NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
                 BossFlower bossFlower = other.GetComponent<BossFlower>(); // 加入對 BossFlower 的判定
-                Debug.Log("monster:"+monster);
-                Debug.Log("bossFlower:"+bossFlower);
+                
 
 
                 if (bossFlower != null)
@@ -69,6 +68,13 @@ public class Weapon : MonoBehaviour
                     {
                         bossFlower.HP -= damage;
                         playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
+                        
+                        // 檢查是否有燃燒效果
+                        PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                        if (player != null && player.hasBurnEffect)
+                        {
+                            monster.burn_monster_start(player.burnDuration);
+                        }
                     }
                     else
                     {
@@ -88,17 +94,19 @@ public class Weapon : MonoBehaviour
                         Material mat = renderer.material;
                         playerControl.SetBoolWithDelay_void(mat, renderer);
                     }
-                    else
-                    {
-                        Debug.Log("Renderer not found on this Monster.");
-                    }
-
+                        
                     // 處理擊退效果
                     Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
                     Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
                     if (monsterRb != null)
                     {
                         monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+                    }
+                    // 檢查是否有燃燒效果
+                        PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                        if (player != null && player.hasBurnEffect)
+                    {
+                        monster.burn_monster_start(player.burnDuration);
                     }
                 }
             }

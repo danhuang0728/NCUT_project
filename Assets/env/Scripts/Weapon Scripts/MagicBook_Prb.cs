@@ -84,7 +84,7 @@ public class MagicBook_Prb : MonoBehaviour
             Material material = renderer.material;
             material.color = Color.red;
             NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
-            Debug.Log("monstertest:"+monster);
+            //Debug.Log("monstertest:"+monster);
             BossFlower bossFlower = other.GetComponent<BossFlower>();
             if (bossFlower != null)
 
@@ -102,6 +102,12 @@ public class MagicBook_Prb : MonoBehaviour
                 if(magicBook.is_levelUP2 == true)
                 {
                     monster.burn_monster_start(5);
+                }
+                // 檢查是否有燃燒效果
+                PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                if (player != null && player.hasBurnEffect)
+                {
+                    monster.burn_monster_start(player.burnDuration);
                 }
                 //閃白效果
                 playerController.SetBoolWithDelay_void(material, renderer);

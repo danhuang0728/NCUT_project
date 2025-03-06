@@ -50,6 +50,12 @@ public class GearWeapon : MonoBehaviour
             {
                 Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
                 bossFlower.HP -= damage;
+                // 檢查是否有燃燒效果
+                PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                if (player != null && player.hasBurnEffect)
+                {
+                    monster.burn_monster_start(player.burnDuration);
+                }
                 playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
             }
 
@@ -57,6 +63,12 @@ public class GearWeapon : MonoBehaviour
             {
                 // 造成傷害
                 monster.HP -= damage;
+                // 檢查是否有燃燒效果
+                PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                if (player != null && player.hasBurnEffect)
+                {
+                    monster.burn_monster_start(player.burnDuration);
+                }
                 // 取得 Renderer 組件
                 Renderer renderer = other.GetComponent<Renderer>();
                 if (renderer != null)

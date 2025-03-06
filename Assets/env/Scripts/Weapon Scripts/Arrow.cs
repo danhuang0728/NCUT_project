@@ -44,7 +44,7 @@ public class Arrow : MonoBehaviour
             if (monster != null)
 
             {
-
+                    
                 // 造成傷害
                 monster.HP -= damage;
                 //閃白效果
@@ -56,6 +56,12 @@ public class Arrow : MonoBehaviour
                 {
                     monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
                 }
+                // 檢查是否有燃燒效果
+                PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                if (player != null && player.hasBurnEffect)
+                {
+                    monster.burn_monster_start(player.burnDuration);
+                }
             }
             Destroy(gameObject);
         }
@@ -64,4 +70,6 @@ public class Arrow : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }
