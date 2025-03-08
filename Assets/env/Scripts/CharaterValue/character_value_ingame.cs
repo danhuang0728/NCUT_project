@@ -26,14 +26,24 @@ public class character_value_ingame : MonoBehaviour
         health = 0;
         cooldown = 0;
         lifeSteal = 0;
-        gold = 0;
+        gold = 300;
     }
     void Update()
     {
-        damage_percentage = damage/100;
-        criticalDamage_percentage = criticalDamage/100;
+        damage_percentage =  damage/100;
+        criticalDamage_percentage =  criticalDamage/100;
         speed_percentage = speed/100;
         cooldown_percentage = cooldown/100;
-        lifeSteal_percentage = lifeSteal/100;
+        lifeSteal_percentage =  lifeSteal/100;
+        
+        if (Time.time % 5 < Time.deltaTime) //每過五秒顯示gold
+        {
+            Debug.Log("當前金錢: " + gold);
+            Debug.Log("當前damage_percentage: " + damage_percentage);
+            Debug.Log("當前damage: " + damage);
+            Debug.Log("當前cooldown_percentage: " + cooldown_percentage);
+            Debug.Log("當前cooldown: " + cooldown);
+            
+        }
     }
 }

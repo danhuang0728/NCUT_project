@@ -22,6 +22,12 @@ public class thrust : MonoBehaviour
             if (monster != null)
             {
                 monster.HP -= damage;
+                // 檢查是否有燃燒效果
+                PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+                if (player != null && player.hasBurnEffect)
+                {
+                    monster.burn_monster_start(player.burnDuration);
+                }
                 Debug.Log("Monster = " + monster);
 
                 // 嘗試取得 Renderer 組件

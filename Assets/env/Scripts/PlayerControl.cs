@@ -41,6 +41,8 @@ public class PlayerControl : MonoBehaviour
     private Animator ani;
     private GameObject axeSlash;
     public bool Legend_speed = false;
+    public bool hasBurnEffect = false; // 是否具有燃燒效果
+    public int burnDuration = 5; // 燃燒持續時間
     private void Start() 
     {
         rig = GetComponent<Rigidbody2D>();    
@@ -54,6 +56,11 @@ public class PlayerControl : MonoBehaviour
     public float Calculating_Values_criticalHitRate; //計算加成暴擊率%數(給怪物腳本用)
     private void Update() 
     {
+        if (Time.time % 1 < Time.deltaTime) //每過1秒顯示HP
+        {
+            Debug.Log("當前HP: " + HP);
+        }
+
         Calculating_Values_damage = characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage;
         Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage;
         Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage;
@@ -61,7 +68,7 @@ public class PlayerControl : MonoBehaviour
         speed = levelManager.GetCurrentSpeed() * 
         (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
         if(Legend_speed == true){
-            speed += 5;
+            speed += 3;
         }
         rig.velocity = new Vector2(speed * InputX , speed * InputY);    
        

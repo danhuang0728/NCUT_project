@@ -34,8 +34,7 @@ public class crossbow_Prb : MonoBehaviour
         if (timer >= 1f / fireRate)
         {
             FireBullet();
-            //AudioManager.Instance.SFXVolume(0.1f);
-            AudioManager.Instance.PlaySFX("crossbow_shoot");
+            AudioManager.Instance.PlaySFX("crossbow_shoot,");
             timer = 0f; // 重置计时器
         }
 
@@ -103,4 +102,6 @@ public class crossbow_Prb : MonoBehaviour
 
         return nearestMonster;
     }
+
+    
 }

@@ -11,7 +11,15 @@ public class ShopItem : MonoBehaviour
     public enum ItemType
     {
         SpeedBoost,
-        HealthRestore
+        MaxHealth,
+        IncreaseDamage,
+        IncreaseCriticalDamage,
+        IncreaseCriticalHitRate,
+        IncreaseSpeed,
+        IncreaseCooldown,
+        IncreaseLifeSteal,
+        burn_effect,
+        
     }
 
     public string itemName;
@@ -19,6 +27,9 @@ public class ShopItem : MonoBehaviour
     public CostType costType;
     public ItemType itemType;
     public float effectValue; // 效果數值（速度增加量或治療量）
+    
+    // 添加燃燒效果的持續時間參數
+    public int burnDuration = 5; // 預設燃燒持續5秒
     
     private bool playerInRange = false;
     private GameObject promptText; // 用于显示提示文本
@@ -80,8 +91,9 @@ public class ShopItem : MonoBehaviour
     private void TryPurchase()
     {
         PlayerControl player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        character_value_ingame playerValues = GameObject.FindGameObjectWithTag("Player").GetComponent<character_value_ingame>();
         
-        if (player != null)
+        if (player != null && playerValues != null)
         {
             bool canPurchase = false;
             
@@ -94,25 +106,49 @@ public class ShopItem : MonoBehaviour
                     canPurchase = true;
                 }
             }
-            // TODO: 如果要使用金幣系統，需要在 PlayerControl 中添加金幣相關的變數和方法
+            else if (costType == CostType.Coins)
+            {
+                if (playerValues.gold >= cost) // 檢查是否有足夠的金幣
+                {
+                    playerValues.gold -= cost;
+                    canPurchase = true;
+                }
+            }
             
             if (canPurchase)
             {
-                ApplyItemEffect(player);
+                ApplyItemEffect(player, playerValues);
                 Destroy(gameObject);
             }
         }
     }
 
-    private void ApplyItemEffect(PlayerControl player)
+    private void ApplyItemEffect(PlayerControl player, character_value_ingame playerValues)
     {
         switch (itemType)
         {
             case ItemType.SpeedBoost:
-                player.Legend_speed = true; // 使用現有的速度提升機制
+                player.Legend_speed = true;
+                playerValues.speed += effectValue;
                 break;
-            case ItemType.HealthRestore:
-                player.HP += effectValue; // 直接增加血量
+            case ItemType.MaxHealth:
+                // 直接增加 character_value_ingame 中的 health 值
+                playerValues.health += effectValue;
+                // 增加當前血量
+                player.HP += effectValue;
+                break;
+            case ItemType.IncreaseDamage:
+                playerValues.damage += effectValue;
+                break;
+            case ItemType.burn_effect:
+                player.hasBurnEffect = true;
+                player.burnDuration = burnDuration;
+                break;
+            case ItemType.IncreaseCooldown:
+                playerValues.cooldown += effectValue;
+                break;
+            case ItemType.IncreaseLifeSteal:
+                playerValues.lifeSteal += effectValue;
                 break;
         }
     }

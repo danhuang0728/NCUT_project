@@ -16,6 +16,7 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject HighExpPrefab;    // 高級經驗值預製體
     private GameObject burn_effect;  // 燃燒效果
     bool isFlip = false;
+    private bool isBurning = false; // 新增：標記是否正在燃燒
     void Start()
     {
         Healthbar = GameObject.Find("healthbar").GetComponent<healthbar>();
@@ -104,26 +105,31 @@ public class NormalMonster_setting : MonoBehaviour
     }
     public IEnumerator burn_monster(int burn_time)
     {
+        isBurning = true;
         
         GameObject burnEffectClone = Instantiate(burn_effect, transform.position, transform.rotation);
         Material material = this.GetComponent<Renderer>().material;
         burnEffectClone.transform.SetParent(transform);
         burnEffectClone.transform.localPosition = new Vector3(0f, -0.01f, 0f);
-        for(int i=0;i<burn_time;i++)
-
+        
+        for(int i = 0; i < burn_time; i++)
         {
             HP -= 1;
             playerControl.SetBoolWithDelay_void(material, this.GetComponent<Renderer>());
             yield return new WaitForSeconds(1f);
         }
 
-
         Destroy(burnEffectClone);
+        isBurning = false; // 燃燒結束後重置標記
     }
 
-    public void burn_monster_start(int burn_time) // 避免別的腳本引用協程發生問題
+    public void burn_monster_start(int burn_time)
     {
-        StartCoroutine(burn_monster(burn_time));
+        // 如果已經在燃燒中，就不重複觸發
+        if (!isBurning)
+        {
+            StartCoroutine(burn_monster(burn_time));
+        }
     }
 
 
