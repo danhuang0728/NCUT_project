@@ -59,21 +59,7 @@ public class mazeEffect : MonoBehaviour
 
     void Update()
     {
-        // 根據碰撞狀態設定目標值
-        if (collider2d.IsTouchingLayers(player))
-        {
-            targetGBIntensity = 0f;
-            targetPlayerIntensity = 0.2f;
-            targetBackgroundColor = Color.black;
-            targetPlayerOuterRadius = 3f; // 設定目標外圈大小
-        }
-        else
-        {
-            targetGBIntensity = originalGBIntensity;
-            targetPlayerIntensity = originalPlayerIntensity;
-            targetBackgroundColor = originalBackgroundColor;
-            targetPlayerOuterRadius = originalPlayerOuterRadius;
-        }
+        
 
         // 使用線性插值平滑過渡
         currentGBIntensity = Mathf.Lerp(currentGBIntensity, targetGBIntensity, lerpSpeed * Time.deltaTime);
@@ -91,5 +77,30 @@ public class mazeEffect : MonoBehaviour
             Camera.main.backgroundColor = currentBackgroundColor;
         }
     }  
+    private void OnTriggerStay2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            // 根據碰撞狀態設定目標值
+            targetGBIntensity = 0f;
+            targetPlayerIntensity = 0.2f;
+            targetBackgroundColor = Color.black;
+            targetPlayerOuterRadius = 3f; // 設定目標外圈大小
+        }
+
+        
+    }
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            targetGBIntensity = originalGBIntensity;
+            targetPlayerIntensity = originalPlayerIntensity;
+            targetBackgroundColor = originalBackgroundColor;
+            targetPlayerOuterRadius = originalPlayerOuterRadius;
+        }
+    }
+    
+    
 }
 
