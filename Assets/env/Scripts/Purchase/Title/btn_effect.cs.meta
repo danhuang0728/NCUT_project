@@ -3,7 +3,10 @@ guid: 66b0fa41fad73114797c4b0f5b89e515
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - normalSprite: {fileID: 21300000, guid: de8610a0ee38a3a419041333bbe78e25, type: 3}
+  - hoverSprite: {fileID: 21300000, guid: 0d8c9c968d4f1c3458c5e9c6b71d136c, type: 3}
+  - buttonText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
