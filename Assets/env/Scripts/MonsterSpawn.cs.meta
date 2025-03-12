@@ -3,7 +3,10 @@ guid: 585867d05b3d3d043bde105b8cbbf830
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - monsterPrefab: {instanceID: 0}
+  - monster_warningIcon: {fileID: 386437900119935323, guid: 18aff8df5e6c68c46b12a306b843caa2,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
