@@ -18,6 +18,12 @@ public class chooseEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         targetScale = originalScale;
     }
 
+    void OnEnable()  // 當物件激活時，將目標縮放設為原始縮放(避免卡在變大狀態)
+    {
+        targetScale = originalScale;
+        isHovering = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
