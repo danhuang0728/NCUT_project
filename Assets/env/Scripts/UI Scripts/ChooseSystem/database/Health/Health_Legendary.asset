@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Health_Legendary
   m_EditorClassIdentifier: 
   variableName: "\u751F\u547D"
-  stringValue: 
-  minValue: 100
+  stringValue: "\u6700\u5927\u751F\u547D"
+  minValue: 0
   maxValue: 100
-  image: {fileID: 21300000, guid: ad69d6dd2929f6643b4606ce6e74c8cf, type: 3}
-  description: 100.3
+  image: {fileID: 21300000, guid: 391ee3bb984db1c4bb01e1e6e7786608, type: 3}
+  description: 78.3
   powerUpType: 5
   rarity: 3

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Damage _Uncommon
   m_EditorClassIdentifier: 
   variableName: "\u653B\u64CA\u529B"
-  stringValue: 123
+  stringValue: "\u6240\u6709\u6B66\u5668\u653B\u64CA\u529B"
   minValue: 1
   maxValue: 2.5
-  image: {fileID: 21300000, guid: 08d0e399742f2fa478bd0b1818ef4cbe, type: 3}
-  description: 2.6
+  image: {fileID: 21300000, guid: 9f43e2abae34a954bad58058f03eb556, type: 3}
+  description: 2.5
   powerUpType: 1
   rarity: 1

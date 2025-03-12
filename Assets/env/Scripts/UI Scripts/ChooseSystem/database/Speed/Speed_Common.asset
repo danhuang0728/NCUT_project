@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Speed_Common
   m_EditorClassIdentifier: 
   variableName: "\u79FB\u52D5\u901F\u5EA6"
-  stringValue: 123
+  stringValue: "\u73A9\u5BB6\u79FB\u52D5\u901F\u5EA6"
   minValue: 1
   maxValue: 3
-  image: {fileID: 21300000, guid: 52fd6dc70cdc8d444b374d105234f8f0, type: 3}
-  description: 1.3
+  image: {fileID: 21300000, guid: fe92f2e03806d23488f311058bd90b47, type: 3}
+  description: 2.9
   powerUpType: 4
   rarity: 0

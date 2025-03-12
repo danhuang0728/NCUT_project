@@ -5,11 +5,13 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 
+
 public class SelectionManager : MonoBehaviour
 {
     public VariableDatabase variableDatabase; // 新增能力提升資料庫
     public GameObject[] optionPanels; // 三個選項 Panel
     public GameObject[] optionBorders; // 三個選項 border
+    public TextMeshProUGUI[] choose_TITLE; // 三個文字欄位
     public TextMeshProUGUI[] textFields; // 三個文字欄位
     public Image[] images;   // 三個圖片欄位
     public GameObject optionPanelParent; // 儲存選單的父物件
@@ -81,9 +83,18 @@ public class SelectionManager : MonoBehaviour
         }
         
         // 設定文字內容
-        textFields[i].text = selectedData[i].variableName + "\n" + 
-                             selectedData[i].description;
-        
+        choose_TITLE[i].text = selectedData[i].variableName;
+        choose_TITLE[i].GetComponent<Graphic>().color = GetRarityColor(selectedData[i].rarity);
+        if (selectedData[i].powerUpType == VariableData.PowerUpType.Gold || selectedData[i].powerUpType == VariableData.PowerUpType.Health)
+        {
+          textFields[i].text = selectedData[i].stringValue + "\n" + 
+                               "+"+selectedData[i].description;
+        }
+        else
+        {
+          textFields[i].text = selectedData[i]. stringValue + "\n" + 
+                               "+"+selectedData[i].description+"%";
+        }
         // 根據稀有度設定顏色 ▼▼▼
         //textFields[i].color = GetRarityColor(selectedData[i].rarity); //文字顏色  
         optionPanels[i].GetComponent<Image>().color = GetRarityColor(selectedData[i].rarity); //選項背景顏色
