@@ -15,6 +15,8 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject MediumExpPrefab;  // 中級經驗值預製體
     public GameObject HighExpPrefab;    // 高級經驗值預製體
     private GameObject burn_effect;  // 燃燒效果
+    [SerializeField] private damage_effect damageEffect;
+    [SerializeField] private critical_effect critical_effect;
     bool isFlip = false;
     private bool isBurning = false; // 新增：標記是否正在燃燒
     void Start()
@@ -23,6 +25,8 @@ public class NormalMonster_setting : MonoBehaviour
         Previous_health = HP;     //初始化先前血量
         burn_effect = GameObject.Find("fire_0");
         playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
+        damageEffect = GameObject.Find("damage_effect").GetComponent<damage_effect>();
+        critical_effect = GameObject.Find("critical_effect").GetComponent<critical_effect>();
     }
 
 
@@ -40,23 +44,45 @@ public class NormalMonster_setting : MonoBehaviour
         if (Previous_health != HP) //偵測怪物血量是否改變
         {
             Getting_damage_first = Previous_health - HP; //計算怪物受到的傷害值
-            HP -= Getting_damage_first * playerControl.Calculating_Values_damage; //計算怪物受到的傷害值，並把加成傷害%數計算進去
-            Getting_damage = Previous_health - HP;   //計算怪物因加成傷害%數所受到的傷害值
-            float random_critical = Random.Range(0, 100);
+            float random_critical = Random.Range(0, 100); // 條回0,100
             if(playerControl.Calculating_Values_criticalHitRate > 50) //如果暴擊率大於50%，則暴擊率為50%
             {
                 playerControl.Calculating_Values_criticalHitRate = 50;
             }
-            if (playerControl.Calculating_Values_criticalHitRate > random_critical)
+            if (playerControl.Calculating_Values_criticalHitRate > random_critical) // if暴擊
             {
                 Debug.Log("暴擊!!");
-                critical_damage = Getting_damage *(2 + playerControl.Calculating_Values_criticalDamage); //計算暴擊傷害值
+                float addition_damage = Getting_damage_first * playerControl.Calculating_Values_damage;
+                critical_damage = (Getting_damage_first + addition_damage) * (1+playerControl.Calculating_Values_criticalDamage);
             }
-            else
+            else                                                                     //else 不暴擊
             {
-                critical_damage = Getting_damage;
+                critical_damage = Getting_damage_first * playerControl.Calculating_Values_damage;
             }       
-            HP -= critical_damage;
+            HP -= critical_damage; //計算怪物受到的傷害值，並把加成傷害%數計算進去
+            Getting_damage = Previous_health - HP;   //計算怪物因加成傷害%數所受到的傷害值
+            
+            //最后伤害计算 
+            // 生成傷害數字
+            Getting_damage = Mathf.Round(Getting_damage); // 取整
+            if (playerControl.Calculating_Values_criticalHitRate > random_critical) // 如果爆擊
+            {
+                if (critical_effect != null)
+                {
+                    critical_effect.damageEffect_Pop_up(Getting_damage, transform);
+                }
+            }
+            else // 如果沒爆擊
+            {
+                if (damageEffect != null)
+                {
+                    Getting_damage = Mathf.Round(Getting_damage);
+                    damageEffect.damageEffect_Pop_up(Getting_damage, transform);
+                }
+            }
+
+            //-------------------------------------------------------------
+            //吸血效果
             if (playerControl.HP < Healthbar.slider.maxValue)  //如果玩家血量小於最大血量，則吸血
             {
                 playerControl.HP = playerControl.HP + critical_damage * (playerControl.Calculating_Values_lifeSteal/100); //吸血效果

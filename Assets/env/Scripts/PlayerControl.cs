@@ -61,7 +61,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("當前HP: " + HP);
         }
 
-        Calculating_Values_damage = characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage;
+        Calculating_Values_damage = characterValuesIngame.damage_percentage + characterValues.damage_addition_percentage;
         Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage;
         Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage;
         Calculating_Values_criticalHitRate = characterValuesIngame.criticalHitRate + characterValues.criticalHitRate_addition;
