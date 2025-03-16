@@ -128,7 +128,6 @@ public class ShopItem : MonoBehaviour
         switch (itemType)
         {
             case ItemType.SpeedBoost:
-                player.Legend_speed = true;
                 playerValues.speed += effectValue;
                 break;
             case ItemType.MaxHealth:

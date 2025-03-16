@@ -26,17 +26,17 @@ public class damage_effect : MonoBehaviour
         TextMeshPro damageTextMesh = damageText.GetComponent<TextMeshPro>();
         damageTextMesh.text = damage.ToString();
         // 設置傷害數字顏色
-        if (damage > 100) 
+        if (500 > damage && damage > 100) 
         {
             damageTextMesh.color = DamageColor100;
             damageTextMesh.fontSize = 9;
         }
-        else if (damage > 500)
+        else if (1000 > damage && damage > 500)
         {
             damageTextMesh.color = DamageColor500;
             damageTextMesh.fontSize = 10;
         }
-        else if (damage > 1000)
+        else if (1000 < damage)
         {
             damageTextMesh.color = DamageColor1000;
             damageTextMesh.fontSize = 12;
