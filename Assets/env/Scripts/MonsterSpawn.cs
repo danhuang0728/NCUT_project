@@ -24,17 +24,25 @@ public class spawn : MonoBehaviour
     private float currentCircleTime = 0f; // 當前圓形計時
     private float circleRadius = 1f; // 生成圓的半徑
     private int circleMonsterCount = 30; // 圓周上生成的怪物數量
+    private float initialSpawnInterval = 5f;  // 初始生成間隔
+    private float roomTime = 180f;           // 房間初始時間
 
     void Start()
     {
         timer = spawnInterval;
         monster = 1; 
-        //roomtime = 180;
+        initialSpawnInterval = spawnInterval; // 保存初始生成間隔
+        roomTime = 180f;
     }
 
     void Update()
     {   
-        //roomtime = roomtime-1;
+        // 更新房間時間
+        roomTime -= Time.deltaTime;
+        
+        // 根據剩餘時間調整生成間隔
+        UpdateSpawnInterval();
+        
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
@@ -187,6 +195,19 @@ public class spawn : MonoBehaviour
             // 生成怪物
             Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
             monster++;
+        }
+    }
+
+    // 新增：根據剩餘時間調整生成間隔的方法
+    void UpdateSpawnInterval()
+    {
+        // 當房間時間少於150秒開始加快生成
+        if (roomTime <= 150f)
+        {
+            // 計算新的生成間隔
+            // 從初始間隔(5秒)逐漸減少到最短間隔(1秒)
+            float timeRatio = roomTime / 150f;  // 時間比例
+            spawnInterval = Mathf.Max(0.5f, initialSpawnInterval * timeRatio);
         }
     }
 }
