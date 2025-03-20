@@ -1,17 +1,26 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponSkillData", menuName = "Inventory/Weapon Skill Data")]
-public class WeaponSkillData : ScriptableObject
+[CreateAssetMenu(fileName = "WeaponData", menuName = "Inventory/WeaponData")]
+public class WeaponData : ScriptableObject
 {
-     [System.Serializable]
-     public struct WeaponSkillInfo
-     {
-         public string skillName;
-         public Sprite skillIcon;
-         public float cooldownTime;
-         public int skillId; //技能ID
-         // 可加入技能效果的數值或其他屬性
-     }
-     
-    public WeaponSkillInfo[] weaponSkills;
+    public enum Weapontype
+    {
+        gear,
+        Axe,
+        Boomerang,
+        crossbow,
+        MagicBook,
+        thrust,
+        Sword,
+        Sword_attack1,
+        Sword_attack2
+
+    }
+    public string skillName;
+    public int level;
+    public Sprite skillIcon;
+    public float cooldownTime;
+    public int skillId; //技能ID
+    // 可加入技能效果的數值或其他屬性
+    public Weapontype weapontype;
 }
