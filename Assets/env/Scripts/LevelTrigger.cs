@@ -47,20 +47,18 @@ public class LevelTrigger : MonoBehaviour
         // 取得 Timer 腳本
         timerScript = canvas.GetComponent<Timer>();
         
-
         collider2d = GetComponent<Collider2D>();
         trapControlls = FindObjectsOfType<TrapControll>(); // 一次抓取全部linktrap的物件
         spawns = FindObjectsOfType<spawn>();
-        foreach (spawn repOb in spawns) // 關閉帶有spawn 腳本的物件
+
+        // 過濾符合條件的 spawn 並放入 spawns_self
+        spawns_self = spawns.Where(repOb => repOb.gameObject.name.Contains(selectedOption)).ToArray();
+        
+        foreach (spawn repOb in spawns_self) // 關閉帶有spawn 腳本的物件
         {
-            if (repOb.gameObject.name.Contains(selectedOption))
-            {
-                repOb.gameObject.SetActive(false);
-                
-            }
+            repOb.gameObject.SetActive(false);
         }
         Debug.Log($"{spawns_self} ");
-        
     }
 
     void Update()
