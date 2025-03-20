@@ -2928,10 +2928,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cbcc46ede0eec489fa4a8c1feab0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightMin: 2.12
+  lightMin: 2
   lightMax: 3.8
   n: 5
-  time: 0.2
+  time: 0.3
 --- !u!114 &742234892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2971,7 +2971,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 6.25
+  m_PointLightOuterRadius: 9.54
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -7116,15 +7116,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME TITLE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 764864e98cc0d1447bc91b42d138b257, type: 2}
+  m_sharedMaterial: {fileID: 5301909870180068370, guid: 764864e98cc0d1447bc91b42d138b257,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280229663
+  m_fontColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
