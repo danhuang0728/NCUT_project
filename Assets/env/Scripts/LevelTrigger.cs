@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Timers;
+using System.Linq;
 public class LevelTrigger : MonoBehaviour
 {
     public Collider2D collider2d;
@@ -22,7 +23,7 @@ public class LevelTrigger : MonoBehaviour
     private bool isLevelActive = false; 
 
     private spawn[] spawns;
-
+    private spawn[] spawns_self;
     private spawn targetSpawn; // 目標 Spawn 腳本
 
     private spawn targetSpawn2; // 抓SK Spawn 腳本
@@ -40,76 +41,26 @@ public class LevelTrigger : MonoBehaviour
 
     void Start()
     {
-        // 獲取指定名稱的物件並取得其 Spawn 腳本
-        Transform targetTransform = transform.Find("MonsterSpawnPoint (Slime)" + selectedOption);
-        Transform targetTransform2 = transform.Find("MonsterSpawnPoint (SK)" + selectedOption); 
-        Transform targetTransform3 = transform.Find("MonsterSpawnPoint (spider)" + selectedOption);
         canvas = GameObject.Find("Canvas");
         playerTransform = GameObject.Find("player1").transform;
-
 
         // 取得 Timer 腳本
         timerScript = canvas.GetComponent<Timer>();
         
 
-        if (targetTransform != null)
-        {
-            targetSpawn = targetTransform.GetComponent<spawn>();
-            if (targetSpawn != null)
-            {
-                //Debug.Log($"找到 Spawn 腳本: {targetSpawn.name}");
-            }
-            else
-            {
-                //Debug.LogError("目標物件沒有 Spawn 腳本");
-            }
-        }
-        else
-        {
-            //Debug.LogError("找不到 MonsterSpawnPoint (Slime) (1_2) 物件");
-        }
-        if (targetTransform2 != null)
-        {
-            targetSpawn2 = targetTransform2.GetComponent<spawn>();   //targetTransform2 
-            if (targetSpawn2 != null)
-            {
-                //Debug.Log($"找到 Spawn 腳本: {targetSpawn2.name}");
-            }
-            else
-            {
-                //Debug.LogError("目標物件沒有 Spawn 腳本");
-            }
-        }
-        else
-        {
-            //Debug.LogError("找不到 MonsterSpawnPoint (SK) (1_2) 物件");
-        }
-
-        if (targetTransform3 != null)
-        {
-            targetSpawn3 = targetTransform3.GetComponent<spawn>();    //targetTransform3 
-            if (targetSpawn3 != null)
-            {
-                //Debug.Log($"找到 Spawn 腳本: {targetSpawn3.name}");
-            }
-            else
-            {
-                //Debug.LogError("目標物件沒有 Spawn 腳本");
-            }
-        }
-        else
-        {
-            //Debug.LogError("MonsterSpawnPoint (spider) (1_2)");
-        }
-        
-
         collider2d = GetComponent<Collider2D>();
         trapControlls = FindObjectsOfType<TrapControll>(); // 一次抓取全部linktrap的物件
         spawns = FindObjectsOfType<spawn>();
-        foreach (spawn repOb in spawns) // 避免玩家還沒進入區域就開始生怪
+        foreach (spawn repOb in spawns) // 關閉帶有spawn 腳本的物件
         {
-            repOb.enabled = false;
+            if (repOb.gameObject.name.Contains(selectedOption))
+            {
+                repOb.gameObject.SetActive(false);
+                
+            }
         }
+        Debug.Log($"{spawns_self} ");
+        
     }
 
     void Update()
@@ -118,7 +69,11 @@ public class LevelTrigger : MonoBehaviour
         {
             if (collider2d != null) // 讓觸發器只能觸發一次
             {
-                collider2d.enabled = false;
+                foreach (spawn repOb in spawns) // 關閉帶有spawn 腳本的物件
+                {
+                    Debug.Log($"{repOb.gameObject.name} ");
+                } 
+                collider2d.enabled = false;  
             }
             levelTime = UnityEngine.Random.Range(levelminTime, levelmaxTime); // 關卡的隨機時間設定
             StartCoroutine(levelstart(levelTime));
@@ -138,11 +93,11 @@ public class LevelTrigger : MonoBehaviour
         {
             if (repOb.gameObject.name.Contains(selectedOption))
             {
-                repOb.enabled = true;
-                timerScript.remainingTime= 180;
+                repOb.gameObject.SetActive(true);
+                timerScript.remainingTime= leveltime;
                 //Debug.Log(timerScript);
-                //Debug.Log($"{repOb.gameObject.name} 的生成腳本已啟動");
             }
+            
         }
 
         float remainingTime = leveltime;
@@ -182,14 +137,14 @@ public class LevelTrigger : MonoBehaviour
         }
 
         // 關卡結束
-        ClearAllClones();
         StartCoroutine(MoveExpObjectsTowardsPlayerCoroutine());
         SpawnShopItems();
 
         foreach (spawn repOb in spawns) // 修改全部重生點為關閉狀態
         {
-            repOb.enabled = false;
+            repOb.gameObject.SetActive(false);
         }
+        ClearAllClones();  //刪除剩餘怪物
         foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
         {
             Animator trapAni = trap.GetComponent<Animator>();
@@ -214,6 +169,13 @@ public class LevelTrigger : MonoBehaviour
             if (obj.CompareTag("Monster")) // 替換為適當的名稱檢查
             {
                 Destroy(obj);
+            }
+        }
+        foreach (GameObject obj2 in allObjects) // 修改全部重生點為關閉狀態
+        {
+            if (obj2.CompareTag("XX"))
+            {
+                obj2.gameObject.SetActive(false);
             }
         }
     }
