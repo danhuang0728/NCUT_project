@@ -13,10 +13,14 @@ public class NPCChat : MonoBehaviour
     private int index;
     public float wordspeed;
     public bool playerIsClose;
+    public bool isDialogueActive;
     public GameObject ContinueButton;
 
     void Update()
     {
+        if (!IsValidReference()) return;
+        isDialogueActive = dialoguePanel.activeInHierarchy;
+
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
             if (dialoguePanel.activeInHierarchy)
@@ -32,11 +36,11 @@ public class NPCChat : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !playerIsClose)
+        if (Input.GetKeyDown(KeyCode.Space) && isDialogueActive)
         {
             ContinueButton.GetComponent<Button>().onClick.Invoke();
         }
-        if(dialogueText.text == dialogue[index])
+        if (dialogueText.text == dialogue[index])
         {
             ContinueButton.SetActive(true);
         }
@@ -44,18 +48,28 @@ public class NPCChat : MonoBehaviour
 
     public void zeroText()
     {
-        dialogueText.text = "";
+        if (dialogueText != null)
+        {
+            dialogueText.text = "";
+        }
         index = 0;
-        dialoguePanel.SetActive(false);
+        
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
     }
 
     IEnumerator Typing()
     {
-        if (index < dialogue.Length) // 確保 index 在有效範圍內
+        if (dialogueText == null || ContinueButton == null) yield break;
+        
+        if (index < dialogue.Length)
         {
-            dialogueText.text = ""; // 清空當前文字
+            dialogueText.text = "";
             foreach (char letter in dialogue[index].ToCharArray())
             {
+                if (dialogueText == null) yield break;
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(wordspeed);
             }
@@ -64,6 +78,7 @@ public class NPCChat : MonoBehaviour
 
     public void NextLine()
     {
+        if (!IsValidReference()) return;
         ContinueButton.SetActive(false);
         if (index < dialogue.Length - 1)
         {
@@ -89,7 +104,26 @@ public class NPCChat : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = false;
-            zeroText();
+            
+            if (dialoguePanel != null && dialoguePanel.activeSelf)
+            {
+                zeroText();
+            }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (ContinueButton != null)
+        {
+            ContinueButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        }
+    }
+
+    private bool IsValidReference()
+    {
+        return dialoguePanel != null && 
+               dialogueText != null && 
+               ContinueButton != null;
     }
 }

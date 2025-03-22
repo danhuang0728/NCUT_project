@@ -7,7 +7,7 @@ public class spawn : MonoBehaviour
 {
     
     public GameObject monsterPrefab;   // 引用怪物
-    public GameObject monster_warningIcon;   // 生怪icon
+    private GameObject monster_warningIcon;   // 生怪icon
     public Transform[] spawnPoints;    // 生成點的陣列
     
     public Transform[] spawnCircle;    //圓形生成點的陣列
@@ -33,6 +33,8 @@ public class spawn : MonoBehaviour
         monster = 1; 
         initialSpawnInterval = spawnInterval; // 保存初始生成間隔
         roomTime = 180f;
+        monster_warningIcon = GameObject.Find("XX");
+    
     }
 
     void Update()
