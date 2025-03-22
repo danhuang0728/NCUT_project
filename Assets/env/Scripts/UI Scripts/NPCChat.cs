@@ -15,6 +15,11 @@ public class NPCChat : MonoBehaviour
     public bool playerIsClose;
     public bool isDialogueActive;
     public GameObject ContinueButton;
+    private bool isTyping = false;
+    void Start()
+    {   
+        dialoguePanel.SetActive(false);
+    }
 
     void Update()
     {
@@ -36,9 +41,20 @@ public class NPCChat : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isDialogueActive)
+        if (Input.GetKeyDown(KeyCode.Space) && isDialogueActive && !isTyping)
         {
-            ContinueButton.GetComponent<Button>().onClick.Invoke();
+            if (ContinueButton != null && ContinueButton.activeSelf)
+            {
+                Button btn = ContinueButton.GetComponent<Button>();
+                if (btn != null && btn.onClick != null)
+                {
+                    btn.onClick.Invoke();
+                }
+                else
+                {
+                    Debug.LogWarning("按鈕元件缺失");
+                }
+            }
         }
         if (dialogueText.text == dialogue[index])
         {
@@ -74,21 +90,23 @@ public class NPCChat : MonoBehaviour
                 yield return new WaitForSeconds(wordspeed);
             }
         }
+        
+        isTyping = false;
     }
 
     public void NextLine()
     {
         if (!IsValidReference()) return;
-        ContinueButton.SetActive(false);
-        if (index < dialogue.Length - 1)
-        {
-            index++;
-            StartCoroutine(Typing());
-        }
-        else
+        
+        if (index >= dialogue.Length - 1)
         {
             zeroText();
+            return;
         }
+
+        ContinueButton.SetActive(false);
+        index++;
+        StartCoroutine(Typing());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
