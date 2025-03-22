@@ -9,7 +9,7 @@ public class NPCChat : MonoBehaviour
 {
     public GameObject dialoguePanel;
     public TMPro.TextMeshProUGUI dialogueText; // 修改：從陣列改為單一 TextMeshProUGUI
-    public string[] dialogue;
+    [SerializeField] private string[] dialogue;
     private int index;
     public float wordspeed;
     public bool playerIsClose;
@@ -26,8 +26,15 @@ public class NPCChat : MonoBehaviour
             else
             {
                 dialoguePanel.SetActive(true);
+                ContinueButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                ContinueButton.GetComponent<Button>().onClick.AddListener(() => NextLine());
                 StartCoroutine(Typing());
             }
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && !playerIsClose)
+        {
+            ContinueButton.GetComponent<Button>().onClick.Invoke();
         }
         if(dialogueText.text == dialogue[index])
         {
