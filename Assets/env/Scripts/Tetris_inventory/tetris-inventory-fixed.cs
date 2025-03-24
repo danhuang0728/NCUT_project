@@ -36,6 +36,7 @@ public class TetrisInventoryManager : MonoBehaviour
         inventoryPanel.SetActive(false);
         InitializeGrids();
         CreateSampleTetrisPieces();
+        Debug.Log(tetrisPieces[0].GetWorldPositions(0,0));
     }
     
     void Update()
@@ -47,11 +48,19 @@ public class TetrisInventoryManager : MonoBehaviour
         }
         
         // 當物品欄打開時處理旋轉功能
-        if (isInventoryOpen && selectedPiece != null)
+        if (isInventoryOpen)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                selectedPiece.Rotate();
+                if (selectedPiece != null)
+                {
+                    Debug.Log("正在旋轉方塊");
+                    selectedPiece.Rotate();
+                }
+                else
+                {
+                    Debug.Log("未選擇方塊，無法旋轉");
+                }
             }
         }
     }
@@ -95,25 +104,103 @@ public class TetrisInventoryManager : MonoBehaviour
     void CreateSampleTetrisPieces()
     {
         // 創建幾種不同形狀的 Tetris 方塊做示例
-        CreateTetrisPiece(new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(0, 1), new Vector2Int(1, 1) }, Color.cyan);    // 方形
-        CreateTetrisPiece(new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(0, 1), new Vector2Int(0, 2), new Vector2Int(0, 3) }, Color.blue);    // I 形
-        // 修正: 使用 new Color 代替 Color.orange
-        CreateTetrisPiece(new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0), new Vector2Int(2, 1) }, new Color(1f, 0.5f, 0f));  // L 形
-        CreateTetrisPiece(new Vector2Int[] { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(1, 1), new Vector2Int(2, 1) }, Color.green);   // Z 形
-        CreateTetrisPiece(new Vector2Int[] { new Vector2Int(1, 0), new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1) }, Color.magenta); // T 形
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                new Vector2Int(0, 0), 
+                new Vector2Int(1, 0), 
+                new Vector2Int(0, 1), 
+                new Vector2Int(1, 1) 
+            }, 
+            Color.cyan
+        );    // 方形 (O型)
+        
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                new Vector2Int(0, 0), 
+                new Vector2Int(0, 1), 
+                new Vector2Int(0, 2), 
+                new Vector2Int(0, 3) 
+            }, 
+            Color.blue
+        );    // I型
+        
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                new Vector2Int(0, 0),   // 底部
+                new Vector2Int(0, 1),   // 中間
+                new Vector2Int(0, 2),   // 頂部
+                new Vector2Int(1, 0)    // 右側底部
+            }, 
+            new Color(1f, 0.5f, 0f)     // L型 (橘色)
+        );
+        
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                new Vector2Int(0, 0), 
+                new Vector2Int(1, 0), 
+                new Vector2Int(1, 1), 
+                new Vector2Int(2, 1) 
+            }, 
+            Color.green                 // Z型
+        );
+        
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                new Vector2Int(0, 0),   // 左側
+                new Vector2Int(1, 0),   // 中間
+                new Vector2Int(2, 0),   // 右側
+                new Vector2Int(1, 1)    // 頂部中間
+            }, 
+            Color.magenta               // T型
+        );
     }
     
     // 創建一個 Tetris 方塊
-    void CreateTetrisPiece(Vector2Int[] shape, Color color)
+    void CreateTetrisPiece(Vector2Int[] shape, Color color, Vector2 pivot = default)
     {
         GameObject pieceObj = Instantiate(tetrisPiecePrefab, storageGridContainer);
         TetrisPiece piece = pieceObj.AddComponent<TetrisPiece>();
-        piece.Initialize(shape, color, cellSize, this);
+        
+        // 計算自動中心點 (如果沒有指定)
+        if(pivot == default) {
+            Vector2 sum = Vector2.zero;
+            foreach(var pos in shape) {
+                sum += new Vector2(pos.x, pos.y);
+            }
+            pivot = sum / shape.Length;
+        }
+        
+        piece.Initialize(shape, color, cellSize, this, pivot); // 需要更新 TetrisPiece 的 Initialize 方法
         tetrisPieces.Add(piece);
         
-        // 為了演示，把方塊放在右側網格的合適位置
-        int index = tetrisPieces.Count - 1;
-        piece.transform.localPosition = new Vector3(1 * cellSize, -(index * 2 + 1) * cellSize, 0);
+        // 修正位置計算，使用網格座標系統
+        piece.transform.localPosition = Vector2.zero;
+        // 自動尋找合適的放置位置
+        TryAutoPlaceInStorage(piece);
+    }
+    
+    // 新增自動放置方法
+    private void TryAutoPlaceInStorage(TetrisPiece piece)
+    {
+        // 從右下角開始掃描以容納較大物件
+        for (int y = gridSize-1; y >= 0; y--)
+        {
+            for (int x = gridSize-1; x >= 0; x--)
+            {
+                GridCell cell = storageGrid[x, y];
+                if (CanPlacePiece(piece, cell, storageGrid))
+                {
+                    // 修正偏移量計算
+                    piece.transform.localPosition = new Vector3(
+                        cell.X * cellSize,
+                        -cell.Y * cellSize,
+                        0
+                    );
+                    PlacePiece(piece, cell, storageGrid);
+                    return;
+                }
+            }
+        }
     }
     
     // 切換物品欄開關
@@ -162,15 +249,20 @@ public class TetrisInventoryManager : MonoBehaviour
         
         foreach (Vector2Int pos in worldPositions)
         {
+            // 添加偵錯日誌
+            Debug.Log($"嘗試放置在位置: ({pos.x}, {pos.y})");
+            
             // 檢查是否超出網格範圍
-            if (pos.x < 0 || pos.x >= gridSize || pos.y < 0 || pos.y >= gridSize)
+            if (pos.x < -2 || pos.x >= gridSize || pos.y < -1 || pos.y >= gridSize)
             {
+                Debug.Log($"超出邊界: ({pos.x}, {pos.y})");
                 return false;
             }
             
             // 檢查目標位置是否已被佔用
             if (targetGrid[pos.x, pos.y].IsOccupied && targetGrid[pos.x, pos.y].OccupyingPiece != piece)
             {
+                Debug.Log($"位置已佔用: ({pos.x}, {pos.y})");
                 return false;
             }
         }
@@ -196,7 +288,40 @@ public class TetrisInventoryManager : MonoBehaviour
         
         // 更新方塊位置
         piece.transform.SetParent(startCell.transform.parent);
-        piece.transform.localPosition = new Vector3(startCell.X * cellSize, -startCell.Y * cellSize, 0);
+        piece.transform.localPosition = new Vector3(
+            startCell.X * cellSize,
+            -startCell.Y * cellSize,
+            0);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+        
+        // 繪製網格線
+        Gizmos.color = Color.white;
+        for (int y = 0; y < gridSize; y++)
+        {
+            for (int x = 0; x < gridSize; x++)
+            {
+                Vector3 pos = new Vector3(
+                    x * cellSize, 
+                    -y * cellSize, 
+                    0
+                );
+                Gizmos.DrawWireCube(pos, new Vector3(cellSize, cellSize, 0));
+            }
+        }
+        
+        // 繪製Tetris方塊
+        Gizmos.color = Color.yellow;
+        foreach (var piece in tetrisPieces)
+        {
+            if (piece != null)
+            {
+                Gizmos.DrawWireSphere(piece.transform.position, 5f);
+            }
+        }
     }
 }
 
@@ -218,6 +343,14 @@ public class GridCell : MonoBehaviour, IPointerClickHandler, IDropHandler
         this.manager = manager;
         this.image = GetComponent<Image>();
         this.IsOccupied = false;
+        
+        // 確保網格單元格軸心點在中心
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        rectTransform.anchoredPosition = new Vector2(
+            x * manager.cellSize + manager.cellSize/2, 
+            -y * manager.cellSize - manager.cellSize/2
+        );
     }
     
     // 設置單元格被佔用
@@ -271,7 +404,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private bool isSelected = false;
     
     // 初始化方塊
-    public void Initialize(Vector2Int[] shape, Color color, float cellSize, TetrisInventoryManager manager)
+    public void Initialize(Vector2Int[] shape, Color color, float cellSize, TetrisInventoryManager manager, Vector2 pivot = default)
     {
         this.shape = shape;
         this.color = color;
@@ -300,10 +433,21 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             maxY = Mathf.Max(maxY, cell.y);
         }
         
+        // 設置父物件的RectTransform
+        rectTransform.anchorMin = new Vector2(0, 1);
+        rectTransform.anchorMax = new Vector2(0, 1);
+        rectTransform.pivot = new Vector2(0, 1);
+        
         // 設置方塊的大小
         int width = maxX - minX + 1;
         int height = maxY - minY + 1;
         rectTransform.sizeDelta = new Vector2(width * cellSize, height * cellSize);
+        
+        // 清除現有子物件
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
         
         // 創建每個小方塊
         foreach (Vector2Int cell in shape)
@@ -322,10 +466,11 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             blockRect.pivot = new Vector2(0, 1);
             blockRect.sizeDelta = new Vector2(cellSize * 0.9f, cellSize * 0.9f);  // 略小於單元格，留出邊距
             
-            // 相對於方塊左上角的位置
-            float xPos = (cell.x - minX) * cellSize;
-            float yPos = -(cell.y - minY) * cellSize;
-            blockRect.anchoredPosition = new Vector2(xPos + cellSize * 0.05f, yPos - cellSize * 0.05f);
+            // 計算相對於父物件左上角的偏移量
+            float xOffset = (cell.x - minX) * cellSize;
+            float yOffset = -(cell.y - minY) * cellSize;
+            
+            blockRect.anchoredPosition = new Vector2(xOffset, yOffset);
         }
     }
     
@@ -469,8 +614,23 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // 拖拽中
     public void OnDrag(PointerEventData eventData)
     {
-        // 跟隨鼠標移動
-        transform.position = Input.mousePosition;
+        // 使用正確的座標轉換
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rectTransform.parent as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+        
+        // 對齊網格系統
+        int gridX = Mathf.FloorToInt(localPoint.x / cellSize);
+        int gridY = Mathf.FloorToInt(-localPoint.y / cellSize);
+        // 即時預覽位置偏移量
+        int offsetX = 10; 
+        // 即時預覽位置
+        transform.localPosition = new Vector3(
+            gridX * cellSize + cellSize/2- offsetX,
+            -gridY * cellSize - cellSize/2,
+            0);
     }
     
     // 結束拖拽
