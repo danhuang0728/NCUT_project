@@ -17,6 +17,10 @@ public class AudioManager : MonoBehaviour
    public Sound[] musicSounds, sfxSounds;
    public AudioSource musicSource, sfxSource;
 
+   private int currentBattleMusicIndex = 0;
+   public string[] battleMusicOrder = { "BOSS_music", "Battle_music2", "Battle_music3" }; // 在Inspector中设置战斗音乐顺序
+   public string restMusic = "Rest_music"; // 在Inspector中设置休息音乐名称
+
    private void Awake()
    {
       if (Instance == null)
@@ -32,10 +36,10 @@ public class AudioManager : MonoBehaviour
 
    private void Start()
    {  
-      PlayMusic("BOSS_music");
+      //PlayMusic("BOSS_music");
    }
 
-   public void PlayMusic(string name)
+   public void PlayMusic(string name, bool shouldLoop = true)
    {
       Sound s = Array.Find(musicSounds, x => x.name == name);
       if (s == null)
@@ -46,6 +50,7 @@ public class AudioManager : MonoBehaviour
       {
          musicSource.clip = s.clip;
          musicSource.volume = s.volume;
+         musicSource.loop = shouldLoop;
          musicSource.Play();
       }
    }
@@ -86,5 +91,18 @@ public class AudioManager : MonoBehaviour
    public void SFXVolume(float volume)
    {
       sfxSource.volume = volume;
+   }
+
+   public void PlayNextBattleMusic()
+   {
+      if (battleMusicOrder.Length == 0) return;
+      
+      PlayMusic(battleMusicOrder[currentBattleMusicIndex], true);
+      currentBattleMusicIndex = (currentBattleMusicIndex + 1) % battleMusicOrder.Length;
+   }
+
+   public void PlayRestMusic()
+   {
+      PlayMusic(restMusic, true);
    }
 }

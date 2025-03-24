@@ -30,6 +30,8 @@ public class LevelTrigger : MonoBehaviour
 
     private spawn targetSpawn3; // 抓Spider Spawn 腳本
 
+    private bool isplaymusic = false;
+
 #if UNITY_EDITOR
     [StringDropdown("(1_2)", "(1_3)", "(1_4)", "(1_5)", "(1_6)", "(1_7)", "(1_8)", "(1_9)", "(1_10)")] // 根据实际关卡设计修改选项
 #endif
@@ -38,6 +40,8 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private GameObject[] shopItemPrefabs; // 在Inspector中设置可能出现的物品预制体
     [SerializeField] private Transform[] spawnPoints; // 在Inspector中设置4个生成点
     private bool itemsSpawned = false;
+
+    private bool isInRoom = false;
 
     void Start()
     {
@@ -63,13 +67,19 @@ public class LevelTrigger : MonoBehaviour
 
     void Update()
     {
-        if (collider2d.IsTouchingLayers(player)) // 進入房間的觸發器
+        if (collider2d.IsTouchingLayers(player)) // 進入房間的觸發器 判斷是否進入房間
         {
+            //進入房間
             if (collider2d != null) // 讓觸發器只能觸發一次
             {
+                if (!isplaymusic)
+                {
+                    isplaymusic = true;
+                    //AudioManager.Instance.PlayNextBattleMusic();
+                }
                 foreach (spawn repOb in spawns) // 關閉帶有spawn 腳本的物件
                 {
-                    Debug.Log($"{repOb.gameObject.name} ");
+                    //Debug.Log($"{repOb.gameObject.name} ");
                 } 
                 collider2d.enabled = false;  
             }
@@ -79,6 +89,7 @@ public class LevelTrigger : MonoBehaviour
             foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
             {
                 trap.close = true;
+                //離開房間
             }
         }
     }
@@ -86,6 +97,7 @@ public class LevelTrigger : MonoBehaviour
 
     IEnumerator levelstart(int leveltime)
     {
+        AudioManager.Instance.PlayNextBattleMusic();
         //Debug.Log($"關卡開始，持續時間：{leveltime} 秒");
         foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
         {
@@ -143,6 +155,8 @@ public class LevelTrigger : MonoBehaviour
             repOb.gameObject.SetActive(false);
         }
         ClearAllClones();  //刪除剩餘怪物
+        AudioManager.Instance.PlayRestMusic(); // 播放休息音樂
+        
         foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
         {
             Animator trapAni = trap.GetComponent<Animator>();
@@ -152,6 +166,7 @@ public class LevelTrigger : MonoBehaviour
             trapAni.Update(0);
             trap.close = false;
         }
+        
     }
 
     public void ClearAllClones() // 清除複製物件
