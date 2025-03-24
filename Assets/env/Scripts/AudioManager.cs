@@ -93,12 +93,9 @@ public class AudioManager : MonoBehaviour
       sfxSource.volume = volume;
    }
 
-   public void PlayNextBattleMusic()
-   {
-      if (battleMusicOrder.Length == 0) return;
-      
-      PlayMusic(battleMusicOrder[currentBattleMusicIndex], true);
-      currentBattleMusicIndex = (currentBattleMusicIndex + 1) % battleMusicOrder.Length;
+   public void PlayNextBattleMusic(string name)
+   {   
+      PlayMusic(name, true);
    }
 
    public void PlayRestMusic()

@@ -97,7 +97,7 @@ public class LevelTrigger : MonoBehaviour
 
     IEnumerator levelstart(int leveltime)
     {
-        AudioManager.Instance.PlayNextBattleMusic();
+        AudioManager.Instance.PlayNextBattleMusic(selectedOption);
         //Debug.Log($"關卡開始，持續時間：{leveltime} 秒");
         foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
         {
