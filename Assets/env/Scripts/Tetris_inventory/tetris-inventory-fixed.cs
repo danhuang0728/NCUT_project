@@ -477,49 +477,73 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // 旋轉方塊
     public void Rotate()
     {
-        // 創建旋轉後的新形狀
+        // 保存原始形状，以便无法旋转时恢复
+        Vector2Int[] oldShape = (Vector2Int[])shape.Clone();
+        
+        // 创建旋转后的新形状
         Vector2Int[] newShape = new Vector2Int[shape.Length];
         
         for (int i = 0; i < shape.Length; i++)
         {
-            // 90度順時針旋轉變換: (x, y) -> (y, -x)
+            // 90度顺时针旋转变换: (x, y) -> (y, -x)
             newShape[i] = new Vector2Int(shape[i].y, -shape[i].x);
         }
         
-        // 檢查旋轉後是否可以放置
-        Vector2Int[] currentWorldPos = GetWorldPositions();
-        if (currentWorldPos.Length > 0)
+        // 找出旋转后形状可能的偏移量
+        int minX = int.MaxValue;
+        int minY = int.MaxValue;
+        
+        foreach (Vector2Int pos in newShape)
         {
-            // 備份當前形狀
-            Vector2Int[] oldShape = shape;
-            shape = newShape;
-            
-            // 獲取網格類型
-            GridCell firstCell = occupiedCells.Count > 0 ? occupiedCells[0] : null;
-            Transform gridParent = firstCell != null ? firstCell.transform.parent : null;
-            GridCell[,] targetGrid = gridParent == manager.equippedGridContainer ? 
-                                   manager.equippedGrid : manager.storageGrid;
-            
-            // 嘗試在當前位置放置旋轉後的方塊
-            if (firstCell != null && !manager.CanPlacePiece(this, firstCell, targetGrid))
+            minX = Mathf.Min(minX, pos.x);
+            minY = Mathf.Min(minY, pos.y);
+        }
+        
+        // 如果有负坐标，进行规范化以确保所有坐标非负
+        if (minX < 0 || minY < 0)
+        {
+            for (int i = 0; i < newShape.Length; i++)
             {
-                // 不能旋轉，恢復形狀
-                shape = oldShape;
-                return;
+                newShape[i] = new Vector2Int(newShape[i].x - minX, newShape[i].y - minY);
             }
-            
-            // 應用旋轉
-            ClearOccupiedCells();
-            transform.parent = firstCell.transform.parent;
-            transform.localPosition = new Vector3(firstCell.X * cellSize, -firstCell.Y * cellSize, 0);
-            manager.PlacePiece(this, firstCell, targetGrid);
-            
-            // 重新創建視覺表示
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
-            CreateVisual();
+        }
+        
+        // 获取当前位置基准
+        if (occupiedCells.Count == 0)
+        {
+            Debug.LogWarning("无法旋转：方块未放置在网格中");
+            return;
+        }
+        
+        // 获取参考单元格和目标网格
+        GridCell referenceCell = occupiedCells[0];
+        Transform gridParent = referenceCell.transform.parent;
+        GridCell[,] targetGrid = gridParent == manager.equippedGridContainer ? 
+                               manager.equippedGrid : manager.storageGrid;
+        
+        // 尝试应用旋转
+        shape = newShape;
+        
+        // 检查旋转后是否可以放置
+        if (!manager.CanPlacePiece(this, referenceCell, targetGrid))
+        {
+            // 不能旋转，恢复形状
+            shape = oldShape;
+            Debug.Log("旋转失败：旋转后的形状无法放置");
+            return;
+        }
+        
+        // 应用旋转
+        ClearOccupiedCells();
+        manager.PlacePiece(this, referenceCell, targetGrid);
+        
+        // 重新创建视觉表示
+        CreateVisual();
+        
+        // 如果之前是选中状态，保持选中状态
+        if (isSelected)
+        {
+            SetSelected(true);
         }
     }
     
