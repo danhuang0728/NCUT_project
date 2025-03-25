@@ -190,9 +190,9 @@ public class TetrisInventoryManager : MonoBehaviour
                 GridCell cell = storageGrid[x, y];
                 if (CanPlacePiece(piece, cell, storageGrid))
                 {
-                    // 修正偏移量計算
+                    // 修正偏移量計算，向右偏移1個單位修正整體坐標系
                     piece.transform.localPosition = new Vector3(
-                        cell.X * cellSize,
+                        (cell.X+1) * cellSize,
                         -cell.Y * cellSize,
                         0
                     );
@@ -253,7 +253,7 @@ public class TetrisInventoryManager : MonoBehaviour
             Debug.Log($"嘗試放置在位置: ({pos.x}, {pos.y})");
             
             // 檢查是否超出網格範圍
-            if (pos.x < -2 || pos.x >= gridSize || pos.y < -1 || pos.y >= gridSize)
+            if (pos.x < 0 || pos.x >= gridSize || pos.y < 0 || pos.y >= gridSize)
             {
                 Debug.Log($"超出邊界: ({pos.x}, {pos.y})");
                 return false;
@@ -286,10 +286,10 @@ public class TetrisInventoryManager : MonoBehaviour
             piece.AddOccupiedCell(targetGrid[pos.x, pos.y]);
         }
         
-        // 更新方塊位置
+        // 更新方塊位置，向右偏移1個單位修正整體坐標系
         piece.transform.SetParent(startCell.transform.parent);
         piece.transform.localPosition = new Vector3(
-            startCell.X * cellSize,
+            (startCell.X+1) * cellSize,
             -startCell.Y * cellSize,
             0);
     }
@@ -434,9 +434,9 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
         
         // 設置父物件的RectTransform
-        rectTransform.anchorMin = new Vector2(0, 1);
-        rectTransform.anchorMax = new Vector2(0, 1);
-        rectTransform.pivot = new Vector2(0, 1);
+        rectTransform.anchorMin = new Vector2(1, 1);
+        rectTransform.anchorMax = new Vector2(1, 1);
+        rectTransform.pivot = new Vector2(1, 1);
         
         // 設置方塊的大小
         int width = maxX - minX + 1;
@@ -461,9 +461,9 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             
             // 設置位置和大小
             RectTransform blockRect = blockObj.GetComponent<RectTransform>();
-            blockRect.anchorMin = new Vector2(0, 1);
-            blockRect.anchorMax = new Vector2(0, 1);
-            blockRect.pivot = new Vector2(0, 1);
+            blockRect.anchorMin = new Vector2(1, 1);
+            blockRect.anchorMax = new Vector2(1, 1);
+            blockRect.pivot = new Vector2(1, 1);
             blockRect.sizeDelta = new Vector2(cellSize * 0.9f, cellSize * 0.9f);  // 略小於單元格，留出邊距
             
             // 計算相對於父物件左上角的偏移量
@@ -524,8 +524,44 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 尝试应用旋转
         shape = newShape;
         
-        // 检查旋转后是否可以放置
-        if (!manager.CanPlacePiece(this, referenceCell, targetGrid))
+        // 尝试多个可能的放置点
+        bool canPlace = false;
+        GridCell bestReferenceCell = referenceCell;
+        
+        // 获取原始参考单元格周围的单元格作为候选放置点
+        List<GridCell> candidateCells = new List<GridCell>();
+        candidateCells.Add(referenceCell);
+        
+        // 添加原始单元格周围的单元格
+        for (int xOffset = -1; xOffset <= 1; xOffset++)
+        {
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                if (xOffset == 0 && yOffset == 0) continue;
+                
+                int newX = referenceCell.X + xOffset;
+                int newY = referenceCell.Y + yOffset;
+                
+                // 检查坐标是否在网格范围内
+                if (newX >= 0 && newX < manager.gridSize && newY >= 0 && newY < manager.gridSize)
+                {
+                    candidateCells.Add(targetGrid[newX, newY]);
+                }
+            }
+        }
+        
+        // 尝试每个候选单元格
+        foreach (GridCell candidateCell in candidateCells)
+        {
+            if (manager.CanPlacePiece(this, candidateCell, targetGrid))
+            {
+                canPlace = true;
+                bestReferenceCell = candidateCell;
+                break;
+            }
+        }
+        
+        if (!canPlace)
         {
             // 不能旋转，恢复形状
             shape = oldShape;
@@ -535,7 +571,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         
         // 应用旋转
         ClearOccupiedCells();
-        manager.PlacePiece(this, referenceCell, targetGrid);
+        manager.PlacePiece(this, bestReferenceCell, targetGrid);
         
         // 重新创建视觉表示
         CreateVisual();
@@ -648,11 +684,11 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 對齊網格系統
         int gridX = Mathf.FloorToInt(localPoint.x / cellSize);
         int gridY = Mathf.FloorToInt(-localPoint.y / cellSize);
-        // 即時預覽位置偏移量
-        int offsetX = 10; 
+        // 向右偏移1個單位修正整體坐標系
+        gridX += 1; 
         // 即時預覽位置
         transform.localPosition = new Vector3(
-            gridX * cellSize + cellSize/2- offsetX,
+            gridX * cellSize + cellSize/2,
             -gridY * cellSize - cellSize/2,
             0);
     }
