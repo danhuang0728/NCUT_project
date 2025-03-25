@@ -684,11 +684,14 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 對齊網格系統
         int gridX = Mathf.FloorToInt(localPoint.x / cellSize);
         int gridY = Mathf.FloorToInt(-localPoint.y / cellSize);
+        // 即時預覽位置偏移量
+        int offsetX = -10; 
+
         // 向右偏移1個單位修正整體坐標系
         gridX += 1; 
         // 即時預覽位置
         transform.localPosition = new Vector3(
-            gridX * cellSize + cellSize/2,
+            gridX * cellSize + cellSize/2 + offsetX,
             -gridY * cellSize - cellSize/2,
             0);
     }
