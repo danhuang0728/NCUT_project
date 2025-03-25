@@ -15,11 +15,12 @@ public class TetrisInventoryManager : MonoBehaviour
     public GameObject tetrisPiecePrefab;        // Tetris 方塊預置體
     
     [Header("網格設定")]
-    public int gridSize = 8;                    // 網格大小 (8x8)
-    public float cellSize = 50f;                // 單元格大小
+    public int equippedGridSize = 8;        // 左側裝備網格大小 (8x8)
+    public int storageGridSize = 20;        // 右側存儲網格大小 (20x20)
+    public float cellSize = 50f;            // 單元格大小
     
     [Header("控制設定")]
-    public KeyCode toggleKey = KeyCode.B;       // 開關物品欄的按鍵
+    public KeyCode toggleKey = KeyCode.B;   // 開關物品欄的按鍵
     
     // 修改為公開變量，以便其他類可以訪問
     [HideInInspector] public GridCell[,] equippedGrid;  // 左側裝備網格
@@ -68,18 +69,18 @@ public class TetrisInventoryManager : MonoBehaviour
     // 初始化兩側的網格
     void InitializeGrids()
     {
-        equippedGrid = CreateGrid(equippedGridContainer, "Equipped");
-        storageGrid = CreateGrid(storageGridContainer, "Storage");
+        equippedGrid = CreateGrid(equippedGridContainer, "Equipped", equippedGridSize);
+        storageGrid = CreateGrid(storageGridContainer, "Storage", storageGridSize);
     }
     
     // 創建一個網格
-    GridCell[,] CreateGrid(Transform container, string prefix)
+    GridCell[,] CreateGrid(Transform container, string prefix, int size)
     {
-        GridCell[,] grid = new GridCell[gridSize, gridSize];
+        GridCell[,] grid = new GridCell[size, size];
         
-        for (int y = 0; y < gridSize; y++)
+        for (int y = 0; y < size; y++)
         {
-            for (int x = 0; x < gridSize; x++)
+            for (int x = 0; x < size; x++)
             {
                 GameObject cellObj = Instantiate(gridCellPrefab, container);
                 RectTransform rectTransform = cellObj.GetComponent<RectTransform>();
@@ -183,9 +184,9 @@ public class TetrisInventoryManager : MonoBehaviour
     private void TryAutoPlaceInStorage(TetrisPiece piece)
     {
         // 從右下角開始掃描以容納較大物件
-        for (int y = gridSize-1; y >= 0; y--)
+        for (int y = storageGridSize-1; y >= 0; y--)
         {
-            for (int x = gridSize-1; x >= 0; x--)
+            for (int x = storageGridSize-1; x >= 0; x--)
             {
                 GridCell cell = storageGrid[x, y];
                 if (CanPlacePiece(piece, cell, storageGrid))
@@ -246,6 +247,7 @@ public class TetrisInventoryManager : MonoBehaviour
     public bool CanPlacePiece(TetrisPiece piece, GridCell startCell, GridCell[,] targetGrid)
     {
         Vector2Int[] worldPositions = piece.GetWorldPositions(startCell.X, startCell.Y);
+        int gridSize = (targetGrid == equippedGrid) ? equippedGridSize : storageGridSize;
         
         foreach (Vector2Int pos in worldPositions)
         {
@@ -298,14 +300,29 @@ public class TetrisInventoryManager : MonoBehaviour
     {
         if (!Application.isPlaying) return;
         
-        // 繪製網格線
+        // 繪製裝備網格線
         Gizmos.color = Color.white;
-        for (int y = 0; y < gridSize; y++)
+        for (int y = 0; y < equippedGridSize; y++)
         {
-            for (int x = 0; x < gridSize; x++)
+            for (int x = 0; x < equippedGridSize; x++)
             {
                 Vector3 pos = new Vector3(
                     x * cellSize, 
+                    -y * cellSize, 
+                    0
+                );
+                Gizmos.DrawWireCube(pos, new Vector3(cellSize, cellSize, 0));
+            }
+        }
+        
+        // 繪製存儲網格線
+        Gizmos.color = Color.gray;
+        for (int y = 0; y < storageGridSize; y++)
+        {
+            for (int x = 0; x < storageGridSize; x++)
+            {
+                Vector3 pos = new Vector3(
+                    (x + equippedGridSize + 1) * cellSize, 
                     -y * cellSize, 
                     0
                 );
@@ -543,7 +560,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 int newY = referenceCell.Y + yOffset;
                 
                 // 检查坐标是否在网格范围内
-                if (newX >= 0 && newX < manager.gridSize && newY >= 0 && newY < manager.gridSize)
+                if (newX >= 0 && newX < manager.equippedGridSize && newY >= 0 && newY < manager.equippedGridSize)
                 {
                     candidateCells.Add(targetGrid[newX, newY]);
                 }
