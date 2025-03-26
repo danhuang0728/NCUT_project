@@ -11,6 +11,7 @@ public class TetrisInventoryManager : MonoBehaviour
     public GameObject inventoryPanel;           // 整個物品欄面板
     public Transform equippedGridContainer;     // 左側裝備格子的容器
     public Transform storageGridContainer;      // 右側存儲格子的容器
+    public Transform storageGridContainer_2;   // 右側存儲格子的容器第2頁
     public GameObject gridCellPrefab;           // 網格單元格預置體
     public GameObject tetrisPiecePrefab;        // Tetris 方塊預置體
     
@@ -25,6 +26,7 @@ public class TetrisInventoryManager : MonoBehaviour
     // 修改為公開變量，以便其他類可以訪問
     [HideInInspector] public GridCell[,] equippedGrid;  // 左側裝備網格
     [HideInInspector] public GridCell[,] storageGrid;   // 右側存儲網格
+    [HideInInspector] public GridCell[,] storageGrid_2;  // 右側存儲網格第二頁
     
     private bool isInventoryOpen = false;
     private List<TetrisPiece> tetrisPieces = new List<TetrisPiece>();
@@ -64,13 +66,46 @@ public class TetrisInventoryManager : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            choosePage(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            choosePage(2);
+        }
     }
-    
+    private Vector3 storageGridContainerOriginalPos; // 新增：存儲初始位置
+    private Vector3 storageGridContainer2OriginalPos; // 新增：存儲第二容器初始位置
+
+    public void choosePage(int page)
+    {
+        // 只在第一次調用時記錄初始位置
+        if(storageGridContainerOriginalPos == Vector3.zero) {
+            storageGridContainerOriginalPos = storageGridContainer.position;
+            storageGridContainer2OriginalPos = storageGridContainer_2.position;
+        }
+
+        if (page == 1)
+        {
+            // 恢復到原始位置
+            storageGridContainer.position = storageGridContainerOriginalPos;
+            storageGridContainer_2.position = storageGridContainer2OriginalPos;
+        }
+        else if (page == 2)
+        {
+            // 交換兩個容器的位置
+            Vector3 tempPosition = storageGridContainerOriginalPos;
+            storageGridContainer.position = storageGridContainer2OriginalPos;
+            storageGridContainer_2.position = tempPosition;
+        }
+    }
     // 初始化兩側的網格
     void InitializeGrids()
     {
         equippedGrid = CreateGrid(equippedGridContainer, "Equipped", equippedGridSize);
         storageGrid = CreateGrid(storageGridContainer, "Storage", storageGridSize);
+        storageGrid_2 = CreateGrid(storageGridContainer_2, "Storage2", storageGridSize);
     }
     
     // 創建一個網格
@@ -203,9 +238,43 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             Color.yellow,
             new Vector2(3.5f, 3.5f), // 中心點可依需要微調
-            "亂砍",
+            "亂砍(S_S)",
             false
         );
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0), new Vector2Int(3, 0),
+                new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1), new Vector2Int(3, 1),
+                new Vector2Int(0, 2), new Vector2Int(1, 2),
+                new Vector2Int(0, 3), new Vector2Int(1, 3)
+            },
+            Color.yellow,
+            new Vector2(1.5f, 1.5f), // 中心點可依實際旋轉需求調整
+            "飛斧(A_1)"
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                // 上邊界
+                new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0),
+                new Vector2Int(3, 0), new Vector2Int(4, 0), new Vector2Int(5, 0),
+                
+                // 下邊界
+                new Vector2Int(0, 5), new Vector2Int(1, 5), new Vector2Int(2, 5),
+                new Vector2Int(3, 5), new Vector2Int(4, 5), new Vector2Int(5, 5),
+
+                // 左邊界
+                new Vector2Int(0, 1), new Vector2Int(0, 2),
+                new Vector2Int(0, 3), new Vector2Int(0, 4),
+
+                // 右邊界
+                new Vector2Int(5, 1), new Vector2Int(5, 2),
+                new Vector2Int(5, 3), new Vector2Int(5, 4)
+            },
+            new Color(0.5f, 0f, 1f), // 紫色（可依需求微調）
+            new Vector2(0,0), // 中心點正中央
+            "無限環型(C_1)"
+        );
+        
 
     }
     
@@ -236,25 +305,44 @@ public class TetrisInventoryManager : MonoBehaviour
     // 新增自動放置方法
     private void TryAutoPlaceInStorage(TetrisPiece piece)
     {
+        // 先嘗試放在第一個存儲容器
+        if (TryPlaceInSpecificStorage(piece, storageGrid, storageGridContainer))
+        {
+            return;
+        }
+        
+        // 如果第一個容器放不下，嘗試放在第二個容器
+        if (TryPlaceInSpecificStorage(piece, storageGrid_2, storageGridContainer_2))
+        {
+            return;
+        }
+        
+        Debug.LogWarning("無法在任何存儲容器中放置物品：" + piece.name);
+    }
+    
+    // 新增：嘗試在指定的存儲容器中放置物品
+    private bool TryPlaceInSpecificStorage(TetrisPiece piece, GridCell[,] targetGrid, Transform container)
+    {
         // 從右下角開始掃描以容納較大物件
         for (int y = storageGridSize-1; y >= 0; y--)
         {
             for (int x = storageGridSize-1; x >= 0; x--)
             {
-                GridCell cell = storageGrid[x, y];
-                if (CanPlacePiece(piece, cell, storageGrid))
+                GridCell cell = targetGrid[x, y];
+                if (CanPlacePiece(piece, cell, targetGrid))
                 {
-                    // 修正偏移量計算，向右偏移1個單位修正整體坐標系
+                    piece.transform.SetParent(container);
                     piece.transform.localPosition = new Vector3(
                         (cell.X+1) * cellSize,
                         -cell.Y * cellSize,
                         0
                     );
-                    PlacePiece(piece, cell, storageGrid);
-                    return;
+                    PlacePiece(piece, cell, targetGrid);
+                    return true;
                 }
             }
         }
+        return false;
     }
     
     // 切換物品欄開關
@@ -399,11 +487,24 @@ public class TetrisInventoryManager : MonoBehaviour
         }
     }
 
-    public GridCell GetCellAtPosition(Vector2 screenPosition, bool isEquippedGrid)
+    public GridCell GetCellAtPosition(Vector2 screenPosition, bool isEquippedGrid, bool isSecondStorage = false)
     {
+        // 選擇正確的容器
+        RectTransform targetContainer;
+        if (isEquippedGrid)
+        {
+            targetContainer = equippedGridContainer as RectTransform;
+        }
+        else
+        {
+            targetContainer = isSecondStorage ? 
+                storageGridContainer_2 as RectTransform : 
+                storageGridContainer as RectTransform;
+        }
+
         // 將屏幕座標轉換為本地座標
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            isEquippedGrid ? equippedGridContainer as RectTransform : storageGridContainer as RectTransform,
+            targetContainer,
             screenPosition,
             null,
             out Vector2 localPoint
@@ -414,7 +515,16 @@ public class TetrisInventoryManager : MonoBehaviour
         int y = Mathf.FloorToInt(-localPoint.y / cellSize);
 
         // 獲取對應的網格
-        GridCell[,] targetGrid = isEquippedGrid ? equippedGrid : storageGrid;
+        GridCell[,] targetGrid;
+        if (isEquippedGrid)
+        {
+            targetGrid = equippedGrid;
+        }
+        else
+        {
+            targetGrid = isSecondStorage ? storageGrid_2 : storageGrid;
+        }
+        
         int gridSize = isEquippedGrid ? equippedGridSize : storageGridSize;
 
         // 檢查座標是否在有效範圍內
@@ -810,7 +920,6 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // 結束拖拽
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 恢復透明度和射線檢測
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
@@ -824,13 +933,24 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             placed = true;
         }
 
-        // 如果裝備格子放置失敗，嘗試在存儲格子中放置
+        // 如果裝備格子放置失敗，嘗試在第一個存儲格子中放置
         if (!placed)
         {
-            targetCell = manager.GetCellAtPosition(eventData.position, false);
+            targetCell = manager.GetCellAtPosition(eventData.position, false, false); // 第一個存儲格
             if (targetCell != null && manager.CanPlacePiece(this, targetCell, manager.storageGrid))
             {
                 manager.PlacePiece(this, targetCell, manager.storageGrid);
+                placed = true;
+            }
+        }
+
+        // 如果第一個存儲格子也放置失敗，嘗試在第二個存儲格子中放置
+        if (!placed)
+        {
+            targetCell = manager.GetCellAtPosition(eventData.position, false, true); // 第二個存儲格
+            if (targetCell != null && manager.CanPlacePiece(this, targetCell, manager.storageGrid_2))
+            {
+                manager.PlacePiece(this, targetCell, manager.storageGrid_2);
                 placed = true;
             }
         }
@@ -841,17 +961,14 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             transform.position = startPosition;
             transform.SetParent(startParent);
             
-            // 如果之前有佔用的格子，重新佔用
             if (occupiedCells.Count > 0)
             {
                 GridCell firstCell = occupiedCells[0];
-                GridCell[,] targetGrid = firstCell.transform.parent == manager.equippedGridContainer ? 
-                                       manager.equippedGrid : manager.storageGrid;
+                GridCell[,] targetGrid = GetTargetGridForCell(firstCell);
                 manager.PlacePiece(this, firstCell, targetGrid);
             }
         }
 
-        // 清除拖拽狀態
         manager.SetDraggedPiece(null);
     }
     
@@ -859,5 +976,18 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnPointerClick(PointerEventData eventData)
     {
         SetSelected(!isSelected);
+    }
+
+    // 獲取指定單元格所屬的網格
+    private GridCell[,] GetTargetGridForCell(GridCell cell)
+    {
+        Transform parent = cell.transform.parent;
+        if (parent == manager.equippedGridContainer)
+            return manager.equippedGrid;
+        else if (parent == manager.storageGridContainer)
+            return manager.storageGrid;
+        else if (parent == manager.storageGridContainer_2)
+            return manager.storageGrid_2;
+        return null;
     }
 }
