@@ -14,6 +14,7 @@ public class TetrisInventoryManager : MonoBehaviour
     public Transform storageGridContainer_2;   // 右側存儲格子的容器第2頁
     public GameObject gridCellPrefab;           // 網格單元格預置體
     public GameObject tetrisPiecePrefab;        // Tetris 方塊預置體
+    public Sprite blockSprite;  // 新增：方塊的圖片
     
     [Header("網格設定")]
     public int equippedGridSize = 8;        // 左側裝備網格大小 (8x8)
@@ -672,13 +673,15 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             // 添加圖像組件
             Image blockImage = blockObj.AddComponent<Image>();
             blockImage.color = color;
+            // 設置圖片
+            blockImage.sprite = manager.blockSprite;
             
             // 設置位置和大小
             RectTransform blockRect = blockObj.GetComponent<RectTransform>();
             blockRect.anchorMin = new Vector2(1, 1);
             blockRect.anchorMax = new Vector2(1, 1);
             blockRect.pivot = new Vector2(1, 1);
-            blockRect.sizeDelta = new Vector2(cellSize * 0.9f, cellSize * 0.9f);  // 略小於單元格，留出邊距
+            blockRect.sizeDelta = new Vector2(cellSize * 0.9f, cellSize * 0.9f);
             
             // 計算相對於父物件左上角的偏移量
             float xOffset = (cell.x - minX) * cellSize;
