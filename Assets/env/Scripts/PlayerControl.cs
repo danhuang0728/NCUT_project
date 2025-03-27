@@ -16,6 +16,9 @@ public class PlayerControl : MonoBehaviour
     public character_value_ingame characterValuesIngame;
     public Character_Values_SETUP characterValues;
     public float speed = 5f;
+    //無敵狀態
+    [Header("無敵狀態")]
+    public bool isInvincible = false;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
     public LayerMask BossMonsterLayer;
@@ -30,7 +33,7 @@ public class PlayerControl : MonoBehaviour
     //--------------------打擊特效開關的bool-----------------------------
     public string boolPropertyName = "_hitBool";
     //--------------------------------------------------------
-
+    private bool isDead = false;
     private monsterMove slime_Scripts;
     private BossFlower bossFlower;
     private NormalMonster_setting normalMonster_setting; 
@@ -56,10 +59,30 @@ public class PlayerControl : MonoBehaviour
     public float Calculating_Values_criticalHitRate; //計算加成暴擊率%數(給怪物腳本用)
     private void Update() 
     {
+        
         if (Time.time % 1 < Time.deltaTime) //每過1秒顯示HP
         {
             Debug.Log("當前HP: " + HP);
         }
+
+        //檢查是否死亡
+        if (HP <= 0  && isInvincible == false)
+        {
+            isDead = true;
+            ani.SetBool("isdead",true);
+            //停止所有動作
+            InputX = 0;
+            InputY = 0;
+            rig.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            rig.velocity = Vector2.zero; // 清除殘留速度
+            //受傷特效強制關閉
+            Material mat = GetComponent<Renderer>().material;
+            mat.SetInt(boolPropertyName, 0);
+            //跳到下個場景
+            ///
+            ///
+        }
+        
 
         Calculating_Values_damage = characterValuesIngame.damage_percentage + characterValues.damage_addition_percentage;
         Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage;
@@ -156,6 +179,7 @@ public class PlayerControl : MonoBehaviour
     }
     public IEnumerator SetBoolWithDelay_red(Material mat ,Renderer targetRenderer)   //開啟hit(紅色)特效然後0.1秒後關閉
     {
+        if (isDead) yield break;
         mat = targetRenderer.material;
         // 设置布尔值为 true
 
@@ -263,11 +287,13 @@ public class PlayerControl : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         ani.SetBool("attack",true);
        
     }
     public void Attack_end()
     {
+        if (isDead) return;
         ani.SetBool("attack",false);
         
     }
