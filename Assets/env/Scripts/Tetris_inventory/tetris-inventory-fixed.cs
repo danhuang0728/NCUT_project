@@ -223,7 +223,7 @@ public class TetrisInventoryManager : MonoBehaviour
             }, 
             Color.yellow,
             new Vector2(0.5f, 0.5f), 
-            "居合斬(S_T)",
+            "(S_1)", //居合斬
             false
         );
         CreateTetrisPiece(
@@ -239,7 +239,7 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             Color.yellow,
             new Vector2(3.5f, 3.5f), // 中心點可依需要微調
-            "亂砍(S_S)",
+            "(S_2)", //亂砍
             false
         );
         CreateTetrisPiece(
@@ -251,7 +251,7 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             Color.yellow,
             new Vector2(1.5f, 1.5f), // 中心點可依實際旋轉需求調整
-            "飛斧(A_1)"
+            "(A_1)" //飛斧
         );
         CreateTetrisPiece(
             new Vector2Int[] {
@@ -273,10 +273,214 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 0f, 1f), // 紫色（可依需求微調）
             new Vector2(0,0), // 中心點正中央
-            "無限環型(C_1)"
+            "(C_1)" //圓環
         );
-        
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                // 第一行 (頂部)
+                new Vector2Int(0, 0), new Vector2Int(1, 0), 
+                // 第二行
+                new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1),
+                // 第三行
+                new Vector2Int(2, 2),
+                // 第四行
+                new Vector2Int(1, 3),
+                // 第五行
+                new Vector2Int(0, 4),
+                // 第六行 (底部)
+                new Vector2Int(1, 5),
+                new Vector2Int(2, 6)
+            }, 
+            Color.cyan,
+            new Vector2(1.0f, 2.5f),  // 設置中心點在形狀的幾何中心附近
+            "F_1" //跟蹤火球
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] { 
+                // 從上到下
+                new Vector2Int(5, 0), 
+                new Vector2Int(4, 1), new Vector2Int(5, 1),new Vector2Int(6, 1),
+                new Vector2Int(3, 2), new Vector2Int(4, 2),new Vector2Int(5, 2), new Vector2Int(6, 2),new Vector2Int(7, 2),
+                new Vector2Int(2, 3), new Vector2Int(3, 3),new Vector2Int(4, 3), new Vector2Int(5, 3),new Vector2Int(6, 3),new Vector2Int(7, 3),
+                new Vector2Int(1, 4), new Vector2Int(2, 4),new Vector2Int(5, 4), new Vector2Int(6, 4),
+                new Vector2Int(0, 5), new Vector2Int(1, 5),
+                new Vector2Int(0, 6), 
+            }, 
+            new Color(0.5f, 0f, 1f), // 紫色
+            new Vector2(3.5f, 3.0f), // 設置中心點在形狀的大致中心
+            "A_2" //巨斧
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] {
 
+                new Vector2Int(1, 0), new Vector2Int(2, 0), new Vector2Int(3, 0), new Vector2Int(4, 0),
+                new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1), new Vector2Int(3, 1), new Vector2Int(4, 1), new Vector2Int(5, 1),
+                new Vector2Int(0, 2), new Vector2Int(5, 2),
+                new Vector2Int(0, 3), new Vector2Int(1, 3),new Vector2Int(2, 3),new Vector2Int(3, 3),new Vector2Int(4, 3),new Vector2Int(5, 3),
+                new Vector2Int(1, 4), new Vector2Int(2, 4),new Vector2Int(3, 4), new Vector2Int(4, 4)
+            }, 
+            new Color(0.5f, 0f, 1f), // 紫色
+            new Vector2(3,3), // 設置中心點在形狀的幾何中心
+            "F_2", //單顆大火球
+            false // 設置為不可旋轉
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                // 水平線段 (y=1)
+                new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0), 
+                new Vector2Int(3, 0), new Vector2Int(4, 0),
+                
+                // 垂直線段 (x=6)
+                new Vector2Int(5, 1), new Vector2Int(5, 2), new Vector2Int(5, 3), 
+                new Vector2Int(5, 4), new Vector2Int(5, 5)
+            }, 
+            Color.blue,  // 深藍色
+            new Vector2(3, 1),  // 中心點設在整個形狀的大致中心
+            "B_1" //迴力鏢無限彈
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(2, 0), new Vector2Int(3, 0),
+                new Vector2Int(2, 1), new Vector2Int(3, 1), 
+                new Vector2Int(2, 2), new Vector2Int(3, 2),
+                new Vector2Int(2, 3), new Vector2Int(3, 3),
+                new Vector2Int(2, 4), new Vector2Int(3, 4),
+                new Vector2Int(2, 5), new Vector2Int(3, 5),
+
+                new Vector2Int(0, 3), new Vector2Int(1, 4),
+                new Vector2Int(4, 4), new Vector2Int(5, 3),
+                
+            },
+            new Color(0.5f, 0f, 1f), // 紫色
+            new Vector2(3f, 4f), // 設置中心點在形狀的幾何中心
+            "T_1" //西洋劍全場下戳
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0)
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(1, 1), // 設置中心點在形狀的幾何中心
+            "Pink_1",//粉色組件1
+            false  //不旋轉
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0), new Vector2Int(1, 0),new Vector2Int(2, 0), new Vector2Int(3, 0),
+                new Vector2Int(1, 1), new Vector2Int(2, 1),
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(1, 1), // 設置中心點在形狀的幾何中心
+            "Pink_2" //粉色組件2
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0), new Vector2Int(1, 0),new Vector2Int(2, 0), 
+                new Vector2Int(0, 1), new Vector2Int(2, 1),
+                new Vector2Int(0, 2), new Vector2Int(1, 2),new Vector2Int(2, 2),
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(1, 1), // 設置中心點在形狀的幾何中心
+            "Pink_3",//粉色組件3
+            false  //不旋轉
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),
+                new Vector2Int(0, 1),
+                new Vector2Int(0, 2),
+                new Vector2Int(0, 3),
+                new Vector2Int(0, 4),
+                new Vector2Int(0, 5),
+                new Vector2Int(0, 6),
+                new Vector2Int(0, 7)
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(1, 1), // 設置中心點在形狀的幾何中心
+            "Pink_4"//粉色組件4
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),
+                new Vector2Int(0, 1),
+                new Vector2Int(0, 2),
+                new Vector2Int(1, 0),
+                new Vector2Int(1, 1),
+                new Vector2Int(1, 2),   
+                new Vector2Int(2,0),new Vector2Int(3, 0),
+
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(1, 1), // 設置中心點在形狀的幾何中心
+            "Pink_5"//粉色組件5
+        );
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(2, 0),
+                new Vector2Int(1, 1),new Vector2Int(3, 1),
+                new Vector2Int(0, 2),new Vector2Int(2, 2),new Vector2Int(4, 2),
+                new Vector2Int(0, 3),new Vector2Int(2, 3),new Vector2Int(4, 3),
+                new Vector2Int(1, 4),new Vector2Int(3, 4),
+                new Vector2Int(2, 5),   
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(3, 2), // 設置中心點在形狀的幾何中心
+            "Pink_6"//粉色組件6
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(1, 0),
+                new Vector2Int(0, 1),new Vector2Int(0, 2),
+                new Vector2Int(2, 1),new Vector2Int(2, 2),
+                new Vector2Int(1, 3)
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(3, 2), // 設置中心點在形狀的幾何中心
+            "Pink_7"//粉色組件7
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),
+                new Vector2Int(0, 1),new Vector2Int(1, 1),new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
+                new Vector2Int(2, 3)
+            },
+            new Color(0.5f, 1f, 0.5f), // 亮綠色
+            new Vector2(2, 2), // 設置中心點在形狀的幾何中心
+            "Green_1"//綠色組件1
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),
+                new Vector2Int(0, 1),
+                new Vector2Int(0, 2),new Vector2Int(1, 2),new Vector2Int(2, 2),
+                new Vector2Int(0, 3),new Vector2Int(1, 3),new Vector2Int(2, 3)
+            },
+            new Color(0.5f, 1f, 0.5f), // 亮綠色
+            new Vector2(2, 2), // 設置中心點在形狀的幾何中心
+            "Green_2"//綠色組件2
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),new Vector2Int(1, 0),new Vector2Int(2, 0),
+                new Vector2Int(0, 1),new Vector2Int(1, 1),new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
+                new Vector2Int(2, 3)
+            },
+            new Color(0.5f, 1f, 0.5f), // 亮綠色
+            new Vector2(2, 2), // 設置中心點在形狀的幾何中心
+            "Green_3"//綠色組件3
+        );
+
+                
     }
     
     // 創建一個 Tetris 方塊
