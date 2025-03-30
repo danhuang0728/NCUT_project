@@ -12,6 +12,7 @@ public class TetrisInventoryManager : MonoBehaviour
     public Transform equippedGridContainer;     // 左側裝備格子的容器
     public Transform storageGridContainer;      // 右側存儲格子的容器
     public Transform storageGridContainer_2;   // 右側存儲格子的容器第2頁
+    public Transform storageGridContainer_3;   // 右側存儲格子的容器第3頁
     public GameObject gridCellPrefab;           // 網格單元格預置體
     public GameObject tetrisPiecePrefab;        // Tetris 方塊預置體
     public Sprite blockSprite;  // 新增：方塊的圖片
@@ -28,11 +29,16 @@ public class TetrisInventoryManager : MonoBehaviour
     [HideInInspector] public GridCell[,] equippedGrid;  // 左側裝備網格
     [HideInInspector] public GridCell[,] storageGrid;   // 右側存儲網格
     [HideInInspector] public GridCell[,] storageGrid_2;  // 右側存儲網格第二頁
+    [HideInInspector] public GridCell[,] storageGrid_3;  // 右側存儲網格第三頁
     
     private bool isInventoryOpen = false;
     private List<TetrisPiece> tetrisPieces = new List<TetrisPiece>();
     private TetrisPiece currentDraggedPiece;
     private TetrisPiece selectedPiece;
+    
+    // 新增：Canvas引用
+    private Canvas inventoryCanvas;
+    private tetrisPanel_ TetrisPanel_;
     
     void Start()
     {
@@ -41,10 +47,50 @@ public class TetrisInventoryManager : MonoBehaviour
         InitializeGrids();
         CreateSampleTetrisPieces();
         Debug.Log(tetrisPieces[0].GetWorldPositions(0,0));
+        TetrisPanel_ = GetComponent<tetrisPanel_>();
+        // 新增：獲取Canvas並設置為使用非縮放時間
+        SetupCanvasForPauseIndependence();
+    }
+    
+    // 新增：設置Canvas以不受時間暫停影響
+    private void SetupCanvasForPauseIndependence()
+    {
+        // 嘗試從當前物件或父物件獲取Canvas組件
+        inventoryCanvas = GetComponentInParent<Canvas>();
+        if (inventoryCanvas == null)
+        {
+            // 如果在父物件中沒有找到，嘗試從inventoryPanel獲取
+            if (inventoryPanel != null)
+            {
+                inventoryCanvas = inventoryPanel.GetComponentInParent<Canvas>();
+            }
+        }
+        
+        // 如果找到Canvas，設置其更新模式為不受縮放影響
+        if (inventoryCanvas != null)
+        {
+            inventoryCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            
+            // 獲取或添加CanvasScaler組件
+            CanvasScaler scaler = inventoryCanvas.GetComponent<CanvasScaler>();
+            if (scaler == null)
+            {
+                scaler = inventoryCanvas.gameObject.AddComponent<CanvasScaler>();
+            }
+            
+            // 設置為不受時間影響
+            scaler.scaleFactor = scaler.scaleFactor; // 保持當前縮放比例
+            Debug.Log("物品欄Canvas已設置為不受時間縮放影響");
+        }
+        else
+        {
+            Debug.LogWarning("無法找到物品欄的Canvas組件，請手動設置Canvas.updateMode為UnscaledTime");
+        }
     }
     
     void Update()
     {
+        // 使用unscaledTime確保即使在遊戲暫停時也能檢測按鍵輸入
         // 按 B 鍵切換物品欄開關
         if (Input.GetKeyDown(toggleKey))
         {
@@ -75,9 +121,14 @@ public class TetrisInventoryManager : MonoBehaviour
         {
             choosePage(2);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            choosePage(3);
+        }
     }
     private Vector3 storageGridContainerOriginalPos; // 新增：存儲初始位置
     private Vector3 storageGridContainer2OriginalPos; // 新增：存儲第二容器初始位置
+    private Vector3 storageGridContainer3OriginalPos; // 新增：存儲第三容器初始位置
 
     public void choosePage(int page)
     {
@@ -85,20 +136,31 @@ public class TetrisInventoryManager : MonoBehaviour
         if(storageGridContainerOriginalPos == Vector3.zero) {
             storageGridContainerOriginalPos = storageGridContainer.position;
             storageGridContainer2OriginalPos = storageGridContainer_2.position;
+            storageGridContainer3OriginalPos = storageGridContainer_3.position;
         }
 
         if (page == 1)
         {
-            // 恢復到原始位置
+            // 顯示第一頁
             storageGridContainer.position = storageGridContainerOriginalPos;
             storageGridContainer_2.position = storageGridContainer2OriginalPos;
+            storageGridContainer_3.position = storageGridContainer3OriginalPos;
         }
         else if (page == 2)
         {
-            // 交換兩個容器的位置
+            // 顯示第二頁
             Vector3 tempPosition = storageGridContainerOriginalPos;
             storageGridContainer.position = storageGridContainer2OriginalPos;
             storageGridContainer_2.position = tempPosition;
+            storageGridContainer_3.position = storageGridContainer3OriginalPos;
+        }
+        else if (page == 3)
+        {
+            // 顯示第三頁
+            Vector3 tempPosition = storageGridContainerOriginalPos;
+            storageGridContainer.position = storageGridContainer3OriginalPos;
+            storageGridContainer_3.position = tempPosition;
+            storageGridContainer_2.position = storageGridContainer2OriginalPos;
         }
     }
     // 初始化兩側的網格
@@ -107,6 +169,7 @@ public class TetrisInventoryManager : MonoBehaviour
         equippedGrid = CreateGrid(equippedGridContainer, "Equipped", equippedGridSize);
         storageGrid = CreateGrid(storageGridContainer, "Storage", storageGridSize);
         storageGrid_2 = CreateGrid(storageGridContainer_2, "Storage2", storageGridSize);
+        storageGrid_3 = CreateGrid(storageGridContainer_3, "Storage3", storageGridSize);
     }
     
     // 創建一個網格
@@ -140,67 +203,6 @@ public class TetrisInventoryManager : MonoBehaviour
     // 創建一些示例 Tetris 方塊
     void CreateSampleTetrisPieces()
     {
-        // 創建幾種不同形狀的 Tetris 方塊做示例
-        CreateTetrisPiece(
-            new Vector2Int[] { 
-                new Vector2Int(0, 0), 
-                new Vector2Int(1, 0), 
-                new Vector2Int(0, 1), 
-                new Vector2Int(1, 1) 
-            }, 
-            Color.cyan,
-            new Vector2(0.5f, 0.5f),
-            "O型",
-            false
-        );    // 方形 (O型)
-        
-        CreateTetrisPiece(
-            new Vector2Int[] { 
-                new Vector2Int(0, 0), 
-                new Vector2Int(0, 1), 
-                new Vector2Int(0, 2), 
-                new Vector2Int(0, 3) 
-            }, 
-            Color.blue,
-            new Vector2(0.5f, 0.5f),
-            "I型"
-        );    // I型
-        
-        CreateTetrisPiece(
-            new Vector2Int[] { 
-                new Vector2Int(0, 0),   // 底部
-                new Vector2Int(0, 1),   // 中間
-                new Vector2Int(0, 2),   // 頂部
-                new Vector2Int(1, 0)    // 右側底部
-            }, 
-            new Color(1f, 0.5f, 0f),
-            new Vector2(0.5f, 0.5f),
-            "L型"
-        );
-        
-        CreateTetrisPiece(
-            new Vector2Int[] { 
-                new Vector2Int(0, 0), 
-                new Vector2Int(1, 0), 
-                new Vector2Int(1, 1), 
-                new Vector2Int(2, 1) 
-            },  
-            Color.green,
-            new Vector2(0.5f, 0.5f),
-            "Z型"
-        );
-        
-        CreateTetrisPiece(
-            new Vector2Int[] { 
-                new Vector2Int(0, 0),   // 左側
-                new Vector2Int(1, 0),   // 中間
-                new Vector2Int(2, 0),   // 右側
-                new Vector2Int(1, 1)    // 頂部中間
-            }, 
-            Color.magenta,
-            new Vector2(0.5f, 0.5f),
-            "T型"
-        );
         CreateTetrisPiece(
             new Vector2Int[] { 
                 new Vector2Int(0, 0),
@@ -352,7 +354,7 @@ public class TetrisInventoryManager : MonoBehaviour
                 
             },
             new Color(0.5f, 0f, 1f), // 紫色
-            new Vector2(3f, 4f), // 設置中心點在形狀的幾何中心
+            new Vector2(1f, 1f), // 設置中心點在形狀的幾何中心
             "T_1" //西洋劍全場下戳
         );
         CreateTetrisPiece(
@@ -522,6 +524,12 @@ public class TetrisInventoryManager : MonoBehaviour
             return;
         }
         
+        // 如果第二個容器放不下，嘗試放在第三個容器
+        if (TryPlaceInSpecificStorage(piece, storageGrid_3, storageGridContainer_3))
+        {
+            return;
+        }
+        
         Debug.LogWarning("無法在任何存儲容器中放置物品：" + piece.name);
     }
     
@@ -553,14 +561,25 @@ public class TetrisInventoryManager : MonoBehaviour
     // 切換物品欄開關
     public void ToggleInventory()
     {
-        isInventoryOpen = !isInventoryOpen;
-        inventoryPanel.SetActive(isInventoryOpen);
+        if (isInventoryOpen) {
+            TetrisPanel_.CloseInventory();
+        } else {
+            TetrisPanel_.OpenInventory();
+        }
+        
+        isInventoryOpen = TetrisPanel_.isInventoryOpen;
         
         // 當關閉物品欄時，取消選擇
         if (!isInventoryOpen && selectedPiece != null)
         {
             selectedPiece.SetSelected(false);
             selectedPiece = null;
+        }
+        
+        // 新增：當打開物品欄時，確保它顯示在最上層
+        if (isInventoryOpen && inventoryCanvas != null)
+        {
+            inventoryCanvas.sortingOrder = 100;
         }
     }
     
@@ -692,7 +711,7 @@ public class TetrisInventoryManager : MonoBehaviour
         }
     }
 
-    public GridCell GetCellAtPosition(Vector2 screenPosition, bool isEquippedGrid, bool isSecondStorage = false)
+    public GridCell GetCellAtPosition(Vector2 screenPosition, bool isEquippedGrid, int storagePageIndex = 1)
     {
         // 選擇正確的容器
         RectTransform targetContainer;
@@ -702,9 +721,21 @@ public class TetrisInventoryManager : MonoBehaviour
         }
         else
         {
-            targetContainer = isSecondStorage ? 
-                storageGridContainer_2 as RectTransform : 
-                storageGridContainer as RectTransform;
+            switch (storagePageIndex)
+            {
+                case 1:
+                    targetContainer = storageGridContainer as RectTransform;
+                    break;
+                case 2:
+                    targetContainer = storageGridContainer_2 as RectTransform;
+                    break;
+                case 3:
+                    targetContainer = storageGridContainer_3 as RectTransform;
+                    break;
+                default:
+                    targetContainer = storageGridContainer as RectTransform;
+                    break;
+            }
         }
 
         // 將屏幕座標轉換為本地座標
@@ -727,7 +758,21 @@ public class TetrisInventoryManager : MonoBehaviour
         }
         else
         {
-            targetGrid = isSecondStorage ? storageGrid_2 : storageGrid;
+            switch (storagePageIndex)
+            {
+                case 1:
+                    targetGrid = storageGrid;
+                    break;
+                case 2:
+                    targetGrid = storageGrid_2;
+                    break;
+                case 3:
+                    targetGrid = storageGrid_3;
+                    break;
+                default:
+                    targetGrid = storageGrid;
+                    break;
+            }
         }
         
         int gridSize = isEquippedGrid ? equippedGridSize : storageGridSize;
@@ -1143,7 +1188,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 如果裝備格子放置失敗，嘗試在第一個存儲格子中放置
         if (!placed)
         {
-            targetCell = manager.GetCellAtPosition(eventData.position, false, false); // 第一個存儲格
+            targetCell = manager.GetCellAtPosition(eventData.position, false, 1); // 第一個存儲格
             if (targetCell != null && manager.CanPlacePiece(this, targetCell, manager.storageGrid))
             {
                 manager.PlacePiece(this, targetCell, manager.storageGrid);
@@ -1154,10 +1199,21 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 如果第一個存儲格子也放置失敗，嘗試在第二個存儲格子中放置
         if (!placed)
         {
-            targetCell = manager.GetCellAtPosition(eventData.position, false, true); // 第二個存儲格
+            targetCell = manager.GetCellAtPosition(eventData.position, false, 2); // 第二個存儲格
             if (targetCell != null && manager.CanPlacePiece(this, targetCell, manager.storageGrid_2))
             {
                 manager.PlacePiece(this, targetCell, manager.storageGrid_2);
+                placed = true;
+            }
+        }
+
+        // 如果第二個存儲格子也放置失敗，嘗試在第三個存儲格子中放置
+        if (!placed)
+        {
+            targetCell = manager.GetCellAtPosition(eventData.position, false, 3); // 第三個存儲格
+            if (targetCell != null && manager.CanPlacePiece(this, targetCell, manager.storageGrid_3))
+            {
+                manager.PlacePiece(this, targetCell, manager.storageGrid_3);
                 placed = true;
             }
         }
@@ -1195,6 +1251,8 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             return manager.storageGrid;
         else if (parent == manager.storageGridContainer_2)
             return manager.storageGrid_2;
+        else if (parent == manager.storageGridContainer_3)
+            return manager.storageGrid_3;
         return null;
     }
 }
