@@ -41,73 +41,20 @@ public class Tetris_ability_Manager : MonoBehaviour
         float cooldown_accumulation = 0;
         float lifeSteal_accumulation = 0;
         float damage_taken_addtion_accumulation = 0;
-        //判斷使用方塊是否改變
+        //判斷持有方塊
         int currentChildCount = EquippedGridContainer.transform.childCount;
         if (currentChildCount != childCountLastFrame)
         {
-            //判斷持有方塊
+            //在循環開始前先重置所有武器狀態
+            playerControl.isCollision_skill_damage = false;
+            weapon_manager.main_hand2 = false;
+            weapon_manager.main_hand1 = false;
+            weapon_manager.is_circle_levelUP_1 = false;
+            weapon_manager.is_magicbook_levelUP_1 = false;
+            weapon_manager.is_magicbook_levelUP_2 = false;
+            weapon_manager.is_boomerang_levelUP_1 = false;
             foreach (Transform child in EquippedGridContainer.transform)
             {
-
-                //---------------------武器進化方塊-------------------------
-                //判定是否持有居合 
-                if (child.gameObject.name.Contains("(S_1)"))
-                {
-                    weapon_manager.main_hand2 = true;
-                    break;
-                }
-                else
-                {
-                    weapon_manager.main_hand2 = false;
-                }
-
-                //判定是否持有亂砍
-                if (child.gameObject.name.Contains("(S_2)"))
-                {
-                    weapon_manager.main_hand1 = true;
-                }
-                else
-                {
-                    weapon_manager.main_hand1 = false;
-                }
-
-                //判定是否有無限圓環
-                if (child.gameObject.name.Contains("(C_1)"))
-                {
-                     weapon_manager.is_circle_levelUP_1 = true;
-                }
-                else
-                {
-                    weapon_manager.is_circle_levelUP_1 = false;
-                }
-                //判定是否有追蹤火球
-                if(child.gameObject.name.Contains("(F_1)"))
-                {
-                    weapon_manager.is_magicbook_levelUP_1 = true;
-                }
-                else
-                {
-                    weapon_manager.is_magicbook_levelUP_1 = false;
-                }
-                //判定是否有巨大火球
-                if(child.gameObject.name.Contains("(F_2)"))
-                {
-                    weapon_manager.is_magicbook_levelUP_2 = true;
-                }
-                else
-                {
-                    weapon_manager.is_magicbook_levelUP_2 = false;
-                }
-                //判定是否有無限彈射
-                if(child.gameObject.name.Contains("(B_1)"))
-                {
-                    weapon_manager.is_boomerang_levelUP_1 = true;
-                }
-                else
-                {
-                    weapon_manager.is_boomerang_levelUP_1 = false;
-                }
-
                 //-----------基礎數值方塊(粉)-----------
                 //判定是否有Pink_1
                 if (child.gameObject.name.Contains("Pink_1"))
@@ -154,12 +101,43 @@ public class Tetris_ability_Manager : MonoBehaviour
                 {
                     playerControl.isCollision_skill_damage = true;
                 }
-                else
+                
+                //---------------------武器進化方塊-------------------------
+                //判定是否持有居合 
+                if (child.gameObject.name.Contains("(S_1)"))
                 {
-                    playerControl.isCollision_skill_damage = false;
+                    weapon_manager.main_hand2 = true;
+                }
+
+                //判定是否持有亂砍
+                if (child.gameObject.name.Contains("(S_2)"))
+                {
+                    weapon_manager.main_hand1 = true;
+                }
+
+                //判定是否有無限圓環
+                if (child.gameObject.name.Contains("(C_1)"))
+                {
+                    weapon_manager.is_circle_levelUP_1 = true;
                 }
                 
+                //判定是否有追蹤火球
+                if(child.gameObject.name.Contains("(F_1)"))
+                {
+                    weapon_manager.is_magicbook_levelUP_1 = true;
+                }
                 
+                //判定是否有巨大火球
+                if(child.gameObject.name.Contains("(F_2)"))
+                {
+                    weapon_manager.is_magicbook_levelUP_2 = true;
+                }
+                
+                //判定是否有無限彈射
+                if(child.gameObject.name.Contains("(B_1)"))
+                {
+                    weapon_manager.is_boomerang_levelUP_1 = true;
+                }
             }
             //總值賦值
             damage = damage_accumulation; 

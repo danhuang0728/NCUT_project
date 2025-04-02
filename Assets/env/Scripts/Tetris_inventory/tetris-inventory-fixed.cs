@@ -296,7 +296,7 @@ public class TetrisInventoryManager : MonoBehaviour
             }, 
             Color.cyan,
             new Vector2(1.0f, 2.5f),  // 設置中心點在形狀的幾何中心附近
-            "F_1" //跟蹤火球
+            "(F_1)" //跟蹤火球
         );
         CreateTetrisPiece(
             new Vector2Int[] { 
@@ -311,7 +311,7 @@ public class TetrisInventoryManager : MonoBehaviour
             }, 
             new Color(0.5f, 0f, 1f), // 紫色
             new Vector2(3.5f, 3.0f), // 設置中心點在形狀的大致中心
-            "A_2" //巨斧
+            "(A_2)" //巨斧
         );
         CreateTetrisPiece(
             new Vector2Int[] {
@@ -324,7 +324,7 @@ public class TetrisInventoryManager : MonoBehaviour
             }, 
             new Color(0.5f, 0f, 1f), // 紫色
             new Vector2(3,3), // 設置中心點在形狀的幾何中心
-            "F_2", //單顆大火球
+            "(F_2)", //單顆大火球
             false // 設置為不可旋轉
         );
         CreateTetrisPiece(
@@ -339,7 +339,7 @@ public class TetrisInventoryManager : MonoBehaviour
             }, 
             Color.blue,  // 深藍色
             new Vector2(3, 1),  // 中心點設在整個形狀的大致中心
-            "B_1" //迴力鏢無限彈
+            "(B_1)" //迴力鏢無限彈
         );
         CreateTetrisPiece(
             new Vector2Int[] {
@@ -356,7 +356,7 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 0f, 1f), // 紫色
             new Vector2(1f, 1f), // 設置中心點在形狀的幾何中心
-            "T_1", //西洋劍全場下戳
+            "(T_1)", //西洋劍全場下戳
             false //不旋轉
         );
         CreateTetrisPiece(
