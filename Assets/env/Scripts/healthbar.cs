@@ -44,6 +44,6 @@ public class healthbar : MonoBehaviour
 
     private void UpdateMaxHealth()
     {
-        slider.maxValue = 100 + characterValuesIngame.health + characterValues.health_addition;
+        slider.maxValue = 100 + playerControl.Calculating_Values_health;
     }
 }

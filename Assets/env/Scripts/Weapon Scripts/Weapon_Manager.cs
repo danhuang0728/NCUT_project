@@ -76,7 +76,6 @@ public class Weapon_Manager : MonoBehaviour
     private bool hasSpawnedCircleGears = false;
     private float initialAttackRange;
     private PlayerControl playerControl;
-
     void Start()
     {
         playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();

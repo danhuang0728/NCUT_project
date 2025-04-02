@@ -275,7 +275,8 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 0f, 1f), // 紫色（可依需求微調）
             new Vector2(0,0), // 中心點正中央
-            "(C_1)" //圓環
+            "(C_1)", //圓環
+            false
         );
         CreateTetrisPiece(
             new Vector2Int[] { 
@@ -355,7 +356,8 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 0f, 1f), // 紫色
             new Vector2(1f, 1f), // 設置中心點在形狀的幾何中心
-            "T_1" //西洋劍全場下戳
+            "T_1", //西洋劍全場下戳
+            false //不旋轉
         );
         CreateTetrisPiece(
             new Vector2Int[] {
@@ -467,7 +469,8 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 1f, 0.5f), // 亮綠色
             new Vector2(2, 2), // 設置中心點在形狀的幾何中心
-            "Green_2"//綠色組件2
+            "Green_2",//綠色組件2
+            false //不旋轉
         );
 
         CreateTetrisPiece(
@@ -479,7 +482,8 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 1f, 0.5f), // 亮綠色
             new Vector2(2, 2), // 設置中心點在形狀的幾何中心
-            "Green_3"//綠色組件3
+            "Green_3",//綠色組件3
+            false //不旋轉
         );
 
                 

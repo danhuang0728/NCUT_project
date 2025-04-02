@@ -19,6 +19,8 @@ public class PlayerControl : MonoBehaviour
     //無敵狀態
     [Header("無敵狀態")]
     public bool isInvincible = false;
+    [Header("碰撞怪物技能")]
+    public bool isCollision_skill_damage = false;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
     public LayerMask BossMonsterLayer;
@@ -28,6 +30,7 @@ public class PlayerControl : MonoBehaviour
     public AudioSource audioSource;
     public float attack_damage;
     public AudioClip audioClip;
+    public healthbar Healthbar;
 
 
     //--------------------打擊特效開關的bool-----------------------------
@@ -46,6 +49,7 @@ public class PlayerControl : MonoBehaviour
     public bool Legend_speed = false;
     public bool hasBurnEffect = false; // 是否具有燃燒效果
     public int burnDuration = 5; // 燃燒持續時間
+    public Tetris_ability_Manager tetris_ability_manager;
     private void Start() 
     {
         rig = GetComponent<Rigidbody2D>();    
@@ -53,10 +57,11 @@ public class PlayerControl : MonoBehaviour
         axeSlash = GameObject.Find("Axe_Slashh_0");
         StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
     }
-    public float Calculating_Values_damage; //計算加成傷害%數(給怪物腳本用)
-    public float Calculating_Values_lifeSteal; //計算加成吸血%數(給怪物腳本用)
-    public float Calculating_Values_criticalDamage; //計算加成暴擊傷害%數(給怪物腳本用)
-    public float Calculating_Values_criticalHitRate; //計算加成暴擊率%數(給怪物腳本用)
+    [HideInInspector]public float Calculating_Values_damage; //計算加成傷害%數(給怪物腳本用)
+    [HideInInspector]public float Calculating_Values_lifeSteal; //計算加成吸血%數(給怪物腳本用)
+    [HideInInspector]public float Calculating_Values_criticalDamage; //計算加成暴擊傷害%數(給怪物腳本用)
+    [HideInInspector]public float Calculating_Values_criticalHitRate; //計算加成暴擊率%數(給怪物腳本用)
+    [HideInInspector]public float Calculating_Values_health; //計算加成血量%數(給怪物腳本用)
     private void Update() 
     {
         
@@ -84,12 +89,28 @@ public class PlayerControl : MonoBehaviour
         }
         
 
-        Calculating_Values_damage = characterValuesIngame.damage_percentage + characterValues.damage_addition_percentage;
-        Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage;
-        Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage;
-        Calculating_Values_criticalHitRate = characterValuesIngame.criticalHitRate + characterValues.criticalHitRate_addition;
+        // 定義碰撞傷害的執行間隔時間（秒）
+        float collisionDamageInterval = 0.5f;
+        // 記錄上次執行碰撞傷害的時間
+        float lastCollisionDamageTime = 0f;
+        // 檢查是否可以執行碰撞傷害
+        if(isCollision_skill_damage == true)
+        {
+            if (Time.time - lastCollisionDamageTime >= collisionDamageInterval)
+            {
+                Collision_skill_damage();
+                lastCollisionDamageTime = Time.time;
+            }
+        }
+
+
+        Calculating_Values_damage = characterValuesIngame.damage_percentage + characterValues.damage_addition_percentage + tetris_ability_manager.damage_percentage;
+        Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage + tetris_ability_manager.lifeSteal_percentage;
+        Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage + tetris_ability_manager.criticalDamage_percentage;
+        Calculating_Values_criticalHitRate = characterValuesIngame.criticalHitRate + characterValues.criticalHitRate_addition + tetris_ability_manager.criticalHitRate;
         speed = levelManager.GetCurrentSpeed() * 
-        (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
+        (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage + tetris_ability_manager.speed_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
+        Calculating_Values_health = characterValuesIngame.health + characterValues.health_addition + tetris_ability_manager.health;
         if(Legend_speed == true){
             speed += 3;
         }
@@ -149,14 +170,42 @@ public class PlayerControl : MonoBehaviour
    // 扣血方法
     public void TakeDamage(float damage)
     {
-        HP -= damage;
+        HP -= damage * (1 + characterValuesIngame.damage_taken_addtion_percentage);
         Renderer targetRenderer = rig.GetComponent<Renderer>();
         Material mat = targetRenderer.material;
         StartCoroutine(SetBoolWithDelay_red(mat,targetRenderer));
         Debug.Log("玩家受到傷害: " + damage + ", 目前血量: " + HP);
         //你可以在這裡加入其他受傷的特效, 或是播放受傷音效
     }
+    public void Collision_skill_damage()
+    {
+        float damage = 0; //碰撞怪物傷害計算
+        //傷害公式 : 最大生命 * (150% + speed% * 2)
+        damage = Healthbar.slider.maxValue * (1 + (0.15f +(speed / 100 * 2))); 
 
+        // 判定如果碰撞到tag為monster
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(transform.position, 0.5f, MonsterLayer);
+        
+        foreach (Collider2D monster in hitMonsters)
+        {
+            if (monster.CompareTag("Monster"))
+            {
+                // 獲取怪物的腳本和渲染器
+                NormalMonster_setting monsterScript = monster.GetComponent<NormalMonster_setting>();
+                Renderer targetRenderer = monster.GetComponent<Renderer>();
+                
+                if (monsterScript != null && targetRenderer != null)
+                {
+                    // 對怪物造成傷害
+                    monsterScript.HP -= damage;
+                    
+                    // 播放受擊特效
+                    Material mat = targetRenderer.material;
+                    StartCoroutine(SetBoolWithDelay(mat, targetRenderer));
+                }
+            }
+        }
+    }
     public void Move(InputAction.CallbackContext context)
     {
         InputX = context.ReadValue<Vector2>().x;

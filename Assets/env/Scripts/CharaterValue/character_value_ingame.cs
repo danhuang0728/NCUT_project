@@ -16,7 +16,10 @@ public class character_value_ingame : MonoBehaviour
     public float cooldown_percentage;
     public float lifeSteal; //已完成
     public float lifeSteal_percentage;
+    public float damage_taken_addtion; // 承受傷害增加
+    public float damage_taken_addtion_percentage;
     public float gold;
+
     void Start()
     {
         damage = 0;
@@ -30,20 +33,13 @@ public class character_value_ingame : MonoBehaviour
     }
     void Update()
     {
+
+        //計算百分比
         damage_percentage =  damage/100;
         criticalDamage_percentage =  criticalDamage/100;
         speed_percentage = speed/100;
         cooldown_percentage = cooldown/100;
         lifeSteal_percentage =  lifeSteal/100;
-        
-        if (Time.time % 5 < Time.deltaTime) //每過五秒顯示gold
-        {
-            Debug.Log("當前金錢: " + gold);
-            Debug.Log("當前damage_percentage: " + damage_percentage);
-            Debug.Log("當前damage: " + damage);
-            Debug.Log("當前cooldown_percentage: " + cooldown_percentage);
-            Debug.Log("當前cooldown: " + cooldown);
-            
-        }
+        damage_taken_addtion_percentage = damage_taken_addtion/100;
     }
 }
