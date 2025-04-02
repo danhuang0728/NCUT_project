@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     //無敵狀態
     [Header("無敵狀態")]
     public bool isInvincible = false;
-    [Header("碰撞怪物技能")]
+    [Header("碰撞怪物傷害特性")]
     public bool isCollision_skill_damage = false;
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
