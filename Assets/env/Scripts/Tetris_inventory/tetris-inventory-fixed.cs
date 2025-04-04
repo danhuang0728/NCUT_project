@@ -447,6 +447,18 @@ public class TetrisInventoryManager : MonoBehaviour
             new Vector2(3, 2), // 設置中心點在形狀的幾何中心
             "Pink_7"//粉色組件7
         );
+        
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),
+                new Vector2Int(1, 0),new Vector2Int(0, 2),
+                new Vector2Int(2, 0),new Vector2Int(3, 2),
+                new Vector2Int(3, 0)
+            },
+            new Color(1f, 0.7f, 0.85f), // 粉色
+            new Vector2(3, 2), // 設置中心點在形狀的幾何中心
+            "Pink_8"//粉色組件8
+        );
 
         CreateTetrisPiece(
             new Vector2Int[] {
@@ -469,8 +481,8 @@ public class TetrisInventoryManager : MonoBehaviour
             },
             new Color(0.5f, 1f, 0.5f), // 亮綠色
             new Vector2(2, 2), // 設置中心點在形狀的幾何中心
-            "Green_2",//綠色組件2
-            false //不旋轉
+            "Green_2"//綠色組件2
+             //不旋轉
         );
 
         CreateTetrisPiece(
@@ -481,8 +493,36 @@ public class TetrisInventoryManager : MonoBehaviour
                 new Vector2Int(2, 3)
             },
             new Color(0.5f, 1f, 0.5f), // 亮綠色
-            new Vector2(2, 2), // 設置中心點在形狀的幾何中心
-            "Green_3",//綠色組件3
+            new Vector2(0, 0), // 設置中心點在形狀的幾何中心
+            "Green_3"//綠色組件3
+            
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(0, 0),new Vector2Int(1, 0),new Vector2Int(2, 0),new Vector2Int(3, 0),new Vector2Int(4, 0),new Vector2Int(5, 0),
+                new Vector2Int(2, 1),new Vector2Int(3, 1),new Vector2Int(4, 1),new Vector2Int(5, 1),
+                new Vector2Int(2, 2),new Vector2Int(3, 2),new Vector2Int(4, 2),new Vector2Int(5, 2),
+                new Vector2Int(2, 3),new Vector2Int(3, 3),new Vector2Int(4, 3),new Vector2Int(5, 3),
+            },
+            new Color(0.5f, 1f, 0.5f), // 亮綠色
+            new Vector2(0, 0), // 設置中心點在形狀的幾何中心
+            "Green_4"//綠色組件3
+             
+        );
+
+        CreateTetrisPiece(
+            new Vector2Int[] {
+                new Vector2Int(1, 0), new Vector2Int(2, 0),
+                new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1), new Vector2Int(3, 1),
+                new Vector2Int(0, 2), new Vector2Int(1, 2), new Vector2Int(2, 2), new Vector2Int(3, 2),
+                new Vector2Int(1, 3), new Vector2Int(2, 3)
+
+                
+            },
+            new Color(0.5f, 0f, 1f), // 紫色
+            new Vector2(1f, 1f), // 設置中心點在形狀的幾何中心
+            "(Purple_1)", //紫色組件1
             false //不旋轉
         );
 

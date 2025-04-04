@@ -22,9 +22,11 @@ public class Tetris_ability_Manager : MonoBehaviour
     [HideInInspector]public float damage_taken_addtion_percentage;
     private int childCountLastFrame;
     public PlayerControl playerControl;
+    private StatsDisplay statsDisplay;
     void Start()
     {
         playerControl = FindObjectOfType<PlayerControl>();
+        statsDisplay = FindObjectOfType<StatsDisplay>();
     }
     void Update()
     {
@@ -63,12 +65,17 @@ public class Tetris_ability_Manager : MonoBehaviour
                 }
                 if (child.gameObject.name.Contains("Pink_2"))
                 {
-                    damage_accumulation += 3;
+                    damage_accumulation += 5;
                     criticalDamage_accumulation += 12;
                 }
                 if (child.gameObject.name.Contains("Pink_3"))
                 {
                     criticalHitRate_accumulation += 10;
+                }
+                if (child.gameObject.name.Contains("Pink_4"))
+                {
+                    criticalHitRate_accumulation += 10;
+                    damage_accumulation += 30;
                 }
                 if (child.gameObject.name.Contains("Pink_5"))
                 {
@@ -76,30 +83,59 @@ public class Tetris_ability_Manager : MonoBehaviour
                     damage_accumulation += 25;
                 }
 
+                if (child.gameObject.name.Contains("Pink_8"))
+                {
+                    playerControl.isCollision_skill_damage = true;
+                    speed_accumulation += 10;
+                    damage_accumulation += 20;
+                }
+
                 //-----------基礎數值方塊(綠)-----------
                 if (child.gameObject.name.Contains("Green_1"))
                 {
                     health_accumulation += 12;
                     damage_accumulation += 10;
-                    damage_taken_addtion_accumulation += 30;
+                    damage_taken_addtion_accumulation += 10;
                 }
                 if (child.gameObject.name.Contains("Green_2"))
                 {
                     health_accumulation += 15;
                     damage_accumulation += 15;
-                    damage_taken_addtion_accumulation += 50;
+                    damage_taken_addtion_accumulation += 20;
                 }
                 if (child.gameObject.name.Contains("Green_3"))
                 {
                     health_accumulation += 15;
                     damage_accumulation += 15;
-                    damage_taken_addtion_accumulation += 50;
+                    damage_taken_addtion_accumulation += 20;
+                }
+                if (child.gameObject.name.Contains("Green_4"))
+                {
+                    health_accumulation += 40;
+                    damage_accumulation += 80;
+                    damage_taken_addtion_accumulation += 15;
+                }
+
+                //-----------基礎數值方塊(紫)-----------
+                if (child.gameObject.name.Contains("Purple_1"))
+                {
+                    speed_accumulation += 20;
+                    damage_accumulation += 20;
+                    health_accumulation += 70;
                 }
 
                 //-----------特殊能力方塊(粉)-----------
                 if (child.gameObject.name.Contains("Pink_6"))
                 {
                     playerControl.isCollision_skill_damage = true;
+                    speed_accumulation += 3;
+                    health_accumulation += 80;
+                }
+
+                if (child.gameObject.name.Contains("Pink_7"))
+                {
+                    speed_accumulation += 1;
+                    health_accumulation += 30;
                 }
                 
                 //---------------------武器進化方塊-------------------------
