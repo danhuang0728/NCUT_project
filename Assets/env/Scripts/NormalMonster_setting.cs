@@ -140,7 +140,7 @@ public class NormalMonster_setting : MonoBehaviour
         
         for(int i = 0; i < burn_time; i++)
         {
-            HP -= 1;
+            HP -= 1 + playerControl.attack_damage * 0.2f; // 每秒減少的血量
             playerControl.SetBoolWithDelay_void(material, this.GetComponent<Renderer>());
             yield return new WaitForSeconds(1f);
         }

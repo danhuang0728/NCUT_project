@@ -104,6 +104,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
         
         // 設定文字內容
         choose_TITLE[i].text = selectedData[i].skillName;
+        textFields[i].text = selectedData[i].weapon_inturoduction;
 
         images[i].sprite = selectedData[i].skillIcon;
       }

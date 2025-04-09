@@ -74,4 +74,21 @@ public class LevelManager : MonoBehaviour
         Debug.LogWarning($"找不到等級 {currentLevel} 的速度值");
         return 0f;
     }
+
+    public float GetCurrentAttack()
+    {
+        if (levelData == null || experienceSystem == null) return 0f;
+
+        int currentLevel = experienceSystem.currentLevel;
+        // 因為陣列索引從0開始，而等級從1開始，所以要減1
+        int arrayIndex = currentLevel - 1;
+        
+        if (arrayIndex >= 0 && arrayIndex < levelData.levels.Length)
+        {
+            return levelData.levels[arrayIndex].attack;
+        }
+        
+        Debug.LogWarning($"找不到等級 {currentLevel} 的攻擊值");
+        return 0f;
+    }
 }

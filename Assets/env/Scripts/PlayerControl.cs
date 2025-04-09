@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     public Transform AttackPoint;
     public LayerMask MonsterLayer;
     public LayerMask BossMonsterLayer;
+    public LayerMask award_box_layer;
     public float AttackRange;
     public float Knockback_strength;
     public float HP;
@@ -54,6 +55,7 @@ public class PlayerControl : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
+        
         axeSlash = GameObject.Find("Axe_Slashh_0");
         StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
     }
@@ -103,7 +105,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-
+        attack_damage = levelManager.GetCurrentAttack();
         Calculating_Values_damage = characterValuesIngame.damage_percentage + characterValues.damage_addition_percentage + tetris_ability_manager.damage_percentage;
         Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage + tetris_ability_manager.lifeSteal_percentage;
         Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage + tetris_ability_manager.criticalDamage_percentage;
@@ -114,6 +116,9 @@ public class PlayerControl : MonoBehaviour
         if(Legend_speed == true){
             speed += 3;
         }
+        
+
+        
         rig.velocity = new Vector2(speed * InputX , speed * InputY);    
        
 
@@ -245,6 +250,7 @@ public class PlayerControl : MonoBehaviour
         demageCheck();
         demageCheck2();
         demageCheck3();
+        demageCheck4();
     }
     public void demageCheck(){          //史萊姆傷害判定
         Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, MonsterLayer); 
@@ -333,6 +339,32 @@ public class PlayerControl : MonoBehaviour
         }
 
     }   
+    public void demageCheck4(){          //box傷害判定
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, award_box_layer); 
+
+        // 如果有怪物進入範圍   (確定box的)
+        foreach (Collider2D box in hitMonsters)  //這裡monster指進到攻擊範圍內的gameObject 
+        {
+            Renderer targetRenderer = box.GetComponent<Renderer>(); //抓取複製怪的renderer
+            Award_box_body box_Scripts = box.GetComponent<Award_box_body>(); //讀取在攻擊範圍內的怪物腳本
+            if (box_Scripts != null)
+            {           
+                box_Scripts.HP -= attack_damage;                      //改變攻擊範圍內怪物的HP變數
+                if (targetRenderer != null)
+                {
+                    // 获取材质实例（确保不会修改共享材质）
+                    Material mat = targetRenderer.material;
+                    // 打擊特效       
+                    StartCoroutine(SetBoolWithDelay(mat,targetRenderer));  
+                }
+                Debug.Log("怪物HP: " + box_Scripts.HP);
+            }
+        
+            else{break;}
+
+        }
+
+    }  
 
     public void Attack(InputAction.CallbackContext context)
     {

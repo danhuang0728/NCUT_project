@@ -1050,8 +1050,8 @@ MonoBehaviour:
   inventoryPanel: {fileID: 8456633844297980930}
   equippedGridContainer: {fileID: 1706523830534854184}
   storageGridContainer: {fileID: 4869770066049158411}
-  storageGridContainer_2: {fileID: 0}
-  storageGridContainer_3: {fileID: 0}
+  storageGridContainer_2: {fileID: 4340965765052001534}
+  storageGridContainer_3: {fileID: 2622511662039858508}
   gridCellPrefab: {fileID: 4275538352984746526}
   tetrisPiecePrefab: {fileID: 2643520835692319462}
   blockSprite: {fileID: 21300000, guid: 4a8d663c56eec1246b069a9ee0794f57, type: 3}

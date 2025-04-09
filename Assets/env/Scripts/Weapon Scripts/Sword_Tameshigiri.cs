@@ -33,6 +33,7 @@ public class Sword_Tameshigiri : MonoBehaviour
             {
                 StartCoroutine(SpawnShinyEffect());
                 timer = 0f;
+                damage = playerController.attack_damage * 0.3f;
             }
         }
     }

@@ -15,6 +15,7 @@ public class WeaponData : ScriptableObject
 
     }
     public string skillName;
+    public string weapon_inturoduction;
     public int level;
     public Sprite skillIcon;
     public float cooldownTime;
