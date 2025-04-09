@@ -8,7 +8,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
 {
     public WeaponDatabase weaponDatabase; // 新增武器資料庫
     public Player_WeaponData playerWeaponData; // 新增玩家武器資料庫
-    public Weapon_Manager weaponManager; // 新增武器管理器
+    [HideInInspector]public Weapon_Manager weaponManager; // 新增武器管理器
     public GameObject[] optionPanels; // 三個選項 Panel
     public TextMeshProUGUI[] choose_TITLE; // 三個文字欄位
     public TextMeshProUGUI[] textFields; // 三個文字欄位
@@ -27,6 +27,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
        {
         weapon.level = 1;
        }
+       weaponManager = FindObjectOfType<Weapon_Manager>();
     }
 
     // Update is called once per frame

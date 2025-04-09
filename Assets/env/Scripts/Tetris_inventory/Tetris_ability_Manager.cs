@@ -27,6 +27,7 @@ public class Tetris_ability_Manager : MonoBehaviour
     {
         playerControl = FindObjectOfType<PlayerControl>();
         statsDisplay = FindObjectOfType<StatsDisplay>();
+        weapon_manager = FindObjectOfType<Weapon_Manager>();
     }
     void Update()
     {
