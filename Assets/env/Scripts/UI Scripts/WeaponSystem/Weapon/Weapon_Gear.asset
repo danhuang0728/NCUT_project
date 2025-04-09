@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b000ef24cf7547a273007e5382014, type: 3}
   m_Name: Weapon_Gear
   m_EditorClassIdentifier: 
-  skillName: 
-  level: 1
+  skillName: gear
+  level: 5
   skillIcon: {fileID: 0}
   cooldownTime: 0
   skillId: 0

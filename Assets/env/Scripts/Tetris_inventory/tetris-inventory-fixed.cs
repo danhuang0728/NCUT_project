@@ -46,7 +46,7 @@ public class TetrisInventoryManager : MonoBehaviour
         inventoryPanel.SetActive(false);
         InitializeGrids();
         CreateSampleTetrisPieces();
-        Debug.Log(tetrisPieces[0].GetWorldPositions(0,0));
+        // Debug.Log(tetrisPieces[0].GetWorldPositions(0,0));
         TetrisPanel_ = GetComponent<tetrisPanel_>();
         // 新增：獲取Canvas並設置為使用非縮放時間
         SetupCanvasForPauseIndependence();
@@ -80,7 +80,7 @@ public class TetrisInventoryManager : MonoBehaviour
             
             // 設置為不受時間影響
             scaler.scaleFactor = scaler.scaleFactor; // 保持當前縮放比例
-            Debug.Log("物品欄Canvas已設置為不受時間縮放影響");
+            // Debug.Log("物品欄Canvas已設置為不受時間縮放影響");
         }
         else
         {
@@ -104,12 +104,12 @@ public class TetrisInventoryManager : MonoBehaviour
             {
                 if (selectedPiece != null)
                 {
-                    Debug.Log("正在旋轉方塊");
+                    // Debug.Log("正在旋轉方塊");
                     selectedPiece.Rotate();
                 }
                 else
                 {
-                    Debug.Log("未選擇方塊，無法旋轉");
+                    // Debug.Log("未選擇方塊，無法旋轉");
                 }
             }
         }
@@ -661,12 +661,12 @@ public class TetrisInventoryManager : MonoBehaviour
         foreach (Vector2Int pos in worldPositions)
         {
             // 添加偵錯日誌
-            Debug.Log($"嘗試放置在位置: ({pos.x}, {pos.y})");
+            // Debug.Log($"嘗試放置在位置: ({pos.x}, {pos.y})");
             
             // 檢查是否超出網格範圍
             if (pos.x < 0 || pos.x >= gridSize || pos.y < 0 || pos.y >= gridSize)
             {
-                Debug.Log($"超出邊界: ({pos.x}, {pos.y})");
+                // Debug.Log($"超出邊界: ({pos.x}, {pos.y})");
                 return false;
             }
             
@@ -677,7 +677,7 @@ public class TetrisInventoryManager : MonoBehaviour
                 TetrisPiece occupyingPiece = targetGrid[pos.x, pos.y].OccupyingPiece;
                 if (occupyingPiece != piece)
                 {
-                    Debug.Log($"位置已被其他方塊佔用: ({pos.x}, {pos.y})");
+                    // Debug.Log($"位置已被其他方塊佔用: ({pos.x}, {pos.y})");
                     return false;
                 }
             }
@@ -990,7 +990,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 檢查是否允許旋轉
         if (!canRotate)
         {
-            Debug.Log("此方塊不能旋轉");
+            // Debug.Log("此方塊不能旋轉");
             return;
         }
         
@@ -1028,7 +1028,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         // 获取当前位置基准
         if (occupiedCells.Count == 0)
         {
-            Debug.LogWarning("无法旋转：方块未放置在网格中");
+            // Debug.LogWarning("无法旋转：方块未放置在网格中");
             return;
         }
         
@@ -1082,7 +1082,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             // 不能旋转，恢复形状
             shape = oldShape;
-            Debug.Log("旋转失败：旋转后的形状无法放置");
+            // Debug.Log("旋转失败：旋转后的形状无法放置");
             return;
         }
         

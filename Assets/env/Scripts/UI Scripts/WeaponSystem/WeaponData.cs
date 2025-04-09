@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Inventory/WeaponData")]
@@ -11,9 +12,6 @@ public class WeaponData : ScriptableObject
         crossbow,
         MagicBook,
         thrust,
-        Sword,
-        Sword_attack1,
-        Sword_attack2
 
     }
     public string skillName;

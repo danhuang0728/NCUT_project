@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon_Manager : MonoBehaviour
 {
+    public Player_WeaponData player_weaponData;
     // 圓形武器：包含啟用開關與等級設定
     [Header("圓環武器")]
     public bool circle = false;
@@ -157,4 +158,98 @@ public class Weapon_Manager : MonoBehaviour
             weapon_object.SetActive(false);
         }
     }
+    void setWeaponLevel(int level, WeaponData weaponData)
+    {
+        if(player_weaponData.WeaponDataList.Contains(weaponData))
+        {
+            weaponData.level = level;
+        }
+    }
+    public void UpdateAllWeaponLevels()
+    {
+        if (player_weaponData == null || player_weaponData.WeaponDataList == null)
+        {
+            Debug.LogError("玩家武器資料庫為空或未正確設置");
+            return;
+        }
+
+        foreach (WeaponData weaponData in player_weaponData.WeaponDataList)
+        {
+            if (weaponData != null)
+            {
+                setWeaponLevel(weaponData.level, weaponData);
+                
+                // 根據武器類型更新對應的武器等級變數
+                switch (weaponData.weapontype)
+                {
+                    case WeaponData.Weapontype.gear:
+                        circle_level = weaponData.level;
+                        break;
+                    case WeaponData.Weapontype.Boomerang:
+                        boomerang_level = weaponData.level;
+                        break;
+                    case WeaponData.Weapontype.MagicBook:
+                        magicbook_level = weaponData.level;
+                        break;
+                    case WeaponData.Weapontype.crossbow:
+                        crossbow_level = weaponData.level;
+                        break;
+                    case WeaponData.Weapontype.Axe:
+                        axe_level = weaponData.level;
+                        break;
+                    case WeaponData.Weapontype.thrust:
+                        thrust_level = weaponData.level;
+                        break;
+                    default:
+                        Debug.LogWarning("未知的武器類型: " + weaponData.weapontype);
+                        break;
+                }
+                
+                Debug.Log("更新武器等級: " + weaponData.skillName + " 等級: " + weaponData.level);
+            }
+        }
+    }
+    public void UpdateWeaponStatus()
+    {
+        if (player_weaponData == null || player_weaponData.WeaponDataList == null)
+        {
+            Debug.LogError("玩家武器資料庫為空或未正確設置");
+            return;
+        }
+        // 歷遍玩家武器庫，依照對應武器類型將 bool 設為 true
+        foreach (WeaponData weaponData in player_weaponData.WeaponDataList)
+        {
+            if (weaponData != null)
+            {
+                switch (weaponData.weapontype)
+                {
+                    case WeaponData.Weapontype.gear:
+                        circle = true;
+                        break;
+                    case WeaponData.Weapontype.Boomerang:
+                        Boomerang = true;
+                        break;
+                    case WeaponData.Weapontype.MagicBook:
+                        MagicBook = true;
+                        break;
+                    case WeaponData.Weapontype.crossbow:
+                        crossbow = true;
+                        break;
+                    case WeaponData.Weapontype.Axe:
+                        Axe = true;
+                        break;
+                    case WeaponData.Weapontype.thrust:
+                        thrust = true;
+                        break;
+                    default:
+                        Debug.LogWarning("未知的武器類型: " + weaponData.weapontype);
+                        break;
+                }
+                
+                Debug.Log("武器狀態更新: " + weaponData.skillName + " 已啟用");
+            }
+        }
+    }
+
+
 }
