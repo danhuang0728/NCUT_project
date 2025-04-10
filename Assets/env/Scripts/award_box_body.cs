@@ -12,6 +12,8 @@ public class Award_box_body : MonoBehaviour
     public GameObject monster;
     public float movespeed;
     public float HP;
+    public GameObject greenHeartPrefab; //綠心物品預製體
+   public GameObject bitcoinPrefab; //金幣物品預製體
 
     void Start()
     {
@@ -57,6 +59,18 @@ public class Award_box_body : MonoBehaviour
 
     public void MonsterDead(GameObject monster)
     {
+        int randomItem = Random.Range(0, 2); //隨機生成物品，0為綠心，1為金幣
+        if (randomItem == 0)
+        {
+            GameObject greenHeart = Instantiate(greenHeartPrefab, transform.position, Quaternion.identity); //生成綠心物品
+            greenHeart.SetActive(true);
+        }
+        else if (randomItem == 1)
+        {
+            GameObject bitcoin = Instantiate(bitcoinPrefab, transform.position, Quaternion.identity); //生成金幣物品
+            bitcoin.SetActive(true);
+        }
+
         monster.SetActive(false);
     }
 }

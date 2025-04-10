@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Weapon_Gear
   m_EditorClassIdentifier: 
   skillName: gear
-  level: 5
+  weapon_inturoduction: 
+  level: 1
   skillIcon: {fileID: 0}
   cooldownTime: 0
   skillId: 0

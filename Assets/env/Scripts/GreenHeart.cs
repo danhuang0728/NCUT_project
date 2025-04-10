@@ -6,10 +6,11 @@ using UnityEngine;
 public class GreenHeart : MonoBehaviour
 {
     private PlayerControl playerControl;
-    public healthbar healthbar;
+    private healthbar healthbar;
     void Start()
     {
         playerControl = FindObjectOfType<PlayerControl>(); //初始化讀取腳本
+        healthbar = FindObjectOfType<healthbar>();
     }
 
     

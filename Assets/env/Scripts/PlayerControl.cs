@@ -116,6 +116,10 @@ public class PlayerControl : MonoBehaviour
         if(Legend_speed == true){
             speed += 3;
         }
+        // 最大速度限制 (20)
+        if(speed > 20){
+            speed = 20;
+        }
         
 
         

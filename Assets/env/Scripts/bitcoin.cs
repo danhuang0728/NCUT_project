@@ -6,10 +6,11 @@ using UnityEngine;
 public class bitcoin : MonoBehaviour
 {
     private PlayerControl playerControl;
-    public character_value_ingame CharacterValuesIngame;
+    private character_value_ingame CharacterValuesIngame;
     void Start()
     {
         playerControl = FindObjectOfType<PlayerControl>(); //初始化讀取腳本
+        CharacterValuesIngame = FindObjectOfType<character_value_ingame>();
     }
 
     
