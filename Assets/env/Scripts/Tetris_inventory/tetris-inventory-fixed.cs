@@ -31,6 +31,7 @@ public class TetrisInventoryManager : MonoBehaviour
     [HideInInspector] public GridCell[,] storageGrid_2;  // 右側存儲網格第二頁
     [HideInInspector] public GridCell[,] storageGrid_3;  // 右側存儲網格第三頁
     
+    private player_tetr_Manager player_tetr_Manager;
     private bool isInventoryOpen = false;
     private List<TetrisPiece> tetrisPieces = new List<TetrisPiece>();
     private TetrisPiece currentDraggedPiece;
@@ -42,14 +43,16 @@ public class TetrisInventoryManager : MonoBehaviour
     
     void Start()
     {
+        player_tetr_Manager = GetComponent<player_tetr_Manager>();
         // 初始化物品欄
         inventoryPanel.SetActive(false);
         InitializeGrids();
-        CreateSampleTetrisPieces();
+        //CreateSampleTetrisPieces();
         // Debug.Log(tetrisPieces[0].GetWorldPositions(0,0));
         TetrisPanel_ = GetComponent<tetrisPanel_>();
         // 新增：獲取Canvas並設置為使用非縮放時間
         SetupCanvasForPauseIndependence();
+        player_tetr_Manager.Update_UI();
     }
     
     // 新增：設置Canvas以不受時間暫停影響
@@ -199,7 +202,7 @@ public class TetrisInventoryManager : MonoBehaviour
         
         return grid;
     }
-    
+    /*
     // 創建一些示例 Tetris 方塊
     void CreateSampleTetrisPieces()
     {
@@ -525,12 +528,14 @@ public class TetrisInventoryManager : MonoBehaviour
             "(Purple_1)", //紫色組件1
             false //不旋轉
         );
+        
 
                 
     }
+    */
     
     // 創建一個 Tetris 方塊
-    void CreateTetrisPiece(Vector2Int[] shape, Color color, Vector2 Pivot = default, string pieceName = "TetrisPiece", bool canRotate = true)
+    public void CreateTetrisPiece(Vector2Int[] shape, Color color, Vector2 Pivot = default, string pieceName = "TetrisPiece", bool canRotate = true)
     {
         GameObject pieceObj = Instantiate(tetrisPiecePrefab, storageGridContainer);
         pieceObj.name = pieceName;
@@ -685,6 +690,7 @@ public class TetrisInventoryManager : MonoBehaviour
         
         return true;
     }
+    ///
     
     // 放置方塊到網格
     public void PlacePiece(TetrisPiece piece, GridCell startCell, GridCell[,] targetGrid)
