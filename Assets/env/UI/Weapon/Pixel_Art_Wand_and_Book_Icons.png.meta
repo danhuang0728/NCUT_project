@@ -1,0 +1,2340 @@
+fileFormatVersion: 2
+guid: 1ec5247724be21b4486c66e8c4fa3afc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_0
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1139
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f221bf4e301d8e4aa0e8f95221de47c
+      internalID: -1496704387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_1
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91a562b8b8b2e5b429034e06c2559314
+      internalID: 95140664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_2
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e3b97b10c68dd40927d7981878ba66
+      internalID: 1885071545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_3
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c9c8f1a0c6399489a564c59bfabcf2
+      internalID: 2124544829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_4
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a991fc1f44c65a84a9b834e95d534021
+      internalID: -1424735263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_5
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de024f69c603a2e469c9b6ed3136ba38
+      internalID: -567705896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_6
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2436aa8093380784b9febe1f939ec2fa
+      internalID: -1683357099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_7
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37394f7a1e40ae84db479de90bb34a33
+      internalID: -1299296873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_8
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060449f484672694f910a723a24d13b6
+      internalID: -1890778495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_9
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1139
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b442a2179f847145acae0659072eebd
+      internalID: 1772152057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1017
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21277939bb249264babb48d0740fde40
+      internalID: -1710339335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_11
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1016
+        width: 104
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8839d3442251e845a03ae20a795f4e7
+      internalID: -1377347208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_12
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1016
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67091cdd3e119404ebd8beeb445e2e35
+      internalID: 2086331743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_13
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 1017
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8412b17ec1dd6f4469212d253407d0d2
+      internalID: 1562436169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_14
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 1016
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb97233677925947ad061bff5f411b5
+      internalID: 2090373655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_15
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1016
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60195adc20fc44b46bfef6ad951a9be7
+      internalID: 1656775739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_16
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 1016
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066a726f476a5b240b9520455aea35a0
+      internalID: -1415209471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_17
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 1016
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f81bd45c0112c8d44b60be616dfc77aa
+      internalID: -173538063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_18
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 1016
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01555816ec8abff41871fd32fe1c96dd
+      internalID: 100648756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_19
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1017
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0b216902e5178499cd42e87b3a721c
+      internalID: -1164877919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_20
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 894
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04b991ce74007c47977beba9b8c7764
+      internalID: -1764674650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_21
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8bd957db6cf8fb4bbc93aa991e3f9d2
+      internalID: -36278924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_22
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66837cfa2f4344e4da1cb628be40a612
+      internalID: 407591654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_23
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea81794e8f34ef346b22f5702ca6ac10
+      internalID: -1291957086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_24
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33dde6b711b1422498d0b1afda7c5beb
+      internalID: 119872054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_25
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1fbaec3451f6b4c83849e6ad5a8372
+      internalID: -680229162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_26
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c65c373146042f44b0430a74506923c
+      internalID: -1795057232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_27
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 894
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8187087816f0fbd4ca2d9f0f929dc7d6
+      internalID: 676252988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_28
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 894
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22642a3e372367a4fa495a191f72d0e4
+      internalID: -1667901277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_29
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 894
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63115147475682c4aaeb97f48fe632f3
+      internalID: -1354603216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_30
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 771
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15da363f6ff42324aaa3289376fb64ee
+      internalID: -428559258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_31
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 771
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b5ae8170d623724e90c7bb4127d7e16
+      internalID: -1506448062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_32
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 771
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d98c91340dd2d64da4627508cc26cd5
+      internalID: -645581638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_33
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 771
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0e3fbcb39a46848875f23b4ea3a054
+      internalID: 1152973053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_34
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 771
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f59477958013b448b4bd912791d242e
+      internalID: -859613342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_35
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 771
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b400379f4339adc4ab892b16963f8ce8
+      internalID: 963086248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_36
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 771
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda71239153625149a2ccffd1dd2226b
+      internalID: 480907522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_37
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 771
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708ec997d6df5d94fb93a58d1c621a50
+      internalID: -1405576500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_38
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 771
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9924ea92c2cd3444e9e970cfb824f9fe
+      internalID: -879213116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_39
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 771
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce16824403db7a449e932e21f859917
+      internalID: 575766792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_40
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 649
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cdea7b28dd78ad43a6e9f046a8585f6
+      internalID: -609947950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_41
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f604b6105429c4fa78b7767950ebb5
+      internalID: -370613463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_42
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f3bf73b024288429f3a992b2aa5a59
+      internalID: -1618905640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_43
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2156f5480d6b6c5459641b9bc8319db8
+      internalID: 173804343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_44
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53608b854aa163545a79fab35dea9853
+      internalID: 1888363505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_45
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1141ee91add43d048bf33da45785c8fc
+      internalID: -748326030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_46
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf46b1de90bbd046b6821995cb6a19c
+      internalID: 17827701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_47
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 649
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2266a33ff4f3d41b5d7c7d535e7ec3
+      internalID: 945938407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_48
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f6cdf8eb74c74d4198e0d83b5f18389
+      internalID: -1486412515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_49
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 649
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faec3f773875ed542a24edbbfdbcaf6e
+      internalID: 2060684293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_50
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 533
+        width: 87
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95819c09fd1fb4545ac9954ef43f4502
+      internalID: 674627460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_51
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 526
+        width: 78
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ee528314cebf744aedf84e735b6dd2
+      internalID: -618154786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_52
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 526
+        width: 91
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042b0184b1ebb1046b247f7129136a62
+      internalID: -2002786937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_53
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 527
+        width: 77
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bfd1b7dcf90b0d4e9c50e2d6650c16f
+      internalID: 779341165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_54
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 530
+        width: 71
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a5c5d587833be45a86eb931809632b
+      internalID: -1104546334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_55
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 526
+        width: 80
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e907aad489bef294dac4383cb9610ee8
+      internalID: -1220078924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_56
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 536
+        width: 98
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552eb9a92a08c7f4ca5cb3d945ccdcc5
+      internalID: -19679381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_57
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 530
+        width: 70
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5df6dd94ed561a40b71c2de6aaa5829
+      internalID: -1848899170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_58
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 526
+        width: 90
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bfb733232dcf72498f5e35ffc1e33c3
+      internalID: -44670974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_59
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 527
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31b32c7b7abb17408cb5d80bd4b7402
+      internalID: 1205344255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_60
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 414
+        width: 83
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6322c0bb92af64793a3850a74e2c86
+      internalID: 1545923523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_61
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 407
+        width: 104
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa69ae63a71eaa4ead959a180fd4487
+      internalID: -139250786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_62
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 410
+        width: 91
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 738b6fb1075af7645a139bfce7b935da
+      internalID: 1181615980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_63
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 427
+        width: 104
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98bd4580a431d154ca418d110e51f9b3
+      internalID: -56290061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_64
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 424
+        width: 104
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e87c41873e07d4ebed2b52dccf79e3
+      internalID: 1191910101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_65
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 421
+        width: 97
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fd538ff48bfa224ea68c63ffff8f04c
+      internalID: 1372914323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_66
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 414
+        width: 104
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9defeca6860c634a8d5cd1e72b2e44a
+      internalID: -1182035375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_67
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 407
+        width: 97
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce750411b40448340b002aa59f9599a4
+      internalID: -650630074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_68
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 404
+        width: 101
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beea5582ab88bd4459ef251c56e0660e
+      internalID: -1907951727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_69
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 410
+        width: 104
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81bdb82b9dfe90e458c3e5d1bfa2df2d
+      internalID: 1914947251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_70
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 285
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce41feae9d103214886ecbe908da6c8b
+      internalID: -783089195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_71
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 292
+        width: 104
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b226dc6400c462040918896f97df9b7c
+      internalID: 1726440366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_72
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 285
+        width: 94
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43a0d0264d76294684f69c9ea5e5ebe
+      internalID: -1519329046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_73
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 295
+        width: 98
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b3eb69f7909a674885c9daa4822f6bd
+      internalID: 1396757771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_74
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 281
+        width: 81
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 305518511ca677345880d0491a3524ac
+      internalID: -1096426098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_75
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 288
+        width: 104
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c54331d8c99fbf44bb619f6e19aafaa
+      internalID: -205596945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_76
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 285
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a8dad8842de1b4eaa1ee4c98e1d7b9
+      internalID: -1300050379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_77
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 292
+        width: 105
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4acc87ed9a11841bd72e3895abbfbb
+      internalID: 872647850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_78
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 298
+        width: 104
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7575f97aac0fd446bc2ed4dcff65aa9
+      internalID: 1358704068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_79
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 281
+        width: 87
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37013a0cf5dc3d54a9bb31fa9e573c87
+      internalID: 271543971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_80
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 165
+        width: 105
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 040441a76c326f146819fde65322c741
+      internalID: -2022991971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_81
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 162
+        width: 90
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2481d8edf254d34e81d77195a253b12
+      internalID: -2101753662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_82
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 158
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adfbfe6196dcfac4ea39a482f005e534
+      internalID: 466312018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_83
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 169
+        width: 105
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7e580949275894fb5cac663b513fc2
+      internalID: 319617617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_84
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 158
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e25e91533761e6946a99510403bcad91
+      internalID: 1537493419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_85
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 162
+        width: 104
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e9eab010cad3ef4c87cbce4549c2030
+      internalID: 1432522706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_86
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 158
+        width: 104
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4163d038ae625741a37806a55e03859
+      internalID: 1597869703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_87
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 166
+        width: 91
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8478f15058bfd404b99b661b03475e3c
+      internalID: 1434831386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_88
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 166
+        width: 104
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68d97362f107bf24b9947697b11a1428
+      internalID: -1670250027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_89
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 162
+        width: 104
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b54af02a4f2ffb458e29e30970b63fd
+      internalID: -394469771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_90
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 53
+        width: 104
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a1a80af65b25c41b6752fb7f5d0114
+      internalID: -1571984948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_91
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 53
+        width: 104
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f236991f06bad924295e94064a937d91
+      internalID: 1392325397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_92
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 43
+        width: 97
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50a9bf6f437783e4281fd1d3008f28ab
+      internalID: -694998441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_93
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 38
+        width: 104
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 337a568343e9b0d4bb04b8a51e04e09d
+      internalID: -439371731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_94
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 50
+        width: 104
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc153ccb43bc73845a9444d85c0ea42a
+      internalID: 1426863315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_95
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 46
+        width: 98
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a08c7624c47914397fc492e1cd626d
+      internalID: -6427434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_96
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 53
+        width: 90
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1fb0f24ebb2b76408767acda0ed8409
+      internalID: 687252850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_97
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 38
+        width: 80
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb9a5817458ca6642a34b0b731dfe685
+      internalID: -561078058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_98
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 38
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfef786dd6514d42a6f8c54078e3308
+      internalID: 2025142975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel_Art_Wand_and_Book_Icons_99
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 50
+        width: 97
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1baa54491373bb04197a52f0caad0cd3
+      internalID: -1102369595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Pixel_Art_Wand_and_Book_Icons_0: -1496704387
+      Pixel_Art_Wand_and_Book_Icons_1: 95140664
+      Pixel_Art_Wand_and_Book_Icons_10: -1710339335
+      Pixel_Art_Wand_and_Book_Icons_11: -1377347208
+      Pixel_Art_Wand_and_Book_Icons_12: 2086331743
+      Pixel_Art_Wand_and_Book_Icons_13: 1562436169
+      Pixel_Art_Wand_and_Book_Icons_14: 2090373655
+      Pixel_Art_Wand_and_Book_Icons_15: 1656775739
+      Pixel_Art_Wand_and_Book_Icons_16: -1415209471
+      Pixel_Art_Wand_and_Book_Icons_17: -173538063
+      Pixel_Art_Wand_and_Book_Icons_18: 100648756
+      Pixel_Art_Wand_and_Book_Icons_19: -1164877919
+      Pixel_Art_Wand_and_Book_Icons_2: 1885071545
+      Pixel_Art_Wand_and_Book_Icons_20: -1764674650
+      Pixel_Art_Wand_and_Book_Icons_21: -36278924
+      Pixel_Art_Wand_and_Book_Icons_22: 407591654
+      Pixel_Art_Wand_and_Book_Icons_23: -1291957086
+      Pixel_Art_Wand_and_Book_Icons_24: 119872054
+      Pixel_Art_Wand_and_Book_Icons_25: -680229162
+      Pixel_Art_Wand_and_Book_Icons_26: -1795057232
+      Pixel_Art_Wand_and_Book_Icons_27: 676252988
+      Pixel_Art_Wand_and_Book_Icons_28: -1667901277
+      Pixel_Art_Wand_and_Book_Icons_29: -1354603216
+      Pixel_Art_Wand_and_Book_Icons_3: 2124544829
+      Pixel_Art_Wand_and_Book_Icons_30: -428559258
+      Pixel_Art_Wand_and_Book_Icons_31: -1506448062
+      Pixel_Art_Wand_and_Book_Icons_32: -645581638
+      Pixel_Art_Wand_and_Book_Icons_33: 1152973053
+      Pixel_Art_Wand_and_Book_Icons_34: -859613342
+      Pixel_Art_Wand_and_Book_Icons_35: 963086248
+      Pixel_Art_Wand_and_Book_Icons_36: 480907522
+      Pixel_Art_Wand_and_Book_Icons_37: -1405576500
+      Pixel_Art_Wand_and_Book_Icons_38: -879213116
+      Pixel_Art_Wand_and_Book_Icons_39: 575766792
+      Pixel_Art_Wand_and_Book_Icons_4: -1424735263
+      Pixel_Art_Wand_and_Book_Icons_40: -609947950
+      Pixel_Art_Wand_and_Book_Icons_41: -370613463
+      Pixel_Art_Wand_and_Book_Icons_42: -1618905640
+      Pixel_Art_Wand_and_Book_Icons_43: 173804343
+      Pixel_Art_Wand_and_Book_Icons_44: 1888363505
+      Pixel_Art_Wand_and_Book_Icons_45: -748326030
+      Pixel_Art_Wand_and_Book_Icons_46: 17827701
+      Pixel_Art_Wand_and_Book_Icons_47: 945938407
+      Pixel_Art_Wand_and_Book_Icons_48: -1486412515
+      Pixel_Art_Wand_and_Book_Icons_49: 2060684293
+      Pixel_Art_Wand_and_Book_Icons_5: -567705896
+      Pixel_Art_Wand_and_Book_Icons_50: 674627460
+      Pixel_Art_Wand_and_Book_Icons_51: -618154786
+      Pixel_Art_Wand_and_Book_Icons_52: -2002786937
+      Pixel_Art_Wand_and_Book_Icons_53: 779341165
+      Pixel_Art_Wand_and_Book_Icons_54: -1104546334
+      Pixel_Art_Wand_and_Book_Icons_55: -1220078924
+      Pixel_Art_Wand_and_Book_Icons_56: -19679381
+      Pixel_Art_Wand_and_Book_Icons_57: -1848899170
+      Pixel_Art_Wand_and_Book_Icons_58: -44670974
+      Pixel_Art_Wand_and_Book_Icons_59: 1205344255
+      Pixel_Art_Wand_and_Book_Icons_6: -1683357099
+      Pixel_Art_Wand_and_Book_Icons_60: 1545923523
+      Pixel_Art_Wand_and_Book_Icons_61: -139250786
+      Pixel_Art_Wand_and_Book_Icons_62: 1181615980
+      Pixel_Art_Wand_and_Book_Icons_63: -56290061
+      Pixel_Art_Wand_and_Book_Icons_64: 1191910101
+      Pixel_Art_Wand_and_Book_Icons_65: 1372914323
+      Pixel_Art_Wand_and_Book_Icons_66: -1182035375
+      Pixel_Art_Wand_and_Book_Icons_67: -650630074
+      Pixel_Art_Wand_and_Book_Icons_68: -1907951727
+      Pixel_Art_Wand_and_Book_Icons_69: 1914947251
+      Pixel_Art_Wand_and_Book_Icons_7: -1299296873
+      Pixel_Art_Wand_and_Book_Icons_70: -783089195
+      Pixel_Art_Wand_and_Book_Icons_71: 1726440366
+      Pixel_Art_Wand_and_Book_Icons_72: -1519329046
+      Pixel_Art_Wand_and_Book_Icons_73: 1396757771
+      Pixel_Art_Wand_and_Book_Icons_74: -1096426098
+      Pixel_Art_Wand_and_Book_Icons_75: -205596945
+      Pixel_Art_Wand_and_Book_Icons_76: -1300050379
+      Pixel_Art_Wand_and_Book_Icons_77: 872647850
+      Pixel_Art_Wand_and_Book_Icons_78: 1358704068
+      Pixel_Art_Wand_and_Book_Icons_79: 271543971
+      Pixel_Art_Wand_and_Book_Icons_8: -1890778495
+      Pixel_Art_Wand_and_Book_Icons_80: -2022991971
+      Pixel_Art_Wand_and_Book_Icons_81: -2101753662
+      Pixel_Art_Wand_and_Book_Icons_82: 466312018
+      Pixel_Art_Wand_and_Book_Icons_83: 319617617
+      Pixel_Art_Wand_and_Book_Icons_84: 1537493419
+      Pixel_Art_Wand_and_Book_Icons_85: 1432522706
+      Pixel_Art_Wand_and_Book_Icons_86: 1597869703
+      Pixel_Art_Wand_and_Book_Icons_87: 1434831386
+      Pixel_Art_Wand_and_Book_Icons_88: -1670250027
+      Pixel_Art_Wand_and_Book_Icons_89: -394469771
+      Pixel_Art_Wand_and_Book_Icons_9: 1772152057
+      Pixel_Art_Wand_and_Book_Icons_90: -1571984948
+      Pixel_Art_Wand_and_Book_Icons_91: 1392325397
+      Pixel_Art_Wand_and_Book_Icons_92: -694998441
+      Pixel_Art_Wand_and_Book_Icons_93: -439371731
+      Pixel_Art_Wand_and_Book_Icons_94: 1426863315
+      Pixel_Art_Wand_and_Book_Icons_95: -6427434
+      Pixel_Art_Wand_and_Book_Icons_96: 687252850
+      Pixel_Art_Wand_and_Book_Icons_97: -561078058
+      Pixel_Art_Wand_and_Book_Icons_98: 2025142975
+      Pixel_Art_Wand_and_Book_Icons_99: -1102369595
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

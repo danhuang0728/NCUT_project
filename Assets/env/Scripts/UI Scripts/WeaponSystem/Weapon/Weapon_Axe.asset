@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b000ef24cf7547a273007e5382014, type: 3}
   m_Name: Weapon_Axe
   m_EditorClassIdentifier: 
-  skillName: axe
-  level: 5
-  skillIcon: {fileID: 0}
+  skillName: "\u5DE8\u65A7"
+  weapon_inturoduction: "\u5C0D\u9762\u5411\u65B9\u5411\u9032\u884C\u9AD8\u50B7\u5BB3\u5288\u780D\uFF0C\u653B\u901F\u8F03\u6162"
+  level: 1
+  skillIcon: {fileID: -1566056629, guid: 58e26d6a1a7934740af7cccaa0bb7ded, type: 3}
   cooldownTime: 0
   skillId: 0
   weapontype: 1

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b000ef24cf7547a273007e5382014, type: 3}
   m_Name: Weapon_MagicBook
   m_EditorClassIdentifier: 
-  skillName: Magicbook
+  skillName: "\u706B\u7403\u6CD5\u66F8"
+  weapon_inturoduction: "\u5F80\u602A\u7269\u65B9\u5411\u5C04\u51FA\u76F4\u7DDA\u7684\u706B\u7403\u78B0\u5230\u7246\u58C1\u6703\u6D88\u5931\uFF0C\u96A8\u8457\u7B49\u7D1A\u589E\u52A0\u706B\u7403\u6578\u91CF"
   level: 1
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 779341165, guid: 1ec5247724be21b4486c66e8c4fa3afc, type: 3}
   cooldownTime: 0
   skillId: 0
   weapontype: 4

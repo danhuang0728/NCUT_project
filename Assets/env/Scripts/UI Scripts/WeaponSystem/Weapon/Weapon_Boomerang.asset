@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b000ef24cf7547a273007e5382014, type: 3}
   m_Name: Weapon_Boomerang
   m_EditorClassIdentifier: 
-  skillName: boomerang
+  skillName: "\u8FF4\u529B\u93E2"
+  weapon_inturoduction: "\u5C0D\u602A\u7269\u5C04\u51FA\u53EF\u5F48\u5C04\u7684\u56DE\u529B\u93E2\uFF0C\u6703\u96A8\u8457\u7B49\u7D1A\u63D0\u5347\u5C04\u901F\u53CA\u5F48\u5C04\u6B21\u6578"
   level: 1
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 352531195, guid: 58e26d6a1a7934740af7cccaa0bb7ded, type: 3}
   cooldownTime: 0
   skillId: 0
   weapontype: 2

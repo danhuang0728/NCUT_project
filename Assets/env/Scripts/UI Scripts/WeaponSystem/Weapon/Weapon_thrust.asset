@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b000ef24cf7547a273007e5382014, type: 3}
   m_Name: Weapon_thrust
   m_EditorClassIdentifier: 
-  skillName: thrust
+  skillName: "\u897F\u6D0B\u528D"
+  weapon_inturoduction: "\u5411\u5468\u570D\u7A81\u523A\u6578\u6B21"
   level: 1
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: -1339611467, guid: 58e26d6a1a7934740af7cccaa0bb7ded, type: 3}
   cooldownTime: 0
   skillId: 0
   weapontype: 5

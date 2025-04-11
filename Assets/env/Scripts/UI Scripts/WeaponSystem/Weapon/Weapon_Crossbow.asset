@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1b000ef24cf7547a273007e5382014, type: 3}
   m_Name: Weapon_Crossbow
   m_EditorClassIdentifier: 
-  skillName: crossbow
-  level: 5
-  skillIcon: {fileID: 0}
+  skillName: "\u5F29\u7832\u53F0"
+  weapon_inturoduction: "\u5B9A\u671F\u653E\u7F6E\u6703\u81EA\u52D5\u671D\u602A\u7269\u767C\u5C04\u7BAD\u77E2\u7684\u5F29\u7832\u53F0\uFF0C\u5C04\u901F\u96A8\u8457\u7B49\u7D1A\u63D0\u5347"
+  level: 1
+  skillIcon: {fileID: 810364305, guid: 6a5f5347f33ad5047be6278e7223f3e1, type: 3}
   cooldownTime: 0
   skillId: 0
   weapontype: 3
