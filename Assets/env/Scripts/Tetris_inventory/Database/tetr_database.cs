@@ -35,6 +35,7 @@ public class tetr_database : ScriptableObject
         Purple_1,   // 速度+20, 傷害+20, 生命+70
     }
     public string tetr_name;
+    public Sprite tetr_sprite;
     public Tetr_type tetr_type;
 
 }

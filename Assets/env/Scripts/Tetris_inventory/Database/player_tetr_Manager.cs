@@ -32,8 +32,15 @@ public class player_tetr_Manager : MonoBehaviour
     }
     public void add_tetr_obj(tetr_database tetr_database)
     {
-        player_tetr_database.tetr_database.Add(tetr_database);
-        Update_UI();
+        if(!player_tetr_database.tetr_database.Contains(tetr_database))
+        {
+            player_tetr_database.tetr_database.Add(tetr_database);
+            Update_UI();
+        }
+        else
+        {
+            Debug.Log("已存在");
+        }
     }
     void create_tetr_obj(tetr_database tetr_database)
     {
