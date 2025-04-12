@@ -50,10 +50,13 @@ public class Weapon_Manager : MonoBehaviour
     // 斧頭武器：包含啟用開關與等級設定
     [Header("斧頭武器")]
     public bool Axe = false;
-    [Tooltip("等級系統尚未完成")]
     [Range(1, 5)]
     public int axe_level = 1;
     GameObject axe_weapon;
+
+    public bool AxeSpawner = false;
+    private AxeSpawner axeSpawner;
+    private int previousAxeLevel = 1;
 
 
     // 弩箭砲台武器：包含啟用開關與等級設定
@@ -80,6 +83,7 @@ public class Weapon_Manager : MonoBehaviour
     void Start()
     {
         playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
+        GameObject player = GameObject.Find("player1");
 
         circle_weapon = transform.Find("circle").gameObject;
         boomerang_weapon = transform.Find("Boomerang").gameObject;
@@ -93,8 +97,28 @@ public class Weapon_Manager : MonoBehaviour
         boomerang_controller = boomerang_weapon.GetComponent<BoomerangController>();
         magicbook_script = magicbook_weapon.GetComponent<MagicBook>();
         crossbow_script = crossbow_weapon.GetComponent<crossbow>();
+        
+        // 從player1獲取AxeSpawner組件
+        if (player != null)
+        {
+            axeSpawner = player.GetComponent<AxeSpawner>();
+            if (axeSpawner != null)
+            {
+                previousAxeLevel = axe_level;
+                axeSpawner.level = axe_level;
+                Debug.Log("成功獲取player1上的AxeSpawner組件");
+            }
+            else
+            {
+                Debug.LogWarning("未能在player1上找到AxeSpawner組件");
+            }
+        }
+        else
+        {
+            Debug.LogError("未能找到player1物件");
+        }
 
-        initialAttackRange = playerControl.AttackRange; // 儲存改變前的攻擊範圍
+        initialAttackRange = playerControl.AttackRange;
     }
 
 
@@ -118,9 +142,36 @@ public class Weapon_Manager : MonoBehaviour
         setActiveWeapon(Boomerang, boomerang_weapon);
         setActiveWeapon(MagicBook, magicbook_weapon);
         setActiveWeapon(thrust, thrust_weapon);
-        setActiveWeapon(Axe, axe_weapon);
+        
+        // 控制普通斧頭和飛斧的切換
+        if (AxeSpawner)
+        {
+            // 如果啟動飛斧，關閉普通斧頭
+            axe_weapon.SetActive(false);
+        }
+        else
+        {
+            // 如果關閉飛斧，則根據Axe的狀態控制普通斧頭
+            setActiveWeapon(Axe, axe_weapon);
+        }
+
         setActiveWeapon(crossbow, crossbow_weapon);
         setActiveWeapon(main_hand1, main_hand1_weapon);
+
+        // 控制 AxeSpawner 腳本的開關
+        if (axeSpawner != null)
+        {
+            axeSpawner.enabled = AxeSpawner;  // 直接控制腳本的啟用狀態
+            
+            // 如果腳本被啟用且等級發生變化，則更新等級
+            if (AxeSpawner && axe_level != previousAxeLevel)
+            {
+                previousAxeLevel = axe_level;
+                axeSpawner.level = axe_level;
+                axeSpawner.OnLevelChanged();
+            }
+        }
+
         if(main_hand1 == true) // 亂砍武器開啟時，攻擊範圍為0 改為使用亂砍的判定大小
         {
             playerControl.AttackRange = 0f;
@@ -145,7 +196,6 @@ public class Weapon_Manager : MonoBehaviour
 
         crossbow_script.level = crossbow_level;
         crossbow_script.is_levelUP = is_crossbow_levelUP_1; // 弩箭砲台武器進化(加速連社)
-
     }
     void setActiveWeapon(bool weapon, GameObject weapon_object)
     {

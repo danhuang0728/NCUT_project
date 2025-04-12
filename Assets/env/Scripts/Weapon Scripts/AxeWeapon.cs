@@ -117,5 +117,13 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.position.x , player.position.y + 0.3f, player.position.z);
+        
+        // 獲取玩家的旋轉值並同步斧頭的Y軸旋轉
+        PlayerControl playerControl = player.GetComponent<PlayerControl>();
+        if (playerControl != null)
+        {
+            float playerRotationY = player.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180 + playerRotationY, transform.rotation.eulerAngles.z);
+        }
     }
 }

@@ -303,7 +303,7 @@ public class PlayerControl : MonoBehaviour
                     // 获取材质实例（确保不会修改共享材质）
                     Material mat = targetRenderer.material;
                     // 打擊特效       
-                    StartCoroutine(SetBoolWithDelay(mat,targetRenderer));  
+                    StartCoroutine(SetBoolWithDelay(mat,targetRenderer));    //飛斧測試
                 }
                 Debug.Log("怪物HP: " + clone_Scripts.HP);
             }
