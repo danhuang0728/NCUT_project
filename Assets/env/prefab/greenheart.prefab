@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5337006001815773095}
   - component: {fileID: 7112516727031258296}
   - component: {fileID: 4697714056832449517}
+  - component: {fileID: -4483991351413087418}
   m_Layer: 0
   m_Name: greenheart
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -44025399
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1661946623, guid: b95f0dc92c20e3b46b7e39800281c5bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,7 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63f15d67e07113408bee4a34eb7b29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthbar: {fileID: 0}
 --- !u!50 &7112516727031258296
 Rigidbody2D:
   serializedVersion: 4
@@ -185,6 +185,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00000059604645, y: 0.00000023841858}
   m_Size: {x: 0.44, y: 0.35}
   m_Direction: 0
+--- !u!114 &-4483991351413087418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826735888090890815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceea13b8c9c0dce45832cd2f19dbfa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8345093683718939327
 GameObject:
   m_ObjectHideFlags: 0
