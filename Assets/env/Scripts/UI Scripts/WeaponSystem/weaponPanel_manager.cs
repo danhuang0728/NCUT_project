@@ -13,9 +13,13 @@ public class weaponPanel_manager : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < weaponImages.Length; i++)
+        if (playerWeaponData.WeaponDataList.Count > 0)
         {
-            weaponImages[i].sprite = playerWeaponData.WeaponDataList[i].skillIcon;
+            foreach (var weapon in playerWeaponData.WeaponDataList)
+            {
+                int index = playerWeaponData.WeaponDataList.IndexOf(weapon);
+                weaponImages[index].sprite = weapon.skillIcon;
+            }
         }
     }
 }
