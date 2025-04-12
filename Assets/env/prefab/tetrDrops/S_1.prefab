@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -44025399
   m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingOrder: 500
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetr_database: {fileID: 11400000, guid: 29e2e8ad25d6edf4c8b71f80cdee64f6, type: 2}
+  gold_cost: 0
 --- !u!58 &8718708481004643566
 CircleCollider2D:
   m_ObjectHideFlags: 0
