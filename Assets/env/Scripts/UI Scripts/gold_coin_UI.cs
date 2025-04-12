@@ -9,12 +9,12 @@ public class gold_coin : MonoBehaviour
     void Start()
     {
         character_value_ingame = FindObjectOfType<character_value_ingame>();
-        gold_coin_text.text = character_value_ingame.gold.ToString();
+        gold_coin_text.text = Mathf.Round(character_value_ingame.gold).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gold_coin_text.text = character_value_ingame.gold.ToString();
+        gold_coin_text.text = Mathf.Round(character_value_ingame.gold).ToString();
     }
 }
