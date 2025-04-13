@@ -67,7 +67,7 @@ public class PlayerControl : MonoBehaviour
     private void Update() 
     {
         
-        if (Time.time % 1 < Time.deltaTime) //每過1秒顯示HP
+        if (Time.time % 7 < Time.deltaTime) //每過7秒顯示HP
         {
             Debug.Log("當前HP: " + HP);
         }

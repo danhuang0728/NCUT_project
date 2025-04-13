@@ -17,6 +17,26 @@ public class fly_axe : MonoBehaviour
     private Vector3 startPosition;
     private Transform playerTransform;
 
+    private void Awake()
+    {
+        // 確保有碰撞器並正確設置
+        Collider2D col = GetComponent<Collider2D>();
+        if (col == null)
+        {
+            col = gameObject.AddComponent<BoxCollider2D>();
+        }
+        col.isTrigger = true;
+
+        // 確保有Rigidbody2D
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.gravityScale = 0f;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
     public void InitializeAxe(Vector2 direction)
     {
         flyDirection = direction.normalized;
@@ -46,4 +66,28 @@ public class fly_axe : MonoBehaviour
         // 旋轉斧頭
         transform.Rotate(0, 0, 2*rotateSpeed * Time.deltaTime);
     }    
+
+    // 碰撞檢測
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("碰撞觸發，碰撞對象: " + other.gameObject.name + ", Tag: " + other.tag);
+        
+        if (other.CompareTag("wall"))
+        {
+            Debug.Log("碰到牆壁，準備銷毀飛斧");
+            Destroy(gameObject); // 銷毀飛斧
+        }
+    }
+
+    // 添加物理碰撞檢測作為備用
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("物理碰撞觸發，碰撞對象: " + collision.gameObject.name + ", Tag: " + collision.gameObject.tag);
+        
+        if (collision.gameObject.CompareTag("wall"))
+        {
+            Debug.Log("碰到牆壁，準備銷毀飛斧");
+            Destroy(gameObject);
+        }
+    }
 }

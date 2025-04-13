@@ -138,6 +138,7 @@ public class SpiralAxeMovement : MonoBehaviour
     private float travelTime;
     private float aliveTime;
     private PlayerControl playerControl;
+    private bool isDestroyed = false;    // 添加標記，防止重複銷毀
 
     public void SetDamage(float damage)
     {
@@ -150,6 +151,7 @@ public class SpiralAxeMovement : MonoBehaviour
         {
             BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;
+            collider.size = new Vector2(1f, 1f); // 設置適當的碰撞器大小
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -205,6 +207,16 @@ public class SpiralAxeMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isDestroyed) return; // 如果已經標記為銷毀，直接返回
+
+        if (other.CompareTag("wall"))
+        {
+            Debug.Log("飛斧碰到牆壁");
+            isDestroyed = true;
+            DestroyAxe();
+            return;
+        }
+
         if (other.CompareTag("Monster"))
         {
             NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
@@ -233,14 +245,14 @@ public class SpiralAxeMovement : MonoBehaviour
                 }
             }
         }
-        else if (other.CompareTag("wall"))
-        {
-            DestroyAxe();
-        }
     }
 
     private void DestroyAxe()
     {
-        Destroy(gameObject);
+        if (!isDestroyed)
+        {
+            isDestroyed = true;
+            Destroy(gameObject);
+        }
     }
 } 
