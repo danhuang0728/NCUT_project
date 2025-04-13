@@ -44,6 +44,6 @@ public class fly_axe : MonoBehaviour
     void Update()
     {
         // 旋轉斧頭
-        transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, 2*rotateSpeed * Time.deltaTime);
     }    
 }
