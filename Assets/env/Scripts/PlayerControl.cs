@@ -280,7 +280,10 @@ public class PlayerControl : MonoBehaviour
             if (slime_T != null){                      //對史萊姆的擊退設定
                 Vector3 direction = slime_T.position - transform.position; // slime 到玩家的方向
                 direction.Normalize();
-                slime_T.position = Vector3.MoveTowards(slime_T.position, slime_T.position + direction, 10 * Knockback_strength * Time.deltaTime);   
+                Rigidbody2D slimeRb = slime_T.GetComponent<Rigidbody2D>();
+                if (slimeRb != null) {
+                    slimeRb.AddForce(direction * 10 * Knockback_strength, ForceMode2D.Impulse);
+                }
             }
             else{break;}
 
@@ -310,7 +313,10 @@ public class PlayerControl : MonoBehaviour
             if (Normal_T != null){                      //對一般的擊退設定
                 Vector3 direction = Normal_T.position - transform.position; // 一般怪物 到玩家的方向
                 direction.Normalize();
-                Normal_T.position = Vector3.MoveTowards(Normal_T.position, Normal_T.position + direction, 100 * Knockback_strength * Time.deltaTime);   
+                Rigidbody2D NormalRb = Normal_T.GetComponent<Rigidbody2D>();
+                if (NormalRb != null) {
+                    NormalRb.AddForce(direction * 10 * Knockback_strength, ForceMode2D.Impulse);
+                }
             }
 
         }

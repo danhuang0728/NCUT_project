@@ -70,11 +70,11 @@ public class fly_axe : MonoBehaviour
     // 碰撞檢測
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("碰撞觸發，碰撞對象: " + other.gameObject.name + ", Tag: " + other.tag);
+        //Debug.Log("碰撞觸發，碰撞對象: " + other.gameObject.name + ", Tag: " + other.tag);
         
         if (other.CompareTag("wall"))
         {
-            Debug.Log("碰到牆壁，準備銷毀飛斧");
+            //Debug.Log("碰到牆壁，準備銷毀飛斧");
             Destroy(gameObject); // 銷毀飛斧
         }
     }
@@ -82,11 +82,11 @@ public class fly_axe : MonoBehaviour
     // 添加物理碰撞檢測作為備用
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("物理碰撞觸發，碰撞對象: " + collision.gameObject.name + ", Tag: " + collision.gameObject.tag);
+        //Debug.Log("物理碰撞觸發，碰撞對象: " + collision.gameObject.name + ", Tag: " + collision.gameObject.tag);
         
         if (collision.gameObject.CompareTag("wall"))
         {
-            Debug.Log("碰到牆壁，準備銷毀飛斧");
+            //Debug.Log("碰到牆壁，準備銷毀飛斧");
             Destroy(gameObject);
         }
     }
