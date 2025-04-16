@@ -8,6 +8,7 @@ public class NormalMonster_setting : MonoBehaviour
     // Start is called before the first frame update
     private float previousXPosition; // 用來儲存物件的上一幀位置
     private PlayerControl playerControl;
+    private Transform player1;
     public healthbar Healthbar;
     public int monster_type; //區分水果or一般怪物 1==水果 0==一般
     public int exp_type; //區分經驗值類別 初級,中級,高級
@@ -24,14 +25,14 @@ public class NormalMonster_setting : MonoBehaviour
         Healthbar = GameObject.Find("healthbar").GetComponent<healthbar>();
         Previous_health = HP;     //初始化先前血量
         burn_effect = GameObject.Find("fire_0");
-        playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
+        playerControl = FindObjectOfType<PlayerControl>();
+        player1 = playerControl.GetComponent<Transform>();
         damageEffect = GameObject.Find("damage_effect").GetComponent<damage_effect>();
         critical_effect = GameObject.Find("critical_effect").GetComponent<critical_effect>();
     }
 
 
     // Update is called once per frame
-    public Transform player1;
     public GameObject monster;
     public float movespeed;
     private float Previous_health;
@@ -175,24 +176,35 @@ public class NormalMonster_setting : MonoBehaviour
             {
                 case 1:  // 低級經驗值
                     // 在這裡生成15經驗值的掉落物
-                    GameObject expObject = Instantiate(LowExpPrefab, transform.position, Quaternion.identity);
-                    expObject.SetActive(true);
-                    AudioManager.Instance.PlaySFX("drop_exp");
+                    if(LowExpPrefab != null)
+                    {
+                        GameObject expObject = Instantiate(LowExpPrefab, transform.position, Quaternion.identity);
+                        expObject.SetActive(true);
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                        break;
+                    }
                     break;
 
                 case 2:  // 中級經驗值
-                    // 在這裡生成40經驗值的掉落物
-                    GameObject expObject2 = Instantiate(MediumExpPrefab, transform.position, Quaternion.identity);
-                    expObject2.SetActive(true);
-                    AudioManager.Instance.PlaySFX("drop_exp");
+                    if(MediumExpPrefab != null)
+                    {
+                        // 在這裡生成40經驗值的掉落物
+                        GameObject expObject2 = Instantiate(MediumExpPrefab, transform.position, Quaternion.identity);
+                        expObject2.SetActive(true);
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                        break;
+                    }  
                     break;
 
                 case 3:  // 高級經驗值
-
-                    // 在這裡生成100經驗值的掉落物
-                    GameObject expObject3 = Instantiate(HighExpPrefab, transform.position, Quaternion.identity);
-                    expObject3.SetActive(true);
-                    AudioManager.Instance.PlaySFX("drop_exp");
+                    if(HighExpPrefab != null)
+                    {
+                        // 在這裡生成100經驗值的掉落物
+                        GameObject expObject3 = Instantiate(HighExpPrefab, transform.position, Quaternion.identity);
+                        expObject3.SetActive(true);
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                        break;
+                    }
                     break;
 
             }
