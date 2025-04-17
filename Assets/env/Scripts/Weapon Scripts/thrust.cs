@@ -2,10 +2,23 @@ using UnityEngine;
 
 public class thrust : MonoBehaviour 
 {
-    public float damage = 1f; // 傷害值
-    public float knockbackForce = 10f; // 擊退力度
-
+    private float damage = 1f; // 傷害值
+    public float knockbackForce = 5f; // 擊退力度
+    public bool is_evolution_object = false;
     public PlayerControl playerControl; //抓玩家腳本
+    private ToggleChildObjects thrust_script;
+    private void Start()
+    {
+        thrust_script = FindObjectOfType<ToggleChildObjects>();
+        if(is_evolution_object)
+        {
+            damage = thrust_script.damage * 2.5f;
+        }
+        else
+        {
+            damage = thrust_script.damage;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 確認碰撞到的物件是怪物且不是玩家
