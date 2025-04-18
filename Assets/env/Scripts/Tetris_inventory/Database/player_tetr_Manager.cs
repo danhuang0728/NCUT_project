@@ -51,6 +51,7 @@ public class player_tetr_Manager : MonoBehaviour
         else
         {
             Debug.Log("已存在");
+            Update_UI();
         }
     }
     void clear_tetr_obj()
