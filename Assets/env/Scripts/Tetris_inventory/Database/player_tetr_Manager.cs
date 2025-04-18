@@ -16,8 +16,17 @@ public class player_tetr_Manager : MonoBehaviour
     {
 
     }
+    public static void ClearChildren(Transform parent)
+    {
+        for (int i = parent.childCount - 1; i >= 0; i--)
+        {
+            Transform child = parent.GetChild(i);
+            Object.Destroy(child.gameObject);   // 下一幀才真正銷毀
+        }
+    }
     public void Update_UI()
     {
+
         // 歷遍player_tetr_database把裡面有的database全部執行create_tetr_obj
         if (player_tetr_database != null && player_tetr_database.tetr_database != null)
         {
@@ -31,7 +40,9 @@ public class player_tetr_Manager : MonoBehaviour
         }
     }
     public void add_tetr_obj(tetr_database tetr_database)
-    {
+    {  
+        clear_tetr_obj();
+        tetrisInventoryManager.InitializeGrids(); // 把網格子物件加回來
         if(!player_tetr_database.tetr_database.Contains(tetr_database))
         {
             player_tetr_database.tetr_database.Add(tetr_database);
@@ -41,6 +52,10 @@ public class player_tetr_Manager : MonoBehaviour
         {
             Debug.Log("已存在");
         }
+    }
+    void clear_tetr_obj()
+    {
+        ClearChildren(tetrisInventoryManager.storageGridContainer.transform); // 清除所有子物件 
     }
     void create_tetr_obj(tetr_database tetr_database)
     {
@@ -98,9 +113,11 @@ public class player_tetr_Manager : MonoBehaviour
                         new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0), new Vector2Int(3, 0),
                         new Vector2Int(0, 1), new Vector2Int(1, 1), new Vector2Int(2, 1), new Vector2Int(3, 1),
                         new Vector2Int(0, 2), new Vector2Int(1, 2),
-                        new Vector2Int(0, 3), new Vector2Int(1, 3)
+                        new Vector2Int(0, 3), new Vector2Int(1, 3),
+                        new Vector2Int(0, 4), new Vector2Int(1, 4),
+                        new Vector2Int(0, 5), new Vector2Int(1, 5),
                     },
-                    Color.yellow,
+                    Color.cyan,
                     new Vector2(1.5f, 1.5f),
                     "(A_1)" //飛斧
                 );
@@ -186,7 +203,7 @@ public class player_tetr_Manager : MonoBehaviour
                         new Vector2Int(5, 1), new Vector2Int(5, 2), new Vector2Int(5, 3), 
                         new Vector2Int(5, 4), new Vector2Int(5, 5)
                     }, 
-                    Color.blue,  // 深藍色
+                    Color.cyan,  // 淺藍色
                     new Vector2(3, 1),  // 中心點設在整個形狀的大致中心
                     "(B_1)" //迴力鏢無限彈
                 );
