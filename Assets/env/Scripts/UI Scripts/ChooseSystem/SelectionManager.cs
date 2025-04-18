@@ -19,7 +19,8 @@ public class SelectionManager : MonoBehaviour
     public Character_Values_SETUP characterValues; // 新增能力提升資料庫
     public character_value_ingame characterValuesIngame; // 新增能力提升資料庫
     private List<VariableData> selectedData; // 儲存選取的選項
-    private bool isPanelOpen = false; // 確認選單是否打
+    private bool isPanelOpen = false; // 確認選單是否打開
+
 
 
     void Start()
@@ -33,14 +34,35 @@ public class SelectionManager : MonoBehaviour
           optionPanelParent.SetActive(false);
         }
     }
+    void Update()
+    {
+      if(isPanelOpen == true)
+      {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+          ButtonClicked(0);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+          ButtonClicked(1);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+          ButtonClicked(2);
+        }
+      }
+    }
 
     public void OpenPanel()
     {
       UpdateUI();
       AudioManager.Instance.PlaySFX("Level_up");
       isPanelOpen = true;
-      if (optionPanelParent != null)
+      if (optionPanelParent != null && UIstate.isAnyPanelOpen == false)
         {
+          UIstate.isAnyPanelOpen = true; 
           background.SetActive(true);
           optionPanelParent.SetActive(true);
         }
@@ -53,6 +75,7 @@ public class SelectionManager : MonoBehaviour
     {
       if (optionPanelParent != null)
         {
+          UIstate.isAnyPanelOpen = false;
           optionPanelParent.SetActive(false);
           background.SetActive(false);
         }

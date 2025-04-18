@@ -178,21 +178,17 @@ public class player_tetr_Manager : MonoBehaviour
             case tetr_database.Tetr_type.B_1:
                 tetrisInventoryManager.CreateTetrisPiece(
                     new Vector2Int[] {
-                        new Vector2Int(2, 0), new Vector2Int(3, 0),
-                        new Vector2Int(2, 1), new Vector2Int(3, 1), 
-                        new Vector2Int(2, 2), new Vector2Int(3, 2),
-                        new Vector2Int(2, 3), new Vector2Int(3, 3),
-                        new Vector2Int(2, 4), new Vector2Int(3, 4),
-                        new Vector2Int(2, 5), new Vector2Int(3, 5),
-
-                        new Vector2Int(0, 3), new Vector2Int(1, 4),
-                        new Vector2Int(4, 4), new Vector2Int(5, 3),
+                        // 水平線段 (y=1)
+                        new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0), 
+                        new Vector2Int(3, 0), new Vector2Int(4, 0),
                         
-                    },
-                    new Color(0.5f, 0f, 1f), // 紫色
-                    new Vector2(1f, 1f), // 設置中心點在形狀的幾何中心
-                    "(T_1)", //西洋劍全場下戳
-                    false //不旋轉
+                        // 垂直線段 (x=6)
+                        new Vector2Int(5, 1), new Vector2Int(5, 2), new Vector2Int(5, 3), 
+                        new Vector2Int(5, 4), new Vector2Int(5, 5)
+                    }, 
+                    Color.blue,  // 深藍色
+                    new Vector2(3, 1),  // 中心點設在整個形狀的大致中心
+                    "(B_1)" //迴力鏢無限彈
                 );
                 break;
 

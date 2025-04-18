@@ -9,6 +9,7 @@ public class tetrisPanel_ : MonoBehaviour
     public bool isInventoryOpen = false;
     void Start()
     {
+
         inventoryPanel.SetActive(false);
         pageObj.SetActive(false);
     }
@@ -20,13 +21,18 @@ public class tetrisPanel_ : MonoBehaviour
     }
     public void OpenInventory()
     {
-        inventoryPanel.SetActive(true);
-        pageObj.SetActive(true);
-        isInventoryOpen = true;
-        Time.timeScale = 0;
+        if(UIstate.isAnyPanelOpen == false)
+        {
+            UIstate.isAnyPanelOpen = true;
+            inventoryPanel.SetActive(true);
+            pageObj.SetActive(true);
+            isInventoryOpen = true;
+            Time.timeScale = 0;
+        }
     }
     public void CloseInventory()
     {
+        UIstate.isAnyPanelOpen = false;
         inventoryPanel.SetActive(false);
         pageObj.SetActive(false);
         Time.timeScale = 1;

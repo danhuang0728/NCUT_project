@@ -15,5 +15,4 @@ MonoBehaviour:
   tetr_database:
   - {fileID: 11400000, guid: 29e2e8ad25d6edf4c8b71f80cdee64f6, type: 2}
   - {fileID: 11400000, guid: 0ec7d8bf7f63f46489f0c6cfe1b7cba3, type: 2}
-  - {fileID: 11400000, guid: 258dcd1bdae5dcf4d85cc462241e2eb9, type: 2}
-  - {fileID: 11400000, guid: 242da9e940e975b4fbfd6a7a29527818, type: 2}
+  - {fileID: 11400000, guid: fee8babf1917af04491ad02ffef6dad6, type: 2}
