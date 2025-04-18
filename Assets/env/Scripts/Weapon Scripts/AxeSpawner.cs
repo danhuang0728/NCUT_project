@@ -211,7 +211,7 @@ public class SpiralAxeMovement : MonoBehaviour
 
         if (other.CompareTag("wall"))
         {
-            Debug.Log("飛斧碰到牆壁");
+            //Debug.Log("飛斧碰到牆壁");
             isDestroyed = true;
             DestroyAxe();
             return;

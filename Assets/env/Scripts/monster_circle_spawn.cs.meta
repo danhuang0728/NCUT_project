@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6881557b3720b6b4a9c0516df5c5fc72
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - monsterPrefab: {instanceID: 0}
+  - warningIconPrefab: {fileID: 386437900119935323, guid: 18aff8df5e6c68c46b12a306b843caa2,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

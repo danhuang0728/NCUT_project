@@ -255,7 +255,7 @@ public class Weapon_Manager : MonoBehaviour
                         break;
                 }
                 
-                Debug.Log("更新武器等級: " + weaponData.skillName + " 等級: " + weaponData.level);
+                //Debug.Log("更新武器等級: " + weaponData.skillName + " 等級: " + weaponData.level);
             }
         }
     }
@@ -296,7 +296,7 @@ public class Weapon_Manager : MonoBehaviour
                         break;
                 }
                 
-                Debug.Log("武器狀態更新: " + weaponData.skillName + " 已啟用");
+                //Debug.Log("武器狀態更新: " + weaponData.skillName + " 已啟用");
             }
         }
     }

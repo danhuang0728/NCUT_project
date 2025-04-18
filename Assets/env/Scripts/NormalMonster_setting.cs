@@ -8,6 +8,8 @@ public class NormalMonster_setting : MonoBehaviour
     // Start is called before the first frame update
     private float previousXPosition; // 用來儲存物件的上一幀位置
     private PlayerControl playerControl;
+    private ExperienceSystem experienceSystem;
+    private Weapon_Manager weaponManager;
     public healthbar Healthbar;
     public int monster_type; //區分水果or一般怪物 1==水果 0==一般
     public int exp_type; //區分經驗值類別 初級,中級,高級
@@ -19,14 +21,41 @@ public class NormalMonster_setting : MonoBehaviour
     [SerializeField] private critical_effect critical_effect;
     bool isFlip = false;
     private bool isBurning = false; // 新增：標記是否正在燃燒
+    public float HP = 100f;  // 直接使用HP作为基础值
+
     void Start()
     {
         Healthbar = GameObject.Find("healthbar").GetComponent<healthbar>();
-        Previous_health = HP;     //初始化先前血量
+        experienceSystem = FindObjectOfType<ExperienceSystem>();
+        weaponManager = FindObjectOfType<Weapon_Manager>();
         burn_effect = GameObject.Find("fire_0");
         playerControl = GameObject.Find("player1").GetComponent<PlayerControl>();
         damageEffect = GameObject.Find("damage_effect").GetComponent<damage_effect>();
         critical_effect = GameObject.Find("critical_effect").GetComponent<critical_effect>();
+
+        // 根据等级和武器计算HP
+        if (experienceSystem != null && weaponManager != null)
+        {
+            // 计算武器等级加成
+            int weaponBonus = 0;
+            if (weaponManager.circle) weaponBonus += weaponManager.circle_level;
+            if (weaponManager.Boomerang) weaponBonus += weaponManager.boomerang_level;
+            if (weaponManager.MagicBook) weaponBonus += weaponManager.magicbook_level;
+            if (weaponManager.thrust) weaponBonus += weaponManager.thrust_level;
+            if (weaponManager.Axe) weaponBonus += weaponManager.axe_level;
+            if (weaponManager.crossbow) weaponBonus += weaponManager.crossbow_level;
+            if (weaponManager.main_hand1) weaponBonus += weaponManager.main_hand_level1;
+            if (weaponManager.main_hand2) weaponBonus += weaponManager.main_hand_level2;
+
+            // 简化计算，减少浮点运算次数
+            float totalMultiplier = 1 + (Mathf.Pow(experienceSystem.currentLevel, 1.1f) + weaponBonus) / 20f;
+            HP *= totalMultiplier;
+
+            #if UNITY_EDITOR
+            Debug.Log($"怪物血量更新 - 基础HP: {HP:F0}, 总倍率: {totalMultiplier:F2}");
+            #endif
+        }
+        Previous_health = HP;
     }
 
 
@@ -35,7 +64,6 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject monster;
     public float movespeed;
     private float Previous_health;
-    public float HP;
     private float Getting_damage;
     private float Getting_damage_first;
     private float critical_damage;
