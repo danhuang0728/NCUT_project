@@ -25,7 +25,7 @@ public class gift : MonoBehaviour
     public void OnSliderValueChanged(float value, string selectedOption)
     {
         // 更新效果加成值
-        effect_addition = value;
+        effect_addition = value; 
 
         if (selectedOption == "damage")
         {
