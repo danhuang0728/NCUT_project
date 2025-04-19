@@ -88,8 +88,7 @@ public class LevelTrigger : MonoBehaviour
 
             foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
             {
-                trap.close = true;
-                //離開房間
+                trap.close = true; //尖刺伸出來
             }
         }
     }
@@ -109,7 +108,9 @@ public class LevelTrigger : MonoBehaviour
             }
             
         }
-
+        // 設定timerScript的maxTime
+        timerScript.maxTime = levelmaxTime;
+        timerScript.remainingTime = leveltime;
         float remainingTime = leveltime;
         float maxInterval = 6f; // 最大生成間隔
         float minInterval = 0.15f; // 最小生成間隔
@@ -164,7 +165,7 @@ public class LevelTrigger : MonoBehaviour
             trapAni.Update(0);
             trapAni.Play("TarpAni_single", 0, 0f);
             trapAni.Update(0);
-            trap.close = false;
+            trap.close = false; //尖刺縮回去
         }
         
     }

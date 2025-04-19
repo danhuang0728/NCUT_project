@@ -28,10 +28,15 @@ public class PlayerControl : MonoBehaviour
     public float AttackRange;
     public float Knockback_strength;
     public float HP;
+
+    public static int kill_monster_count = 0;
+
     public AudioSource audioSource;
     public float attack_damage;
     public AudioClip audioClip;
     public healthbar Healthbar;
+
+    
 
 
     //--------------------打擊特效開關的bool-----------------------------
@@ -69,7 +74,8 @@ public class PlayerControl : MonoBehaviour
         
         if (Time.time % 7 < Time.deltaTime) //每過7秒顯示HP
         {
-            Debug.Log("當前HP: " + HP);
+            //Debug.Log("當前HP: " + HP);
+            Debug.Log("當前擊殺怪物數: " + kill_monster_count);
         }
 
         //檢查是否死亡
@@ -308,7 +314,7 @@ public class PlayerControl : MonoBehaviour
                     // 打擊特效       
                     StartCoroutine(SetBoolWithDelay(mat,targetRenderer));    //飛斧測試
                 }
-                Debug.Log("怪物HP: " + clone_Scripts.HP);
+                //Debug.Log("怪物HP: " + clone_Scripts.HP);
             }
             if (Normal_T != null){                      //對一般的擊退設定
                 Vector3 direction = Normal_T.position - transform.position; // 一般怪物 到玩家的方向

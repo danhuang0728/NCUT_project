@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText; // 顯示倒數計時的文字
-    [SerializeField] Slider timerSlider;       // 滑動條元件
+    [SerializeField] Slider timerSlider;       // 滑動條元件S
     public float remainingTime;               // 剩餘時間（秒）
     public float maxTime;                     // 最大時間（初始倒數時間）
 
     void Start()
     {
+
         // 初始化 Slider 最大值
         timerSlider.maxValue = maxTime;
         timerSlider.value = maxTime; // 起始值設為最大時間

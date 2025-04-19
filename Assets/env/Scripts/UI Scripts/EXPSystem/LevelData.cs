@@ -45,8 +45,8 @@ public class LevelData : ScriptableObject
 
     public static float CalculateSpeed(int level)  //照等級速度加成函數
     {
-        float minSpeed = 5.0f;
-        float maxSpeed = 10.0f;
+        float minSpeed = 3.5f;
+        float maxSpeed = 9.0f;
         int minLevel = 1;
         int maxLevel = 100;
 

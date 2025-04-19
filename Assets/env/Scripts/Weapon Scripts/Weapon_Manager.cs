@@ -53,6 +53,7 @@ public class Weapon_Manager : MonoBehaviour
     [Range(1, 5)]
     public int axe_level = 1;
     GameObject axe_weapon;
+    Weapon axe_weapon_script;
 
     public bool AxeSpawner = false;
     private AxeSpawner axeSpawner;
@@ -97,6 +98,7 @@ public class Weapon_Manager : MonoBehaviour
         boomerang_controller = boomerang_weapon.GetComponent<BoomerangController>();
         magicbook_script = magicbook_weapon.GetComponent<MagicBook>();
         crossbow_script = crossbow_weapon.GetComponent<crossbow>();
+        axe_weapon_script = axe_weapon.GetComponent<Weapon>();
         
         // 從player1獲取AxeSpawner組件
         if (player != null)
@@ -189,6 +191,8 @@ public class Weapon_Manager : MonoBehaviour
 
         boomerang_controller.level = boomerang_level;
         boomerang_controller.is_levelUP = is_boomerang_levelUP_1; // 回旋標武器進化(無限彈射)
+
+        axe_weapon_script.level = axe_level;  //斧頭武器等級
         
         magicbook_script.level = magicbook_level;
         magicbook_script.is_levelUP1 = is_magicbook_levelUP_1; // 魔法書武器進化(火球追蹤)

@@ -194,6 +194,8 @@ public class NormalMonster_setting : MonoBehaviour
     public void MonsterDead(GameObject monster)
 
     {
+        PlayerControl.kill_monster_count++;
+        
         monster.SetActive(false);
 
         // 判斷怪物類型和經驗值等級

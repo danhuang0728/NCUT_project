@@ -122,7 +122,7 @@ public class GearWeaponSystem : MonoBehaviour
                     radius: 4f,
                     cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 3f,
-                    dmg: 1f 
+                    dmg: 7f 
                 );
                 break;
             case 2:
@@ -132,7 +132,7 @@ public class GearWeaponSystem : MonoBehaviour
                     radius: 4f,
                     cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 6f,
-                    dmg: 30f 
+                    dmg: 15f 
                 );
                 break;
             case 3:
@@ -142,27 +142,27 @@ public class GearWeaponSystem : MonoBehaviour
                     radius: 4f,
                     cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 8f,
-                    dmg: 50f 
+                    dmg: 35f
                 );
                 break;
             case 4:
                 SetParameters(
                     count: 4,
-                    speed: 200f,
+                    speed: 300,
                     radius: 4f,
                     cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 10f,
-                    dmg: 50f 
+                    dmg: 80f 
                 );
                 break;
             case 5:
                 SetParameters(
                     count: 5,
-                    speed: 300f,
+                    speed: 500f,
                     radius: 4f,
                     cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
-                    duration: 10f,
-                    dmg: 50f 
+                    duration: 12f,
+                    dmg: 120.0f
                 );
                 break;
         }

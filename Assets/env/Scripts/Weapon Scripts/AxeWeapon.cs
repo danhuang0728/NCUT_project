@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private Transform player;
-    public float delaySeconds = 3f; // Time between animation plays
+    public float delaySeconds = 60f; // Time between animation plays
 
     private Animator animator;
     private GameObject axeSlash;
@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     public float knockbackForce = 10f; // 擊退力度
     private Collider2D attackCollider; // 武器的 Collider，用於檢測碰撞區域
     public PlayerControl playerControl; // 抓玩家腳本（處理變色延遲等）
+    public int level;
 
     // Start is called before the first frame update
     void Start()
@@ -116,6 +117,8 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        level_check(level);
         transform.position = new Vector3(player.position.x , player.position.y + 0.3f, player.position.z);
         
         // 獲取玩家的旋轉值並同步斧頭的Y軸旋轉
@@ -124,6 +127,34 @@ public class Weapon : MonoBehaviour
         {
             float playerRotationY = player.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180 + playerRotationY, transform.rotation.eulerAngles.z);
+        }
+    }
+    public void level_check(int level)
+    {
+        if(level == 1)
+        {
+            delaySeconds = 6f;
+            damage = 20f;
+        }
+        else if(level == 2)
+        {
+            delaySeconds = 5f;
+            damage = 60f;
+        }
+        else if(level == 3)
+        {
+            delaySeconds = 4f;
+            damage = 100f;
+        }
+        else if(level == 4)
+        {
+            delaySeconds = 3f;
+            damage = 150f;
+        }
+        else if(level == 5)
+        {
+            delaySeconds = 2f;
+            damage = 200f;
         }
     }
 }
