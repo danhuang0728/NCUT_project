@@ -32,14 +32,13 @@ public class light_breath : MonoBehaviour
             // 亮度漸強
             for(float i = lightMin; i <= lightMax; i += step) {
                 light2d.intensity = i;
-                Debug.Log(i);
                 yield return new WaitForSeconds(time);
             }
             
             // 亮度漸弱
             for(float i = lightMax; i >= lightMin; i -= step) {
                 light2d.intensity = i;
-                Debug.Log(i);
+
                 yield return new WaitForSeconds(time); 
             }
         }
