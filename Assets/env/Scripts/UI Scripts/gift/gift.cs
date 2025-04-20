@@ -21,6 +21,34 @@ public class gift : MonoBehaviour
         gift_point = GameObject.Find("point_Value").GetComponent<TextMeshProUGUI>();
         //抓取子物件slider
         slider = GetComponentInChildren<Slider>();
+        if (selectedOption == "damage")
+        {
+            slider.value = character_Values_SETUP.damage_addition / 10 + 1;
+        }
+        else if (selectedOption == "criticalDamage")
+        {
+            slider.value = character_Values_SETUP.criticalDamage_addition / 10 + 1;
+        }
+        else if (selectedOption == "criticalHitRate")
+        {
+            slider.value = character_Values_SETUP.criticalHitRate_addition / 10 + 1;
+        }
+        else if (selectedOption == "speed")
+        {
+            slider.value = character_Values_SETUP.speed_addition / 10 + 1;
+        }
+        else if (selectedOption == "health")
+        {
+            slider.value = character_Values_SETUP.health_addition / 10 + 1;
+        }
+        else if (selectedOption == "cooldown")
+        {
+            slider.value = character_Values_SETUP.cooldown_addition / 10 + 1;
+        }
+        else if (selectedOption == "lifeSteal")
+        {
+            slider.value = character_Values_SETUP.lifeSteal_addition / 10 + 1;
+        }
     }
 
     // Update is called once per frame
