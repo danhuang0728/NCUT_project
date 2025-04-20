@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b251b3752e38d458eddbc5a7495aea, type: 3}
   m_Name: Character_Values_SETUP
   m_EditorClassIdentifier: 
-  damage: 0
-  criticalDamage: 0
-  criticalHitRate: 0
-  speed: 0
-  health: 0
-  cooldown: 0
-  lifeSteal: 0
+  damage_addition: 20
+  criticalDamage_addition: 0
+  criticalHitRate_addition: 0
+  speed_addition: 0
+  health_addition: 0
+  cooldown_addition: 0
+  lifeSteal_addition: 0
+  gold_addition: 0
+  GIFT_Value: 0
