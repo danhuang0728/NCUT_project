@@ -3,7 +3,11 @@ guid: 5dcff2318084e8b40b0dda40ab341c38
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - roomCorner1: {instanceID: 0}
+  - roomCorner2: {instanceID: 0}
+  - warningIconPrefab: {fileID: 386437900119935323, guid: 18aff8df5e6c68c46b12a306b843caa2,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
