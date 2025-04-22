@@ -10,6 +10,7 @@ public class NormalMonster_setting : MonoBehaviour
     private PlayerControl playerControl;
     private ExperienceSystem experienceSystem;
     private Weapon_Manager weaponManager;
+    private Transform player1; // 修正：新增變數
     public healthbar Healthbar;
     public int monster_type; //區分水果or一般怪物 1==水果 0==一般
     public int exp_type; //區分經驗值類別 初級,中級,高級
