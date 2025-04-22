@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class NormalMonster_setting : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject LowExpPrefab;    // 低級經驗值預製體
     public GameObject MediumExpPrefab;  // 中級經驗值預製體
     public GameObject HighExpPrefab;    // 高級經驗值預製體
+    public GameObject boxPrefab; // 武器箱預製體
+
+    [Header("武器箱怪物移動速度設定")]
+    public float maxspeed = 5f; // 最大速度
+    public float minspeed = 1f; // 最小速度
+
     private GameObject burn_effect;  // 燃燒效果
     [SerializeField] private damage_effect damageEffect;
     [SerializeField] private critical_effect critical_effect;
@@ -70,6 +77,8 @@ public class NormalMonster_setting : MonoBehaviour
     private float critical_damage;
     void Update()
     {
+        speed_controll(minspeed, maxspeed); // 設定怪物移動速度
+
         if (Previous_health != HP) //偵測怪物血量是否改變
         {
             Getting_damage_first = Previous_health - HP; //計算怪物受到的傷害值
@@ -259,6 +268,22 @@ public class NormalMonster_setting : MonoBehaviour
                     AudioManager.Instance.PlaySFX("drop_exp");
                     break;
             }
+        }
+        else if(monster_type == 2) //武器箱怪物
+        {
+            if(boxPrefab != null)
+            {
+                GameObject box = Instantiate(boxPrefab, transform.position, Quaternion.identity); //生成武器箱物品
+                box.SetActive(true);
+            }
+        }
+    }
+    void speed_controll(float Minspeed , float Maxspeed)
+    {
+        if(monster_type == 2)
+        {
+            float distanceToPlayer = Vector2.Distance(transform .position,player1.position);
+            movespeed = Mathf.Clamp(distanceToPlayer / 2, Minspeed, Maxspeed); // 距離越近速度越慢，距離越遠速度越快，限制速度範圍在Minspeed到Maxspeed之間
         }
     }
 
