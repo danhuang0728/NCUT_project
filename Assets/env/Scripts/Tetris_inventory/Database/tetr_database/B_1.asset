@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: B_1
   m_EditorClassIdentifier: 
   tetr_name: 
-  tetr_sprite: {fileID: 21300000, guid: 9f8f114589864b6489859a58fbb6baf9, type: 3}
+  tetr_sprite: {fileID: 21300000, guid: f3f74753207e2304696b6a7a55fe1fa5, type: 3}
   tetr_type: 5

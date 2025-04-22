@@ -41,9 +41,11 @@ public class Weapon_Manager : MonoBehaviour
     // 西洋劍武器：包含啟用開關與等級設定
     [Header("西洋劍武器")]
     public bool thrust = false;
-    [Range(1, 7)]
+    [Range(1, 5)]
     public int thrust_level = 1;
     GameObject thrust_weapon;
+    private ToggleChildObjects thrust_script;
+    [Tooltip("全場下戳")]  public bool is_thrust_levelUP_1 = false;
 
 
 
@@ -97,6 +99,7 @@ public class Weapon_Manager : MonoBehaviour
         circle_weapon_system = circle_weapon.GetComponent<GearWeaponSystem>();
         boomerang_controller = boomerang_weapon.GetComponent<BoomerangController>();
         magicbook_script = magicbook_weapon.GetComponent<MagicBook>();
+        thrust_script = thrust_weapon.GetComponent<ToggleChildObjects>();
         crossbow_script = crossbow_weapon.GetComponent<crossbow>();
         axe_weapon_script = axe_weapon.GetComponent<Weapon>();
         
@@ -186,20 +189,23 @@ public class Weapon_Manager : MonoBehaviour
         setActiveWeapon(main_hand2, main_hand2_weapon);
 
 
-        circle_weapon_system.level = circle_level;
+        circle_weapon_system.level = circle_level;                  //等級對接
         circle_weapon_system.is_levelUP = is_circle_levelUP_1; // 圓環武器進化(無限時間)
 
-        boomerang_controller.level = boomerang_level;
+        boomerang_controller.level = boomerang_level;            //等級對接
         boomerang_controller.is_levelUP = is_boomerang_levelUP_1; // 回旋標武器進化(無限彈射)
 
         axe_weapon_script.level = axe_level;  //斧頭武器等級
         
-        magicbook_script.level = magicbook_level;
+        magicbook_script.level = magicbook_level;               //等級對接
         magicbook_script.is_levelUP1 = is_magicbook_levelUP_1; // 魔法書武器進化(火球追蹤)
         magicbook_script.is_levelUP2 = is_magicbook_levelUP_2; // 魔法書武器進化(巨大火球)
 
-        crossbow_script.level = crossbow_level;
-        crossbow_script.is_levelUP = is_crossbow_levelUP_1; // 弩箭砲台武器進化(加速連社)
+        thrust_script.level = thrust_level; // 西洋劍武器等級對接
+        thrust_script.is_evolution1 = is_thrust_levelUP_1; // 西洋劍武器進化(全場下戳)
+
+        crossbow_script.level = crossbow_level;             //等級對接
+        crossbow_script.is_levelUP = is_crossbow_levelUP_1; // 弩箭砲台武器進化(加速連射)
     }
     void setActiveWeapon(bool weapon, GameObject weapon_object)
     {
@@ -304,6 +310,7 @@ public class Weapon_Manager : MonoBehaviour
             }
         }
     }
+
 
 
 }

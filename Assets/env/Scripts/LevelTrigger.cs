@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 using System.Timers;
 using System.Linq;
+using UnityEditor;
+using Unity.VisualScripting;
 public class LevelTrigger : MonoBehaviour
 {
     public Collider2D collider2d;
@@ -38,11 +40,12 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private string selectedOption = "(1_1)"; // 设置默认值
 
     [SerializeField] private GameObject[] shopItemPrefabs; // 在Inspector中设置可能出现的物品预制体
+
     [SerializeField] private Transform[] spawnPoints; // 在Inspector中设置4个生成点
     private bool itemsSpawned = false;
 
     private bool isInRoom = false;
-
+    
     void Start()
     {
         canvas = GameObject.Find("Canvas");

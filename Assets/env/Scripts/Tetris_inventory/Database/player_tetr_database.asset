@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: player_tetr_database
   m_EditorClassIdentifier: 
   tetr_database:
-  - {fileID: 11400000, guid: 29e2e8ad25d6edf4c8b71f80cdee64f6, type: 2}
+  - {fileID: 11400000, guid: 47ad538ef5da3c44fba65de9cf734e4b, type: 2}
+  - {fileID: 11400000, guid: 0ec7d8bf7f63f46489f0c6cfe1b7cba3, type: 2}
+  - {fileID: 11400000, guid: 8f668a5b95249c7469df4cbd7630f6d1, type: 2}
+  - {fileID: 11400000, guid: 0671e535f8f5a9a48ad07f2e3e66b144, type: 2}

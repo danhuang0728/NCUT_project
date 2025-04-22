@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "Character_Values_SETUP", menuName = "Custom/Character_Values_SETUP")]
 
@@ -20,6 +21,7 @@ public class Character_Values_SETUP : ScriptableObject
     public float lifeSteal_addition_percentage => lifeSteal_addition / 100f;
     public float gold_addition = 0;
     public float gold_addition_percentage => gold_addition / 100f;
+    public int GIFT_Value = 0;
 }
 
 

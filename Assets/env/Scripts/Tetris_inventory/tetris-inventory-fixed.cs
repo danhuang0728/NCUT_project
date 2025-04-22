@@ -167,7 +167,7 @@ public class TetrisInventoryManager : MonoBehaviour
         }
     }
     // 初始化兩側的網格
-    void InitializeGrids()
+    public void InitializeGrids()
     {
         equippedGrid = CreateGrid(equippedGridContainer, "Equipped", equippedGridSize);
         storageGrid = CreateGrid(storageGridContainer, "Storage", storageGridSize);

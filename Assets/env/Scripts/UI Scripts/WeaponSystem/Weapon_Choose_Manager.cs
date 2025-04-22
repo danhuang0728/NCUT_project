@@ -36,7 +36,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
       weaponManager.UpdateWeaponStatus();
       weaponManager.UpdateAllWeaponLevels();
         // 按數字8可開啟武器選擇面板
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        if (Input.GetKeyDown(KeyCode.Alpha8) && UIstate.isAnyPanelOpen == false)
         {
             if (!isPanelOpen)
             {
@@ -52,8 +52,9 @@ public class Weapon_Choose_Manager : MonoBehaviour
     {
       UpdateUI();
       isPanelOpen = true;
-      if (optionPanelParent != null)
+      if (optionPanelParent != null && UIstate.isAnyPanelOpen == false)
       {
+        UIstate.isAnyPanelOpen = true;
         background.SetActive(true);
         optionPanelParent.SetActive(true);
       }
@@ -65,6 +66,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
       isPanelOpen = false;
       if (optionPanelParent != null)
         {
+          UIstate.isAnyPanelOpen = false;
           optionPanelParent.SetActive(false);
           background.SetActive(false);
         }

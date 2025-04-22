@@ -28,7 +28,7 @@ public class ExperienceSystem : MonoBehaviour
     void Update()   //測試升級
     {
         // 检测按下数字键9
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        if (Input.GetKeyDown(KeyCode.Alpha9) && UIstate.isAnyPanelOpen == false)
         {
             currentLevel++; //升級
             Debug.Log("Level up Now level: " + currentLevel);
