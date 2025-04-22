@@ -7,18 +7,71 @@ public class thrust : MonoBehaviour
     public bool is_evolution_object = false;
     public PlayerControl playerControl; //抓玩家腳本
     private ToggleChildObjects thrust_script;
+    private int level = 1;
+
     private void Start()
     {
+        playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         thrust_script = FindObjectOfType<ToggleChildObjects>();
+        level = thrust_script.level;
+        UpdateDamage();
+    }
+
+    private void UpdateDamage()
+    {
         if(is_evolution_object)
         {
-            damage = thrust_script.damage * 2.5f;
+            switch(level)
+            {
+                case 1:
+                    damage = 10f * 1.5f;
+                    break;
+                case 2:
+                    damage = 20f * 1.5f;
+                    break;
+                case 3:
+                    damage = 40f * 1.5f;
+                    break;
+                case 4:
+                    damage = 80f * 1.5f;
+                    break;
+                case 5:
+                    damage = 100f * 1.5f;
+                    break;
+            }
         }
         else
         {
-            damage = thrust_script.damage;
+            switch(level)
+            {
+                case 1:
+                    damage = 10f;
+                    break;
+                case 2:
+                    damage = 20f;
+                    break;
+                case 3:
+                    damage = 40f;
+                    break;
+                case 4:
+                    damage = 80f;
+                    break;
+                case 5:
+                    damage = 100f;
+                    break;
+            }
         }
     }
+
+    private void Update()
+    {
+        if (thrust_script != null && level != thrust_script.level)
+        {
+            level = thrust_script.level;
+            UpdateDamage();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 確認碰撞到的物件是怪物且不是玩家

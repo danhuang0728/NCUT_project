@@ -141,12 +141,15 @@ public class RandomSpawn : MonoBehaviour
             }
         }
 
-        // 根據陷阱狀態控制生成
-        if (anyTrapActive && !isSpawning)
+        // 檢查玩家是否在房間範圍內
+        bool isPlayerInRoom = IsPlayerInRoom();
+
+        // 根據陷阱狀態和玩家位置控制生成
+        if (anyTrapActive && isPlayerInRoom && !isSpawning)
         {
             StartSpawning();
         }
-        else if (!anyTrapActive && isSpawning)
+        else if ((!anyTrapActive || !isPlayerInRoom) && isSpawning)
         {
             StopSpawning();
         }
@@ -161,6 +164,16 @@ public class RandomSpawn : MonoBehaviour
                 phaseCheckTimer = 0f;
             }
         }
+    }
+
+    // 檢查玩家是否在房間範圍內
+    private bool IsPlayerInRoom()
+    {
+        if (player == null) return false;
+
+        Vector2 playerPos = player.transform.position;
+        return playerPos.x >= roomMin.x && playerPos.x <= roomMax.x &&
+               playerPos.y >= roomMin.y && playerPos.y <= roomMax.y;
     }
 
     // 根據時間更新階段

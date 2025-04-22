@@ -43,10 +43,7 @@ public class GearWeaponSystem : MonoBehaviour
         {
             durationTime = float.PositiveInfinity; // 設為無限大
         }
-        else
-        {
-            durationTime = 5f;
-        }
+        
 
         if (isActive == false)
         {
@@ -120,49 +117,49 @@ public class GearWeaponSystem : MonoBehaviour
                     count: 2,
                     speed: 125f,
                     radius: 4f,
-                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
-                    duration: 3f,
-                    dmg: 7f 
+                    cooldown: 10f - (10f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 7f,
+                    dmg: 25f 
                 );
                 break;
             case 2:
                 SetParameters(
                     count: 3,
-                    speed: 150f,
+                    speed: 175f,
                     radius: 4f,
-                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    cooldown: 8f - (8f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 6f,
-                    dmg: 15f 
+                    dmg: 35f 
                 );
                 break;
             case 3:
                 SetParameters(
                     count: 3,
-                    speed: 200f,
+                    speed: 250f,
                     radius: 4f,
-                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    cooldown: 7f - (7f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 8f,
-                    dmg: 35f
+                    dmg: 45f
                 );
                 break;
             case 4:
                 SetParameters(
                     count: 4,
-                    speed: 300,
+                    speed: 300f,
                     radius: 4f,
-                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    cooldown: 5f - (5f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
                     duration: 10f,
-                    dmg: 80f 
+                    dmg: 60f 
                 );
                 break;
             case 5:
                 SetParameters(
                     count: 5,
-                    speed: 500f,
+                    speed: 350f,
                     radius: 4f,
-                    cooldown: 15f - (15f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
-                    duration: 12f,
-                    dmg: 120.0f
+                    cooldown: 3f - (3f * (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage)),
+                    duration: 15f,
+                    dmg: 80f
                 );
                 break;
         }
