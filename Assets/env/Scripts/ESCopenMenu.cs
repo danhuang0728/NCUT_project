@@ -7,12 +7,13 @@ public class UIManager : MonoBehaviour
 
     private bool isSubmenuOpen = false; // 子選單的狀態
     private bool isMenuOpen = false; // 選項選單的狀態
+    public static bool isPanelOpen = false; // 用於檢查選單是否開啟
 
 
     void Update()
     {
         // 檢測 ESC 按鍵
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPanelOpen)
         {
             HandleESC();
         }

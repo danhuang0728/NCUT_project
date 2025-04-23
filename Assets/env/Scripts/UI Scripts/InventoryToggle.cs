@@ -14,10 +14,7 @@ public class InventoryToggle : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleInventory();
-        }
+
     }
 
     void ToggleInventory()
