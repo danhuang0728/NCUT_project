@@ -402,4 +402,16 @@ public class PlayerControl : MonoBehaviour
     {
         StartCoroutine(SetBoolWithDelay(mat, renderer));
     }
+
+    // 新增獲取擊殺數量的方法
+    public static int GetKillCount()
+    {
+        return kill_monster_count;
+    }
+
+    // 新增重置擊殺數量的方法
+    public static void ResetKillCount()
+    {
+        kill_monster_count = 0;
+    }
 }

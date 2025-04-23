@@ -27,6 +27,11 @@ public class RandomSpawn : MonoBehaviour
     private RandomSpawnPhase[] spawnPhases = new RandomSpawnPhase[5]; // 五個生怪階段
     public float phaseTransitionDelay = 1f; // 階段轉換延遲時間
 
+    [Header("菁英怪設定")]
+    public List<GameObject> eliteMonsterPrefabs = new List<GameObject>(); // 菁英怪預製體列表
+    private int currentEliteIndex = 0; // 當前菁英怪索引
+    private bool[] eliteSpawned = new bool[5]; // 記錄每個時間點的菁英怪是否已生成
+
     [Header("階段狀態")]
     public int currentPhase = 0; // 當前生怪階段
     private float phaseCheckTimer = 0f; // 階段檢查計時器
@@ -126,6 +131,13 @@ public class RandomSpawn : MonoBehaviour
             Debug.LogError("找不到任何陷阱控制腳本！");
             return;
         }
+
+        // 初始化菁英怪生成記錄
+        eliteSpawned = new bool[5];
+        for (int i = 0; i < eliteSpawned.Length; i++)
+        {
+            eliteSpawned[i] = false;
+        }
     }
 
     void Update()
@@ -162,6 +174,40 @@ public class RandomSpawn : MonoBehaviour
             {
                 UpdatePhaseBasedOnTime();
                 phaseCheckTimer = 0f;
+            }
+
+            // 檢查是否到達菁英怪生成時間點
+            float remainingTime = timerScript.remainingTime;
+            
+            // 檢查9分鐘（540秒）
+            if (remainingTime <= 541f && remainingTime >= 539f && !eliteSpawned[0])
+            {
+                SpawnEliteMonster();
+                eliteSpawned[0] = true;
+            }
+            // 檢查7分鐘（420秒）
+            else if (remainingTime <= 421f && remainingTime >= 419f && !eliteSpawned[1])
+            {
+                SpawnEliteMonster();
+                eliteSpawned[1] = true;
+            }
+            // 檢查5分鐘（300秒）
+            else if (remainingTime <= 301f && remainingTime >= 299f && !eliteSpawned[2])
+            {
+                SpawnEliteMonster();
+                eliteSpawned[2] = true;
+            }
+            // 檢查3分鐘（180秒）
+            else if (remainingTime <= 181f && remainingTime >= 179f && !eliteSpawned[3])
+            {
+                SpawnEliteMonster();
+                eliteSpawned[3] = true;
+            }
+            // 檢查1分鐘（60秒）
+            else if (remainingTime <= 61f && remainingTime >= 59f && !eliteSpawned[4])
+            {
+                SpawnEliteMonster();
+                eliteSpawned[4] = true;
             }
         }
     }
@@ -222,6 +268,13 @@ public class RandomSpawn : MonoBehaviour
             isSpawning = true;
             currentPhase = 0; // 重置階段
             phaseCheckTimer = 0f; // 重置計時器
+            
+            // 重置菁英怪生成記錄
+            for (int i = 0; i < eliteSpawned.Length; i++)
+            {
+                eliteSpawned[i] = false;
+            }
+            
             StartCoroutine(SpawnMonsters());
         }
     }
@@ -339,6 +392,39 @@ public class RandomSpawn : MonoBehaviour
             // 等待間隔時間後進行下一輪生成
             yield return new WaitForSeconds(currentPhaseSettings.spawnInterval);
         }
+    }
+
+    // 生成菁英怪
+    private void SpawnEliteMonster()
+    {
+        if (eliteMonsterPrefabs == null || eliteMonsterPrefabs.Count == 0)
+        {
+            Debug.LogWarning("沒有設定菁英怪預製體！");
+            return;
+        }
+
+        // 檢查是否還有菁英怪可以生成
+        if (currentEliteIndex >= eliteMonsterPrefabs.Count)
+        {
+            Debug.Log("所有菁英怪都已生成完畢！");
+            return;
+        }
+
+        // 在房間範圍內隨機生成位置
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(roomMin.x, roomMax.x),
+            Random.Range(roomMin.y, roomMax.y),
+            0f
+        );
+
+        // 生成菁英怪
+        GameObject eliteMonster = Instantiate(eliteMonsterPrefabs[currentEliteIndex], spawnPosition, Quaternion.identity);
+        eliteMonster.SetActive(true);
+        
+        // 更新菁英怪索引
+        currentEliteIndex++;
+
+        Debug.Log($"生成菁英怪：{eliteMonster.name}");
     }
 
     // 在Scene視圖中繪製房間範圍和玩家安全區域

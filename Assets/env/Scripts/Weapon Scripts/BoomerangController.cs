@@ -101,14 +101,14 @@ public class BoomerangController : MonoBehaviour
         if(level == 1)
         {
             fireRate = 0.33f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            boomerang_Prb.damage = 5;
+            boomerang_Prb.damage = 10;
             boomerang_Prb.MaxBounce = 3;
             count = 1;
         }
         else if(level == 2)
         {
             fireRate = 0.5f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            boomerang_Prb.damage = 10;
+            boomerang_Prb.damage = 20;
             boomerang_Prb.MaxBounce = 3;
             count = 1;
         }
@@ -117,7 +117,7 @@ public class BoomerangController : MonoBehaviour
         else if(level == 3)
         {
             fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            boomerang_Prb.damage = 20;
+            boomerang_Prb.damage = 35;
             boomerang_Prb.MaxBounce = 5;
             count = 1;
         }
@@ -125,14 +125,14 @@ public class BoomerangController : MonoBehaviour
         else if(level == 4)
         {
             fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            boomerang_Prb.damage = 30;
+            boomerang_Prb.damage = 45;
             boomerang_Prb.MaxBounce = 7;
             count = 2;
         }
         else if(level == 5)
         {
             fireRate = 1f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            boomerang_Prb.damage = 50;
+            boomerang_Prb.damage = 60;
             boomerang_Prb.MaxBounce = 7;
             count = 3;
         }
