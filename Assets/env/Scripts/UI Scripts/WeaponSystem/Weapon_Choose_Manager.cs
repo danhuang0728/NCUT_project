@@ -81,7 +81,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
 
     private void ResumeGame()
     {
-    Time.timeScale = 1;
+    Time.timeScale = PlayerControl.N;
     }
      public void UpdateUI()
     {

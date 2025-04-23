@@ -57,13 +57,17 @@ public class PlayerControl : MonoBehaviour
     public bool hasBurnEffect = false; // 是否具有燃燒效果
     public int burnDuration = 5; // 燃燒持續時間
     public Tetris_ability_Manager tetris_ability_manager;
+    [Header("時間控制")]
+    public float timeScale = 1;
+    public static float N = 1;
     public void Awake()
     {
         gameOver = FindObjectOfType<GameOver>();
     }
     private void Start() 
     {
-        Time.timeScale = 1f; 
+        N = timeScale;
+        Time.timeScale = N; 
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
         

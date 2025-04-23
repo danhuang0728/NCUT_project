@@ -238,7 +238,7 @@ public class SelectionManager : MonoBehaviour
 
       private void ResumeGame()
       {
-        Time.timeScale = 1;
+        Time.timeScale = PlayerControl.N;
       }
 
     private Color32 GetRarityColor(VariableData.Rarity rarity)

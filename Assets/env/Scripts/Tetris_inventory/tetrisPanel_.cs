@@ -35,7 +35,7 @@ public class tetrisPanel_ : MonoBehaviour
         UIstate.isAnyPanelOpen = false;
         inventoryPanel.SetActive(false);
         pageObj.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = PlayerControl.N;
         isInventoryOpen = false;
     }
 }
