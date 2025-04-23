@@ -57,7 +57,7 @@ public class NormalMonster_setting : MonoBehaviour
             if (weaponManager.main_hand2) weaponBonus += weaponManager.main_hand_level2;
 
             // 简化计算，减少浮点运算次数
-            float totalMultiplier = 1 + (Mathf.Pow(experienceSystem.currentLevel, 1.1f) + weaponBonus) / 20f;
+            float totalMultiplier = 1 + (Mathf.Pow(experienceSystem.currentLevel, 0.8f) + weaponBonus) / 33.33f;
             HP *= totalMultiplier;
 
             #if UNITY_EDITOR

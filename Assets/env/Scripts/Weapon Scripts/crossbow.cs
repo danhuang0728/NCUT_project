@@ -88,14 +88,14 @@ public class crossbow : MonoBehaviour
         {
             if(is_levelUP == false)
             {
-                crossbow_Prb.fireRate = 1f;
-                arrow.damage = 5;
+                crossbow_Prb.fireRate = 1.5f;
+                arrow.damage = 8;
 
             }
             else
             {
                 crossbow_Prb.fireRate = 3f;
-                arrow.damage = 5;
+                arrow.damage = 10;
             }
         }
         else if(level == 2)
@@ -104,7 +104,7 @@ public class crossbow : MonoBehaviour
             {
                 crossbow_Prb.fireRate = 2f;
 
-                arrow.damage = 10;
+                arrow.damage = 15;
             }
             else
             {
@@ -118,14 +118,14 @@ public class crossbow : MonoBehaviour
         {
             if(is_levelUP == false)
             {
-                crossbow_Prb.fireRate = 3f;
-                arrow.damage = 20;
+                crossbow_Prb.fireRate = 4;
+                arrow.damage = 25;
             }
 
             else
             {
                 crossbow_Prb.fireRate = 9f;
-                arrow.damage = 20;
+                arrow.damage = 40;
             }
 
 
@@ -135,14 +135,14 @@ public class crossbow : MonoBehaviour
         {
             if(is_levelUP == false)
             {
-                crossbow_Prb.fireRate = 4f;
+                crossbow_Prb.fireRate = 6;
 
                 arrow.damage = 30;
             }
             else
             {
                 crossbow_Prb.fireRate = 12f;
-                arrow.damage = 30;
+                arrow.damage = 50;
             }
 
 
@@ -151,14 +151,14 @@ public class crossbow : MonoBehaviour
         {
             if(is_levelUP == false)
             {
-                crossbow_Prb.fireRate = 5f;
+                crossbow_Prb.fireRate = 8;
 
-                arrow.damage = 40;
+                arrow.damage = 50;
             }
             else
             {
                 crossbow_Prb.fireRate = 15f;
-                arrow.damage = 40;
+                arrow.damage = 60;
             }
         }
 

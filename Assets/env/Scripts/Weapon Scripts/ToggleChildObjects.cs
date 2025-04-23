@@ -35,28 +35,28 @@ public class ToggleChildObjects : MonoBehaviour
     {
         if(level == 1)
         {
-            damage = 10f;
+            damage = 15f;
             disableDuration = 3f;
         }
         else if(level == 2)
         {
-            damage = 20f;
-            disableDuration = 2.5f;
+            damage = 30f;
+            disableDuration = 2f;
         }
         else if(level == 3)
         {
-            damage = 40f;
-            disableDuration = 2f;
+            damage = 55f;
+            disableDuration = 1.5f;
         }
         else if(level == 4)
         {
             damage = 80f;
-            disableDuration = 1.5f;
+            disableDuration = 1f;
         }
         else if(level == 5)
         {
-            damage = 100f;
-            disableDuration = 1f;
+            damage = 120f;
+            disableDuration = 0.5f;
         }
     }
 

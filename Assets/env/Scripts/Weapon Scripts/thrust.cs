@@ -45,19 +45,19 @@ public class thrust : MonoBehaviour
             switch(level)
             {
                 case 1:
-                    damage = 10f;
+                    damage = 15f;
                     break;
                 case 2:
-                    damage = 20f;
+                    damage = 28f;
                     break;
                 case 3:
-                    damage = 40f;
+                    damage = 55f;
                     break;
                 case 4:
                     damage = 80f;
                     break;
                 case 5:
-                    damage = 100f;
+                    damage = 120f;
                     break;
             }
         }

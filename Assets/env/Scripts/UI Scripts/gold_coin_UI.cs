@@ -6,15 +6,23 @@ public class gold_coin : MonoBehaviour
 {
     public character_value_ingame character_value_ingame;
     public TextMeshProUGUI gold_coin_text;
+    private float lastGoldValue = 0f;
+
     void Start()
     {
         character_value_ingame = FindObjectOfType<character_value_ingame>();
-        gold_coin_text.text = Mathf.Round(character_value_ingame.gold).ToString();
+        lastGoldValue = character_value_ingame.gold;
+        gold_coin_text.text = Mathf.Round(lastGoldValue).ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        gold_coin_text.text = Mathf.Round(character_value_ingame.gold).ToString();
+        float currentGold = character_value_ingame.gold;
+        // 只有在金幣值改變時才更新UI
+        if (currentGold != lastGoldValue)
+        {
+            lastGoldValue = currentGold;
+            gold_coin_text.text = Mathf.Round(currentGold).ToString();
+        }
     }
 }
