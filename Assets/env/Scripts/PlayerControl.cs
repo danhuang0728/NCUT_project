@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
     //--------------------打擊特效開關的bool-----------------------------
     public string boolPropertyName = "_hitBool";
     //--------------------------------------------------------
-    private bool isDead = false;
+    public bool isDead = false;
     private monsterMove slime_Scripts;
     private BossFlower bossFlower;
     private NormalMonster_setting normalMonster_setting; 
@@ -52,12 +52,18 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rig;
     private Animator ani;
     private GameObject axeSlash;
+    private GameOver gameOver;
     public bool Legend_speed = false;
     public bool hasBurnEffect = false; // 是否具有燃燒效果
     public int burnDuration = 5; // 燃燒持續時間
     public Tetris_ability_Manager tetris_ability_manager;
+    public void Awake()
+    {
+        gameOver = FindObjectOfType<GameOver>();
+    }
     private void Start() 
     {
+        Time.timeScale = 1f; 
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
         
@@ -92,7 +98,7 @@ public class PlayerControl : MonoBehaviour
             Material mat = GetComponent<Renderer>().material;
             mat.SetInt(boolPropertyName, 0);
             //跳到下個場景
-            ///
+            StartCoroutine(gameOver.dead()); //呼叫GameOver腳本的死亡方法
             ///
         }
         
