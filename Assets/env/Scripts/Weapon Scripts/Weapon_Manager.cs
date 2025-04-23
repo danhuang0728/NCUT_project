@@ -164,9 +164,9 @@ public class Weapon_Manager : MonoBehaviour
         setActiveWeapon(main_hand1, main_hand1_weapon);
 
         // 控制 AxeSpawner 腳本的開關
-        if (axeSpawner != null)
+        if (axeSpawner != null && Axe == true)
         {
-            axeSpawner.enabled = AxeSpawner;  // 直接控制腳本的啟用狀態
+            axeSpawner.enabled = AxeSpawner;  // 直接控制腳本的啟用狀態\
             
             // 如果腳本被啟用且等級發生變化，則更新等級
             if (AxeSpawner && axe_level != previousAxeLevel)
@@ -174,6 +174,15 @@ public class Weapon_Manager : MonoBehaviour
                 previousAxeLevel = axe_level;
                 axeSpawner.level = axe_level;
                 axeSpawner.OnLevelChanged();
+            }
+        }
+        else
+        {
+            // 如果腳本被禁用，則重置等級
+            if (axeSpawner != null)
+            {
+                axeSpawner.enabled = false; // 禁用腳本
+                
             }
         }
 

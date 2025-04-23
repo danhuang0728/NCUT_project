@@ -175,6 +175,16 @@ public class Tetris_ability_Manager : MonoBehaviour
                 {
                     weapon_manager.is_boomerang_levelUP_1 = true;
                 }
+                //判斷是否有飛斧進化
+                if(child.gameObject.name.Contains("A_1"))
+                {
+                    weapon_manager.AxeSpawner = true;
+                }
+                //判斷是否有西洋劍進化(全場下戳)
+                if(child.gameObject.name.Contains("T_1"))
+                {
+                    weapon_manager.is_thrust_levelUP_1 = true;
+                }
             }
             //總值賦值
             damage = damage_accumulation; 

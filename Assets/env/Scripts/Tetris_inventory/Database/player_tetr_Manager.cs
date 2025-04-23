@@ -176,6 +176,25 @@ public class player_tetr_Manager : MonoBehaviour
                     "(A_2)" //巨斧
                 );
                 break;
+                
+            case tetr_database.Tetr_type.T_1:
+                tetrisInventoryManager.CreateTetrisPiece(
+                    new Vector2Int[] {
+                        new Vector2Int(2, 0), new Vector2Int(3, 0),
+                        new Vector2Int(2, 1), new Vector2Int(3, 1), 
+                        new Vector2Int(2, 2), new Vector2Int(3, 2),
+                        new Vector2Int(2, 3), new Vector2Int(3, 3),
+                        new Vector2Int(2, 4), new Vector2Int(3, 4),
+                        new Vector2Int(2, 5), new Vector2Int(3, 5),
+
+                        new Vector2Int(0, 3), new Vector2Int(1, 4),
+                        new Vector2Int(4, 4), new Vector2Int(5, 3),
+                    }, 
+                    new Color(0.5f, 0f, 1f),// 紫色
+                    new Vector2(3.5f, 3.5f),
+                    "(T_1)" //西洋劍
+                );
+                break;
 
             case tetr_database.Tetr_type.F_2:
                 tetrisInventoryManager.CreateTetrisPiece(
