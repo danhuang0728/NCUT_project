@@ -247,16 +247,32 @@ public class LevelTrigger : MonoBehaviour
             return;
         }
 
+        // 確保有足夠的物品預製體
+        if (shopItemPrefabs.Length < 4)
+        {
+            Debug.LogError("需要至少4個不同的物品預製體!");
+            return;
+        }
+
+        // 創建一個列表來追蹤已使用的物品索引
+        List<int> usedIndices = new List<int>();
+
         // 在4个位置生成随机物品
         for (int i = 0; i < 4; i++)
         {
-            if (shopItemPrefabs.Length > 0)
+            int randomIndex;
+            do
             {
-                // 随机选择一个物品预制体
-                GameObject itemPrefab = shopItemPrefabs[Random.Range(0, shopItemPrefabs.Length)];
-                // 在指定位置生成物品
-                Instantiate(itemPrefab, spawnPoints[i].position, Quaternion.identity);
-            }
+                // 隨機選擇一個未使用過的物品索引
+                randomIndex = Random.Range(0, shopItemPrefabs.Length);
+            } while (usedIndices.Contains(randomIndex));
+
+            // 將選中的索引加入已使用列表
+            usedIndices.Add(randomIndex);
+
+            // 在指定位置生成物品
+            GameObject itemPrefab = shopItemPrefabs[randomIndex];
+            Instantiate(itemPrefab, spawnPoints[i].position, Quaternion.identity);
         }
     }
 }
