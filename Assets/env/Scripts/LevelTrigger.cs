@@ -14,6 +14,7 @@ public class LevelTrigger : MonoBehaviour
     public LayerMask monsterlayer;
     public int levelminTime = 180;
     public int levelmaxTime = 180;
+    public static int levelFinish = 0;
     [SerializeField] private Transform playerTransform; 
 
 
@@ -33,6 +34,7 @@ public class LevelTrigger : MonoBehaviour
     private spawn targetSpawn3; // 抓Spider Spawn 腳本
 
     private bool isplaymusic = false;
+    private MainGPS playerGPS;
 
 #if UNITY_EDITOR
     [StringDropdown("(1_2)", "(1_3)", "(1_4)", "(1_5)", "(1_6)", "(1_7)", "(1_8)", "(1_9)", "(1_10)")] // 根据实际关卡设计修改选项
@@ -45,7 +47,11 @@ public class LevelTrigger : MonoBehaviour
     private bool itemsSpawned = false;
 
     private bool isInRoom = false;
-    
+
+    void Awake()
+    {
+        playerGPS = GameObject.Find("GPS_icon").GetComponent<MainGPS>();
+    }
     void Start()
     {
         canvas = GameObject.Find("Canvas");
@@ -72,6 +78,9 @@ public class LevelTrigger : MonoBehaviour
     {
         if (collider2d.IsTouchingLayers(player)) // 進入房間的觸發器 判斷是否進入房間
         {
+            LevelTrigger.levelFinish++; // 計算通關進度
+            //GPS關閉
+            playerGPS.closeGPS();
             //進入房間
             if (collider2d != null) // 讓觸發器只能觸發一次
             {
@@ -200,6 +209,8 @@ public class LevelTrigger : MonoBehaviour
     {
         GameObject[] expObjects = GameObject.FindGameObjectsWithTag("exp"); // 獲取所有tag為exp的物件
         Transform playerPosition = playerTransform; // 獲取玩家的位置
+        //GPS開啟
+        playerGPS.openGPS();
 
         while (true) // 持續移動物件
         {
