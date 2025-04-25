@@ -7,6 +7,7 @@ public class Sword_attack : MonoBehaviour
 {
     private ParticleSystem[] particleSystems;
     public Transform playerTransform;
+    private float damage;
     private float cooldown = 1f; // 冷却时间
     private float lastPlayTime = -0.5f; // 上次播放时间
     public PlayerControl playerControl;
@@ -35,7 +36,7 @@ public class Sword_attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        damage = (playerControl.attack_damage)*0.5f;
         // 绑定到玩家位置
         if (playerTransform != null)
         {
@@ -108,13 +109,13 @@ public class Sword_attack : MonoBehaviour
                     if (bossFlower != null)
                     {
                         Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
-                        bossFlower.HP -= 1;
+                        bossFlower.HP -= damage;
                         playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
                     }
 
                     if (monster != null && renderer != null)
                     {
-                        monster.HP -= 1;
+                        monster.HP -= damage;
                         Material mat = renderer.material;
                         playerControl.SetBoolWithDelay_void(mat, renderer); 
                     }
