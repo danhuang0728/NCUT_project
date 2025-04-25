@@ -130,6 +130,8 @@ public class Weapon_Manager : MonoBehaviour
 
     void Update()
     {
+        //處理居合特效未刪除BUG
+        Tameshigiri_clear();
         if(circle == false)  // 處理圓環武器開關問題
         {
             circle_weapon_system.DestroyGears();
@@ -319,7 +321,19 @@ public class Weapon_Manager : MonoBehaviour
             }
         }
     }
+    void Tameshigiri_clear()
+    {
+        if(!main_hand2)
+        {
+            // 正确查找所有激活的带有Tameshigiri_body脚本的游戏对象
+            Tameshigiri_body[] tameshigiriObjects = FindObjectsByType<Tameshigiri_body>(FindObjectsSortMode.None);
 
-
+            // 删除找到的每个游戏对象
+            foreach (Tameshigiri_body obj in tameshigiriObjects)
+            {
+                Destroy(obj.gameObject);
+            }
+        }
+    }
 
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Sword_Tameshigiri : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class Sword_Tameshigiri : MonoBehaviour
     public float cooldownTime = 1f;
     private float timer = 0f;
     public bool Is_in_range = false;
+    private bool isHolding = false;
+    private bool isAttacking = false;
+    private float lastAttackTime = 0f;
+    private Coroutine attackCoroutine;
 
     [Header("斬擊次數")]
     public int spawnCount = 5; // 新增生成次数参数
@@ -21,22 +26,65 @@ public class Sword_Tameshigiri : MonoBehaviour
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
     }
- 
 
     void Update()
     {
         timer += Time.deltaTime;
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (!Is_in_range) return;
         
-        if (timer >= cooldownTime && Is_in_range)
+        // 当按键被按下时
+        if (context.started && Is_in_range)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            isHolding = true;
+            // 开始协程处理持续按住的情况
+            if (attackCoroutine == null)
             {
-                StartCoroutine(SpawnShinyEffect());
-                timer = 0f;
-                damage = playerController.attack_damage * 0.3f;
+                attackCoroutine = StartCoroutine(ContinuousAttackRoutine());
             }
         }
+        // 当按键被释放时
+        else if (context.canceled)
+        {
+            isHolding = false;
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+            //重製攻擊速度
+            cooldownTime =  1;
+        }
     }
+
+    private void PerformAttack()
+    {
+        lastAttackTime = Time.time;
+        timer = 0f;
+        damage = playerController.attack_damage * 0.3f;
+        StartCoroutine(SpawnShinyEffect());
+    }
+
+    private IEnumerator ContinuousAttackRoutine()
+    {
+        // 等待第一次攻击完成的冷却时间
+        yield return new WaitForSeconds(cooldownTime);
+        // 只要按键仍被按住，就持续执行攻击
+        while (isHolding && Is_in_range)
+        {      
+            //越砍越快
+            if(cooldownTime > 0.5f)
+            {
+                cooldownTime = cooldownTime - 0.05f;
+            }
+            PerformAttack();
+            yield return new WaitForSeconds(cooldownTime);
+        }
+    }
+
     IEnumerator SpawnShinyEffect()
     {
         GameObject nearestMonster = FindNearestMonster();
@@ -50,13 +98,14 @@ public class Sword_Tameshigiri : MonoBehaviour
                 float randomAngle = Random.Range(0f, 360f);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
                 GameObject shinyInstance = Instantiate(Shiny_effect, monsterPosition, randomRotation);
+                shinyInstance.SetActive(true);
                 yield return new WaitForSeconds(0.1f);
                 Destroy(shinyInstance, 0.2f);
             }
         }
     }
 
-    GameObject FindNearestMonster()
+    public GameObject FindNearestMonster()
     {
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
         GameObject nearestMonster = null;
@@ -73,58 +122,5 @@ public class Sword_Tameshigiri : MonoBehaviour
         }
 
         return nearestMonster;
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Monster"))
-        {
-            Renderer renderer = other.GetComponent<Renderer>();
-            Material material = renderer.material;
-            NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
-            BossFlower bossFlower = other.GetComponent<BossFlower>();
-            if (bossFlower != null)
-
-            {
-                Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
-                bossFlower.HP -= 1;
-                playerController.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
-            }
-            if (monster != null)
-            {
-                float randomAngle = Random.Range(0f, 360f);
-                Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
-                GameObject nearestMonster = FindNearestMonster();
-                if (nearestMonster != null) // 添加空值检查
-                {
-                    Vector3 monsterPosition = nearestMonster.transform.position;
-                    //新增出血特效，放到最近怪物位置
-                    GameObject bloodInstance = Instantiate(blood_effect, monsterPosition, randomRotation);
-                    ParticleSystem bloodParticleSystem = bloodInstance.GetComponent<ParticleSystem>();
-                    if (bloodParticleSystem != null)
-                    {
-                        var main = bloodParticleSystem.main;
-                        main.startRotation = randomRotation.eulerAngles.z * Mathf.Deg2Rad; // 设置粒子系统的起始旋转
-                    }
-                    bloodInstance.transform.position = nearestMonster.transform.position;
-                    Destroy(bloodInstance, 0.5f);  // 0.5秒后销毁出血特效
-                    // 造成傷害
-                    monster.HP -= damage;
-                    //閃白效果
-                    playerController.SetBoolWithDelay_void(material, renderer);
-                    // 擊退效果
-                    Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
-                    Rigidbody2D monsterRb = other.GetComponent<Rigidbody2D>();
-                    if (monsterRb != null)
-                    {
-                        monsterRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("未找到最近的怪物！"); // 添加调试信息
-                }
-            }
-        }
-        
     }
 }

@@ -15,7 +15,10 @@ public class PlayerControl : MonoBehaviour
     public LevelManager levelManager;
     public character_value_ingame characterValuesIngame;
     public Character_Values_SETUP characterValues;
+    [Header("移動速度")]
     public float speed = 5f;
+    [Header("普攻冷卻時間")]
+    public float attackCooldown = 0.5f; // 攻击冷却时间
     //無敵狀態
     [Header("無敵狀態")]
     public bool isInvincible = false;
@@ -57,9 +60,13 @@ public class PlayerControl : MonoBehaviour
     public bool hasBurnEffect = false; // 是否具有燃燒效果
     public int burnDuration = 5; // 燃燒持續時間
     public Tetris_ability_Manager tetris_ability_manager;
-    [Header("時間控制")]
+    [Header("時間倍率")]
     public float timeScale = 1;
     public static float N = 1;
+    private bool isAttacking = false;
+    private float lastAttackTime = 0f;
+    private Coroutine attackCoroutine;
+
     public void Awake()
     {
         gameOver = FindObjectOfType<GameOver>();
@@ -73,12 +80,14 @@ public class PlayerControl : MonoBehaviour
         
         axeSlash = GameObject.Find("Axe_Slashh_0");
         StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
+
     }
     [HideInInspector]public float Calculating_Values_damage; //計算加成傷害%數(給怪物腳本用)
     [HideInInspector]public float Calculating_Values_lifeSteal; //計算加成吸血%數(給怪物腳本用)
     [HideInInspector]public float Calculating_Values_criticalDamage; //計算加成暴擊傷害%數(給怪物腳本用)
     [HideInInspector]public float Calculating_Values_criticalHitRate; //計算加成暴擊率%數(給怪物腳本用)
     [HideInInspector]public float Calculating_Values_health; //計算加成血量%數(給怪物腳本用)
+    [HideInInspector]public float Calculating_Values_attackCooldown; //計算加成攻擊冷卻時間%數(給怪物腳本用)
     private void Update() 
     {
         
@@ -129,6 +138,7 @@ public class PlayerControl : MonoBehaviour
         speed = levelManager.GetCurrentSpeed() * 
         (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage + tetris_ability_manager.speed_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
         Calculating_Values_health = characterValuesIngame.health + characterValues.health_addition + tetris_ability_manager.health;
+        Calculating_Values_attackCooldown = characterValuesIngame.cooldown + characterValues.cooldown_addition + tetris_ability_manager.cooldown;
         if(Legend_speed == true){
             speed += 3;
         }
@@ -395,14 +405,65 @@ public class PlayerControl : MonoBehaviour
     public void Attack(InputAction.CallbackContext context)
     {
         if (isDead) return;
-        ani.SetBool("attack",true);
-       
-    }
-    public void Attack_end()
-    {
-        if (isDead) return;
-        ani.SetBool("attack",false);
         
+        // 当按键被按下时
+        if (context.started)
+        {
+            isAttacking = true;
+            // 立即执行一次攻击
+            PerformAttack();
+            // 开始协程处理持续按住的情况
+            if (attackCoroutine == null)
+            {
+                attackCoroutine = StartCoroutine(ContinuousAttackRoutine());
+            }
+        }
+        // 当按键被释放时
+        else if (context.canceled)
+        {
+            isAttacking = false;
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+        }
+    }
+
+    // 实际执行攻击的方法
+    private void PerformAttack()
+    {
+        // 检查攻击冷却
+        if (Time.time - lastAttackTime < attackCooldown)
+            return;
+            
+        lastAttackTime = Time.time;
+        ani.SetBool("attack", true);
+        
+        // 如果您的动画需要重置，可以添加一个延迟重置
+        StartCoroutine(ResetAttackAnimation());
+    }
+
+    // 重置攻击动画状态
+    private IEnumerator ResetAttackAnimation()
+    {
+        // 等待一小段时间后重置动画状态
+        yield return new WaitForSeconds(0.2f); // 调整这个时间以匹配您的动画
+        ani.SetBool("attack", false);
+    }
+
+    // 处理持续按住按键的协程
+    private IEnumerator ContinuousAttackRoutine()
+    {
+        // 等待第一次攻击完成的冷却时间
+        yield return new WaitForSeconds(attackCooldown);
+        
+        // 只要按键仍被按住，就持续执行攻击
+        while (isAttacking)
+        {
+            PerformAttack();
+            yield return new WaitForSeconds(attackCooldown);
+        }
     }
 
     private void OnDrawGizmos() {

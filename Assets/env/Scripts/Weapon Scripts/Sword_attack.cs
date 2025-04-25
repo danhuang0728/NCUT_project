@@ -7,10 +7,12 @@ public class Sword_attack : MonoBehaviour
 {
     private ParticleSystem[] particleSystems;
     public Transform playerTransform;
-    private float cooldown = 0.5f; // 冷却时间
+    private float cooldown = 1f; // 冷却时间
     private float lastPlayTime = -0.5f; // 上次播放时间
     public PlayerControl playerControl;
     public BossFlower bossFlower;
+    private bool isAttacking = false;
+    private Coroutine attackCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class Sword_attack : MonoBehaviour
         // 获取所有子对象中的粒子系统
         particleSystems = GetComponentsInChildren<ParticleSystem>();
         playerControl = FindObjectOfType<PlayerControl>();
+
     }
 
     public void PlayEffects()
@@ -32,13 +35,6 @@ public class Sword_attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 示例：按下空格键时播放效果
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastPlayTime + cooldown)
-        {
-            PlayEffects();
-            StartCoroutine(CheckForMonsterCollision());
-            lastPlayTime = Time.time; // 更新上次播放时间
-        }
 
         // 绑定到玩家位置
         if (playerTransform != null)
@@ -47,18 +43,68 @@ public class Sword_attack : MonoBehaviour
         }
     }
 
+    public void Attack(InputAction.CallbackContext context)
+    {
+        // 当按键被按下时
+        if (context.started)
+        {
+            isAttacking = true;
+            // 立即执行一次攻击
+            PerformAttack();
+            // 开始协程处理持续按住的情况
+            if (attackCoroutine == null)
+            {
+                attackCoroutine = StartCoroutine(ContinuousAttackRoutine());
+            }
+        }
+        // 当按键被释放时
+        else if (context.canceled)
+        {
+            isAttacking = false;
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+        }
+    }
+
+    private void PerformAttack()
+    {
+        // 检查攻击冷却
+        if (Time.time - lastPlayTime < cooldown)
+            return;
+            
+        lastPlayTime = Time.time;
+        PlayEffects();
+        StartCoroutine(CheckForMonsterCollision());
+    }
+
+    private IEnumerator ContinuousAttackRoutine()
+    {
+        // 等待第一次攻击完成的冷却时间
+        yield return new WaitForSeconds(cooldown);
+        
+        // 只要按键仍被按住，就持续执行攻击
+        while (isAttacking)
+        {
+            PerformAttack();
+            yield return new WaitForSeconds(cooldown);
+        }
+    }
+
     private IEnumerator CheckForMonsterCollision()
     {
         for (int i = 0; i < 5; i++) // 執行五次
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(GetComponent<Collider2D>().bounds.center, 3f);
-            foreach (var hitCollider in hitColliders) // 改名为 hitCollider 避免重复
+            foreach (var hitCollider in hitColliders)
             {
                 if (hitCollider.CompareTag("Monster"))
                 {
                     NormalMonster_setting monster = hitCollider.GetComponent<NormalMonster_setting>();
                     BossFlower bossFlower = hitCollider.GetComponent<BossFlower>();
-                    Renderer renderer = hitCollider.GetComponent<Renderer>(); // 获取 Renderer 组件
+                    Renderer renderer = hitCollider.GetComponent<Renderer>();
                     if (bossFlower != null)
                     {
                         Renderer renderer_flower = bossFlower.GetComponent<Renderer>();
@@ -66,10 +112,9 @@ public class Sword_attack : MonoBehaviour
                         playerControl.SetBoolWithDelay_void(renderer_flower.material, renderer_flower);
                     }
 
-
                     if (monster != null && renderer != null)
                     {
-                        monster.HP -= 1; // 將怪物的HP減少1
+                        monster.HP -= 1;
                         Material mat = renderer.material;
                         playerControl.SetBoolWithDelay_void(mat, renderer); 
                     }
