@@ -31,8 +31,11 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            // 若兩個選單都未開啟，打開選項選單
-            ToggleMenu(true);
+            if(!UIstate.isAnyPanelOpen)
+            {
+                // 若兩個選單都未開啟，打開選項選單
+                ToggleMenu(true);
+            }
         }
     }
 
@@ -41,17 +44,10 @@ public class UIManager : MonoBehaviour
     {
         isMenuOpen = state;
         menuPanel.SetActive(state);
+        UIstate.isAnyPanelOpen = state;
         if (!state)
         {
             ToggleSubmenu(false);
-        }
-        if (state)
-        {
-            Time.timeScale = 0; // 暫停遊戲
-        }
-        else
-        {
-            Time.timeScale = 1; // 恢復遊戲
         }
     }
 
@@ -59,6 +55,7 @@ public class UIManager : MonoBehaviour
     {
         isSubmenuOpen = state;
         submenuPanel.SetActive(state);
+        UIstate.isAnyPanelOpen = state;
     }
 
     // 檢查所有面板是否都關閉了
@@ -66,6 +63,7 @@ public class UIManager : MonoBehaviour
     {
        if (!isSubmenuOpen && !isMenuOpen)
         {
+            UIstate.isAnyPanelOpen = false;
             //Debug.Log("所有選單都關閉了!");
             // 在這裡寫你的額外邏輯
             // 例如：恢復遊戲的 UI 狀態, 恢復遊戲播放音效...等等

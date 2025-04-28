@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class OptionPanel :MonoBehaviour
 {
-    public TMP_Dropdown ResDropDown;
     public Toggle FullScreenToggle;
     Resolution[] AllResolutions;
     bool IsFullScreen;
@@ -28,11 +27,9 @@ public class OptionPanel :MonoBehaviour
             SelctedResolutionList.Add(res);
             }
         }
-        ResDropDown.AddOptions(resolutuinStringList);
     }
     public void ChangeREsolution()
     {
-        SelectedResolustion=ResDropDown.value;
         Screen.SetResolution(SelctedResolutionList[SelectedResolustion].width, SelctedResolutionList[SelectedResolustion].height, IsFullScreen);
 
     }
