@@ -37,7 +37,7 @@ public class Sword_attack : MonoBehaviour
     void Update()
     {
         damage = (playerControl.attack_damage)*0.5f;
-        // 绑定到玩家位置
+        // 綁定到玩家位置
         if (playerTransform != null)
         {
             transform.position = playerTransform.position;

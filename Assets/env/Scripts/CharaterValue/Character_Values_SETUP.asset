@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Character_Values_SETUP
   m_EditorClassIdentifier: 
   damage_addition: 0
-  criticalDamage_addition: 0
+  criticalDamage_addition: 60
   criticalHitRate_addition: 0
   speed_addition: 0
   health_addition: 0
