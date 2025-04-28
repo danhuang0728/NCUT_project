@@ -15,10 +15,12 @@ public class NormalMonster_setting : MonoBehaviour
     public healthbar Healthbar;
     public int monster_type; //區分水果or一般怪物 1==水果 0==一般
     public int exp_type; //區分經驗值類別 初級,中級,高級
+    [Header("預置物等資料套用")]
     public GameObject LowExpPrefab;    // 低級經驗值預製體
     public GameObject MediumExpPrefab;  // 中級經驗值預製體
     public GameObject HighExpPrefab;    // 高級經驗值預製體
     public GameObject boxPrefab; // 武器箱預製體
+    public FruitData fruitData; //介紹用怪物資料
 
     [Header("武器箱怪物移動速度設定")]
     public float maxspeed = 5f; // 最大速度

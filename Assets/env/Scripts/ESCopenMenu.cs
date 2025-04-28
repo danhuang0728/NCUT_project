@@ -63,7 +63,6 @@ public class UIManager : MonoBehaviour
     {
        if (!isSubmenuOpen && !isMenuOpen)
         {
-            UIstate.isAnyPanelOpen = false;
             //Debug.Log("所有選單都關閉了!");
             // 在這裡寫你的額外邏輯
             // 例如：恢復遊戲的 UI 狀態, 恢復遊戲播放音效...等等
