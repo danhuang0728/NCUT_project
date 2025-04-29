@@ -91,7 +91,7 @@ public class NormalMonster_setting : MonoBehaviour
             }
             if (playerControl.Calculating_Values_criticalHitRate > random_critical) // if暴擊
             {
-                Debug.Log("暴擊!!");
+                //Debug.Log("暴擊!!");
                 float addition_damage = Getting_damage_first * playerControl.Calculating_Values_damage;
                 critical_damage = (Getting_damage_first + addition_damage) * (1+playerControl.Calculating_Values_criticalDamage);
             }

@@ -37,7 +37,7 @@ public class ValueDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("UI開啟狀態:"+UIstate.isAnyPanelOpen);
+        //Debug.Log("UI開啟狀態:"+UIstate.isAnyPanelOpen);
         Update_Data();
         C_damageLimit();
         C_speedLimit();

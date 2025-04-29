@@ -133,28 +133,28 @@ public class Weapon : MonoBehaviour
     {
         if(level == 1)
         {
-            delaySeconds = 6f;
-            damage = 20f;
+            delaySeconds = 5f;
+            damage = 50f;
         }
         else if(level == 2)
         {
-            delaySeconds = 5f;
-            damage = 60f;
+            delaySeconds = 4f;
+            damage = 85f;
         }
         else if(level == 3)
         {
-            delaySeconds = 4f;
-            damage = 100f;
+            delaySeconds = 3f;
+            damage = 120f;
         }
         else if(level == 4)
         {
-            delaySeconds = 3f;
-            damage = 150f;
+            delaySeconds = 2f;
+            damage = 170f;
         }
         else if(level == 5)
         {
-            delaySeconds = 2f;
-            damage = 200f;
+            delaySeconds = 1f;
+            damage = 250f;
         }
     }
 }

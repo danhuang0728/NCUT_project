@@ -32,7 +32,7 @@ public class Arrow : MonoBehaviour
             Material material = renderer.material;
             material.color = Color.red;
             NormalMonster_setting monster = other.GetComponent<NormalMonster_setting>();
-            Debug.Log("monstertest:"+monster);
+            //Debug.Log("monstertest:"+monster);
             BossFlower bossFlower = other.GetComponent<BossFlower>();
             if (bossFlower != null)
 

@@ -41,7 +41,7 @@ public class LevelTrigger : MonoBehaviour
 #endif
     [SerializeField] private string selectedOption = "(1_1)"; // 设置默认值
 
-    [SerializeField] private GameObject[] shopItemPrefabs; // 在Inspector中设置可能出现的物品预制体
+    public GameObject[] shopItemPrefabs; // 在Inspector中设置可能出现的物品预制体
 
     [SerializeField] private Transform[] spawnPoints; // 在Inspector中设置4个生成点
     private bool itemsSpawned = false;

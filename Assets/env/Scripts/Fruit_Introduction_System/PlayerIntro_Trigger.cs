@@ -34,7 +34,7 @@ public class PlayerIntro_Trigger : MonoBehaviour
     {
         // 檢測範圍內的 Monster
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius, monsterLayer);
-        Debug.Log(""+colliders);
+        //Debug.Log(""+colliders);
         if (colliders.Length > 0)
         {
             // 當檢測到 Monster 時執行的邏輯
