@@ -20,6 +20,7 @@ public class WeaponBox : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")&&Input.GetKeyDown(KeyCode.E))
         {
+            AudioManager.Instance.PlaySFX("open_box");
             weapon_choose_manager.OpenPanel();
             Destroy(gameObject);
         }

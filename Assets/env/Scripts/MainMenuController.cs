@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
    public void PLayGame()
    {
         SceneManager.LoadScene("SampleScene");
+        AudioManager.Instance.PlaySFX("play_game");
    }
 
 

@@ -11,6 +11,12 @@ public class OptionPanel :MonoBehaviour
     bool IsFullScreen;
     int SelectedResolustion;
     List<Resolution> SelctedResolutionList = new List<Resolution>();
+
+    private void OnEnable()
+    {
+        AudioManager.Instance.PlaySFX("button_click_left");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +48,11 @@ public class OptionPanel :MonoBehaviour
     void Update()
     {
         
+    }
+
+    // 检测面板是否激活
+    public bool IsPanelActive()
+    {
+        return gameObject.activeInHierarchy;
     }
 }

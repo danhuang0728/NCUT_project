@@ -21,6 +21,7 @@ public class giftPanel : MonoBehaviour
     {
         if (panel != null)
         {
+            AudioManager.Instance.PlaySFX("button_click_left");
             panel.SetActive(true);
         }
     }

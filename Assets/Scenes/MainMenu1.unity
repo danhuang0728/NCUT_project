@@ -4309,8 +4309,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.21735, y: 0.06280017, z: 0}
-    m_Extent: {x: 5.96175, y: 4.0994997, z: 0}
+    m_Center: {x: 0.21545005, y: 0.06639981, z: 0}
+    m_Extent: {x: 5.95555, y: 4.102, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9870,7 +9870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3aae10621417f44a6d8b1b8742a37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResDropDown: {fileID: 0}
   FullScreenToggle: {fileID: 1093526200}
 --- !u!1 &1451246866
 GameObject:
@@ -11872,6 +11871,15 @@ MonoBehaviour:
     volume: 1
   - name: monsterHit
     clip: {fileID: 8300000, guid: c0ddb0db7c1e7c14f8abd41e119646ff, type: 3}
+    volume: 1
+  - name: button_click
+    clip: {fileID: 8300000, guid: 0e3d07b87a7eb2e4299f5ddca19b6126, type: 3}
+    volume: 1
+  - name: button_click_left
+    clip: {fileID: 8300000, guid: e3a638ebd61cb5e44a34d8faa78c70c7, type: 3}
+    volume: 1
+  - name: play_game
+    clip: {fileID: 8300000, guid: ec802ea82c7f925439996edf78353175, type: 3}
     volume: 1
   musicSource: {fileID: 1389687089}
   sfxSource: {fileID: 17753594}

@@ -38,6 +38,7 @@ public class btn_effect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         // 移動文字位置
         if(buttonText != null)
         {
+            AudioManager.Instance.PlaySFX("button_click");
             Vector2 newPosition = originalTextPosition;
             newPosition.y -= textOffset;
             buttonText.rectTransform.anchoredPosition = newPosition;
