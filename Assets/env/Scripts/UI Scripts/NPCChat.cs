@@ -3,7 +3,8 @@ using System.Collections.Generic; // 引入泛型集合類庫
 using UnityEditor; // 引入Unity編輯器類庫
 using UnityEngine; // 引入Unity核心類庫
 using UnityEngine.UI; // 引入Unity UI類庫
-using TMPro; // 引入TextMesh Pro類庫
+using TMPro;
+using UnityEngine.InputSystem; // 引入TextMesh Pro類庫
 
 public class NPCChat : MonoBehaviour // 定義NPC對話類，繼承自MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class NPCChat : MonoBehaviour // 定義NPC對話類，繼承自MonoBehavi
     public bool playerIsClose; // 玩家是否靠近NPC
     public bool isDialogueActive; // 對話是否處於活動狀態
     public GameObject ContinueButton; // 繼續按鈕GameObject
+    private bool chatStart = false;
     private bool isTyping = false; // 是否正在打字效果中
     void Start() // 初始化函數
     {   
@@ -28,6 +30,7 @@ public class NPCChat : MonoBehaviour // 定義NPC對話類，繼承自MonoBehavi
 
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose) // 當玩家按下E鍵且靠近NPC時
         {
+            chatStart = true;
             if (dialoguePanel.activeInHierarchy) // 如果對話面板已經顯示
             {
                 zeroText(); // 重置對話
@@ -41,21 +44,6 @@ public class NPCChat : MonoBehaviour // 定義NPC對話類，繼承自MonoBehavi
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isDialogueActive && !isTyping) // 當玩家按空格鍵且對話處於活動狀態且不在打字過程中
-        {
-            if (ContinueButton != null && ContinueButton.activeSelf) // 如果繼續按鈕存在且處於活動狀態
-            {
-                Button btn = ContinueButton.GetComponent<Button>(); // 獲取按鈕組件
-                if (btn != null && btn.onClick != null) // 如果按鈕和點擊事件有效
-                {
-                    btn.onClick.Invoke(); // 觸發點擊事件
-                }
-                else // 如果按鈕或點擊事件無效
-                {
-                    Debug.LogWarning("按鈕元件缺失"); // 輸出警告信息
-                }
-            }
-        }
         if (dialogueText.text == dialogue[index]) // 如果當前文本已完全顯示
         {
             ContinueButton.SetActive(true); // 激活繼續按鈕
@@ -66,6 +54,7 @@ public class NPCChat : MonoBehaviour // 定義NPC對話類，繼承自MonoBehavi
     {
         if (dialogueText != null) // 如果對話文本UI有效
         {
+            chatStart = false;
             dialogueText.text = ""; // 清空文本內容
         }
         index = 0; // 重置對話索引
@@ -96,17 +85,27 @@ public class NPCChat : MonoBehaviour // 定義NPC對話類，繼承自MonoBehavi
 
     public void NextLine() // 切換到下一行對話的方法
     {
-        if (!IsValidReference()) return; // 檢查引用是否有效
-        
-        if (index >= dialogue.Length - 1) // 如果已經是最後一行對話
+        if(chatStart == true)
         {
-            zeroText(); // 重置對話
-            return; // 結束方法
-        }
+            if (!IsValidReference()) return; // 檢查引用是否有效
+            
+            if (index >= dialogue.Length - 1) // 如果已經是最後一行對話
+            {
+                zeroText(); // 重置對話
+                return; // 結束方法
+            }
 
-        ContinueButton.SetActive(false); // 禁用繼續按鈕
-        index++; // 增加對話索引
-        StartCoroutine(Typing()); // 啟動打字效果協程
+            ContinueButton.SetActive(false); // 禁用繼續按鈕
+            index++; // 增加對話索引
+            StartCoroutine(Typing()); // 啟動打字效果協程
+        }
+    }
+    public void click(InputAction.CallbackContext context) //inputSystem觸發用
+    {
+        if(context.started)
+        {   
+            NextLine();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) // 觸發器進入事件
