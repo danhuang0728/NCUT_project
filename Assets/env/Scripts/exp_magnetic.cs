@@ -7,16 +7,19 @@ public class exp_magnetic : MonoBehaviour
     public float attractRange = 2.3f; // 吸引範圍
     public float attractSpeed = 10f; // 吸引速度
     private Transform playerTransform; // 玩家位置
+    private PlayerControl playerControl;
 
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        attractSpeed = playerControl.speed + 5f;
         // 獲取所有帶有"exp"標籤的物體
         GameObject[] expObjects = GameObject.FindGameObjectsWithTag("exp");
         

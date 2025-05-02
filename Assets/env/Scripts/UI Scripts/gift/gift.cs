@@ -68,11 +68,11 @@ public class gift : MonoBehaviour
         }
         else if (selectedOption == "criticalDamage")
         {
-            character_Values_SETUP.criticalDamage_addition = effect_addition;
+            character_Values_SETUP.criticalDamage_addition = effect_addition / 2; //每一點5%
         }
         else if (selectedOption == "criticalHitRate")
         {
-            character_Values_SETUP.criticalHitRate_addition = effect_addition;
+            character_Values_SETUP.criticalHitRate_addition = effect_addition / 2 ; //每一點5%
         }
         else if (selectedOption == "speed")
         {
@@ -84,7 +84,7 @@ public class gift : MonoBehaviour
         }
         else if (selectedOption == "cooldown")
         {
-            character_Values_SETUP.cooldown_addition = effect_addition;
+            character_Values_SETUP.cooldown_addition = effect_addition / 2; //每一點5%
         }
         else if (selectedOption == "lifeSteal")
         {
