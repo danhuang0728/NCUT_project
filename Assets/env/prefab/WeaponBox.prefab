@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0022000074, y: -0.005400002, z: 0}
-    m_Extent: {x: 0.3452, y: 0.3077, z: 0}
+    m_Center: {x: 0.00034999847, y: -0.004499987, z: 0}
+    m_Extent: {x: 0.34755, y: 0.31419998, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1190655835318283466}
   - component: {fileID: 7660674306636906785}
   - component: {fileID: 239118505867295647}
+  - component: {fileID: -6621361630011420710}
   m_Layer: 0
   m_Name: WeaponBox
   m_TagString: Untagged
@@ -112,8 +113,8 @@ Transform:
   m_GameObject: {fileID: 5640609810199764700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.3, y: -27.32, z: -1.2884837}
-  m_LocalScale: {x: 5.3427963, y: 5.3427963, z: 5.3427963}
+  m_LocalPosition: {x: -64.4663, y: -27.4138, z: -1.2884837}
+  m_LocalScale: {x: 4.2507286, y: 4.2507286, z: 4.2507286}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5941127319406696360}
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: -44025399
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a1a59f2566f1f1c40b11258d4da43c71, type: 3}
+  m_Sprite: {fileID: -1113461958, guid: aa0a7d3040e6a8c41ad085882b0a8556, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -257,3 +258,17 @@ CircleCollider2D:
   m_Offset: {x: 0.0050620474, y: 0}
   serializedVersion: 2
   m_Radius: 0.33431473
+--- !u!114 &-6621361630011420710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640609810199764700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689881e1e04c81c42b0b1dbf2dded95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyPrefab: {fileID: 6197987799005033583, guid: 39aec38dca113954e9d53f6345e229bd,
+    type: 3}
