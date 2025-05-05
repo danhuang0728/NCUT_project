@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
 using TMPro;
 public class Wood_pile_DPS : MonoBehaviour
 {
