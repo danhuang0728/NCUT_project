@@ -109,7 +109,7 @@ public class LevelTrigger : MonoBehaviour
     IEnumerator levelstart(int leveltime)
     {
         AudioManager.Instance.PlayNextBattleMusic(selectedOption);
-        //Debug.Log($"關卡開始，持續時間：{leveltime} 秒");
+        TimerPanel.isfighting = true; //設定關卡進行狀態(timer用)
         foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
         {
             if (repOb.gameObject.name.Contains(selectedOption))
@@ -162,6 +162,7 @@ public class LevelTrigger : MonoBehaviour
         // 關卡結束
         StartCoroutine(MoveExpObjectsTowardsPlayerCoroutine());
         SpawnShopItems();
+        TimerPanel.isfighting = false; //設定關卡進行狀態(timer用)
 
         foreach (spawn repOb in spawns) // 修改全部重生點為關閉狀態
         {
