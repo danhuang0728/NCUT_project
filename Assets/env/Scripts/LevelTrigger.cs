@@ -20,6 +20,7 @@ public class LevelTrigger : MonoBehaviour
 
     [SerializeField] private GameObject canvas;  // 連結 Canvas 物件
     private Timer timerScript;
+    private AudioController audioController;
 
     private int levelTime = 0;
     private TrapControll[] trapControlls; // 一次抓取全部linktrap的TrapControll腳本
@@ -51,6 +52,7 @@ public class LevelTrigger : MonoBehaviour
     void Awake()
     {
         playerGPS = GameObject.Find("GPS_icon").GetComponent<MainGPS>();
+        audioController = FindAnyObjectByType<AudioController>();
     }
     void Start()
     {
@@ -108,7 +110,10 @@ public class LevelTrigger : MonoBehaviour
 
     IEnumerator levelstart(int leveltime)
     {
+        //房間音樂設置
         AudioManager.Instance.PlayNextBattleMusic(selectedOption);
+        audioController.MusicVolume(); 
+        
         TimerPanel.isfighting = true; //設定關卡進行狀態(timer用)
         foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
         {
