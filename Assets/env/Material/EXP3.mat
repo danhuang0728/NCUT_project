@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _BloomIntensity: 2.98
     - _EnableExternalAlpha: 0
-    - _MoveSpeed: 0.5
+    - _MoveSpeed: 0
     - _Threshold: 0.299
     - _WaveFrequency: 0.84
     m_Colors:

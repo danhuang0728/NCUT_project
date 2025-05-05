@@ -16,6 +16,10 @@ public class chatbubble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (bubble == null)
+        {
+            Debug.LogError("chatbubble: bubble GameObject 未設置！");
+        }
         zeroText();
     }
 
@@ -38,6 +42,12 @@ public class chatbubble : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (bubble == null)
+        {
+            Debug.LogError("chatbubble: bubble GameObject 未設置！");
+            return;
+        }
+
         if (other.CompareTag("Player") && isTyping == false)
         {
             bubble.SetActive(true);
@@ -48,7 +58,10 @@ public class chatbubble : MonoBehaviour
     }
     IEnumerator Typing()
     {
-        if (bubbletext == null) yield break;
+        if (bubbletext == null)
+        {
+            Debug.LogError("chatbubble: bubbletext 未設置！");
+        }
         isTyping = true;
         if (index < dialogue.Length)
         {
@@ -62,7 +75,7 @@ public class chatbubble : MonoBehaviour
     }
     public void NextLine()
     {
-        if ( index < dialogue.Length)
+        if (index < dialogue.Length)
         {
             StartCoroutine(Typing());
             index++;
@@ -70,6 +83,10 @@ public class chatbubble : MonoBehaviour
     }
     IEnumerator autonextline()
     {
+        if (bubble == null)
+        {
+            Debug.LogError("chatbubble: bubble GameObject 未設置！");
+        }
         
         NextLine();
         yield return new WaitForSeconds(waitTime);
@@ -84,6 +101,5 @@ public class chatbubble : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             isTyping = false;
         }
-        
     }
 }

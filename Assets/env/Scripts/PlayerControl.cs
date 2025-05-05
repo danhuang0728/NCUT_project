@@ -73,11 +73,14 @@ public class PlayerControl : MonoBehaviour
     }
     private void Start() 
     {
-        N = timeScale;
-        Time.timeScale = N; 
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
-        
+        //重設UI及時間狀態
+        UIstate.isAnyPanelOpen = false;
+        N = timeScale;
+        Time.timeScale = N; 
+
+        Debug.Log("Time.timeScale = " + Time.timeScale);
         axeSlash = GameObject.Find("Axe_Slashh_0");
         StartCoroutine(hurtDelay());  //啟動傷害判定的延遲迴圈
 
