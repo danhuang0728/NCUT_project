@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
    public void PLayGame()
    {
+        SaveManager.Instance.SaveCharacterValues();
         SceneManager.LoadScene("SampleScene");
         AudioManager.Instance.PlaySFX("play_game");
    }

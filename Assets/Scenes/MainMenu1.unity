@@ -4309,8 +4309,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.21545005, y: 0.06639981, z: 0}
-    m_Extent: {x: 5.95555, y: 4.102, z: 0}
+    m_Center: {x: 0.21475005, y: 0.0632, z: 0}
+    m_Extent: {x: 5.9537497, y: 4.1062, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14411,6 +14411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116244952}
   - component: {fileID: 2116244953}
+  - component: {fileID: 2116244954}
   m_Layer: 0
   m_Name: MainMenuController
   m_TagString: Untagged
@@ -14445,6 +14446,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ecef2fd838cf4bb87ce07344debe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2116244954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116244951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa606de4b1821346ae4edee267692c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character_Values_SETUP: {fileID: 11400000, guid: 4de63448f289b3140a24ed130201d0f3,
+    type: 2}
 --- !u!1 &2125996046
 GameObject:
   m_ObjectHideFlags: 0
