@@ -49,6 +49,7 @@ public class GameOver : MonoBehaviour
     {
         // 首先保存數據
         SaveCharacterData();
+        SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
         
         // 等待2秒
         yield return new WaitForSeconds(2f);

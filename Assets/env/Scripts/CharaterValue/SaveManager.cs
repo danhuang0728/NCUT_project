@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// 創建一個可序列化的類來包裝數據
+[System.Serializable]
+public class TetrDatabaseWrapper
+{
+    public List<tetr_database> tetrList = new List<tetr_database>();
+}
+
 public class SaveManager : MonoBehaviour
 {
     // 單例模式，確保只有一個SaveManager實例
@@ -10,6 +17,7 @@ public class SaveManager : MonoBehaviour
 
     // Character_Values_SETUP的引用
     public Character_Values_SETUP character_Values_SETUP;
+    public player_tetr_database database;
     
     // 用於記錄上一個場景
     private string previousScene;
@@ -130,5 +138,67 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.DeleteKey("gold_addition");
         PlayerPrefs.DeleteKey("GIFT_Value");
         PlayerPrefs.Save();
+    }
+    
+    // 儲存tetramino數據
+    public void SaveDataToPlayerPrefs_Tetr()
+    {
+        if (database == null || database.tetr_database == null)
+        {
+            Debug.LogError("無法儲存：tetr_database引用為空");
+            return;
+        }
+        
+        try
+        {
+            // 使用包裝類序列化數據
+            TetrDatabaseWrapper wrapper = new TetrDatabaseWrapper();
+            wrapper.tetrList = database.tetr_database;
+            
+            string json = JsonUtility.ToJson(wrapper);
+            PlayerPrefs.SetString("TetrDatabase", json);
+            PlayerPrefs.Save();
+            Debug.Log("Tetr數據已儲存，數據大小: " + json.Length);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"儲存Tetr數據時發生錯誤: {e.Message}");
+        }
+    }
+    
+    // 載入tetramino數據
+    public void LoadDataFromPlayerPrefs_Tetr()
+    {
+        if (database == null)
+        {
+            Debug.LogError("無法載入：database引用為空");
+            return;
+        }
+        
+        try
+        {
+            string json = PlayerPrefs.GetString("TetrDatabase", "");
+            if (!string.IsNullOrEmpty(json))
+            {
+                TetrDatabaseWrapper wrapper = JsonUtility.FromJson<TetrDatabaseWrapper>(json);
+                if (wrapper != null && wrapper.tetrList != null)
+                {
+                    database.tetr_database = wrapper.tetrList;
+                    Debug.Log("成功載入Tetr數據，項目數: " + wrapper.tetrList.Count);
+                }
+                else
+                {
+                    Debug.LogWarning("載入的Tetr數據為空");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("未找到已儲存的Tetr數據");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"載入Tetr數據時發生錯誤: {e.Message}");
+        }
     }
 } 
