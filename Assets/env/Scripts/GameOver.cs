@@ -48,8 +48,15 @@ public class GameOver : MonoBehaviour
     public IEnumerator dead()
     {
         // 首先保存數據
-        SaveCharacterData();
-        SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
+        if(SaveManager.Instance != null)
+        {
+            SaveCharacterData();
+            SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
+        }
+        else
+        {
+            Debug.LogError("未正確儲存檔案");
+        }
         
         // 等待2秒
         yield return new WaitForSeconds(2f);

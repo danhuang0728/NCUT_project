@@ -101,6 +101,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         //檢查是否死亡
+        bool isgameOverStart = false; //檢查死亡協成是否執行過
         if (HP <= 0  && isInvincible == false)
         {
             isDead = true;
@@ -113,8 +114,13 @@ public class PlayerControl : MonoBehaviour
             //受傷特效強制關閉
             Material mat = GetComponent<Renderer>().material;
             mat.SetInt(boolPropertyName, 0);
-            //跳到下個場景
-            StartCoroutine(gameOver.dead()); //呼叫GameOver腳本的死亡方法
+
+            //確定死亡協成只會執行一次
+            if(isgameOverStart == false)
+            {
+                isgameOverStart = true;
+                StartCoroutine(gameOver.dead()); //呼叫GameOver腳本的死亡方法
+            }
             ///
         }
         

@@ -17,11 +17,11 @@ public class AudioController : MonoBehaviour
     }
     public void MusicVolume()
     {
-        AudioManager.Instance.MusicVolume((_musicSlider.value + 0.25f)/10);
+        AudioManager.Instance.MusicVolume((_musicSlider.value)/10);
     }
     public void SFXVolume()
     {
-        AudioManager.Instance.SFXVolume((_sfxSlider.value + 0.25f)/10);
+        AudioManager.Instance.SFXVolume((_sfxSlider.value)/10);
     }
     void Start()
     {
