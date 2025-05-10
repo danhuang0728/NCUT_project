@@ -10,12 +10,6 @@ public class WeaponBox : MonoBehaviour
         weapon_choose_manager = GameObject.FindObjectOfType<Weapon_Choose_Manager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player")&&Input.GetKeyDown(KeyCode.E))

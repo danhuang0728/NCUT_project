@@ -2,6 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 難度枚舉
+public enum DifficultyLevel
+{
+    Easy,    // 簡單
+    Normal,  // 普通
+    Hard     // 困難
+}
+
+[System.Serializable]
+public class DifficultySettings
+{
+    public float monsterHealthMultiplier = 1f;    // 怪物血量倍率
+    public float monsterDamageMultiplier = 1f;    // 怪物傷害倍率
+    public float monsterSpeedMultiplier = 1f;     // 怪物速度倍率
+    public float spawnIntervalMultiplier = 1f;    // 生成間隔倍率
+    public float eliteMonsterHealthMultiplier = 1f; // 菁英怪血量倍率
+}
+
 [System.Serializable]
 public class RandomSpawnPhase
 {
@@ -14,6 +32,41 @@ public class RandomSpawnPhase
 
 public class RandomSpawn : MonoBehaviour
 {
+    // 靜態難度管理器
+    private static DifficultyLevel globalDifficulty = DifficultyLevel.Normal;
+    public static event System.Action<DifficultyLevel> OnDifficultyChanged;
+
+    [Header("難度設定")]
+    [SerializeField]
+    private DifficultyLevel currentDifficulty = DifficultyLevel.Normal;
+    [SerializeField]
+    private DifficultySettings easySettings = new DifficultySettings 
+    { 
+        monsterHealthMultiplier = 0.8f,
+        monsterDamageMultiplier = 0.8f,
+        monsterSpeedMultiplier = 0.9f,
+        spawnIntervalMultiplier = 1.2f,
+        eliteMonsterHealthMultiplier = 0.8f
+    };
+    [SerializeField]
+    private DifficultySettings normalSettings = new DifficultySettings 
+    { 
+        monsterHealthMultiplier = 1f,
+        monsterDamageMultiplier = 1f,
+        monsterSpeedMultiplier = 1f,
+        spawnIntervalMultiplier = 1f,
+        eliteMonsterHealthMultiplier = 1f
+    };
+    [SerializeField]
+    private DifficultySettings hardSettings = new DifficultySettings 
+    { 
+        monsterHealthMultiplier = 1.5f,
+        monsterDamageMultiplier = 1.3f,
+        monsterSpeedMultiplier = 5f,
+        spawnIntervalMultiplier = 0.9f,
+        eliteMonsterHealthMultiplier = 1.2f
+    };
+
     [Header("房間設定")]
     public Transform roomCorner1; // 房間角落1
     public Transform roomCorner2; // 房間角落2
@@ -44,6 +97,18 @@ public class RandomSpawn : MonoBehaviour
     private Vector2 roomMin; // 房間最小座標
     private Vector2 roomMax; // 房間最大座標
     private Timer timerScript; // Timer腳本引用
+
+    // 獲取當前難度
+    public static DifficultyLevel GlobalDifficulty
+    {
+        get { return globalDifficulty; }
+        set 
+        { 
+            globalDifficulty = value;
+            // 通知所有 RandomSpawn 實例難度已更改
+            OnDifficultyChanged?.Invoke(globalDifficulty);
+        }
+    }
 
     void Start()
     {
@@ -138,6 +203,26 @@ public class RandomSpawn : MonoBehaviour
         {
             eliteSpawned[i] = false;
         }
+
+        // 訂閱難度變化事件
+        OnDifficultyChanged += HandleDifficultyChanged;
+        
+        // 初始化時使用全局難度
+        currentDifficulty = globalDifficulty;
+        ApplyDifficultySettings(gameObject);
+    }
+
+    // 在 OnDestroy 中取消訂閱
+    void OnDestroy()
+    {
+        OnDifficultyChanged -= HandleDifficultyChanged;
+    }
+
+    // 處理難度變化
+    private void HandleDifficultyChanged(DifficultyLevel newDifficulty)
+    {
+        currentDifficulty = newDifficulty;
+        ApplyDifficultySettings(gameObject);
     }
 
     void Update()
@@ -311,7 +396,22 @@ public class RandomSpawn : MonoBehaviour
         return phase.monsterPrefabs[0]; // 如果出現意外情況，返回第一個預製體
     }
 
-    // 生成怪物的協程
+    // 獲取當前難度的設定
+    private DifficultySettings GetCurrentDifficultySettings()
+    {
+        // 使用全局難度而不是實例難度
+        switch (globalDifficulty)
+        {
+            case DifficultyLevel.Easy:
+                return easySettings;
+            case DifficultyLevel.Hard:
+                return hardSettings;
+            default:
+                return normalSettings;
+        }
+    }
+
+    // 修改生成怪物的協程
     private IEnumerator SpawnMonsters()
     {
         while (isSpawning)
@@ -380,21 +480,49 @@ public class RandomSpawn : MonoBehaviour
             // 生成所有怪物
             for (int i = 0; i < spawnPositions.Count; i++)
             {
-                // 根據權重隨機選擇怪物預製體
                 GameObject monsterPrefab = GetRandomMonsterPrefab(currentPhaseSettings);
                 GameObject monster = Instantiate(monsterPrefab, spawnPositions[i], Quaternion.identity);
-                monster.SetActive(true);
                 
-                // 銷毀對應的警告圖示
+                // 應用難度設定
+                ApplyDifficultySettings(monster);
+                
+                monster.SetActive(true);
                 Destroy(warningIcons[i]);
             }
 
-            // 等待間隔時間後進行下一輪生成
-            yield return new WaitForSeconds(currentPhaseSettings.spawnInterval);
+            // 根據難度調整生成間隔
+            float adjustedInterval = currentPhaseSettings.spawnInterval * GetCurrentDifficultySettings().spawnIntervalMultiplier;
+            yield return new WaitForSeconds(adjustedInterval);
         }
     }
 
-    // 生成菁英怪
+    // 應用難度設定到怪物
+    private void ApplyDifficultySettings(GameObject monster)
+    {
+        DifficultySettings settings = GetCurrentDifficultySettings();
+        
+        // 獲取怪物的 NormalMonster_setting 組件
+        NormalMonster_setting monsterSettings = monster.GetComponent<NormalMonster_setting>();
+        
+        if (monsterSettings != null)
+        {
+            // 調整怪物屬性
+            // 檢查是否為菁英怪（根據 monster_type 判斷）
+            bool isElite = monsterSettings.monster_type == 2; // 假設 monster_type 2 是菁英怪
+            float healthMultiplier = isElite ? 
+                settings.eliteMonsterHealthMultiplier : 
+                settings.monsterHealthMultiplier;
+            
+            // 調整血量
+            monsterSettings.HP *= healthMultiplier;
+            
+            // 調整移動速度
+            monsterSettings.maxspeed *= settings.monsterSpeedMultiplier;
+            monsterSettings.minspeed *= settings.monsterSpeedMultiplier;
+        }
+    }
+
+    // 修改菁英怪生成方法
     private void SpawnEliteMonster()
     {
         if (eliteMonsterPrefabs == null || eliteMonsterPrefabs.Count == 0)
@@ -419,6 +547,7 @@ public class RandomSpawn : MonoBehaviour
 
         // 生成菁英怪
         GameObject eliteMonster = Instantiate(eliteMonsterPrefabs[currentEliteIndex], spawnPosition, Quaternion.identity);
+        ApplyDifficultySettings(eliteMonster);
         eliteMonster.SetActive(true);
         
         // 更新菁英怪索引
