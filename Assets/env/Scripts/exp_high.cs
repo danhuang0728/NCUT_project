@@ -27,7 +27,7 @@ public class exp_high : MonoBehaviour
         // 經驗值偵測
         if (other.CompareTag("Player"))
         {
-            levelManager.AddExperience(500 + Mathf.RoundToInt( Mathf.Pow(Current_level, 2.2f)));
+            levelManager.AddExperience(17 * Mathf.RoundToInt( Mathf.Pow(Current_level, 1.2f) + 100));
             AudioManager.Instance.PlaySFX("pickup_exp");
             Destroy(gameObject);
         }
