@@ -65,7 +65,7 @@ public class Boomerang_Prb : MonoBehaviour
                     }
 
                     // 如果找到新目標，設定新的移動方向
-                    if (nearestMonster != null)
+                    if (nearestMonster != null && shortestDistance <= 8f)
                     {
                         Vector2 newDirection = (nearestMonster.transform.position - transform.position).normalized;
                         GetComponent<Rigidbody2D>().velocity = newDirection * boomerang.bulletSpeed;

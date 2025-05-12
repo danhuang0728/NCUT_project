@@ -112,6 +112,7 @@ public class RandomSpawn : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("難度已設成" + globalDifficulty);
         // 檢查警告圖示預製體
         if (warningIconPrefab == null)
         {

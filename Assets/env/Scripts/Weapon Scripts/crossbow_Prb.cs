@@ -34,7 +34,6 @@ public class crossbow_Prb : MonoBehaviour
         if (timer >= 1f / fireRate)
         {
             FireBullet();
-            AudioManager.Instance.PlaySFX("crossbow_shoot,");
             timer = 0f; // 重置计时器
         }
 
@@ -45,13 +44,27 @@ public class crossbow_Prb : MonoBehaviour
         GameObject nearestMonster = FindNearestMonster();
         if (nearestMonster == null)
         {
-            Debug.LogWarning("没有找到最近的 Monster 目标，无法发射子弹！");
+            Debug.LogWarning("沒有找到最近的 Monster 目標，無法發射子彈！");
             return;
         }
 
-        // 计算子弹起始位置
-        Vector3 bulletPosition = transform.position;
+        // 計算與怪物的距離
+        float distanceToMonster = Vector3.Distance(transform.position, nearestMonster.transform.position);
+        
+        // 設定最大射程範圍
+        float maxFireRange = 12f; // 可以根據需要調整射程
+        
+        // 檢查怪物是否在射程範圍內
+        if (distanceToMonster > maxFireRange)
+        {
+            // 怪物超出射程範圍，不發射子彈
+            return;
+        }
+        //發射音效
+        AudioManager.Instance.PlaySFX("crossbow_shoot");
 
+        // 計算子彈起始位置
+        Vector3 bulletPosition = transform.position;
 
         if(crossbow_script.is_levelUP == true){
             float randomAngle = Random.Range(-15f, 15f);
@@ -68,13 +81,13 @@ public class crossbow_Prb : MonoBehaviour
         }
         else
         {
-            // 计算目标方向
+            // 計算目標方向
             Vector2 direction = (nearestMonster.transform.position - transform.position).normalized;
-             // 计算子弹的发射角度
+            // 計算子彈的發射角度
             float fireAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 45f; // 轉向-45度
             transform.rotation = Quaternion.Euler(0, 0, fireAngle);
 
-            // 产生子弹
+            // 產生子彈
             GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
             bullet.SetActive(true);
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
