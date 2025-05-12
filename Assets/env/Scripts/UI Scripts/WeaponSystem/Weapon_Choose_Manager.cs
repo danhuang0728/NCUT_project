@@ -52,6 +52,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
     {
       UpdateUI();
       isPanelOpen = true;
+      AudioManager.Instance.PlaySFX("open_box");
       if (optionPanelParent != null && UIstate.isAnyPanelOpen == false)
       {
         UIstate.isAnyPanelOpen = true;

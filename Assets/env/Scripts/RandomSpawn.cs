@@ -39,7 +39,7 @@ public class RandomSpawn : MonoBehaviour
     [Header("難度設定")]
     [SerializeField]
     private DifficultyLevel currentDifficulty = DifficultyLevel.Normal;
-    [SerializeField]
+
     private DifficultySettings easySettings = new DifficultySettings 
     { 
         monsterHealthMultiplier = 0.8f,
@@ -48,7 +48,7 @@ public class RandomSpawn : MonoBehaviour
         spawnIntervalMultiplier = 1.2f,
         eliteMonsterHealthMultiplier = 0.8f
     };
-    [SerializeField]
+    
     private DifficultySettings normalSettings = new DifficultySettings 
     { 
         monsterHealthMultiplier = 1f,
@@ -57,12 +57,12 @@ public class RandomSpawn : MonoBehaviour
         spawnIntervalMultiplier = 1f,
         eliteMonsterHealthMultiplier = 1f
     };
-    [SerializeField]
+    
     private DifficultySettings hardSettings = new DifficultySettings 
     { 
-        monsterHealthMultiplier = 1.5f,
+        monsterHealthMultiplier = 3f,
         monsterDamageMultiplier = 1.3f,
-        monsterSpeedMultiplier = 5f,
+        monsterSpeedMultiplier = 2f,
         spawnIntervalMultiplier = 0.9f,
         eliteMonsterHealthMultiplier = 1.2f
     };
@@ -112,7 +112,10 @@ public class RandomSpawn : MonoBehaviour
 
     void Start()
     {
+        // 設定當前難度為全局難度
+        HandleDifficultyChanged(globalDifficulty);
         Debug.Log("難度已設成" + globalDifficulty);
+        
         // 檢查警告圖示預製體
         if (warningIconPrefab == null)
         {
@@ -207,10 +210,6 @@ public class RandomSpawn : MonoBehaviour
 
         // 訂閱難度變化事件
         OnDifficultyChanged += HandleDifficultyChanged;
-        
-        // 初始化時使用全局難度
-        currentDifficulty = globalDifficulty;
-        ApplyDifficultySettings(gameObject);
     }
 
     // 在 OnDestroy 中取消訂閱
