@@ -29,7 +29,7 @@ public class exp_low : MonoBehaviour
         {
             levelManager.AddExperience(5 * Mathf.RoundToInt( Mathf.Pow(Current_level, 1.2f) + 10));
             AudioManager.Instance.PlaySFX("pickup_exp");
-            Destroy(gameObject);
+            ExpObjectPool.Instance.ReturnExp(gameObject);
         }
     }
 }

@@ -26,7 +26,7 @@ public class RandomSpawnPhase
     public int monsterCount = 5; // 該階段要生成的怪物數量
     public float spawnInterval = 2f; // 該階段的生成間隔時間
     public float warningDuration = 2f; // 該階段的警告圖示顯示時間
-    public GameObject[] monsterPrefabs = new GameObject[0]; // 該階段可使用的怪物預製體陣列
+    public MonsterObjectPool.MonsterType[] monsterTypes = new MonsterObjectPool.MonsterType[0]; // 該階段可使用的怪物類型陣列
     public float[] monsterWeights = new float[0]; // 怪物出現的權重（機率）
 }
 
@@ -138,15 +138,15 @@ public class RandomSpawn : MonoBehaviour
                 spawnPhases[i] = new RandomSpawnPhase();
             }
             // 初始化怪物預製體陣列
-            if (spawnPhases[i].monsterPrefabs == null || spawnPhases[i].monsterPrefabs.Length == 0)
+            if (spawnPhases[i].monsterTypes == null || spawnPhases[i].monsterTypes.Length == 0)
             {
                 Debug.LogError($"第 {i + 1} 階段沒有設定怪物預製體！");
                 return;
             }
             // 初始化權重陣列
-            if (spawnPhases[i].monsterWeights == null || spawnPhases[i].monsterWeights.Length != spawnPhases[i].monsterPrefabs.Length)
+            if (spawnPhases[i].monsterWeights == null || spawnPhases[i].monsterWeights.Length != spawnPhases[i].monsterTypes.Length)
             {
-                spawnPhases[i].monsterWeights = new float[spawnPhases[i].monsterPrefabs.Length];
+                spawnPhases[i].monsterWeights = new float[spawnPhases[i].monsterTypes.Length];
                 // 預設權重均等
                 for (int j = 0; j < spawnPhases[i].monsterWeights.Length; j++)
                 {
@@ -373,7 +373,7 @@ public class RandomSpawn : MonoBehaviour
     }
 
     // 根據權重隨機選擇怪物預製體
-    private GameObject GetRandomMonsterPrefab(RandomSpawnPhase phase)
+    private MonsterObjectPool.MonsterType GetRandomMonsterType(RandomSpawnPhase phase)
     {
         float totalWeight = 0f;
         foreach (float weight in phase.monsterWeights)
@@ -384,16 +384,16 @@ public class RandomSpawn : MonoBehaviour
         float randomValue = Random.Range(0f, totalWeight);
         float currentWeight = 0f;
 
-        for (int i = 0; i < phase.monsterPrefabs.Length; i++)
+        for (int i = 0; i < phase.monsterTypes.Length; i++)
         {
             currentWeight += phase.monsterWeights[i];
             if (randomValue <= currentWeight)
             {
-                return phase.monsterPrefabs[i];
+                return phase.monsterTypes[i];
             }
         }
 
-        return phase.monsterPrefabs[0]; // 如果出現意外情況，返回第一個預製體
+        return phase.monsterTypes[0]; // 如果出現意外情況，返回第一個類型
     }
 
     // 獲取當前難度的設定
@@ -480,9 +480,10 @@ public class RandomSpawn : MonoBehaviour
             // 生成所有怪物
             for (int i = 0; i < spawnPositions.Count; i++)
             {
-                GameObject monsterPrefab = GetRandomMonsterPrefab(currentPhaseSettings);
-                GameObject monster = Instantiate(monsterPrefab, spawnPositions[i], Quaternion.identity);
-                
+                MonsterObjectPool.MonsterType monsterType = GetRandomMonsterType(currentPhaseSettings);
+                GameObject monster = MonsterObjectPool.Instance.GetMonster(monsterType);
+                monster.GetComponent<NormalMonster_setting>().ResetMonsterHealth();
+                monster.transform.position = spawnPositions[i];
                 // 應用難度設定
                 ApplyDifficultySettings(monster);
                 

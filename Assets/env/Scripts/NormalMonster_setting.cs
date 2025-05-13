@@ -32,7 +32,11 @@ public class NormalMonster_setting : MonoBehaviour
     bool isFlip = false;
     private bool isBurning = false; // 新增：標記是否正在燃燒
     public float HP = 100f;  // 直接使用HP作为基础值
-
+    public float init_HP;
+    void Awake()
+    {
+        init_HP = HP;
+    }
     void Start()
     {
         Healthbar = GameObject.Find("healthbar").GetComponent<healthbar>();
@@ -207,8 +211,6 @@ public class NormalMonster_setting : MonoBehaviour
 
     {
         PlayerControl.kill_monster_count++;
-        
-        monster.SetActive(false);
 
         // 判斷怪物類型和經驗值等級
         if (monster_type==0)  // 假設 monster_type = 0 代表一般怪物
@@ -219,8 +221,8 @@ public class NormalMonster_setting : MonoBehaviour
                     // 在這裡生成15經驗值的掉落物
                     if(LowExpPrefab != null)
                     {
-                        GameObject expObject = Instantiate(LowExpPrefab, transform.position, Quaternion.identity);
-                        expObject.SetActive(true);
+                        GameObject expObject = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Small);
+                        expObject.transform.position = transform.position;
                         AudioManager.Instance.PlaySFX("drop_exp");
                         break;
                     }
@@ -230,8 +232,8 @@ public class NormalMonster_setting : MonoBehaviour
                     if(MediumExpPrefab != null)
                     {
                         // 在這裡生成40經驗值的掉落物
-                        GameObject expObject2 = Instantiate(MediumExpPrefab, transform.position, Quaternion.identity);
-                        expObject2.SetActive(true);
+                        GameObject expObject2 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Medium);
+                        expObject2.transform.position = transform.position;
                         AudioManager.Instance.PlaySFX("drop_exp");
                         break;
                     }  
@@ -241,8 +243,8 @@ public class NormalMonster_setting : MonoBehaviour
                     if(HighExpPrefab != null)
                     {
                         // 在這裡生成100經驗值的掉落物
-                        GameObject expObject3 = Instantiate(HighExpPrefab, transform.position, Quaternion.identity);
-                        expObject3.SetActive(true);
+                        GameObject expObject3 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Large);
+                        expObject3.transform.position = transform.position;
                         AudioManager.Instance.PlaySFX("drop_exp");
                         break;
                     }
@@ -279,6 +281,7 @@ public class NormalMonster_setting : MonoBehaviour
                 box.SetActive(true);
             }
         }
+        MonsterObjectPool.Instance.ReturnMonster(monster);
     }
     void speed_controll(float Minspeed , float Maxspeed)
     {
@@ -287,6 +290,36 @@ public class NormalMonster_setting : MonoBehaviour
             float distanceToPlayer = Vector2.Distance(transform .position,player1.position);
             movespeed = Mathf.Clamp(distanceToPlayer / 2, Minspeed, Maxspeed); // 距離越近速度越慢，距離越遠速度越快，限制速度範圍在Minspeed到Maxspeed之間
         }
+    }
+
+    public void ResetMonsterHealth()
+    {
+        HP = init_HP;
+        // 根據等級和武器重新計算HP
+        if (experienceSystem != null && weaponManager != null)
+        {
+            // 計算武器等級加成
+            int weaponBonus = 0;
+            if (weaponManager.circle) weaponBonus += weaponManager.circle_level;
+            if (weaponManager.Boomerang) weaponBonus += weaponManager.boomerang_level;
+            if (weaponManager.MagicBook) weaponBonus += weaponManager.magicbook_level;
+            if (weaponManager.thrust) weaponBonus += weaponManager.thrust_level;
+            if (weaponManager.Axe) weaponBonus += weaponManager.axe_level;
+            if (weaponManager.crossbow) weaponBonus += weaponManager.crossbow_level;
+            if (weaponManager.main_hand1) weaponBonus += weaponManager.main_hand_level1;
+            if (weaponManager.main_hand2) weaponBonus += weaponManager.main_hand_level2;
+
+            // 計算總倍率
+            float totalMultiplier = 1 + (Mathf.Pow(experienceSystem.currentLevel, 0.8f) + weaponBonus) / 33.33f;
+            HP *= totalMultiplier;
+
+            #if UNITY_EDITOR
+            Debug.Log($"怪物血量重置 - 基础HP: {HP:F0}, 总倍率: {totalMultiplier:F2}");
+            #endif
+        }
+
+        // 更新前一個血量值
+        Previous_health = HP;
     }
 
 }

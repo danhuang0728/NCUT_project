@@ -29,7 +29,7 @@ public class exp_high : MonoBehaviour
         {
             levelManager.AddExperience(17 * Mathf.RoundToInt( Mathf.Pow(Current_level, 1.2f) + 100));
             AudioManager.Instance.PlaySFX("pickup_exp");
-            Destroy(gameObject);
+            ExpObjectPool.Instance.ReturnExp(gameObject);
         }
     }
 }
