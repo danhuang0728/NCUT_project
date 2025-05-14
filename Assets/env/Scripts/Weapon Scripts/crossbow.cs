@@ -104,7 +104,7 @@ public class crossbow : MonoBehaviour
             {
                 crossbow_Prb.fireRate = 2f;
 
-                arrow.damage = 15;
+                arrow.damage = 10;
             }
             else
             {
@@ -119,7 +119,7 @@ public class crossbow : MonoBehaviour
             if(is_levelUP == false)
             {
                 crossbow_Prb.fireRate = 4;
-                arrow.damage = 20;
+                arrow.damage = 10;
             }
 
             else
@@ -137,7 +137,7 @@ public class crossbow : MonoBehaviour
             {
                 crossbow_Prb.fireRate = 6;
 
-                arrow.damage = 30;
+                arrow.damage = 15;
             }
             else
             {
@@ -153,7 +153,7 @@ public class crossbow : MonoBehaviour
             {
                 crossbow_Prb.fireRate = 8;
 
-                arrow.damage = 30;
+                arrow.damage = 20;
             }
             else
             {
