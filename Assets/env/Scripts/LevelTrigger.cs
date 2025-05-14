@@ -218,7 +218,10 @@ public class LevelTrigger : MonoBehaviour
         //GPS開啟
         playerGPS.openGPS();
 
-        while (true) // 持續移動物件
+        float duration = 10f; // 設定持續時間為10秒
+        float elapsedTime = 0f; // 已經過的時間
+
+        while (elapsedTime < duration) // 只在10秒內移動物件
         {
             for (int i = expObjects.Length - 1; i >= 0; i--) // 反向遍歷以避免清除物件時影響迴圈
             {
@@ -237,6 +240,7 @@ public class LevelTrigger : MonoBehaviour
                     System.Array.Resize(ref expObjects, expObjects.Length - 1); // 縮小陣列大小
                 }
             }
+            elapsedTime += Time.deltaTime; // 更新已經過的時間
             yield return null; // 等待下一幀
         }
     }

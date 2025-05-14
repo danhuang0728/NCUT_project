@@ -12,6 +12,7 @@ public class ValueDisplay : MonoBehaviour
     private float totalCriticalDamage;
     private bool C_damage_isRestricted;
     private float totalCriticalHitRate;
+    private bool C_criticalHitRate_isRestricted;
     private float totalSpeed;
     private bool Speed_isRestricted;
     private float totalHealth;
@@ -41,6 +42,7 @@ public class ValueDisplay : MonoBehaviour
         Update_Data();
         C_damageLimit();
         C_speedLimit();
+        C_criticalHitRateLimit();
         panelUpdate();
         if(Input.GetKeyDown(KeyCode.Tab))
         {
@@ -106,6 +108,14 @@ public class ValueDisplay : MonoBehaviour
        } 
        else {Speed_isRestricted = false;}
     }
+    void C_criticalHitRateLimit()
+    {
+        if(totalCriticalHitRate > 50)
+        {
+            totalCriticalHitRate = 50;
+        }
+        else {C_criticalHitRate_isRestricted = false;}
+    }
     void panelUpdate()
     {
         // 傷害值顯示
@@ -131,11 +141,22 @@ public class ValueDisplay : MonoBehaviour
         }
 
         // 暴擊率顯示
-        C_rate_value.text = totalCriticalHitRate.ToString("F1") + " " + 
-                           "(" + Character_Value_Ingame.criticalHitRate.ToString("F1") + "%)" + 
-                           "<color=#ADD8E6>(" + abilityManager.criticalHitRate.ToString() + "%)</color>" + 
-                           "<color=#90EE90>(" + character_Values_SETUP.criticalHitRate_addition.ToString() + "%)</color>";
-
+        if(C_criticalHitRate_isRestricted)
+        {
+            C_rate_value.text = "<color=#FFB6C1>" + 
+                               totalCriticalHitRate.ToString("F1") + " " + 
+                               "(" + Character_Value_Ingame.criticalHitRate.ToString("F1") + "%)" + 
+                               "<color=#ADD8E6>(" + abilityManager.criticalHitRate.ToString() + "%)</color>" + 
+                               "<color=#90EE90>(" + character_Values_SETUP.criticalHitRate_addition.ToString() + "%)</color>" + 
+                               "</color>";
+        }
+        else
+        {
+            C_rate_value.text = totalCriticalHitRate.ToString("F1") + " " + 
+                               "(" + Character_Value_Ingame.criticalHitRate.ToString("F1") + "%)" + 
+                               "<color=#ADD8E6>(" + abilityManager.criticalHitRate.ToString() + "%)</color>" + 
+                               "<color=#90EE90>(" + character_Values_SETUP.criticalHitRate_addition.ToString() + "%)</color>";
+        }
         // 速度顯示
         speed_value.text = totalSpeed.ToString("F1") + " " + 
                           "(" + Character_Value_Ingame.speed.ToString("F1") + "%)" + 

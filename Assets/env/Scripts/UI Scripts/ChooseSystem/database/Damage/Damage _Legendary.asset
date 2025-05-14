@@ -15,8 +15,8 @@ MonoBehaviour:
   variableName: "\u653B\u64CA\u529B"
   stringValue: "\u6240\u6709\u6B66\u5668\u653B\u64CA\u529B"
   minValue: 10
-  maxValue: 10
+  maxValue: 12
   image: {fileID: 21300000, guid: 9f43e2abae34a954bad58058f03eb556, type: 3}
-  description: 10.6
+  description: 10.1
   powerUpType: 1
   rarity: 3

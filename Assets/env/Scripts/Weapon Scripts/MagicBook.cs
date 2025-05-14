@@ -143,14 +143,14 @@ public class MagicBook : MonoBehaviour
         else if(level == 4)
         {
             fireRate = 1.75f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            magicBook_Prb.damage = 45 ;
+            magicBook_Prb.damage = 30 ;
             spreadBulletCount = 5;
          
         }
         else if(level == 5)
         {
             fireRate = 2f + (characterValuesIngame.cooldown_percentage + characterValues.cooldown_addition_percentage);
-            magicBook_Prb.damage = 60 ;
+            magicBook_Prb.damage = 30 ;
             spreadBulletCount = 7;
         }
         if(is_levelUP1 == true)

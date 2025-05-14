@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableName: "\u653B\u64CA\u529B"
   stringValue: "\u6240\u6709\u6B66\u5668\u653B\u64CA\u529B"
-  minValue: 1
-  maxValue: 2.5
+  minValue: 3.1
+  maxValue: 4
   image: {fileID: 21300000, guid: 9f43e2abae34a954bad58058f03eb556, type: 3}
-  description: 2.5
+  description: 4.4
   powerUpType: 1
   rarity: 1

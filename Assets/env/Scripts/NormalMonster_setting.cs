@@ -279,9 +279,13 @@ public class NormalMonster_setting : MonoBehaviour
             {
                 GameObject box = Instantiate(boxPrefab, transform.position, Quaternion.identity); //生成武器箱物品
                 box.SetActive(true);
+                Destroy(monster);
             }
         }
-        MonsterObjectPool.Instance.ReturnMonster(monster);
+        if(monster_type != 2)
+        {
+            MonsterObjectPool.Instance.ReturnMonster(monster);
+        }
     }
     void speed_controll(float Minspeed , float Maxspeed)
     {

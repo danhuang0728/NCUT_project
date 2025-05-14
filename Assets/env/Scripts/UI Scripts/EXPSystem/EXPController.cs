@@ -50,10 +50,13 @@ public class ExperienceSystem : MonoBehaviour
     {
         while (currentExperience >= GetRequiredExperience())
         {
-            currentExperience -= GetRequiredExperience();
-            currentLevel++; //升級
-            FindObjectOfType<SelectionManager>().OpenPanel();
-            Debug.Log("Level Up! Now level: " + currentLevel);
+            if(currentLevel < 100)
+            {
+                currentExperience -= GetRequiredExperience();
+                currentLevel++; //升級
+                FindObjectOfType<SelectionManager>().OpenPanel();
+                Debug.Log("Level Up! Now level: " + currentLevel);
+            }
         }
     }
 

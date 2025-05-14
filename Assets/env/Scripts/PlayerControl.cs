@@ -152,8 +152,14 @@ public class PlayerControl : MonoBehaviour
             speed += 3;
         }
         // 最大速度限制 (20)
-        if(speed > 20){
+        if(speed > 20)
+        {
             speed = 20;
+        }
+        //暴擊率限制 (70%)
+        if(Calculating_Values_criticalHitRate > 50)
+        {
+            Calculating_Values_criticalHitRate = 50;
         }
         
 

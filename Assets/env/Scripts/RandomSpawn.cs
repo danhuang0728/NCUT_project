@@ -42,20 +42,20 @@ public class RandomSpawn : MonoBehaviour
 
     private DifficultySettings easySettings = new DifficultySettings 
     { 
-        monsterHealthMultiplier = 0.8f,
-        monsterDamageMultiplier = 0.8f,
-        monsterSpeedMultiplier = 0.9f,
-        spawnIntervalMultiplier = 1.2f,
-        eliteMonsterHealthMultiplier = 0.8f
-    };
-    
-    private DifficultySettings normalSettings = new DifficultySettings 
-    { 
         monsterHealthMultiplier = 1f,
         monsterDamageMultiplier = 1f,
         monsterSpeedMultiplier = 1f,
         spawnIntervalMultiplier = 1f,
         eliteMonsterHealthMultiplier = 1f
+    };
+    
+    private DifficultySettings normalSettings = new DifficultySettings 
+    { 
+        monsterHealthMultiplier = 1.25f,
+        monsterDamageMultiplier = 1.25f,
+        monsterSpeedMultiplier = 1.25f,
+        spawnIntervalMultiplier = 1f,
+        eliteMonsterHealthMultiplier = 1.25f
     };
     
     private DifficultySettings hardSettings = new DifficultySettings 
