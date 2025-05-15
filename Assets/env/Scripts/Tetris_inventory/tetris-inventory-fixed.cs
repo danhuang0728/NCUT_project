@@ -922,14 +922,12 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     
     void Start()
     {
-        // 获取提示框管理器
         tooltipManager = FindObjectOfType<TetrisBlockTooltip>();
         if (tooltipManager == null)
         {
             Debug.LogWarning("未找到TetrisBlockTooltip组件");
         }
-        
-        // 初始化方块数据
+        blockData = new TetrisBlockData();
         InitializeBlockData();
     }
     
@@ -1173,6 +1171,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // 設置選擇狀態
     public void SetSelected(bool selected)
     {
+        Debug.Log($"[Tooltip Debug] SetSelected called, selected={selected}, isDragging={isDragging}, tooltipManager={(tooltipManager != null)}, blockData={(blockData != null)}");
         isSelected = selected;
         
         // 視覺上表示選擇狀態
@@ -1194,6 +1193,12 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 // 显示提示框
                 if (tooltipManager != null && blockData != null)
                 {
+                    Debug.Log($"[Tooltip Debug] blockData.blockName: {blockData.blockName}, description: {blockData.description}");
+                    foreach (var kv in blockData.attributes)
+                    {
+                        Debug.Log($"[Tooltip Debug] Attribute: {kv.Key} = {kv.Value}");
+                    }
+                    Debug.Log($"[Tooltip Debug] SpecialAbility: {blockData.specialAbility}");
                     tooltipManager.ShowTooltip(blockData);
                 }
             }
@@ -1344,7 +1349,164 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     void InitializeBlockData()
     {
-        // 實現初始化方塊數據的邏輯
-        // 這裡應該根據實際需求實現
+        Debug.Log("[Tooltip Debug] InitializeBlockData called");
+        blockData = new TetrisBlockData();
+        blockData.blockName = gameObject.name;
+        blockData.description = "";
+        blockData.attributes = new Dictionary<string,float>();
+        blockData.specialAbility = "";
+
+        // 粉色方塊
+        if (gameObject.name.Contains("Pink_1"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "基礎攻擊方塊";
+            blockData.attributes["攻擊"] = 10;
+        }
+        else if (gameObject.name.Contains("Pink_2"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "攻擊與爆擊傷害方塊";
+            blockData.attributes["攻擊"] = 5;
+            blockData.attributes["爆擊傷害"] = 12;
+        }
+        else if (gameObject.name.Contains("Pink_3"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "爆擊率方塊";
+            blockData.attributes["爆擊率"] = 10;
+        }
+        else if (gameObject.name.Contains("Pink_4"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "爆擊率與攻擊方塊";
+            blockData.attributes["爆擊率"] = 10;
+            blockData.attributes["攻擊"] = 30;
+        }
+        else if (gameObject.name.Contains("Pink_5"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "生命與攻擊方塊";
+            blockData.attributes["生命"] = 25;
+            blockData.attributes["攻擊"] = 25;
+        }
+        else if (gameObject.name.Contains("Pink_6"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "電氣環繞周圍";  //啟用碰撞傷害
+            blockData.attributes["速度"] = 3;
+            blockData.attributes["生命"] = 80;
+            blockData.specialAbility = "電氣環繞周圍";
+        }
+        else if (gameObject.name.Contains("Pink_7"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "速度與生命方塊";
+            blockData.attributes["速度"] = 1;
+            blockData.attributes["生命"] = 30;
+        }
+        else if (gameObject.name.Contains("Pink_8"))
+        {
+            blockData.blockName = "粉色能力碎片";
+            //blockData.description = "碰撞傷害、速度與攻擊方塊";
+            blockData.attributes["速度"] = 10;
+            blockData.attributes["攻擊"] = 20;
+            blockData.specialAbility = "電氣環繞周圍"; //啟用碰撞傷害
+        }
+        // 綠色能力碎片
+        else if (gameObject.name.Contains("Green_1"))
+        {
+            blockData.blockName = "綠色能力碎片";
+            //blockData.description = "生命、攻擊、承受傷害加成方塊";
+            blockData.attributes["生命"] = 12;
+            blockData.attributes["攻擊"] = 10;
+            blockData.attributes["承受傷害"] = 10;
+        }
+        else if (gameObject.name.Contains("Green_2"))
+        {
+            blockData.blockName = "綠色能力碎片";
+            //blockData.description = "生命、攻擊、承受傷害加成方塊";
+            blockData.attributes["生命"] = 15;
+            blockData.attributes["攻擊"] = 15;
+            blockData.attributes["承受傷害"] = 20;
+        }
+        else if (gameObject.name.Contains("Green_3"))
+        {
+            blockData.blockName = "綠色能力碎片";
+            //blockData.description = "生命、攻擊、承受傷害加成方塊";
+            blockData.attributes["生命"] = 15;
+            blockData.attributes["攻擊"] = 15;
+            blockData.attributes["承受傷害"] = 20;
+        }
+        else if (gameObject.name.Contains("Green_4"))
+        {
+            blockData.blockName = "綠色能力碎片";
+            //blockData.description = "生命、攻擊、承受傷害加成方塊";
+            blockData.attributes["生命"] = 40;
+            blockData.attributes["攻擊"] = 80;
+            blockData.attributes["承受傷害"] = 15;
+        }
+        // 紫色方塊
+        else if (gameObject.name.Contains("Purple_1"))
+        {
+            blockData.blockName = "紫色能力碎片";
+            //blockData.description = "速度、攻擊、生命方塊";
+            blockData.attributes["速度"] = 20;
+            blockData.attributes["攻擊"] = 20;
+            blockData.attributes["生命"] = 70;
+        }
+        // 武器進化方塊
+        else if (gameObject.name.Contains("(S_1)"))
+        {
+            blockData.blockName = "居合斬碎片";
+            blockData.description = "掌握了劍術";
+            blockData.specialAbility = "啟用新的主手武器";
+        }
+        else if (gameObject.name.Contains("(S_2)"))
+        {
+            blockData.blockName = "劍術碎片";
+            blockData.description = "掌握了劍術";
+            blockData.specialAbility = "啟用新的主手武器";
+        }
+        else if (gameObject.name.Contains("(C_1)"))
+        {
+            blockData.blockName = "圓環碎片";
+            blockData.description = "圓環不再失效";
+            blockData.specialAbility = "啟用圓環武器進化";
+        }
+        else if (gameObject.name.Contains("(F_1)"))
+        {
+            blockData.blockName = "火球碎片";
+            blockData.description = "似乎有股力量在體內呼喚";
+            blockData.specialAbility = "火球現在有了自我意識";
+        }
+        else if (gameObject.name.Contains("(F_2)"))
+        {
+            blockData.blockName = "巨大火球碎片";
+            blockData.description = "感覺體內充滿力量";
+            blockData.specialAbility = "啟用魔法書巨大火球";
+        }
+        else if (gameObject.name.Contains("(B_1)"))
+        {
+            blockData.blockName = "迴力鏢碎片";
+            blockData.description = "激發野性";
+            blockData.specialAbility = "無限彈射";
+        }
+        else if (gameObject.name.Contains("A_1"))
+        {
+            blockData.blockName = "飛斧碎片";
+            blockData.description = "擁有某種未知力量";
+            blockData.specialAbility = "啟用飛斧進化";
+        }
+        else if (gameObject.name.Contains("T_1"))
+        {
+            blockData.blockName = "西洋劍碎片";
+            blockData.description = "激發潛能";
+            blockData.specialAbility = "改變攻擊方式";
+        }
+        else
+        {
+            blockData.description = "未知方塊";
+        }
     }
 }
