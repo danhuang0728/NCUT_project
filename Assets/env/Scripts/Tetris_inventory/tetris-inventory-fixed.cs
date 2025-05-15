@@ -915,6 +915,23 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Transform startParent;
     private bool isSelected = false;
     private bool canRotate = true;  // 新增：控制是否可以旋轉
+    private bool isDragging = false;  // 新增：跟踪拖拽状态
+    
+    private TetrisBlockTooltip tooltipManager;
+    private TetrisBlockData blockData;
+    
+    void Start()
+    {
+        // 获取提示框管理器
+        tooltipManager = FindObjectOfType<TetrisBlockTooltip>();
+        if (tooltipManager == null)
+        {
+            Debug.LogWarning("未找到TetrisBlockTooltip组件");
+        }
+        
+        // 初始化方块数据
+        InitializeBlockData();
+    }
     
     // 初始化方塊
     public void Initialize(Vector2Int[] shape, Color color, float cellSize, TetrisInventoryManager manager, Vector2 pivot = default, bool canRotate = true)
@@ -1168,29 +1185,47 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             }
         }
         
-        if (selected)
+        // 只有在非拖拽状态下才处理提示框的显示/隐藏
+        if (!isDragging)
         {
-            manager.SelectPiece(this);
+            if (selected)
+            {
+                manager.SelectPiece(this);
+                // 显示提示框
+                if (tooltipManager != null && blockData != null)
+                {
+                    tooltipManager.ShowTooltip(blockData);
+                }
+            }
+            else
+            {
+                // 隐藏提示框
+                if (tooltipManager != null)
+                {
+                    tooltipManager.HideTooltip();
+                }
+            }
         }
     }
     
     // 開始拖拽
     public void OnBeginDrag(PointerEventData eventData)
     {
+        isDragging = true;  // 设置拖拽状态
         startPosition = transform.position;
         startParent = transform.parent;
         
-        // 提高層級以便在拖動時顯示在其他 UI 元素上方
+        // 提高层级以便在拖动时显示在其他 UI 元素上方
         transform.SetParent(transform.root);
         
-        // 設置半透明，表示拖拽狀態
+        // 设置半透明，表示拖拽状态
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
         
-        // 設置當前拖拽的方塊
+        // 设置当前拖拽的方块
         manager.SetDraggedPiece(this);
         
-        // 清除之前的佔用狀態
+        // 清除之前的占用状态
         ClearOccupiedCells();
     }
     
@@ -1222,6 +1257,7 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // 結束拖拽
     public void OnEndDrag(PointerEventData eventData)
     {
+        isDragging = false;  // 重置拖拽状态
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
@@ -1304,5 +1340,11 @@ public class TetrisPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         else if (parent == manager.storageGridContainer_3)
             return manager.storageGrid_3;
         return null;
+    }
+
+    void InitializeBlockData()
+    {
+        // 實現初始化方塊數據的邏輯
+        // 這裡應該根據實際需求實現
     }
 }
