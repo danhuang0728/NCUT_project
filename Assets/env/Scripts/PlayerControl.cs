@@ -66,6 +66,7 @@ public class PlayerControl : MonoBehaviour
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
     private Coroutine attackCoroutine;
+    private ElectricAuraEffect electricAuraEffect; // 添加电气效果引用
 
     public void Awake()
     {
@@ -75,6 +76,7 @@ public class PlayerControl : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();    
         ani = GetComponent<Animator>();
+        electricAuraEffect = GetComponent<ElectricAuraEffect>(); // 获取电气效果组件
         //重設UI及時間狀態
         UIstate.isAnyPanelOpen = false;
         N = timeScale;
@@ -136,6 +138,19 @@ public class PlayerControl : MonoBehaviour
             {
                 Collision_skill_damage();
                 lastCollisionDamageTime = Time.time;
+                // 启用电气效果
+                if (electricAuraEffect != null)
+                {
+                    electricAuraEffect.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            // 禁用电气效果
+            if (electricAuraEffect != null)
+            {
+                electricAuraEffect.SetActive(false);
             }
         }
 

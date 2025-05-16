@@ -16,7 +16,6 @@ public class Boom_monster : MonoBehaviour
         player_control = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

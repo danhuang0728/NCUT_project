@@ -86,7 +86,7 @@ public class Weapon : MonoBehaviour
                 {
                     // 處理傷害
                     monster.HP -= damage;
-                    Debug.Log("Hit Monster: " + monster);
+                    //Debug.Log("Hit Monster: " + monster);
 
                     // 處理材質變色效果
                     Renderer renderer = other.GetComponent<Renderer>();
