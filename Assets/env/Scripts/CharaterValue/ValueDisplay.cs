@@ -8,6 +8,7 @@ public class ValueDisplay : MonoBehaviour
     private character_value_ingame Character_Value_Ingame;
     private Tetris_ability_Manager abilityManager;
     private GameObject panel;
+    private CanvasGroup panelCanvasGroup;
     private float totaldamgae;
     private float totalCriticalDamage;
     private bool C_damage_isRestricted;
@@ -26,6 +27,7 @@ public class ValueDisplay : MonoBehaviour
     public TextMeshProUGUI health_value;
     public TextMeshProUGUI cooldown_value;
     public TextMeshProUGUI lifeSteal_value;
+    private bool isAnimating = false;
 
 
     void Start()
@@ -33,6 +35,14 @@ public class ValueDisplay : MonoBehaviour
         Character_Value_Ingame = FindObjectOfType<character_value_ingame>();
         abilityManager = FindObjectOfType<Tetris_ability_Manager>();
         panel = transform.Find("Panel")?.gameObject;
+        if (panel != null)
+        {
+            panelCanvasGroup = panel.GetComponent<CanvasGroup>();
+            if (panelCanvasGroup == null)
+                panelCanvasGroup = panel.AddComponent<CanvasGroup>();
+            panelCanvasGroup.alpha = 0f;
+            panel.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -44,7 +54,7 @@ public class ValueDisplay : MonoBehaviour
         C_speedLimit();
         C_criticalHitRateLimit();
         panelUpdate();
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab) && !isAnimating)
         {
             setUIstate();
             if(panel.activeSelf && UIstate.isAnyPanelOpen)
@@ -204,14 +214,44 @@ public class ValueDisplay : MonoBehaviour
     }
     public void openPanel()
     {
+        if (panel == null || isAnimating) return;
         panel.SetActive(true);
-        setUIstate();
-        Time.timeScale = 0; // 暫停遊戲
+        StartCoroutine(FadeInPanel());
     }
     public void closePanel()
     {
+        if (panel == null || isAnimating) return;
+        StartCoroutine(FadeOutPanel());
+    }
+    private IEnumerator FadeInPanel(float duration = 0.3f)
+    {
+        isAnimating = true;
+        float elapsed = 0f;
+        panelCanvasGroup.alpha = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            panelCanvasGroup.alpha = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        panelCanvasGroup.alpha = 1f;
+        setUIstate();
+        isAnimating = false;
+    }
+    private IEnumerator FadeOutPanel(float duration = 0.23f)
+    {
+        isAnimating = true;
+        float elapsed = 0f;
+        float startAlpha = panelCanvasGroup.alpha;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            panelCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, elapsed / duration);
+            yield return null;
+        }
+        panelCanvasGroup.alpha = 0f;
         panel.SetActive(false);
         setUIstate();
-        Time.timeScale = PlayerControl.N; // 恢復遊戲
+        isAnimating = false;
     }
 }

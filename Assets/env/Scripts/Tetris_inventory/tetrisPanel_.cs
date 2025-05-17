@@ -33,7 +33,7 @@ public class tetrisPanel_ : MonoBehaviour
     public void CloseInventory()
     {
         UIstate.isAnyPanelOpen = false;
-        inventoryPanel.SetActive(false);
+        // inventoryPanel.SetActive(false); // 讓淡出動畫控制顯示/隱藏
         pageObj.SetActive(false);
         Time.timeScale = PlayerControl.N;
         isInventoryOpen = false;

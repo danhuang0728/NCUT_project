@@ -40,6 +40,7 @@ public class TetrisInventoryManager : MonoBehaviour
     // 新增：Canvas引用
     private Canvas inventoryCanvas;
     private tetrisPanel_ TetrisPanel_;
+    private CanvasGroup inventoryCanvasGroup; // 新增：CanvasGroup 變數
     
     void Start()
     {
@@ -53,6 +54,13 @@ public class TetrisInventoryManager : MonoBehaviour
         // 新增：獲取Canvas並設置為使用非縮放時間
         SetupCanvasForPauseIndependence();
         player_tetr_Manager.Update_UI();
+        // 新增：初始化 CanvasGroup
+        inventoryCanvasGroup = inventoryPanel.GetComponent<CanvasGroup>();
+        if (inventoryCanvasGroup == null)
+        {
+            inventoryCanvasGroup = inventoryPanel.AddComponent<CanvasGroup>();
+        }
+        inventoryCanvasGroup.alpha = 0f;
     }
     
     // 新增：設置Canvas以不受時間暫停影響
@@ -610,21 +618,22 @@ public class TetrisInventoryManager : MonoBehaviour
     // 切換物品欄開關
     public void ToggleInventory()
     {
+        StopAllCoroutines();
         if (isInventoryOpen) {
             TetrisPanel_.CloseInventory();
+            StartCoroutine(FadeOutInventory());
         } else {
             TetrisPanel_.OpenInventory();
+            inventoryPanel.SetActive(true);
+            StartCoroutine(FadeInInventory());
         }
-        
         isInventoryOpen = TetrisPanel_.isInventoryOpen;
-        
         // 當關閉物品欄時，取消選擇
         if (!isInventoryOpen && selectedPiece != null)
         {
             selectedPiece.SetSelected(false);
             selectedPiece = null;
         }
-        
         // 新增：當打開物品欄時，確保它顯示在最上層
         if (isInventoryOpen && inventoryCanvas != null)
         {
@@ -834,6 +843,37 @@ public class TetrisInventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    // 新增：淡入協程
+    private IEnumerator FadeInInventory(float duration = 0.3f)
+    {
+        Debug.Log("FadeInInventory");
+        float elapsed = 0f;
+        inventoryCanvasGroup.alpha = 0f;
+        inventoryPanel.SetActive(true);
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            inventoryCanvasGroup.alpha = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        inventoryCanvasGroup.alpha = 1f;
+    }
+
+    // 新增：淡出協程
+    private IEnumerator FadeOutInventory(float duration = 0.3f)
+    {
+        float elapsed = 0f;
+        float startAlpha = inventoryCanvasGroup.alpha;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            inventoryCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, elapsed / duration);
+            yield return null;
+        }
+        inventoryCanvasGroup.alpha = 0f;
+        inventoryPanel.SetActive(false);
     }
 }
 

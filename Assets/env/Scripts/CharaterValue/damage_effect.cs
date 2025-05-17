@@ -21,6 +21,12 @@ public class damage_effect : MonoBehaviour
     }
     public void damageEffect_Pop_up(float damage,Transform target)
     {
+        // 如果是负数，直接返回不显示
+        if (damage < 0)
+        {
+            return;
+        }
+        
         // 生成傷害數字
         GameObject damageText = Instantiate(damageTextPrefab, target.position, Quaternion.identity);
         TextMeshPro damageTextMesh = damageText.GetComponent<TextMeshPro>();
