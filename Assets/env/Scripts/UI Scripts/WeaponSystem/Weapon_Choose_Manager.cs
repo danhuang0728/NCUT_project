@@ -47,6 +47,22 @@ public class Weapon_Choose_Manager : MonoBehaviour
                 ClosePanel();
             }
         }
+        // 新增使用数字键 1、2、3 选择武器的功能
+        if (isPanelOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ButtonClicked(0);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                ButtonClicked(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                ButtonClicked(2);
+            }
+        }
     }
     public void OpenPanel()
     {
