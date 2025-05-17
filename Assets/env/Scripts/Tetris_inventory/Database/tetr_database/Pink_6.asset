@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetr_name: 
   tetr_sprite: {fileID: 21300000, guid: ca66525f087e7964eb8bba867a97a2d0, type: 3}
-  tetr_type: 13
+  tetr_type: 14
