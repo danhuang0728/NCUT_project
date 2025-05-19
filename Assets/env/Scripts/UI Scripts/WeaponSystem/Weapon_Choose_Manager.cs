@@ -20,14 +20,23 @@ public class Weapon_Choose_Manager : MonoBehaviour
 
     void Start()
     {
-       //清空玩家的武器
-       playerWeaponData.WeaponDataList.Clear();
-       //清空武器等級
+       // 重置玩家武器数据
+       playerWeaponData.ResetWeaponData();
+       
+       // 重置所有武器的等级为0
        foreach (WeaponData weapon in weaponDatabase.WeaponDataList)
        {
-        weapon.level = 1;
+           weapon.level = 0;
        }
+       
        weaponManager = FindObjectOfType<Weapon_Manager>();
+       
+       // 确保武器管理器也更新状态
+       if (weaponManager != null)
+       {
+           weaponManager.UpdateWeaponStatus();
+           weaponManager.UpdateAllWeaponLevels();
+       }
     }
 
     // Update is called once per frame
@@ -175,7 +184,7 @@ public class Weapon_Choose_Manager : MonoBehaviour
       {
         if(selectedData.level < 5)
         {
-          selectedData.level += 1;
+          playerWeaponData.UpdateWeaponLevel(selectedData, selectedData.level + 1);
         }
         else
         {
@@ -187,8 +196,13 @@ public class Weapon_Choose_Manager : MonoBehaviour
         // 如果玩家武器清單中沒有該武器，則添加到清單中
         if (playerWeaponData.WeaponDataList.Count < 3)
         {
-          playerWeaponData.WeaponDataList.Add(selectedData);
-          Debug.Log("已將新武器 " + selectedData.skillName + " 添加到玩家武器清單中");
+          // 先设置武器等级为1
+          selectedData.level = 1;
+          // 然后添加到列表中
+          var newList = new List<WeaponData>(playerWeaponData.WeaponDataList);
+          newList.Add(selectedData);
+          playerWeaponData.WeaponDataList = newList;
+          Debug.Log("已將新武器 " + selectedData.skillName + " 添加到玩家武器清單中，初始等級為1");
         }
         else
         {
