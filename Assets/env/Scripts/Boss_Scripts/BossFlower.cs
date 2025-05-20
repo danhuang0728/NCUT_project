@@ -11,7 +11,6 @@ public class BossFlower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bossFloat = FindObjectOfType<BossFloat>();
         
     }
 

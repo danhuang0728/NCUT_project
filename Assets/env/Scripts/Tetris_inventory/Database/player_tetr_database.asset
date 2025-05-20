@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25550cb407f60245bfcad37a029f8a8, type: 3}
   m_Name: player_tetr_database
   m_EditorClassIdentifier: 
-  tetr_database:
-  - {fileID: 11400000, guid: 0671e535f8f5a9a48ad07f2e3e66b144, type: 2}
-  - {fileID: 11400000, guid: fee8babf1917af04491ad02ffef6dad6, type: 2}
-  - {fileID: 11400000, guid: a6a1c118526ebac4480b7eb0b7daf78f, type: 2}
-  - {fileID: 11400000, guid: 3dfd18d94a00d224a8664890996a611a, type: 2}
-  - {fileID: 11400000, guid: 35d9a40fc29f78f48aa0bc2ebd31dccb, type: 2}
-  - {fileID: 11400000, guid: fd26029fa1ca1774d92cdd9b04fa2ee0, type: 2}
+  tetr_database: []
