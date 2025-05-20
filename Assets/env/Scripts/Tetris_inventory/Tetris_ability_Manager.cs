@@ -56,6 +56,8 @@ public class Tetris_ability_Manager : MonoBehaviour
             weapon_manager.is_magicbook_levelUP_1 = false;
             weapon_manager.is_magicbook_levelUP_2 = false;
             weapon_manager.is_boomerang_levelUP_1 = false;
+            weapon_manager.is_thrust_levelUP_1 = false;
+            weapon_manager.AxeSpawner = false;
             foreach (Transform child in EquippedGridContainer.transform)
             {
                 //-----------基礎數值方塊(粉)-----------
