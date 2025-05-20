@@ -358,9 +358,9 @@ public class player_tetr_Manager : MonoBehaviour
                 tetrisInventoryManager.CreateTetrisPiece(
                     new Vector2Int[] {
                         new Vector2Int(0, 0),
-                        new Vector2Int(0, 1),
-                        new Vector2Int(0, 2),new Vector2Int(1, 2),new Vector2Int(2, 2),
-                        new Vector2Int(0, 3),new Vector2Int(1, 3),new Vector2Int(2, 3)
+                        new Vector2Int(0, 1),new Vector2Int(1, 1),new Vector2Int(2, 1),
+                        new Vector2Int(2, 2),
+                        new Vector2Int(2, 3)
                     },
                     new Color(0.5f, 1f, 0.5f), // 亮綠色
                     new Vector2(2, 2), // 設置中心點在形狀的幾何中心
