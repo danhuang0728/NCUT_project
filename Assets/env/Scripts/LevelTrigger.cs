@@ -58,6 +58,9 @@ public class LevelTrigger : MonoBehaviour
     {
         canvas = GameObject.Find("Canvas");
         playerTransform = GameObject.Find("player1").transform;
+        
+        //重製關卡
+        levelFinish = 0;
 
         // 取得 Timer 腳本
         timerScript = canvas.GetComponent<Timer>();

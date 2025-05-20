@@ -37,6 +37,12 @@ public class MainGPS : MonoBehaviour
             transform.position = playerPos + direction2 * 1.5f;
                         
         }
+
+        //暫時限制在第三關
+        if(LevelTrigger.levelFinish > 2)
+        {
+            closeGPS();
+        }
     }
 
     public void openGPS()

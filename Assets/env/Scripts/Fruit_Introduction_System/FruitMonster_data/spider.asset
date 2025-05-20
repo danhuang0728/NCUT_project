@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: spider
   m_EditorClassIdentifier: 
   FruitSprite: {fileID: 0}
-  fruitMonsterTYPE: 1
+  fruitMonsterTYPE: 7
   introduce:
   - 22222222
   - 3333333333

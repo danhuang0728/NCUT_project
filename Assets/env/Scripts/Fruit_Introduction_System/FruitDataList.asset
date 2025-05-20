@@ -15,3 +15,4 @@ MonoBehaviour:
   fruitDatas:
   - {fileID: 11400000, guid: a182f7f7ef19ecf459e7a69da02eb871, type: 2}
   - {fileID: 11400000, guid: cbd10ae64b556bf468675879f681879c, type: 2}
+  - {fileID: 11400000, guid: 5106d32561c620e448df3772a820ea7b, type: 2}

@@ -91,6 +91,25 @@ public class PlayerIntro_Trigger : MonoBehaviour
         index = 0;
         StartCoroutine(Typing());
     }
+    public void StartIntroduction_boss(FruitData fruitData)
+    {
+        // 設置對話內容
+        dialogue = fruitData.introduce;
+        ContinueButton.GetComponent<Button>().onClick.RemoveAllListeners(); // 移除繼續按鈕的所有監聽器
+        ContinueButton.GetComponent<Button>().onClick.AddListener(() => NextLine()); // 添加新的點擊監聽器以切換到下一行對話
+        
+        // 顯示對話面板
+        if (dialoguePanel != null)
+        {
+            UIstate.isAnyPanelOpen = true;
+            dialoguePanel.SetActive(true);
+
+        }
+        
+        // 開始對話
+        index = 0;
+        StartCoroutine(Typing());
+    }
 
     private bool IsValidReference()
     {

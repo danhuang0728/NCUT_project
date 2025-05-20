@@ -8,9 +8,16 @@ public class FruitData : ScriptableObject
 {
     public enum FruitMonsterTYPE
     {
-        Lychee,
-        Spider
-        //水果怪種類...
+        apple_wolf_box,
+        bee_box,
+        bell_box,
+        lemonSlime_box,
+        lychee_box,
+        peach_box,
+        sketletlon_0_box,
+        spider_0_box,
+        Boss
+
     }
     public Sprite FruitSprite;
     public FruitMonsterTYPE fruitMonsterTYPE;
