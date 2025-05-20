@@ -45,7 +45,11 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu1");
     }
-    
+    public void save()
+    {
+        SaveCharacterData();
+        SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
+    }
     public IEnumerator dead()
     {
         // 首先保存數據

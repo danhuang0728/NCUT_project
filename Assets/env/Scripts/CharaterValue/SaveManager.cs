@@ -128,6 +128,8 @@ public class SaveManager : MonoBehaviour
     // 清除所有儲存的數據
     public void ClearSavedData()
     {
+        //清除所有數據
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.DeleteKey("damage_addition");
         PlayerPrefs.DeleteKey("criticalDamage_addition");
         PlayerPrefs.DeleteKey("criticalHitRate_addition");
