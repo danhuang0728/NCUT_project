@@ -21,7 +21,6 @@ public class MainMenu : MonoBehaviour
         SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
         // 保存角色數值
         SaveManager.Instance.SaveCharacterValues();
-
         SceneManager.LoadScene("SampleScene");
         AudioManager.Instance.PlaySFX("play_game");
    }

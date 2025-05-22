@@ -130,6 +130,7 @@ public class SaveManager : MonoBehaviour
     {
         //清除所有數據
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("TetrDatabase");
         PlayerPrefs.DeleteKey("damage_addition");
         PlayerPrefs.DeleteKey("criticalDamage_addition");
         PlayerPrefs.DeleteKey("criticalHitRate_addition");
@@ -139,7 +140,15 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.DeleteKey("lifeSteal_addition");
         PlayerPrefs.DeleteKey("gold_addition");
         PlayerPrefs.DeleteKey("GIFT_Value");
+        
+        // 確保清除操作完成
         PlayerPrefs.Save();
+        
+        // 清空資料庫引用
+        if (database != null && database.tetr_database != null)
+        {
+            database.tetr_database.Clear();
+        }
     }
     
     // 儲存tetramino數據

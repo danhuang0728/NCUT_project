@@ -81,6 +81,8 @@ public class PlayerControl : MonoBehaviour
         UIstate.isAnyPanelOpen = false;
         N = timeScale;
         Time.timeScale = N; 
+        //重置擊殺數量
+        kill_monster_count = 0;
 
         Debug.Log("Time.timeScale = " + Time.timeScale);
         axeSlash = GameObject.Find("Axe_Slashh_0");
