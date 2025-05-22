@@ -24,7 +24,7 @@ public class player_tetr_Manager : MonoBehaviour
             Object.Destroy(child.gameObject);   // 下一幀才真正銷毀
         }
     }
-    public void Update_UI()
+    public void init_UI()
     {
 
         // 歷遍player_tetr_database把裡面有的database全部執行create_tetr_obj
@@ -41,22 +41,15 @@ public class player_tetr_Manager : MonoBehaviour
     }
     public void add_tetr_obj(tetr_database tetr_database)
     {  
-        clear_tetr_obj();
-        tetrisInventoryManager.InitializeGrids(); // 把網格子物件加回來
         if(!player_tetr_database.tetr_database.Contains(tetr_database))
         {
             player_tetr_database.tetr_database.Add(tetr_database);
-            Update_UI();
+            create_tetr_obj(tetr_database);
         }
         else
         {
             Debug.Log("已存在");
-            Update_UI();
         }
-    }
-    void clear_tetr_obj()
-    {
-        ClearChildren(tetrisInventoryManager.storageGridContainer.transform); // 清除所有子物件 
     }
     void create_tetr_obj(tetr_database tetr_database)
     {

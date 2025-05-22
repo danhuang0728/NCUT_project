@@ -53,7 +53,7 @@ public class TetrisInventoryManager : MonoBehaviour
         TetrisPanel_ = GetComponent<tetrisPanel_>();
         // 新增：獲取Canvas並設置為使用非縮放時間
         SetupCanvasForPauseIndependence();
-        player_tetr_Manager.Update_UI();
+        player_tetr_Manager.init_UI();
         // 新增：初始化 CanvasGroup
         inventoryCanvasGroup = inventoryPanel.GetComponent<CanvasGroup>();
         if (inventoryCanvasGroup == null)
