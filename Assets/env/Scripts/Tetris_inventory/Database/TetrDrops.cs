@@ -10,6 +10,8 @@ public class TetrDrops : MonoBehaviour
     private GameObject player;
     private character_value_ingame Character_value_ingame;
     private SpriteRenderer spriteRenderer;
+    private bool isPlayerInRange = false; // 新增：跟踪玩家是否在范围内
+
     void Start()
     {
         player_tetr_Manager = FindObjectOfType<player_tetr_Manager>();
@@ -22,23 +24,44 @@ public class TetrDrops : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) < 1f && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (Character_value_ingame.gold >= gold_cost)
-            {
-                player_tetr_Manager.add_tetr_obj(tetr_database);
-                Character_value_ingame.gold -= gold_cost;
-                Destroy(gameObject);
-            }
-            else
-            {
-                Debug.Log("金幣不足");
-            }
+            TryPurchaseItem();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
         }
     } 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 1f);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+        }
+    }
+
+    private void TryPurchaseItem()
+    {
+        if (Character_value_ingame.gold >= gold_cost)
+        {
+            player_tetr_Manager.add_tetr_obj(tetr_database);
+            Character_value_ingame.gold -= gold_cost;
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("金幣不足");
+        }
     }
 }
