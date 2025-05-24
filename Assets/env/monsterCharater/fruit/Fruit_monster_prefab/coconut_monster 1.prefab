@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 79372493607587187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.127, y: 0.094, z: 0}
+  m_LocalPosition: {x: -0.091, y: 0.062, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,9 +47,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.816
-  m_Color: {r: 0.7932709, g: 1, b: 0.4764151, a: 1}
-  m_Intensity: 1.38
+  m_FalloffIntensity: 0.911
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.44
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 038194909741401b4fa35015c93960fda31e2651a3cffaae00000000a9f77af56188bea8
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488522060503096541}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 130.85, y: 1.9, z: 0}
   m_LocalScale: {x: 4.094918, y: 4.094918, z: 4.094918}
   m_ConstrainProportionsScale: 0
@@ -266,9 +266,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01302942, y: -0.041165225}
+  m_Offset: {x: -0.008002175, y: -0.026759427}
   serializedVersion: 2
-  m_Radius: 0.27237335
+  m_Radius: 0.19137588
 --- !u!50 &5885100452720510821
 Rigidbody2D:
   serializedVersion: 4
@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 8658583336059791534}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.096, y: -0.074, z: 0}
+  m_LocalPosition: {x: 0.027, y: -0.058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,9 +343,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.709
+  m_FalloffIntensity: 0.557
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.02
+  m_Intensity: 1.23
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 038194909741401b4fa35015c93960fda31e2651a3cffaae00000000a9f77af56188bea8
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 0.89
+  m_PointLightOuterRadius: 0.85
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

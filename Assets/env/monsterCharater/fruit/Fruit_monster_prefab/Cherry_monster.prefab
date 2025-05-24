@@ -250,7 +250,7 @@ Transform:
   m_GameObject: {fileID: 7035090878308084577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.005, y: -0.033, z: 0}
+  m_LocalPosition: {x: 0.003, y: -0.043, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -272,9 +272,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.852
+  m_FalloffIntensity: 0.672
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.6
+  m_Intensity: 1.58
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 038194909741401b4fa35015c93960fda31e2651a3cffaae00000000a9f77af56188bea8
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 6855466045969237837}
   - component: {fileID: 3930315374559964923}
   m_Layer: 3
-  m_Name: Light 2D (1)
+  m_Name: tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,7 +336,7 @@ Transform:
   m_GameObject: {fileID: 7429483577705136360}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001, y: 0.089, z: 0}
+  m_LocalPosition: {x: -0.001, y: 0.072, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -358,8 +358,8 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.869
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FalloffIntensity: 0.835
+  m_Color: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
   m_Intensity: 1.85
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
