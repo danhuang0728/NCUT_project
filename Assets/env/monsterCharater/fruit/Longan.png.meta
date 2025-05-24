@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6d1781d42afd0dd4c936c9094756003a
+guid: d34cf667bf887ed49b95b6f93334dc51
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cherry_0
+      name: Longan_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
-        height: 28
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45edb25d9df39844ab44b79d70ac3247
-      internalID: -206280096
+      spriteID: 36d241ffe3e8b3444a38477c63c7b9ac
+      internalID: 1316935163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cherry_1
+      name: Longan_1
       rect:
         serializedVersion: 2
-        x: 17
+        x: 64
         y: 0
-        width: 17
-        height: 28
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8dc1be03b2287e4b9f1405bfd9f1e78
-      internalID: 1529954410
+      spriteID: 4daca0e54dfab714d94128038cd48ff6
+      internalID: -956314207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cherry_2
+      name: Longan_2
       rect:
         serializedVersion: 2
-        x: 34
+        x: 128
         y: 0
-        width: 17
-        height: 28
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2aeaf81040f17349a23c7958bb393dc
-      internalID: -1310648461
+      spriteID: 16eb4283945c7b0489f421f682d8298d
+      internalID: -445947404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longan_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d8018b66bf20c4a9e8128b94786517
+      internalID: -1242681320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longan_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d394a872e5add6a4a9395f10517665e1
+      internalID: -1342516072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longan_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1080b9ac85403044ab685e1521fae51
+      internalID: 472481902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longan_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f3974ce9cd32f428b82ecf8c1bc609
+      internalID: 1030054768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longan_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b017f3ab704ed1d4f815535a7c4d1609
+      internalID: 904793596
       vertices: []
       indices: 
       edges: []
@@ -183,9 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cherry_0: -206280096
-      cherry_1: 1529954410
-      cherry_2: -1310648461
+      Longan_0: 1316935163
+      Longan_1: -956314207
+      Longan_2: -445947404
+      Longan_3: -1242681320
+      Longan_4: -1342516072
+      Longan_5: 472481902
+      Longan_6: 1030054768
+      Longan_7: 904793596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
