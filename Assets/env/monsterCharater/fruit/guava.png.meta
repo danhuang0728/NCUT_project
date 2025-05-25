@@ -115,7 +115,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 34
+        width: 35
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2bf9a755651f0742b1c05dbdcd76f9b
-      internalID: -582304259
+      spriteID: 1a37dfac5f5a6854a86e2d7d1685bed9
+      internalID: -2141236693
       vertices: []
       indices: 
       edges: []
@@ -134,9 +134,9 @@ TextureImporter:
       name: guava_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 35
         y: 0
-        width: 34
+        width: 35
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e85b783d6c8b1d4793d0d11d5cee967
-      internalID: 2120054871
+      spriteID: cf139268312901a4eafe796ca70874bc
+      internalID: 1888700067
       vertices: []
       indices: 
       edges: []
@@ -155,9 +155,9 @@ TextureImporter:
       name: guava_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 70
         y: 0
-        width: 34
+        width: 35
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,8 +166,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b56a479905126a246b9b8739b9571e18
-      internalID: 637466282
+      spriteID: a95874eb9f598e04ab20ffc31ac67f8d
+      internalID: -831770064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guava_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 0
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2307888a92be0fd4cb7efed96cd9a94b
+      internalID: 195201657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guava_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa0a44da10477d84cb03e503df06cad5
+      internalID: 1840809282
       vertices: []
       indices: 
       edges: []
@@ -183,9 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      guava_0: -582304259
-      guava_1: 2120054871
-      guava_2: 637466282
+      guava_0: -2141236693
+      guava_1: 1888700067
+      guava_2: -831770064
+      guava_3: 195201657
+      guava_4: 1840809282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
