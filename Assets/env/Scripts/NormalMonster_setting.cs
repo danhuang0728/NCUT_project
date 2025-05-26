@@ -141,7 +141,7 @@ public class NormalMonster_setting : MonoBehaviour
 
         if (HP <= 0)
         {
-            MonsterDead(monster);
+            MonsterDead(gameObject);
         }
         previousXPosition = transform.position.x; //previousXPosition 為移動前位置
         

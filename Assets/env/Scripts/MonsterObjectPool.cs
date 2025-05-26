@@ -129,6 +129,7 @@ public class MonsterObjectPool : MonoBehaviour
         apple_wolf,
         Slime_1,
         spider_0,
-        peach
+        peach,
+        banana_monster1
     }
 } 
