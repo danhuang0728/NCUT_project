@@ -115,8 +115,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 34
-        height: 56
+        width: 76
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32ec60d3f7c8db144a342a7a47640778
-      internalID: 196097848
+      spriteID: 6ba38d758d7430344a24e34c12b4a71d
+      internalID: -1794209885
       vertices: []
       indices: 
       edges: []
@@ -134,10 +134,10 @@ TextureImporter:
       name: kiwi_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 76
         y: 0
-        width: 34
-        height: 56
+        width: 76
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c5ad658fa6ebf948a5e324109bddd01
-      internalID: 393734747
+      spriteID: 8bddd0011fff7ef4b8cb57bf79662812
+      internalID: 1878070929
       vertices: []
       indices: 
       edges: []
@@ -155,10 +155,10 @@ TextureImporter:
       name: kiwi_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 152
         y: 0
-        width: 34
-        height: 56
+        width: 76
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 797b7c1b933cf6d43a26f0713552648e
-      internalID: -1583803034
+      spriteID: 9ad2f0e3c7a0c2746ab9764504f9813c
+      internalID: -1290103529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kiwi_3
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 0
+        width: 76
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0ff9fda3496d0044a2adab2cf6203c3
+      internalID: 586480040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kiwi_4
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 76
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64dd1cca018c1d4fb345b1c30aed449
+      internalID: -448402994
       vertices: []
       indices: 
       edges: []
@@ -183,9 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      kiwi_0: 196097848
-      kiwi_1: 393734747
-      kiwi_2: -1583803034
+      kiwi_0: -1794209885
+      kiwi_1: 1878070929
+      kiwi_2: -1290103529
+      kiwi_3: 586480040
+      kiwi_4: -448402994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
