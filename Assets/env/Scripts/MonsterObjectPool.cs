@@ -97,6 +97,7 @@ public class MonsterObjectPool : MonoBehaviour
         if (prefab == null || !monsterPools.ContainsKey(prefab))
         {
             Debug.LogWarning($"找不到怪物 {monster.name} 對應的物件池，無法回收怪物");
+            Destroy(monster);
             return;
         }
 
@@ -130,6 +131,26 @@ public class MonsterObjectPool : MonoBehaviour
         Slime_1,
         spider_0,
         peach,
-        banana_monster1
+        banana_monster1,
+        watermelon_monster,
+        sugarapple_monster,
+        strawberry_monster,
+        Star_monster,
+        pineapple_monster,
+        Passion_monster,
+        papaya_monster,
+        Orange_monster,
+        Melon_monster,
+        mango_monster,
+        longan_monster,
+        lemon_monster,
+        kiwi_monster,
+        guava_monster,
+        Grape_monster,
+        Durian_monster,
+        coconut_monster,
+        Cherry_monster,
+        blueberry_monster,
+        bellfruit_monster,
     }
 } 
