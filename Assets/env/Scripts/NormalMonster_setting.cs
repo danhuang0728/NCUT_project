@@ -21,6 +21,8 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject HighExpPrefab;    // 高級經驗值預製體
     public GameObject boxPrefab; // 武器箱預製體
     public FruitData fruitData; //介紹用怪物資料
+    public GameObject fruitPrefab; // 水果掉落物Prefab
+    public FruitType monsterFruitType; // 這個怪物會掉落的水果類型
 
     [Header("武器箱怪物移動速度設定")]
     public float maxspeed = 5f; // 最大速度
@@ -67,7 +69,7 @@ public class NormalMonster_setting : MonoBehaviour
             HP *= totalMultiplier;
 
             #if UNITY_EDITOR
-            Debug.Log($"怪物血量更新 - 基础HP: {HP:F0}, 总倍率: {totalMultiplier:F2}");
+            //Debug.Log($"怪物血量更新 - 基础HP: {HP:F0}, 总倍率: {totalMultiplier:F2}");
             #endif
         }
         Previous_health = HP;
@@ -252,25 +254,41 @@ public class NormalMonster_setting : MonoBehaviour
 
             }
         }
-        else if (monster_type==1)  // monster_type = 1 代表水果怪
+        else if (monster_type == 1)  // 水果怪
         {
-            switch (exp_type)
+            float rand = Random.value; // 0~1之間的隨機數
+            if (rand < 0.5f && fruitPrefab != null)
             {
-                case 1:  // 低級經驗值
-                    // 在這裡生成水果怪的15經驗值掉落物
-                    // Instantiate(fruitLowExpPrefab, transform.position, Quaternion.identity);
-                    AudioManager.Instance.PlaySFX("drop_exp");
-                    break;
-                case 2:  // 中級經驗值
-                    // 在這裡生成水果怪的40經驗值掉落物
-                    // Instantiate(fruitMediumExpPrefab, transform.position, Quaternion.identity);
-                    AudioManager.Instance.PlaySFX("drop_exp");
-                    break;
-                case 3:  // 高級經驗值
-                    // 在這裡生成水果怪的100經驗值掉落物
-                    // Instantiate(fruitHighExpPrefab, transform.position, Quaternion.identity);
-                    AudioManager.Instance.PlaySFX("drop_exp");
-                    break;
+                // 50% 機率掉落水果
+                GameObject fruit = Instantiate(fruitPrefab, transform.position, Quaternion.identity);
+                FruitItem fruitItem = fruit.GetComponent<FruitItem>();
+                if (fruitItem != null)
+                {
+                    fruitItem.fruitType = monsterFruitType;
+                }
+                AudioManager.Instance.PlaySFX("drop_exp");
+            }
+            else
+            {
+                // 另外50%才掉落經驗值
+                switch (exp_type)
+                {
+                    case 1:
+                        GameObject expObject = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Small);
+                        expObject.transform.position = transform.position;
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                        break;
+                    case 2:
+                        GameObject expObject2 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Medium);
+                        expObject2.transform.position = transform.position;
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                        break;
+                    case 3:
+                        GameObject expObject3 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Large);
+                        expObject3.transform.position = transform.position;
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                        break;
+                }
             }
         }
         else if(monster_type == 2) //武器箱怪物
