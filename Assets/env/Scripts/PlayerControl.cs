@@ -163,8 +163,14 @@ public class PlayerControl : MonoBehaviour
         Calculating_Values_criticalHitRate = characterValuesIngame.criticalHitRate + characterValues.criticalHitRate_addition + tetris_ability_manager.criticalHitRate;
         speed = levelManager.GetCurrentSpeed() * 
         (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage + tetris_ability_manager.speed_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
-        Calculating_Values_health = characterValuesIngame.health + characterValues.health_addition + tetris_ability_manager.health;
-        Calculating_Values_attackCooldown = characterValuesIngame.cooldown + characterValues.cooldown_addition + tetris_ability_manager.cooldown;
+
+        // 應用 Debuff 的速度修正
+        Debuff debuff = GetComponent<Debuff>();
+        if (debuff != null)
+        {
+            speed *= debuff.speedModifier;
+        }
+
         if(Legend_speed == true){
             speed += 3;
         }
