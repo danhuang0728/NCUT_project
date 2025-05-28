@@ -143,6 +143,9 @@ MonoBehaviour:
   HighExpPrefab: {fileID: 0}
   boxPrefab: {fileID: 0}
   fruitData: {fileID: 0}
+  fruitPrefab: {fileID: 7541126790816664562, guid: b3a6a218ba30d7745808374d320a717f,
+    type: 3}
+  monsterFruitType: 12
   maxspeed: 5
   minspeed: 1
   damageEffect: {fileID: 0}

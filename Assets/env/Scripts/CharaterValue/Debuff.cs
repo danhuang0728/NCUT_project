@@ -66,14 +66,18 @@ public class Debuff : MonoBehaviour
 
         switch (fruitType)
         {
+            // 降低移動速度的水果
             case FruitType.Banana:
             case FruitType.Lemon:
+            case FruitType.PassionFruit:
+            case FruitType.Watermelon:
                 Debug.Log($"應用速度降低Debuff，當前速度修正: {speedModifier}");
                 speedModifier *= (1 - SPEED_DEBUFF_PERCENTAGE);
                 activeDebuffs.Add(fruitType, SPEED_DEBUFF_PERCENTAGE);
                 Debug.Log($"速度修正降低後: {speedModifier}");
                 break;
 
+            // 降低生命值的水果
             case FruitType.Kiwi:
             case FruitType.Apple:
             case FruitType.Guava:
@@ -84,16 +88,22 @@ public class Debuff : MonoBehaviour
                 Debug.Log($"生命值降低後: {playerControl.HP}");
                 break;
 
+            // 降低攻擊力的水果
             case FruitType.Orange:
             case FruitType.SugarApple:
+            case FruitType.Coconut:
+            case FruitType.Grape:
                 Debug.Log($"應用攻擊力降低Debuff，當前攻擊力: {characterValue.damage}");
                 DecreaseDamage(DAMAGE_DEBUFF_AMOUNT);
                 activeDebuffs.Add(fruitType, DAMAGE_DEBUFF_AMOUNT);
                 Debug.Log($"攻擊力降低後: {characterValue.damage}");
                 break;
 
+            // 失明效果的水果
             case FruitType.Blueberry:
             case FruitType.Mango:
+            case FruitType.Pineapple:
+            case FruitType.Tomato:
                 if (playerLight != null)
                 {
                     Debug.Log($"應用失明Debuff，當前光照強度: {playerLight.intensity}");
@@ -103,12 +113,6 @@ public class Debuff : MonoBehaviour
                     Debug.Log($"光照強度降低後: {playerLight.intensity}");
                 }
                 break;
-        }
-
-        if (fruitType == FruitType.Lemon)
-        {
-            Debug.Log("檸檬特殊效果：額外降低攻擊力");
-            DecreaseDamage(DAMAGE_DEBUFF_AMOUNT);
         }
     }
 
@@ -132,13 +136,17 @@ public class Debuff : MonoBehaviour
 
         switch (fruitType)
         {
+            // 恢復移動速度
             case FruitType.Banana:
             case FruitType.Lemon:
+            case FruitType.PassionFruit:
+            case FruitType.Watermelon:
                 Debug.Log($"恢復速度，當前速度修正: {speedModifier}");
                 speedModifier /= (1 - SPEED_DEBUFF_PERCENTAGE);
                 Debug.Log($"速度修正恢復後: {speedModifier}");
                 break;
 
+            // 恢復生命值
             case FruitType.Kiwi:
             case FruitType.Apple:
             case FruitType.Guava:
@@ -148,15 +156,21 @@ public class Debuff : MonoBehaviour
                 Debug.Log($"生命值恢復後: {playerControl.HP}");
                 break;
 
+            // 恢復攻擊力
             case FruitType.Orange:
             case FruitType.SugarApple:
+            case FruitType.Coconut:
+            case FruitType.Grape:
                 Debug.Log($"恢復攻擊力，當前攻擊力: {characterValue.damage}");
                 IncreaseDamage(originalValue);
                 Debug.Log($"攻擊力恢復後: {characterValue.damage}");
                 break;
 
+            // 恢復視野
             case FruitType.Blueberry:
             case FruitType.Mango:
+            case FruitType.Pineapple:
+            case FruitType.Tomato:
                 if (playerLight != null)
                 {
                     Debug.Log($"移除失明Debuff，當前光照強度: {playerLight.intensity}");
@@ -164,12 +178,6 @@ public class Debuff : MonoBehaviour
                     Debug.Log($"光照強度恢復後: {playerLight.intensity}");
                 }
                 break;
-        }
-
-        if (fruitType == FruitType.Lemon)
-        {
-            Debug.Log("移除檸檬的額外攻擊力降低效果");
-            IncreaseDamage(DAMAGE_DEBUFF_AMOUNT);
         }
 
         activeDebuffs.Remove(fruitType);

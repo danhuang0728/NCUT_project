@@ -164,7 +164,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2052545405, guid: 0d60ef1c40e76bc4592dbfdbde041163, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.03125, y: 1.5}
@@ -226,6 +226,9 @@ MonoBehaviour:
   HighExpPrefab: {fileID: 0}
   boxPrefab: {fileID: 0}
   fruitData: {fileID: 0}
+  fruitPrefab: {fileID: 7205812933321826051, guid: 65f7422816c92f844abd9d3ae4d9d38d,
+    type: 3}
+  monsterFruitType: 11
   maxspeed: 5
   minspeed: 1
   damageEffect: {fileID: 0}
