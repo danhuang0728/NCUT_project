@@ -25,11 +25,12 @@ public class GuideSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        zeroText();
     }
 
     void Start()
     {
-        zeroText();
+        
     }
 
     // Update is called once per frame
@@ -37,6 +38,7 @@ public class GuideSystem : MonoBehaviour
     {
         
     }
+    // ==================小助手發話(text為要講的內容文字)=============
     public void Guide(string text)
     {
         dialogue.Add(text);
@@ -57,10 +59,28 @@ public class GuideSystem : MonoBehaviour
         if (index < dialogue.Count)
         {
             bubbletext.text = "";
-            foreach (char letter in dialogue[index].ToCharArray())
+            string currentDialogue = dialogue[index];
+            
+            int i = 0;
+            while (i < currentDialogue.Length)
             {
-                bubbletext.text += letter;
-                yield return new WaitForSeconds(wordspeed);
+                // 處理HTML標籤
+                if (currentDialogue[i] == '<')
+                {
+                    int tagEnd = currentDialogue.IndexOf('>', i);
+                    if (tagEnd == -1) tagEnd = currentDialogue.Length;
+                    
+                    // 一次性加入完整標籤
+                    bubbletext.text += currentDialogue.Substring(i, tagEnd - i + 1);
+                    i = tagEnd + 1;
+                }
+                else
+                {
+                    // 正常逐字顯示
+                    bubbletext.text += currentDialogue[i];
+                    i++;
+                    yield return new WaitForSeconds(wordspeed);
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ public class FruitItem : MonoBehaviour
     private float disappearTime = 10f;
     private PlayerControl player;
     private DebuffManager debuffManager;
+    public static bool debuffSys_Introduced = false;
 
     private void Start()
     {
@@ -25,6 +26,16 @@ public class FruitItem : MonoBehaviour
         }
 
         StartCoroutine(DisappearTimer());
+        if(!debuffSys_Introduced)
+        {
+            Debug.Log("介紹負面效果");
+            debuffSys_Introduced = true;
+            GuideSystem.Instance.Guide("看到掉落的<color=#009100>水果</color>了嗎?"); 
+            GuideSystem.Instance.Guide("那就是我們在找的");
+            GuideSystem.Instance.Guide("只要你太長時間沒攝取<color=#009100>水果</color>來維持健康");
+            GuideSystem.Instance.Guide("就會被<color=red>負面效果</color>纏身");
+            GuideSystem.Instance.Guide("你需要攝取相應的<color=#009100>水果</color>來解掉相應的<color=red>負面效果</color>");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
