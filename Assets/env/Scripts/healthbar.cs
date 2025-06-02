@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class healthbar : MonoBehaviour
 {
     public Slider slider;
+    public TextMeshProUGUI HPtext;
     public float health;
     public character_value_ingame characterValuesIngame;
     public Character_Values_SETUP characterValues;
@@ -40,6 +42,7 @@ public class healthbar : MonoBehaviour
             }
         }
         UpdateMaxHealth();
+        HPtext.text = slider.maxValue + "/" + playerControl.HP;
     }
 
     private void UpdateMaxHealth()

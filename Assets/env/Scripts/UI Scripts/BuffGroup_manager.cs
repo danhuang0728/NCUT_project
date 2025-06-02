@@ -12,6 +12,7 @@ public class BuffGroup_manager : MonoBehaviour
     public GameObject health_up_icon;
     public GameObject health_down_icon;
     public GameObject blindness_icon;
+    public GameObject Night_Vision_icon;
     public enum BuffType
     {
         damage_down,
@@ -21,6 +22,7 @@ public class BuffGroup_manager : MonoBehaviour
         health_up,
         health_down,
         blindness,
+        Night_Vision
     }
     
     void Awake()
@@ -46,6 +48,7 @@ public class BuffGroup_manager : MonoBehaviour
         setCloseIcon(BuffType.health_up);
         setCloseIcon(BuffType.health_down);
         setCloseIcon(BuffType.blindness);
+        setCloseIcon(BuffType.Night_Vision);
     }
 
     // Update is called once per frame
@@ -78,6 +81,9 @@ public class BuffGroup_manager : MonoBehaviour
             case BuffType.blindness:
                 blindness_icon.SetActive(true);
                 break;
+            case BuffType.Night_Vision:
+                Night_Vision_icon.SetActive(true);
+                break;
         }
     }
     public void setCloseIcon(BuffType buffType)
@@ -104,6 +110,9 @@ public class BuffGroup_manager : MonoBehaviour
                 break;
             case BuffType.blindness:
                 blindness_icon.SetActive(false);
+                break;
+            case BuffType.Night_Vision:
+                Night_Vision_icon.SetActive(false);
                 break;
         }
     }

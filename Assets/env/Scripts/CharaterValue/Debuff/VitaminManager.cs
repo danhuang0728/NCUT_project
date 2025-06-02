@@ -194,6 +194,7 @@ public class VitaminManager : MonoBehaviour
                 {
                     float currentIntensity = playerLight.intensity;
                     playerLight.intensity = currentIntensity * 1.5f; // 增加50%视野
+                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.blindness);
                     Debug.Log($"提升視野亮度至: {playerLight.intensity}");
                 }
                 break;
@@ -202,6 +203,7 @@ public class VitaminManager : MonoBehaviour
                 if (playerControl != null)
                 {
                     playerControl.speed *= 1.2f; // 增加20%速度
+                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.speed_up);
                     Debug.Log($"提升移動速度至: {playerControl.speed}");
                 }
                 break;
@@ -211,6 +213,7 @@ public class VitaminManager : MonoBehaviour
                 {
                     float maxHP = playerControl.HP * 1.2f; // 增加20%最大生命值
                     playerControl.HP = maxHP;
+                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.health_up);
                     Debug.Log($"提升最大生命值至: {maxHP}");
                 }
                 break;
@@ -219,6 +222,7 @@ public class VitaminManager : MonoBehaviour
                 if (characterValue != null)
                 {
                     characterValue.damage *= 1.2f; // 增加20%攻击力
+                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.damage_up);
                     Debug.Log($"提升攻擊力至: {characterValue.damage}");
                 }
                 break;
