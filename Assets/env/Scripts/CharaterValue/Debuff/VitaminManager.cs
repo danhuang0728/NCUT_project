@@ -49,6 +49,22 @@ public class VitaminManager : MonoBehaviour
         Buff
     }
 
+    // 添加便捷屬性
+    public float VitaminA => GetVitaminLevel(VitaminType.A);
+    public float VitaminB => GetVitaminLevel(VitaminType.B);
+    public float VitaminC => GetVitaminLevel(VitaminType.C);
+    public float VitaminD => GetVitaminLevel(VitaminType.D);
+
+    // 獲取維生素狀態的便捷方法
+    public bool IsVitaminLow(VitaminType vitamin) => vitaminLevels[vitamin] <= DEBUFF_THRESHOLD;
+    public bool IsVitaminNormal(VitaminType vitamin) => vitaminLevels[vitamin] > DEBUFF_THRESHOLD && vitaminLevels[vitamin] < BUFF_THRESHOLD;
+    public bool IsVitaminHigh(VitaminType vitamin) => vitaminLevels[vitamin] >= BUFF_THRESHOLD;
+
+    // 獲取維生素狀態的常量
+    public float MaxVitaminLevel => MAX_VITAMIN_LEVEL;
+    public float DebuffThreshold => DEBUFF_THRESHOLD;
+    public float BuffThreshold => BUFF_THRESHOLD;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
