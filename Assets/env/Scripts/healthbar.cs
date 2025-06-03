@@ -42,7 +42,7 @@ public class healthbar : MonoBehaviour
             }
         }
         UpdateMaxHealth();
-        HPtext.text = slider.maxValue + "/" + playerControl.HP;
+        HPtext.text = slider.maxValue.ToString("F0") + "/" + playerControl.HP.ToString("F0");
     }
 
     private void UpdateMaxHealth()

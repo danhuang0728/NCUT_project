@@ -161,6 +161,7 @@ public class PlayerControl : MonoBehaviour
         Calculating_Values_lifeSteal = characterValuesIngame.lifeSteal_percentage + characterValues.lifeSteal_addition_percentage + tetris_ability_manager.lifeSteal_percentage;
         Calculating_Values_criticalDamage = characterValuesIngame.criticalDamage_percentage + characterValues.criticalDamage_addition_percentage + tetris_ability_manager.criticalDamage_percentage;
         Calculating_Values_criticalHitRate = characterValuesIngame.criticalHitRate + characterValues.criticalHitRate_addition + tetris_ability_manager.criticalHitRate;
+        Calculating_Values_health = characterValuesIngame.health + characterValues.health_addition + tetris_ability_manager.health;
         speed = levelManager.GetCurrentSpeed() * 
         (1 + characterValuesIngame.speed_percentage + characterValues.speed_addition_percentage + tetris_ability_manager.speed_percentage); // 讀取當前等級的速度 * 能力提升 * 額外加成
 
