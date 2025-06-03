@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e987e583f50ebbb44b4117c6537da0e2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - crystal_TP_effect_prb: {fileID: 81308183512584125, guid: 0dd502b18ae67e84abfa7290e105556f,
+      type: 3}
+  - crystal_TP_target: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

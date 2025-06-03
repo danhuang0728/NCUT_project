@@ -37,10 +37,6 @@ public class BuffGroup_manager : MonoBehaviour
         {
             Debug.LogWarning("重複的 BuffGroup_manager 被銷毀");
         }
-    }
-
-    void Start()
-    {
         setCloseIcon(BuffType.damage_down);
         setCloseIcon(BuffType.damage_up);
         setCloseIcon(BuffType.speed_up);
@@ -49,6 +45,11 @@ public class BuffGroup_manager : MonoBehaviour
         setCloseIcon(BuffType.health_down);
         setCloseIcon(BuffType.blindness);
         setCloseIcon(BuffType.Night_Vision);
+    }
+
+    void Start()
+    {
+    
     }
 
     // Update is called once per frame
