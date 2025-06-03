@@ -13,6 +13,7 @@ public class healthbar : MonoBehaviour
     public Character_Values_SETUP characterValues;
     
     private PlayerControl playerControl; //套用玩家的主角本讀取初始生命變數
+    private float lastHealth;
     
     public void SetMaxHealth(float health)
     {
@@ -27,8 +28,10 @@ public class healthbar : MonoBehaviour
 
     private void Start() 
     {
-        SetMaxHealth(100); //初始血量值為100
         playerControl = FindObjectOfType<PlayerControl>(); //初始化讀取腳本
+        float baseMaxHealth = 100;
+        float initialMaxHealth = baseMaxHealth + playerControl.Calculating_Values_health;
+        SetMaxHealth(initialMaxHealth);
     }
 
     private void Update() 
@@ -40,13 +43,14 @@ public class healthbar : MonoBehaviour
                 health = playerControl.HP;
                 sethealth(health);
             }
+            // 更新最大生命值
+            float baseMaxHealth = 100;
+            float newMaxHealth = baseMaxHealth + playerControl.Calculating_Values_health;
+            if (slider.maxValue != newMaxHealth)
+            {
+                slider.maxValue = newMaxHealth;
+            }
+            HPtext.text = playerControl.HP.ToString("F0") + "/" + slider.maxValue.ToString("F0");
         }
-        UpdateMaxHealth();
-        HPtext.text = slider.maxValue.ToString("F0") + "/" + playerControl.HP.ToString("F0");
-    }
-
-    private void UpdateMaxHealth()
-    {
-        slider.maxValue = 100 + playerControl.Calculating_Values_health;
     }
 }

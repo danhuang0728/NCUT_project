@@ -86,16 +86,16 @@ public class Debuff : MonoBehaviour
             case FruitType.Kiwi:
             case FruitType.Apple:
             case FruitType.Guava:
-                Debug.Log($"應用生命值降低Debuff，當前生命: {playerControl.HP}");
-                float decreaseAmount = playerControl.HP * HP_DEBUFF_PERCENTAGE;
-                playerControl.HP -= decreaseAmount;
-                activeDebuffs.Add(fruitType, decreaseAmount);
+                Debug.Log($"應用生命值降低Debuff，當前生命值: {playerControl.HP}");
+                float decreaseAmount = playerControl.HP * HP_DEBUFF_PERCENTAGE; // 计算要扣除的生命值（20%）
+                playerControl.HP -= decreaseAmount; // 扣除生命值
+                activeDebuffs.Add(fruitType, decreaseAmount); // 记录扣除的生命值数量
                 if (BuffGroup_manager.instance != null)
                 {
                     BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.health_down);
                 }
                 introduceFruit(fruitType);
-                Debug.Log($"生命值降低後: {playerControl.HP}");
+                Debug.Log($"生命值降低{decreaseAmount}點後: {playerControl.HP}");
                 break;
 
             // 降低攻擊力的水果
@@ -175,13 +175,13 @@ public class Debuff : MonoBehaviour
             case FruitType.Apple:
             case FruitType.Guava:
                 Debug.Log($"恢復生命值，當前生命值: {playerControl.HP}");
-                float healAmount = Healthbar.slider.maxValue * HP_DEBUFF_PERCENTAGE;
-                playerControl.HP = Mathf.Min(playerControl.HP + healAmount, Healthbar.slider.maxValue);
+                float recoveryAmount = activeDebuffs[fruitType]; // 获取之前扣除的生命值数量
+                playerControl.HP = Mathf.Min(playerControl.HP + recoveryAmount, Healthbar.slider.maxValue); // 恢复生命值，但不超过最大值
                 if (BuffGroup_manager.instance != null)
                 {
                     BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.health_down);
                 }
-                Debug.Log($"生命值恢復後: {playerControl.HP}");
+                Debug.Log($"恢復{recoveryAmount}點生命值後: {playerControl.HP}");
                 break;
 
             // 恢復攻擊力

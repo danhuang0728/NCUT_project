@@ -78,8 +78,8 @@ public class VitaminManager : MonoBehaviour
         // 初始化维生素值和状态
         foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
         {
-            vitaminLevels[vitamin] = MAX_VITAMIN_LEVEL;
-            vitaminStates[vitamin] = VitaminState.Buff;
+            vitaminLevels[vitamin] = 85f;  // 将初始值设为85
+            vitaminStates[vitamin] = VitaminState.Normal;  // 初始状态为正常
         }
     }
 
@@ -105,6 +105,39 @@ public class VitaminManager : MonoBehaviour
     {
         debugTimer += Time.deltaTime;
         
+        // 按下5键，将所有维生素设为5
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
+            {
+                vitaminLevels[vitamin] = 5f;
+                UpdateVitaminState(vitamin);
+            }
+            Debug.Log("所有維生素值設為5");
+        }
+        
+        // 按下6键，将所有维生素设为80
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
+            {
+                vitaminLevels[vitamin] = 80f;
+                UpdateVitaminState(vitamin);
+            }
+            Debug.Log("所有維生素值設為80");
+        }
+
+        // 按下7键，将所有维生素设为100
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
+            {
+                vitaminLevels[vitamin] = 100f;
+                UpdateVitaminState(vitamin);
+            }
+            Debug.Log("所有維生素值設為100");
+        }
+
         foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
         {
             // 降低维生素值
@@ -115,7 +148,7 @@ public class VitaminManager : MonoBehaviour
         }
 
         // 每秒输出一次Debug信息
-        if (debugTimer >= 1f)
+        if (debugTimer >= 5f)
         {
             foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
             {
@@ -141,8 +174,21 @@ public class VitaminManager : MonoBehaviour
         // 如果状态发生变化
         if (newState != vitaminStates[vitamin])
         {
-            // 移除旧状态的效果
-            RemoveCurrentEffect(vitamin);
+            VitaminState oldState = vitaminStates[vitamin];
+            
+            // 只在特定情况下移除旧效果
+            if (oldState == VitaminState.Buff && newState != VitaminState.Buff)
+            {
+                RemoveBuffEffect(vitamin);
+            }
+            else if (oldState == VitaminState.Debuff && newState != VitaminState.Debuff)
+            {
+                FruitType fruitType = GetCorrespondingFruitType(vitamin);
+                if (debuffManager.HasDebuff(fruitType))
+                {
+                    debuffManager.RemoveDebuff(fruitType);
+                }
+            }
             
             // 应用新状态的效果
             ApplyNewEffect(vitamin, newState);
@@ -154,10 +200,58 @@ public class VitaminManager : MonoBehaviour
 
     private void RemoveCurrentEffect(VitaminType vitamin)
     {
+        // 移除 Debuff 效果
         FruitType fruitType = GetCorrespondingFruitType(vitamin);
         if (debuffManager.HasDebuff(fruitType))
         {
             debuffManager.RemoveDebuff(fruitType);
+        }
+
+        // 移除 Buff 效果
+        RemoveBuffEffect(vitamin);
+    }
+
+    private void RemoveBuffEffect(VitaminType vitamin)
+    {
+        // 根据不同维生素类型移除相应的 Buff 效果
+        switch (vitamin)
+        {
+            case VitaminType.A: // 视野
+                if (playerLight != null)
+                {
+                    playerLight.intensity /= 1.5f; // 恢复原来的视野
+                    BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.blindness);
+                    Debug.Log($"恢復原本視野亮度: {playerLight.intensity}");
+                }
+                break;
+                
+            case VitaminType.B: // 移动速度
+                if (playerControl != null)
+                {
+                    playerControl.speed /= 1.2f; // 恢复原来的速度
+                    BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.speed_up);
+                    Debug.Log($"恢復原本移動速度: {playerControl.speed}");
+                }
+                break;
+                
+            case VitaminType.C: // 生命值
+                if (playerControl != null && playerControl.HP > 0 && characterValue != null)
+                {
+                    characterValue.health -= 50f; // 减少50点生命值上限
+                    playerControl.HP = Mathf.Min(playerControl.HP, 100 + characterValue.health); // 确保当前生命值不超过新的上限
+                    BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.health_up);
+                    Debug.Log($"減少50點生命值上限，當前生命值: {playerControl.HP}，最大生命值加成: {characterValue.health}");
+                }
+                break;
+                
+            case VitaminType.D: // 攻击力
+                if (characterValue != null)
+                {
+                    characterValue.damage /= 1.2f; // 恢复原来的攻击力
+                    BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.damage_up);
+                    Debug.Log($"恢復原本攻擊力: {characterValue.damage}");
+                }
+                break;
         }
     }
 
@@ -194,7 +288,7 @@ public class VitaminManager : MonoBehaviour
                 {
                     float currentIntensity = playerLight.intensity;
                     playerLight.intensity = currentIntensity * 1.5f; // 增加50%视野
-                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.Night_Vision);
+                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.blindness);
                     Debug.Log($"提升視野亮度至: {playerLight.intensity}");
                 }
                 break;
@@ -209,12 +303,12 @@ public class VitaminManager : MonoBehaviour
                 break;
                 
             case VitaminType.C: // 生命值
-                if (playerControl != null && playerControl.HP > 0)
+                if (playerControl != null && playerControl.HP > 0 && characterValue != null)
                 {
-                    float maxHP = playerControl.HP * 1.2f; // 增加20%最大生命值
-                    playerControl.HP = maxHP;
+                    characterValue.health += 50f; // 增加50点生命值上限
+                    playerControl.HP += 50f; // 同时增加当前生命值
                     BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.health_up);
-                    Debug.Log($"提升最大生命值至: {maxHP}");
+                    Debug.Log($"增加50點生命值上限和當前生命值，當前生命值: {playerControl.HP}，最大生命值加成: {characterValue.health}");
                 }
                 break;
                 
