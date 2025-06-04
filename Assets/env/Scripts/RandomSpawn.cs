@@ -32,6 +32,12 @@ public class RandomSpawnPhase
 
 public class RandomSpawn : MonoBehaviour
 {
+    [Header("關卡設定")]
+    [SerializeField] private string levelId; // 關卡ID，用於識別不同關卡
+
+    // 靜態字典，用於追蹤每個關卡的戰鬥狀態
+    private static Dictionary<string, bool> levelFightingStates = new Dictionary<string, bool>();
+
     // 靜態難度管理器
     private static DifficultyLevel globalDifficulty = DifficultyLevel.Normal;
     public static event System.Action<DifficultyLevel> OnDifficultyChanged;
@@ -112,6 +118,19 @@ public class RandomSpawn : MonoBehaviour
 
     void Start()
     {
+        // 確保關卡ID已設置
+        if (string.IsNullOrEmpty(levelId))
+        {
+            Debug.LogError("關卡ID未設置！請在Inspector中設定。");
+            return;
+        }
+
+        // 初始化該關卡的戰鬥狀態
+        if (!levelFightingStates.ContainsKey(levelId))
+        {
+            levelFightingStates[levelId] = false;
+        }
+
         // 設定當前難度為全局難度
         HandleDifficultyChanged(globalDifficulty);
         Debug.Log("難度已設成" + globalDifficulty);
@@ -227,26 +246,14 @@ public class RandomSpawn : MonoBehaviour
 
     void Update()
     {
-        // 檢查所有陷阱的狀態
-        bool anyTrapActive = false;
-        foreach (TrapControll trap in trapControlls)
-        {
-            if (trap.close)
-            {
-                anyTrapActive = true;
-                break;
-            }
-        }
-
-        // 檢查玩家是否在房間範圍內
-        bool isPlayerInRoom = IsPlayerInRoom();
-
-        // 根據陷阱狀態和玩家位置控制生成
-        if (anyTrapActive && isPlayerInRoom && !isSpawning)
+        // 檢查當前關卡的戰鬥狀態
+        bool currentLevelFighting = TimerPanel.isfighting && levelFightingStates[levelId];
+        
+        if (currentLevelFighting && !isSpawning)
         {
             StartSpawning();
         }
-        else if ((!anyTrapActive || !isPlayerInRoom) && isSpawning)
+        else if (!currentLevelFighting && isSpawning)
         {
             StopSpawning();
         }
@@ -264,32 +271,32 @@ public class RandomSpawn : MonoBehaviour
             // 檢查是否到達菁英怪生成時間點
             float remainingTime = timerScript.remainingTime;
             
-            // 檢查9分鐘（540秒）
-            if (remainingTime <= 541f && remainingTime >= 539f && !eliteSpawned[0])
+            // 檢查3分30秒（210秒）
+            if (remainingTime <= 211f && remainingTime >= 209f && !eliteSpawned[0])
             {
                 SpawnEliteMonster();
                 eliteSpawned[0] = true;
             }
-            // 檢查7分鐘（420秒）
-            else if (remainingTime <= 421f && remainingTime >= 419f && !eliteSpawned[1])
+            // 檢查2分30秒（150秒）
+            else if (remainingTime <= 151f && remainingTime >= 149f && !eliteSpawned[1])
             {
                 SpawnEliteMonster();
                 eliteSpawned[1] = true;
             }
-            // 檢查5分鐘（300秒）
-            else if (remainingTime <= 301f && remainingTime >= 299f && !eliteSpawned[2])
+            // 檢查1分30秒（90秒）
+            else if (remainingTime <= 91f && remainingTime >= 89f && !eliteSpawned[2])
             {
                 SpawnEliteMonster();
                 eliteSpawned[2] = true;
             }
-            // 檢查3分鐘（180秒）
-            else if (remainingTime <= 181f && remainingTime >= 179f && !eliteSpawned[3])
+            // 檢查45秒
+            else if (remainingTime <= 46f && remainingTime >= 44f && !eliteSpawned[3])
             {
                 SpawnEliteMonster();
                 eliteSpawned[3] = true;
             }
-            // 檢查1分鐘（60秒）
-            else if (remainingTime <= 61f && remainingTime >= 59f && !eliteSpawned[4])
+            // 檢查15秒
+            else if (remainingTime <= 16f && remainingTime >= 14f && !eliteSpawned[4])
             {
                 SpawnEliteMonster();
                 eliteSpawned[4] = true;
@@ -311,28 +318,32 @@ public class RandomSpawn : MonoBehaviour
     private void UpdatePhaseBasedOnTime()
     {
         float remainingTime = timerScript.remainingTime;
-        float totalTime = timerScript.maxTime;
+        float totalTime = 240f; // 4分鐘 = 240秒
         float elapsedTime = totalTime - remainingTime;
         int newPhase;
 
-        // 根據經過的時間決定階段
-        if (elapsedTime <= 60f) // 0-1分鐘
+        // 根據剩餘時間決定階段
+        if (remainingTime > 240f) // 超過4分鐘
         {
             newPhase = 0;
         }
-        else if (elapsedTime <= 240f) // 2-4分鐘
+        else if (remainingTime > 180f) // 3-4分鐘
+        {
+            newPhase = 0;
+        }
+        else if (remainingTime > 120f) // 2-3分鐘
         {
             newPhase = 1;
         }
-        else if (elapsedTime <= 420f) // 4-7分鐘
+        else if (remainingTime > 60f) // 1-2分鐘
         {
             newPhase = 2;
         }
-        else if (elapsedTime <= 540f) // 7-9分鐘
+        else if (remainingTime > 30f) // 30秒-1分鐘
         {
             newPhase = 3;
         }
-        else // 9-10分鐘
+        else // 0-30秒
         {
             newPhase = 4;
         }
@@ -578,6 +589,15 @@ public class RandomSpawn : MonoBehaviour
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(player.transform.position, playerSafeRadius);
             }
+        }
+    }
+
+    // 提供一個方法來設置特定關卡的戰鬥狀態
+    public static void SetLevelFightingState(string levelId, bool state)
+    {
+        if (levelFightingStates.ContainsKey(levelId))
+        {
+            levelFightingStates[levelId] = state;
         }
     }
 }

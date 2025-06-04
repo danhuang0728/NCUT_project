@@ -21,6 +21,7 @@ public class MonsterObjectPool : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -63,10 +64,13 @@ public class MonsterObjectPool : MonoBehaviour
             Debug.LogError($"找不到怪物類型 {monsterType} 的預製體");
             return null;
         }
+
         if (!monsterPools.ContainsKey(prefab))
         {
             Debug.LogWarning($"找不到預製體 {prefab.name} 的物件池，創建新的物件池");
-            monsterPools[prefab] = new Queue<GameObject>();
+            Queue<GameObject> newPool = new Queue<GameObject>();
+            CreateNewMonster(prefab, newPool);
+            monsterPools[prefab] = newPool;
         }
 
         Queue<GameObject> pool = monsterPools[prefab];
@@ -78,11 +82,21 @@ public class MonsterObjectPool : MonoBehaviour
         
         GameObject monster = pool.Dequeue();
         monster.SetActive(true);
+
+        // 重置怪物狀態
+        var monsterSettings = monster.GetComponent<NormalMonster_setting>();
+        if (monsterSettings != null)
+        {
+            monsterSettings.ResetMonsterHealth();
+        }
+
         return monster;
     }
         
     public void ReturnMonster(GameObject monster)
     {
+        if (monster == null) return;
+
         // 尋找怪物對應的預製體類型
         GameObject prefab = null;
         foreach (var poolInfo in monsterPoolInfos)
@@ -99,6 +113,13 @@ public class MonsterObjectPool : MonoBehaviour
             Debug.LogWarning($"找不到怪物 {monster.name} 對應的物件池，無法回收怪物");
             Destroy(monster);
             return;
+        }
+
+        // 重置怪物狀態
+        var monsterSettings = monster.GetComponent<NormalMonster_setting>();
+        if (monsterSettings != null)
+        {
+            monsterSettings.ResetMonsterHealth();
         }
 
         monster.SetActive(false);
@@ -152,5 +173,6 @@ public class MonsterObjectPool : MonoBehaviour
         Cherry_monster,
         blueberry_monster,
         bellfruit_monster,
+        lemonSlime_boss
     }
 } 
