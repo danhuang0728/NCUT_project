@@ -78,7 +78,7 @@ public class Debuff : MonoBehaviour
                 {
                     BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.speed_down);
                 }
-                introduceFruit(fruitType);
+                
                 Debug.Log($"速度修正降低後: {speedModifier}");
                 break;
 
@@ -94,7 +94,7 @@ public class Debuff : MonoBehaviour
                 {
                     BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.health_down);
                 }
-                introduceFruit(fruitType);
+
                 Debug.Log($"生命值降低{decreaseAmount}點後: {playerControl.HP}");
                 break;
 
@@ -111,7 +111,7 @@ public class Debuff : MonoBehaviour
                 {
                     BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.damage_down);
                 }
-                introduceFruit(fruitType);
+
                 break;
 
             // 失明效果的水果
@@ -130,7 +130,6 @@ public class Debuff : MonoBehaviour
                     {
                         BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.blindness);
                     }
-                    introduceFruit(fruitType);
                 }
                 break;
         }
@@ -240,44 +239,6 @@ public class Debuff : MonoBehaviour
             characterValue.damage += increaseAmount;
         }
     }
-    // =======================小助手介紹水果========================
-    private void introduceFruit(FruitType fruitType)
-    {
-        switch (fruitType)
-        {
-            case FruitType.Banana:
-                GuideSystem.Instance.Guide("<color=yellow>香蕉</color>:富含鉀離子與熱量");
-                GuideSystem.Instance.Guide("在運動時補充確實可以幫助預防抽筋");
-                GuideSystem.Instance.Guide("定期攝取香蕉可以解除掉<color=red>緩速</color>效果");
-                break;
-            case FruitType.Lemon:
-                break;
-            case FruitType.PassionFruit:
-                break;
-            case FruitType.Watermelon:
-                break;
-            case FruitType.Kiwi:
-                break;
-            case FruitType.Apple:
-                break;
-            case FruitType.Guava:
-                break;  
-            case FruitType.Orange:
-                break;
-            case FruitType.SugarApple:
-                break;
-            case FruitType.Coconut:
-                break;
-            case FruitType.Grape:
-                break;
-            case FruitType.Blueberry:
-                break;
-            case FruitType.Mango:
-                break;
-            case FruitType.Pineapple:
-                break;
-            case FruitType.Tomato:
-                break;
-        }
-    }
+
+   
 } 

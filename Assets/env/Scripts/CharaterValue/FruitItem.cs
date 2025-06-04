@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FruitItem : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class FruitItem : MonoBehaviour
     private bool isCollected = false;
     private VitaminManager vitaminManager;
     public static bool vitaminSys_Introduced = false;
+    private static Dictionary<FruitType, bool> fruitIntroduced = new Dictionary<FruitType, bool>();
 
     private void Start()
     {
@@ -45,12 +47,22 @@ public class FruitItem : MonoBehaviour
             // 根据水果类型补充对应的维生素
             VitaminType vitaminType = GetVitaminType(fruitType);
             vitaminManager.AddVitamin(vitaminType, 40f);
+            introduceFruit(fruitType);
             AudioManager.Instance.PlaySFX("collect_fruit");
             
             Destroy(gameObject);
         }
     }
+    IEnumerator introduceFruitReset(FruitType fruitType)
+    {
+        yield return new WaitForSeconds(60f);
+        if (fruitIntroduced.ContainsKey(fruitType))
+        {
+            fruitIntroduced[fruitType] = false;
+        }
+    }
 
+    // =======================維生素類型設定========================
     private VitaminType GetVitaminType(FruitType fruitType)
     {
         switch (fruitType)
@@ -94,6 +106,57 @@ public class FruitItem : MonoBehaviour
             default:
                 Debug.LogError($"未知的水果类型: {fruitType}");
                 return VitaminType.B;
+        }
+    }
+     // =======================小助手介紹水果========================
+     private void introduceFruit(FruitType fruitType)
+    {
+        switch (fruitType)
+        {
+            case FruitType.Banana:
+                if(!fruitIntroduced.ContainsKey(FruitType.Banana) || !fruitIntroduced[FruitType.Banana])
+                {
+                    GuideSystem.Instance.Guide("<color=yellow>香蕉</color>:富含鉀離子與熱量");
+                    GuideSystem.Instance.Guide("在運動時補充確實可以幫助預防抽筋");
+                    GuideSystem.Instance.Guide("定期攝取香蕉可以解除掉<color=red>緩速</color>效果");
+                    fruitIntroduced[FruitType.Banana] = true;
+                    StartCoroutine(introduceFruitReset(FruitType.Banana));
+                }
+                break;
+            case FruitType.Lemon:
+                if(!fruitIntroduced.ContainsKey(FruitType.Lemon) || !fruitIntroduced[FruitType.Lemon])
+                {
+                    GuideSystem.Instance.Guide("");
+                    fruitIntroduced[FruitType.Lemon] = true;
+                    StartCoroutine(introduceFruitReset(FruitType.Lemon));
+                }
+                break;
+            case FruitType.PassionFruit:
+                break;
+            case FruitType.Watermelon:
+                break;
+            case FruitType.Kiwi:
+                break;
+            case FruitType.Apple:
+                break;
+            case FruitType.Guava:
+                break;  
+            case FruitType.Orange:
+                break;
+            case FruitType.SugarApple:
+                break;
+            case FruitType.Coconut:
+                break;
+            case FruitType.Grape:
+                break;
+            case FruitType.Blueberry:
+                break;
+            case FruitType.Mango:
+                break;
+            case FruitType.Pineapple:
+                break;
+            case FruitType.Tomato:
+                break;
         }
     }
 }
