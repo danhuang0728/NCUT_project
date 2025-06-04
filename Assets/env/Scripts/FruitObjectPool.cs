@@ -1,21 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class FruitObjectPool : MonoBehaviour
 {
     public static FruitObjectPool Instance { get; private set; }
-        
-    [System.Serializable]
-    public class FruitPoolInfo
-    {
-        public GameObject fruitPrefab;
-        public FruitType fruitType;
-        public int poolSize = 20;
-    }
-
-    [SerializeField] private List<FruitPoolInfo> fruitPoolInfos = new List<FruitPoolInfo>();
-    private Dictionary<GameObject, Queue<GameObject>> fruitPools;
-        
+    
+    private Dictionary<FruitType, GameObject> fruitPrefabs;
+    private Dictionary<FruitType, Queue<GameObject>> fruitPools;
+    [SerializeField] private int defaultPoolSize = 20;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -27,114 +21,91 @@ public class FruitObjectPool : MonoBehaviour
             Destroy(gameObject);
         }
         
+        LoadFruitPrefabs();
         InitializePools();
     }
-        
-    private void InitializePools()
+    
+    private void LoadFruitPrefabs()
     {
-        fruitPools = new Dictionary<GameObject, Queue<GameObject>>();
+        fruitPrefabs = new Dictionary<FruitType, GameObject>();
         
-        foreach (var poolInfo in fruitPoolInfos)
+        // 遍历所有水果类型
+        foreach (FruitType fruitType in Enum.GetValues(typeof(FruitType)))
         {
-            if (poolInfo.fruitPrefab == null) continue;
+            // 从Resources文件夹加载预制体
+            string prefabPath = $"Fruits/{fruitType}";
+            GameObject prefab = Resources.Load<GameObject>(prefabPath);
             
-            Queue<GameObject> pool = new Queue<GameObject>();
-            for (int i = 0; i < poolInfo.poolSize; i++)
+            if (prefab != null)
             {
-                CreateNewFruit(poolInfo.fruitPrefab, pool);
+                fruitPrefabs.Add(fruitType, prefab);
             }
-            
-            fruitPools[poolInfo.fruitPrefab] = pool;
+            else
+            {
+                Debug.LogWarning($"无法加载水果预制体: {prefabPath}");
+            }
         }
     }
+    
+    private void InitializePools()
+    {
+        fruitPools = new Dictionary<FruitType, Queue<GameObject>>();
         
+        foreach (var kvp in fruitPrefabs)
+        {
+            FruitType fruitType = kvp.Key;
+            GameObject prefab = kvp.Value;
+            
+            Queue<GameObject> pool = new Queue<GameObject>();
+            for (int i = 0; i < defaultPoolSize; i++)
+            {
+                CreateNewFruit(prefab, pool);
+            }
+            
+            fruitPools[fruitType] = pool;
+        }
+    }
+    
     private void CreateNewFruit(GameObject prefab, Queue<GameObject> pool)
     {
         GameObject fruit = Instantiate(prefab);
         fruit.SetActive(false);
         pool.Enqueue(fruit);
     }
-        
+    
     public GameObject GetFruit(FruitType fruitType)
     {
-        GameObject prefab = fruitPoolInfos.Find(info => info.fruitType == fruitType)?.fruitPrefab;
-        if (prefab == null)
+        if (!fruitPools.ContainsKey(fruitType))
         {
-            Debug.LogError($"找不到水果類型 {fruitType} 的預製體");
+            Debug.LogError($"找不到水果類型 {fruitType} 的物件池");
             return null;
         }
-        if (!fruitPools.ContainsKey(prefab))
-        {
-            Debug.LogWarning($"找不到預製體 {prefab.name} 的物件池，創建新的物件池");
-            fruitPools[prefab] = new Queue<GameObject>();
-        }
 
-        Queue<GameObject> pool = fruitPools[prefab];
+        Queue<GameObject> pool = fruitPools[fruitType];
         
         if (pool.Count == 0)
         {
-            CreateNewFruit(prefab, pool);
+            CreateNewFruit(fruitPrefabs[fruitType], pool);
         }
         
         GameObject fruit = pool.Dequeue();
         fruit.SetActive(true);
         return fruit;
     }
-        
+    
     public void ReturnFruit(GameObject fruit)
     {
-        GameObject prefab = null;
-        foreach (var poolInfo in fruitPoolInfos)
+        foreach (var kvp in fruitPrefabs)
         {
-            if (fruit.name.Contains(poolInfo.fruitPrefab.name))
+            if (fruit.name.Contains(kvp.Value.name))
             {
-                prefab = poolInfo.fruitPrefab;
-                break;
+                fruit.SetActive(false);
+                fruitPools[kvp.Key].Enqueue(fruit);
+                return;
             }
         }
         
-        if (prefab == null || !fruitPools.ContainsKey(prefab))
-        {
-            Debug.LogWarning($"找不到水果 {fruit.name} 對應的物件池，無法回收水果");
-            Destroy(fruit);
-            return;
-        }
-
-        fruit.SetActive(false);
-        fruitPools[prefab].Enqueue(fruit);
-    }
-    public enum FruitType
-    {
-            // 維生素A類（視野）
-        Mango,      // 芒果
-        Papaya,     // 木瓜
-        Tomato,     // 番茄
-        Melon,      // 哈密瓜
-        Orange,     // 橘子
-        Peach,      // 桃子
-
-        // 維生素B類（移動速度）
-        Banana,     // 香蕉
-        Grape,      // 葡萄
-        Longan,     // 龍眼
-        Coconut,    // 椰子
-        PassionFruit, // 百香果
-
-        // 維生素C類（血量）
-        Kiwi,       // 奇異果
-        Lemon,      // 檸檬
-        Strawberry, // 草莓
-        Guava,      // 芭樂
-        Chili,      // 辣椒
-        Apple,      // 蘋果
-        Durian,     // 榴槤
-
-        // 維生素D類（攻擊力）
-        Watermelon,   // 西瓜
-        Pineapple,    // 鳳梨
-        StarFruit,    // 楊桃
-        Blueberry,    // 藍莓
-        SugarApple,   // 釋迦
-        Tangerine     // 柳橙
+        Debug.LogWarning($"找不到水果 {fruit.name} 對應的物件池，無法回收水果");
+        Destroy(fruit);
     }
 }

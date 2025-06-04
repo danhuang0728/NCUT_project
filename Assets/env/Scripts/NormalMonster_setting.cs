@@ -4,6 +4,9 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+// 添加FruitType的引用
+using static FruitItem;
+
 public class NormalMonster_setting : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -259,14 +262,18 @@ public class NormalMonster_setting : MonoBehaviour
             float rand = Random.value; // 0~1之間的隨機數
             if (rand < 0.5f && fruitPrefab != null)
             {
-                // 50% 機率掉落水果
-                GameObject fruit = Instantiate(fruitPrefab, transform.position, Quaternion.identity);
-                FruitItem fruitItem = fruit.GetComponent<FruitItem>();
-                if (fruitItem != null)
+                // 使用对象池生成水果
+                GameObject fruit = FruitObjectPool.Instance.GetFruit(monsterFruitType);
+                if (fruit != null)
                 {
-                    fruitItem.fruitType = monsterFruitType;
+                    fruit.transform.position = transform.position;
+                    FruitItem fruitItem = fruit.GetComponent<FruitItem>();
+                    if (fruitItem != null)
+                    {
+                        fruitItem.fruitType = monsterFruitType;
+                    }
+                    AudioManager.Instance.PlaySFX("drop_exp");
                 }
-                AudioManager.Instance.PlaySFX("drop_exp");
             }
             else
             {

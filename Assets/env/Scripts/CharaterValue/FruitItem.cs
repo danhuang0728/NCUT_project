@@ -38,7 +38,7 @@ public class FruitItem : MonoBehaviour
             if (vitaminManager == null)
             {
                 Debug.LogError("碰触水果时 VitaminManager 为空！");
-                Destroy(gameObject);
+                FruitObjectPool.Instance.ReturnFruit(gameObject);
                 return;
             }
 
@@ -47,7 +47,7 @@ public class FruitItem : MonoBehaviour
             vitaminManager.AddVitamin(vitaminType, 40f);
             AudioManager.Instance.PlaySFX("collect_fruit");
             
-            Destroy(gameObject);
+            FruitObjectPool.Instance.ReturnFruit(gameObject);
         }
     }
 
