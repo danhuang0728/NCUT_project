@@ -44,7 +44,7 @@ public class FruitItem : MonoBehaviour
 
             // 根据水果类型补充对应的维生素
             VitaminType vitaminType = GetVitaminType(fruitType);
-            vitaminManager.AddVitamin(vitaminType, 20f);
+            vitaminManager.AddVitamin(vitaminType, 40f);
             AudioManager.Instance.PlaySFX("collect_fruit");
             
             Destroy(gameObject);
@@ -55,27 +55,40 @@ public class FruitItem : MonoBehaviour
     {
         switch (fruitType)
         {
-            case FruitType.Blueberry:
+            // 維生素A：芒果、木瓜、番茄、哈密瓜、橘子
             case FruitType.Mango:
-            case FruitType.Pineapple:
+            case FruitType.Papaya:
             case FruitType.Tomato:
+            case FruitType.Melon:
+            case FruitType.Orange:
+            case FruitType.Peach:
                 return VitaminType.A;
 
+            // 維生素B：香蕉、葡萄、龍眼、椰子、百香果
             case FruitType.Banana:
-            case FruitType.Lemon:
+            case FruitType.Grape:
+            case FruitType.Longan:
+            case FruitType.Coconut:
             case FruitType.PassionFruit:
-            case FruitType.Watermelon:
                 return VitaminType.B;
 
-            case FruitType.Apple:
+            // 維生素C：奇異果、檸檬、草莓、芭樂、辣椒
             case FruitType.Kiwi:
+            case FruitType.Lemon:
+            case FruitType.Strawberry:
             case FruitType.Guava:
+            case FruitType.Chili:
+            case FruitType.Apple:
+            case FruitType.Durian:
                 return VitaminType.C;
 
-            case FruitType.Orange:
+            // 維生素D：西瓜、鳳梨、楊桃、藍莓、釋迦、柳橙
+            case FruitType.Watermelon:
+            case FruitType.Pineapple:
+            case FruitType.StarFruit:
+            case FruitType.Blueberry:
             case FruitType.SugarApple:
-            case FruitType.Coconut:
-            case FruitType.Grape:
+            case FruitType.Tangerine:
                 return VitaminType.D;
 
             default:
@@ -83,4 +96,4 @@ public class FruitItem : MonoBehaviour
                 return VitaminType.B;
         }
     }
-} 
+}

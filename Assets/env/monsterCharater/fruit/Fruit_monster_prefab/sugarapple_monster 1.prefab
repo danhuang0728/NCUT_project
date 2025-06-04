@@ -145,7 +145,7 @@ MonoBehaviour:
   fruitData: {fileID: 0}
   fruitPrefab: {fileID: 7196450996684184882, guid: 1bec9f19d32228e41a1980d74d4510e4,
     type: 3}
-  monsterFruitType: 4
+  monsterFruitType: 22
   maxspeed: 5
   minspeed: 1
   damageEffect: {fileID: 0}

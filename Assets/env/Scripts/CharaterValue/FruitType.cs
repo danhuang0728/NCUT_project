@@ -1,25 +1,34 @@
 public enum FruitType
 {
-    // 降低生命值的水果  維生素C類 血量 
-    Apple,      // 蘋果
-    Kiwi,       // 奇異果
-    Guava,      // 芭樂
-
-    // 降低攻擊力的水果 維生素D類 攻擊力
-    Orange,     // 橘子
-    SugarApple, // 釋迦
-    Coconut,    // 椰子
-    Grape,      // 葡萄
-
-    // 降低移動速度的水果 維生素B類 移動速度
-    Banana,     // 香蕉
-    Lemon,      // 檸檬
-    PassionFruit, // 百香果
-    Watermelon,   // 西瓜
-
-    // 失明效果的水果 維生素A類 視野
-    Blueberry,  // 藍莓
+    // 維生素A類（視野）
     Mango,      // 芒果
-    Pineapple,  // 鳳梨
-    Tomato      // 番茄
-} 
+    Papaya,     // 木瓜
+    Tomato,     // 番茄
+    Melon,      // 哈密瓜
+    Orange,     // 橘子
+    Peach,      // 桃子
+
+    // 維生素B類（移動速度）
+    Banana,     // 香蕉
+    Grape,      // 葡萄
+    Longan,     // 龍眼
+    Coconut,    // 椰子
+    PassionFruit, // 百香果
+
+    // 維生素C類（血量）
+    Kiwi,       // 奇異果
+    Lemon,      // 檸檬
+    Strawberry, // 草莓
+    Guava,      // 芭樂
+    Chili,      // 辣椒
+    Apple,      // 蘋果
+    Durian,     // 榴槤
+
+    // 維生素D類（攻擊力）
+    Watermelon,   // 西瓜
+    Pineapple,    // 鳳梨
+    StarFruit,    // 楊桃
+    Blueberry,    // 藍莓
+    SugarApple,   // 釋迦
+    Tangerine     // 柳橙
+}
