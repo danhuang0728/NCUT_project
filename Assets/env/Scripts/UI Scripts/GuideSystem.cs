@@ -108,6 +108,8 @@ public class GuideSystem : MonoBehaviour
         else
         {
             zeroText();
+            //清除對話過的list
+            dialogue.Clear();
             closeChatPanel();
             yield return new WaitForSeconds(waitTime);
             isTyping = false;
