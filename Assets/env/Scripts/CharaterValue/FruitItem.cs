@@ -8,6 +8,16 @@ public class FruitItem : MonoBehaviour
     private VitaminManager vitaminManager;
     public static bool vitaminSys_Introduced = false;
 
+    private void OnEnable()
+    {
+        ResetFruit();
+    }
+
+    private void ResetFruit()
+    {
+        isCollected = false;
+    }
+
     private void Start()
     {
         Debug.Log($"水果 {fruitType} 已生成");

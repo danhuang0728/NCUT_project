@@ -112,22 +112,18 @@ public class LevelTrigger : MonoBehaviour
 
     IEnumerator levelstart(int leveltime)
     {
-
         //房間音樂設置
         AudioManager.Instance.PlayNextBattleMusic(selectedOption);
         audioController.MusicVolume(); 
         
         TimerPanel.isfighting = true; //設定關卡進行狀態(timer用)
-        foreach (spawn repOb in spawns) // 修改全部重生點為開啟狀態
+        RandomSpawn.SetLevelFightingState(selectedOption, true); // 設置當前關卡的戰鬥狀態
+
+        foreach (spawn repOb in spawns_self) 
         {
-            if (repOb.gameObject.name.Contains(selectedOption))
-            {
-                repOb.gameObject.SetActive(true);
-                timerScript.remainingTime= leveltime;
-                //Debug.Log(timerScript);
-            }
-            
+            repOb.gameObject.SetActive(true);
         }
+
         // 設定timerScript的maxTime
         timerScript.maxTime = levelmaxTime;
         timerScript.remainingTime = leveltime;
@@ -171,14 +167,14 @@ public class LevelTrigger : MonoBehaviour
         StartCoroutine(MoveExpObjectsTowardsPlayerCoroutine());
         SpawnShopItems();
         TimerPanel.isfighting = false; //設定關卡進行狀態(timer用)
+        RandomSpawn.SetLevelFightingState(selectedOption, false); // 重置當前關卡的戰鬥狀態
 
-        foreach (spawn repOb in spawns) // 修改全部重生點為關閉狀態
+        foreach (spawn repOb in spawns_self) 
         {
             repOb.gameObject.SetActive(false);
         }
         ClearAllClones();  //刪除剩餘怪物
         AudioManager.Instance.PlayRestMusic(); // 播放休息音樂
-        
     }
     public void CloseTrap()
     {

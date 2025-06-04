@@ -213,105 +213,139 @@ public class NormalMonster_setting : MonoBehaviour
 
 
     public void MonsterDead(GameObject monster)
-
     {
-        PlayerControl.kill_monster_count++;
+        if (monster == null) return;
 
-        // 判斷怪物類型和經驗值等級
-        if (monster_type==0)  // 假設 monster_type = 0 代表一般怪物
+        // 1. 停止所有行為
+        StopAllCoroutines();
+        if (GetComponent<Rigidbody2D>() != null)
         {
-            switch (exp_type)
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
+        // 2. 停用所有組件以防止進一步的更新
+        foreach (var component in GetComponents<MonoBehaviour>())
+        {
+            if (component != this)
             {
-                case 1:  // 低級經驗值
-                    // 在這裡生成15經驗值的掉落物
-                    if(LowExpPrefab != null)
-                    {
-                        GameObject expObject = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Small);
-                        expObject.transform.position = transform.position;
-                        AudioManager.Instance.PlaySFX("drop_exp");
-                        break;
-                    }
-                    break;
-
-                case 2:  // 中級經驗值
-                    if(MediumExpPrefab != null)
-                    {
-                        // 在這裡生成40經驗值的掉落物
-                        GameObject expObject2 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Medium);
-                        expObject2.transform.position = transform.position;
-                        AudioManager.Instance.PlaySFX("drop_exp");
-                        break;
-                    }  
-                    break;
-
-                case 3:  // 高級經驗值
-                    if(HighExpPrefab != null)
-                    {
-                        // 在這裡生成100經驗值的掉落物
-                        GameObject expObject3 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Large);
-                        expObject3.transform.position = transform.position;
-                        AudioManager.Instance.PlaySFX("drop_exp");
-                        break;
-                    }
-                    break;
-
+                component.enabled = false;
             }
         }
-        else if (monster_type == 1)  // 水果怪
+
+        PlayerControl.kill_monster_count++;
+
+        try 
         {
-            float rand = Random.value; // 0~1之間的隨機數
-            if (rand < 0.5f && fruitPrefab != null)
+            // 3. 生成掉落物
+            if (monster_type == 0)  // 一般怪物
             {
-                // 使用对象池生成水果
-                GameObject fruit = FruitObjectPool.Instance.GetFruit(monsterFruitType);
-                if (fruit != null)
+                HandleNormalMonsterDrop();
+            }
+            else if (monster_type == 1)  // 水果怪
+            {
+                HandleFruitMonsterDrop();
+            }
+            else if(monster_type == 2) //武器箱怪物
+            {
+                if(boxPrefab != null)
                 {
-                    fruit.transform.position = transform.position;
-                    FruitItem fruitItem = fruit.GetComponent<FruitItem>();
-                    if (fruitItem != null)
+                    GameObject box = Instantiate(boxPrefab, transform.position, Quaternion.identity);
+                    if (box != null)
                     {
-                        fruitItem.fruitType = monsterFruitType;
+                        box.SetActive(true);
                     }
-                    AudioManager.Instance.PlaySFX("drop_exp");
                 }
+            }
+
+            // 4. 回收到物件池
+            if (MonsterObjectPool.Instance != null)
+            {
+                // 在回收前重置狀態
+                ResetMonsterHealth();
+                gameObject.SetActive(false);  // 先停用物件
+                MonsterObjectPool.Instance.ReturnMonster(monster);
             }
             else
             {
-                // 另外50%才掉落經驗值
-                switch (exp_type)
-                {
-                    case 1:
-                        GameObject expObject = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Small);
-                        expObject.transform.position = transform.position;
-                        AudioManager.Instance.PlaySFX("drop_exp");
-                        break;
-                    case 2:
-                        GameObject expObject2 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Medium);
-                        expObject2.transform.position = transform.position;
-                        AudioManager.Instance.PlaySFX("drop_exp");
-                        break;
-                    case 3:
-                        GameObject expObject3 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Large);
-                        expObject3.transform.position = transform.position;
-                        AudioManager.Instance.PlaySFX("drop_exp");
-                        break;
-                }
-            }
-        }
-        else if(monster_type == 2) //武器箱怪物
-        {
-            if(boxPrefab != null)
-            {
-                GameObject box = Instantiate(boxPrefab, transform.position, Quaternion.identity); //生成武器箱物品
-                box.SetActive(true);
+                Debug.LogError("MonsterObjectPool.Instance is null!");
                 Destroy(monster);
             }
         }
-        if(monster_type != 2)
+        catch (System.Exception e)
         {
-            MonsterObjectPool.Instance.ReturnMonster(monster);
+            Debug.LogError($"Monster death error: {e.Message}");
+            if (monster != null)
+            {
+                Destroy(monster);
+            }
         }
     }
+
+    private void HandleNormalMonsterDrop()
+    {
+        switch (exp_type)
+        {
+            case 1:  // 低級經驗值
+                if(LowExpPrefab != null)
+                {
+                    GameObject expObject = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Small);
+                    if (expObject != null)
+                    {
+                        expObject.transform.position = transform.position;
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                    }
+                }
+                break;
+
+            case 2:  // 中級經驗值
+                if(MediumExpPrefab != null)
+                {
+                    GameObject expObject2 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Medium);
+                    if (expObject2 != null)
+                    {
+                        expObject2.transform.position = transform.position;
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                    }
+                }  
+                break;
+
+            case 3:  // 高級經驗值
+                if(HighExpPrefab != null)
+                {
+                    GameObject expObject3 = ExpObjectPool.Instance.GetExp(ExpObjectPool.ExpType.Large);
+                    if (expObject3 != null)
+                    {
+                        expObject3.transform.position = transform.position;
+                        AudioManager.Instance.PlaySFX("drop_exp");
+                    }
+                }
+                break;
+        }
+    }
+
+    private void HandleFruitMonsterDrop()
+    {
+        float rand = Random.value;
+        if (rand < 0.5f && fruitPrefab != null)
+        {
+            GameObject fruit = FruitObjectPool.Instance.GetFruit(monsterFruitType);
+            if (fruit != null)
+            {
+                fruit.transform.position = transform.position;
+                FruitItem fruitItem = fruit.GetComponent<FruitItem>();
+                if (fruitItem != null)
+                {
+                    fruitItem.fruitType = monsterFruitType;
+                }
+                AudioManager.Instance.PlaySFX("drop_exp");
+            }
+        }
+        else
+        {
+            HandleNormalMonsterDrop();
+        }
+    }
+
     void speed_controll(float Minspeed , float Maxspeed)
     {
         if(monster_type == 2)
