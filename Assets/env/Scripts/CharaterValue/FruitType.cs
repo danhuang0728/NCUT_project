@@ -30,5 +30,6 @@ public enum FruitType
     StarFruit,    // 楊桃
     Blueberry,    // 藍莓
     SugarApple,   // 釋迦
-    Tangerine     // 柳橙
+    Tangerine,     // 柳橙
+    Pumpkin       //南瓜
 }
