@@ -47,7 +47,6 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints; // 在Inspector中设置4个生成点
     private bool itemsSpawned = false;
 
-    private bool isInRoom = false;
 
     void Awake()
     {
@@ -100,7 +99,7 @@ public class LevelTrigger : MonoBehaviour
                 } 
                 collider2d.enabled = false;  
             }
-            levelTime = UnityEngine.Random.Range(levelminTime, levelmaxTime); // 關卡的隨機時間設定
+            levelTime = Random.Range(levelminTime, levelmaxTime); // 關卡的隨機時間設定
             StartCoroutine(levelstart(levelTime));
 
             foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
@@ -113,6 +112,7 @@ public class LevelTrigger : MonoBehaviour
 
     IEnumerator levelstart(int leveltime)
     {
+
         //房間音樂設置
         AudioManager.Instance.PlayNextBattleMusic(selectedOption);
         audioController.MusicVolume(); 
@@ -179,6 +179,9 @@ public class LevelTrigger : MonoBehaviour
         ClearAllClones();  //刪除剩餘怪物
         AudioManager.Instance.PlayRestMusic(); // 播放休息音樂
         
+    }
+    public void CloseTrap()
+    {
         foreach (TrapControll trap in trapControlls) // 修改全部trap物件裡的的bool為true
         {
             Animator trapAni = trap.GetComponent<Animator>();
@@ -188,8 +191,8 @@ public class LevelTrigger : MonoBehaviour
             trapAni.Update(0);
             trap.close = false; //尖刺縮回去
         }
-        
     }
+    
 
     public void ClearAllClones() // 清除複製物件
     {
