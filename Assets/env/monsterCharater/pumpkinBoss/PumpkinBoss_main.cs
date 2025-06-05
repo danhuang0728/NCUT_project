@@ -86,12 +86,12 @@ public class PumpkinBoss_main : MonoBehaviour
         //=================攻擊觸發=================
         if(attackType == AttackType.none)
         {
-            normalMonster_setting.movespeed = 2;
+            normalMonster_setting.movespeed = 3;
         }
         
         if (attackType == AttackType.slash && !isSlash)
         {
-            normalMonster_setting.movespeed = 4;
+            normalMonster_setting.movespeed = 3;
             if(Vector2.Distance(transform.position,player.transform.position) < 5f)
             {
                 StartCoroutine(attack_Slash());
@@ -99,7 +99,7 @@ public class PumpkinBoss_main : MonoBehaviour
         }
         if (attackType == AttackType.spike && !isSpike)
         {
-            normalMonster_setting.movespeed = 4;
+            normalMonster_setting.movespeed = 3;
             if(Vector2.Distance(transform.position,player.transform.position) < 5f)
             {
                 StartCoroutine(attack_spike());
@@ -154,7 +154,7 @@ public class PumpkinBoss_main : MonoBehaviour
                 }
             }
         }
-        normalMonster_setting.movespeed = 4;
+        normalMonster_setting.movespeed = 3;
         headlight.intensity = 5;
         randomSet_attackType();
         isSpike = false;
@@ -187,7 +187,7 @@ public class PumpkinBoss_main : MonoBehaviour
         }
         yield return new WaitForSeconds(3);
         slashEffect2.SetActive(false);
-        normalMonster_setting.movespeed = 4;
+        normalMonster_setting.movespeed = 3;
         headlight.intensity = 5;
         randomSet_attackType();
         isSlash = false;
@@ -203,7 +203,7 @@ public class PumpkinBoss_main : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         ani.SetBool("attack_spell",false);
         yield return new WaitForSeconds(5);
-        normalMonster_setting.movespeed = 4;
+        normalMonster_setting.movespeed = 3;
         headlight.intensity = 5;
         randomSet_attackType();
         isSpell = false;
