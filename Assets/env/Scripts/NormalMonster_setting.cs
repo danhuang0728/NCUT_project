@@ -253,7 +253,7 @@ public class NormalMonster_setting : MonoBehaviour
             {
                 HandleFruitMonsterDrop();
             }
-            else if(monster_type == 2) //武器箱怪物
+            else if(monster_type == 2) // 武器箱怪物（菁英怪）
             {
                 if(boxPrefab != null)
                 {
@@ -265,18 +265,26 @@ public class NormalMonster_setting : MonoBehaviour
                 }
             }
 
-            // 4. 回收到物件池
-            if (MonsterObjectPool.Instance != null)
+            // 4. 根据怪物类型决定如何处理
+            if (monster_type == 2)  // 如果是菁英怪
             {
-                // 在回收前重置狀態
-                ResetMonsterHealth();
-                gameObject.SetActive(false);  // 先停用物件
-                MonsterObjectPool.Instance.ReturnMonster(monster);
-            }
-            else
-            {
-                Debug.LogError("MonsterObjectPool.Instance is null!");
+                // 直接销毁
                 Destroy(monster);
+            }
+            else  // 如果是普通怪物或水果怪
+            {
+                // 回收到物件池
+                if (MonsterObjectPool.Instance != null)
+                {
+                    ResetMonsterHealth();
+                    gameObject.SetActive(false);
+                    MonsterObjectPool.Instance.ReturnMonster(monster);
+                }
+                else
+                {
+                    Debug.LogError("MonsterObjectPool.Instance is null!");
+                    Destroy(monster);
+                }
             }
         }
         catch (System.Exception e)

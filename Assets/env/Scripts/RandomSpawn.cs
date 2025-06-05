@@ -272,31 +272,31 @@ public class RandomSpawn : MonoBehaviour
             float remainingTime = timerScript.remainingTime;
             
             // 檢查3分30秒（210秒）
-            if (remainingTime <= 211f && remainingTime >= 209f && !eliteSpawned[0])
+            if (remainingTime <= 210.5f && remainingTime >= 209.5f && !eliteSpawned[0])
             {
                 SpawnEliteMonster();
                 eliteSpawned[0] = true;
             }
-            // 檢查2分30秒（150秒）
-            else if (remainingTime <= 151f && remainingTime >= 149f && !eliteSpawned[1])
+            // 檢查3分（180秒）
+            else if (remainingTime <= 181f && remainingTime >= 179f && !eliteSpawned[1])
             {
                 SpawnEliteMonster();
                 eliteSpawned[1] = true;
             }
-            // 檢查1分30秒（90秒）
-            else if (remainingTime <= 91f && remainingTime >= 89f && !eliteSpawned[2])
+            // 檢查2分（120秒）
+            else if (remainingTime <= 121f && remainingTime >= 119f && !eliteSpawned[2])
             {
                 SpawnEliteMonster();
                 eliteSpawned[2] = true;
             }
-            // 檢查45秒
-            else if (remainingTime <= 46f && remainingTime >= 44f && !eliteSpawned[3])
+            // 檢查1分（60秒）
+            else if (remainingTime <= 61f && remainingTime >= 59f && !eliteSpawned[3])
             {
                 SpawnEliteMonster();
                 eliteSpawned[3] = true;
             }
-            // 檢查15秒
-            else if (remainingTime <= 16f && remainingTime >= 14f && !eliteSpawned[4])
+            // 檢查40秒
+            else if (remainingTime <= 41f && remainingTime >= 39f && !eliteSpawned[4])
             {
                 SpawnEliteMonster();
                 eliteSpawned[4] = true;

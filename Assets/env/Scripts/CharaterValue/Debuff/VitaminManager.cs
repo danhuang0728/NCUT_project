@@ -110,10 +110,10 @@ public class VitaminManager : MonoBehaviour
         {
             foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
             {
-                vitaminLevels[vitamin] = 5f;
+                vitaminLevels[vitamin] = 50f;
                 UpdateVitaminState(vitamin);
             }
-            Debug.Log("所有維生素值設為5");
+            //Debug.Log("所有維生素值設為50");
         }
         
         // 按下6键，将所有维生素设为80
@@ -121,10 +121,10 @@ public class VitaminManager : MonoBehaviour
         {
             foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
             {
-                vitaminLevels[vitamin] = 80f;
+                vitaminLevels[vitamin] = 150f;
                 UpdateVitaminState(vitamin);
             }
-            Debug.Log("所有維生素值設為80");
+            //Debug.Log("所有維生素值設為80");
         }
 
         // 按下7键，将所有维生素设为100
@@ -132,10 +132,10 @@ public class VitaminManager : MonoBehaviour
         {
             foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
             {
-                vitaminLevels[vitamin] = 100f;
+                vitaminLevels[vitamin] = 250f;
                 UpdateVitaminState(vitamin);
             }
-            Debug.Log("所有維生素值設為100");
+            //Debug.Log("所有維生素值設為100");
         }
 
         foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
@@ -152,7 +152,7 @@ public class VitaminManager : MonoBehaviour
         {
             foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
             {
-                Debug.Log($"維生素{vitamin} - 數值:{vitaminLevels[vitamin]:F1} | 狀態:{vitaminStates[vitamin]}");
+                //Debug.Log($"維生素{vitamin} - 數值:{vitaminLevels[vitamin]:F1} | 狀態:{vitaminStates[vitamin]}");
             }
             debugTimer = 0f;
         }
