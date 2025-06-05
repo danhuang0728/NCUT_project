@@ -17,17 +17,23 @@ public class PumpkinBoss_main : MonoBehaviour
         none,
         slash,
         spike, 
-        dash,
-        throw_seed
+        spell,
+        spawn
     }
     private AttackType attackType;
     private bool isSlash = false;
     private bool isSpell = false;
     private bool isSpike = false;
+    private bool isSpawn = false;
+    private bool spawn_intro = false;
     public Light2D headlight;
+    public GameObject fireball;
     public GameObject slashEffect;
     public GameObject slashEffect2;
     public GameObject spikeEffect;
+    public GameObject spawnEffect;
+    public Vector3 limitspawnArea_point1 = new Vector3(494.241699f,-121.400566f,0.120918632f);
+    public Vector3 limitspawnArea_point2 = new Vector3(529.141724f,-140.120575f,0.120918632f);
     private PlayerControl playerControl;
     void Start()
     {
@@ -37,11 +43,13 @@ public class PumpkinBoss_main : MonoBehaviour
         player = GameObject.Find("player1");
         playerControl = player.GetComponent<PlayerControl>();
         StartCoroutine(randomSet_attackType());
+        Debug.Log("攻擊類型"+attackType);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (normalMonster_setting.movespeed > 0)
         {
             ani.SetBool("move",true);
@@ -60,10 +68,19 @@ public class PumpkinBoss_main : MonoBehaviour
             Debug.Log(attackType);
             timer = 0f; // 重置计时器
         }
+        // 如果正在進行任何攻擊，確保速度為0
+        if(isSlash || isSpike || isSpawn || isSpell)
+        {
+            normalMonster_setting.movespeed = 0;
+            return;
+        }
         //=================攻擊觸發=================
         if(attackType == AttackType.none)
         {
-            normalMonster_setting.movespeed = 2;
+            if(!isSlash && !isSpike && !isSpawn && !isSpell)
+            {
+                normalMonster_setting.movespeed = 2;
+            }
         }
         
         if (attackType == AttackType.slash && !isSlash)
@@ -82,13 +99,29 @@ public class PumpkinBoss_main : MonoBehaviour
                 StartCoroutine(attack_spike());
             }
         }
+        if (attackType == AttackType.spell && !isSpell)
+        {
+            normalMonster_setting.movespeed = 3;
+            if(Vector2.Distance(transform.position,player.transform.position) < 10f)
+            {
+                StartCoroutine(attack_spell());
+            }
+        }
+        if (attackType == AttackType.spawn && !isSpawn)
+        {
+            normalMonster_setting.movespeed = 3;
+            if(Vector2.Distance(transform.position,player.transform.position) < 10f)
+            {
+                StartCoroutine(attack_spawn());
+            }
+        }
 
     }
     //======================隨機抽當輪攻擊方式=============
     IEnumerator randomSet_attackType()
     {
         yield return new WaitForSeconds(3f);
-        int randomint = Random.Range(0,3);
+        int randomint = Random.Range(0,5);
         switch(randomint)
         {
             case 0:
@@ -101,16 +134,21 @@ public class PumpkinBoss_main : MonoBehaviour
                 attackType = AttackType.spike;
                 break;
             case 3:
-                attackType = AttackType.dash;
+                attackType = AttackType.spell;
                 break;
             case 4:
-                attackType = AttackType.throw_seed;
+                attackType = AttackType.spawn;
                 break;
         }
+        Debug.Log(attackType);
     }
     //======================刺擊攻擊======================
     IEnumerator attack_spike()
     {
+        if(isSlash || isSpike || isSpawn||isSpell)
+        {
+            yield break;
+        }
         isSpike = true;
         normalMonster_setting.movespeed = 0;
         yield return new WaitForSeconds(1f);
@@ -142,6 +180,10 @@ public class PumpkinBoss_main : MonoBehaviour
     //======================揮劍攻擊======================
     IEnumerator attack_Slash()
     {
+        if(isSlash || isSpike || isSpawn||isSpell)
+        {
+            yield break;
+        }
         isSlash = true;
         normalMonster_setting.movespeed = 0;
         yield return new WaitForSeconds(1f);
@@ -178,23 +220,92 @@ public class PumpkinBoss_main : MonoBehaviour
     //======================法術攻擊======================
     IEnumerator attack_spell()
     {
+        if(isSlash || isSpike || isSpawn||isSpell)
+        {
+            yield break;
+        }
         isSpell = true;
         normalMonster_setting.movespeed = 0;
         yield return new WaitForSeconds(1f);
         headlight.intensity = 0;
-        ani.SetBool("attack_spell",true);
         yield return new WaitForSeconds(0.1f);
-        ani.SetBool("attack_spell",false);
+        for(int i = 0; i < 10; i++)
+        {
+            //發射火球
+            ani.SetTrigger("attack_magic");
+            GameObject fireball_clone = Instantiate(fireball, transform.position, Quaternion.identity);
+            fireball_clone.SetActive(true);
+            Vector2 direction = (player.transform.position - transform.position).normalized;
+            float randomAngle = Random.Range(-30f, 30f);
+            direction = Quaternion.Euler(0, 0, randomAngle) * direction;
+            fireball_clone.transform.right = direction;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            fireball.transform.rotation = Quaternion.Euler(0, 0, angle);
+            Rigidbody2D bulletRb = fireball_clone.GetComponent<Rigidbody2D>();
+            bulletRb.velocity = direction * 10;
+            yield return new WaitForSeconds(0.5f);
+        }
+
         yield return new WaitForSeconds(5);
         normalMonster_setting.movespeed = 3;
         headlight.intensity = 5;
         randomSet_attackType();
         isSpell = false;
     }
+    //======================生成小怪======================
+    IEnumerator attack_spawn()
+    {
+        if(isSlash || isSpike || isSpawn||isSpell)
+        {
+            yield break;
+        }
+        isSpawn = true;
+        normalMonster_setting.movespeed = 0;
+        yield return new WaitForSeconds(5);
+        spawnEffect.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        spawnEffect.SetActive(false);
+        for(int i = 0; i < 8; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            Vector2 randomPosition;
+            randomPosition = Random.insideUnitCircle * 5f;
+            GameObject pumpkin_monster1 = MonsterObjectPool.Instance.GetMonster(MonsterObjectPool.MonsterType.pumpkin_monster1);
+            pumpkin_monster1.transform.position = transform.position + new Vector3(randomPosition.x, randomPosition.y, 0);
+            // 檢查生成位置是否在限制範圍內
+            Vector2 spawnPos = pumpkin_monster1.transform.TransformPoint(Vector3.zero);
+            Vector2 point1 = limitspawnArea_point1;
+            Vector2 point2 = limitspawnArea_point2;
+            
+            // 如果超出範圍則刪除
+            if(spawnPos.x < point1.x || spawnPos.x > point2.x || 
+                spawnPos.y > point1.y || spawnPos.y < point2.y) {
+                MonsterObjectPool.Instance.ReturnMonster(pumpkin_monster1);
+                Debug.Log("超出範圍");
+            }
+        }
+        if(spawn_intro == false)
+        {
+            GuideSystem.Instance.Guide("(擊敗<color=orange>南瓜分裂體</color>可以<color=green>回復生命</color>)");
+            spawn_intro = true;
+        }
+        isSpawn = false;
+    }
     private void OnDrawGizmos() {
         Gizmos.color = Color.red; //紅色線為slash攻擊範圍
         Gizmos.DrawWireSphere(transform.position,5f);
         Gizmos.color = Color.blue; //藍色線為spike攻擊範圍
         Gizmos.DrawWireSphere(transform.position,3f);
+        Gizmos.color = Color.yellow; //黃色線為spell攻擊範圍
+        Gizmos.DrawWireSphere(transform.position,10f);
+        
+        // 使用全域座標繪製限制區域
+        Vector3 point1 = limitspawnArea_point1;
+        Vector3 point2 = limitspawnArea_point2;
+        Gizmos.color = Color.green; //綠色線為spawn攻擊範圍
+        Gizmos.DrawLine(point1, new Vector3(point2.x, point1.y, 0));
+        Gizmos.DrawLine(point1, new Vector3(point1.x, point2.y, 0));
+        Gizmos.DrawLine(point2, new Vector3(point1.x, point2.y, 0));
+        Gizmos.DrawLine(point2, new Vector3(point2.x, point1.y, 0));
     }
 }

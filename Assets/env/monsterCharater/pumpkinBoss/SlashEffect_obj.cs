@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlashEffect_obj : MonoBehaviour
 {
-    public float damage = 10;
+    private float damage = 10;
     public PlayerControl playerControl;
     void Start()
     {

@@ -36,6 +36,7 @@ public class NormalMonster_setting : MonoBehaviour
     [SerializeField] private critical_effect critical_effect;
     bool isFlip = false;
     private bool isBurning = false; // 新增：標記是否正在燃燒
+    public bool isDead = false; // 新增：標記是否已死亡
     public float HP = 100f;  // 直接使用HP作为基础值
     public float init_HP;
     void Awake()
@@ -44,6 +45,7 @@ public class NormalMonster_setting : MonoBehaviour
     }
     void Start()
     {
+        isDead = false; // 初始化死亡標記
         Healthbar = GameObject.Find("healthbar").GetComponent<healthbar>();
         experienceSystem = FindObjectOfType<ExperienceSystem>();
         weaponManager = FindObjectOfType<Weapon_Manager>();
@@ -222,6 +224,12 @@ public class NormalMonster_setting : MonoBehaviour
 
     public void MonsterDead(GameObject monster)
     {
+        if(monster.name.Contains("Pumpkin_monster1"))
+        {
+            playerControl.HP += 3;
+        }
+        
+
         if (monster == null) return;
 
         // 1. 停止所有行為

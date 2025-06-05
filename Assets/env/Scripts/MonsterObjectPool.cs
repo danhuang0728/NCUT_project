@@ -173,6 +173,8 @@ public class MonsterObjectPool : MonoBehaviour
         Cherry_monster,
         blueberry_monster,
         bellfruit_monster,
-        lemonSlime_boss
+        lemonSlime_boss,
+        pumpkin_monster1,
+        pumpkin_monster2
     }
 } 

@@ -13,6 +13,8 @@ public class Cutscenes : MonoBehaviour
     public float fadeInTime = 1.5f; // 增加淡入時間
     public float fadeOutTime = 1.0f; // 淡出時間
     
+    private bool isSkipping = false;
+    
     void Awake()
     {
         img.color = new Color(0, 0, 0, 1);
@@ -22,7 +24,11 @@ public class Cutscenes : MonoBehaviour
 
     void Update()
     {
-        
+        // 檢測任意按鍵輸入
+        if (Input.anyKeyDown)
+        {
+            isSkipping = true;
+        }
     }
     
     IEnumerator startCutscene()
@@ -33,6 +39,8 @@ public class Cutscenes : MonoBehaviour
         // 顯示文字陣列中的每一段文字
         for (int i = 0; i < text.Length; i++)
         {
+            if (isSkipping) break;
+            
             // 重置文字
             textMeshProUGUI.text = "";
             textMeshProUGUI.color = new Color(1, 1, 1, 1); // 設置為完全可見
@@ -41,6 +49,8 @@ public class Cutscenes : MonoBehaviour
             string currentText = text[i];
             for (int charIndex = 0; charIndex < currentText.Length; charIndex++)
             {
+                if (isSkipping) break;
+                
                 textMeshProUGUI.text = currentText.Substring(0, charIndex + 1);
                 
                 // 使用非線性曲線增強淡入效果
@@ -52,6 +62,8 @@ public class Cutscenes : MonoBehaviour
                 yield return new WaitForSeconds(typingSpeed);
             }
             
+            if (isSkipping) break;
+            
             // 確保文字完全顯示
             textMeshProUGUI.text = currentText;
             textMeshProUGUI.color = new Color(1, 1, 1, 1);
@@ -59,19 +71,26 @@ public class Cutscenes : MonoBehaviour
             // 等待一段時間讓玩家閱讀
             yield return new WaitForSeconds(readTime);
             
+            if (isSkipping) break;
+            
             // 文字淡出
             float elapsedTime = 0;
-            while (elapsedTime < fadeOutTime)
+            while (elapsedTime < fadeOutTime && !isSkipping)
             {
                 textMeshProUGUI.color = new Color(1, 1, 1, 1 - (elapsedTime / fadeOutTime));
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
             
+            if (isSkipping) break;
+            
             // 確保文字完全消失
             textMeshProUGUI.color = new Color(1, 1, 1, 0);
-            yield return new WaitForSeconds(0.5f);
+            if (!isSkipping) yield return new WaitForSeconds(0.5f);
         }
+        
+        // 立即隱藏文字
+        textMeshProUGUI.color = new Color(1, 1, 1, 0);
         
         // 圖片淡出
         float fadeElapsedTime = 0;
