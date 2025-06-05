@@ -35,10 +35,6 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
     {   
         dialoguePanel.SetActive(false); // 初始時禁用對話面板
         ClearButtonListeners();
-        ans1_btn.GetComponent<Button>().onClick.AddListener(ans1);
-        ans2_btn.GetComponent<Button>().onClick.AddListener(ans2);
-        ans3_btn.GetComponent<Button>().onClick.AddListener(ans3);
-        end_btn.GetComponent<Button>().onClick.AddListener(end);
         levelTrigger = FindObjectOfType<LevelTrigger>();
     }
 
@@ -56,10 +52,15 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
             }
             else // 如果對話面板未顯示
             {
+                UIstate.isAnyPanelOpen = true;
                 dialoguePanel.SetActive(true); // 激活對話面板
                 ans1_btn.SetActive(true);
                 ans2_btn.SetActive(true);
                 ans3_btn.SetActive(true);
+                ans1_btn.GetComponent<Button>().onClick.AddListener(ans1);
+                ans2_btn.GetComponent<Button>().onClick.AddListener(ans2);
+                ans3_btn.GetComponent<Button>().onClick.AddListener(ans3);
+                end_btn.GetComponent<Button>().onClick.AddListener(end);
                 ans1_text.text = ans1_str;
                 ans2_text.text = ans2_str;
                 ans3_text.text = ans3_str;
@@ -81,6 +82,7 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
         
         if (dialoguePanel != null) // 如果對話面板有效
         {
+            UIstate.isAnyPanelOpen = false;
             dialoguePanel.SetActive(false); // 禁用對話面板
         }
     }
@@ -112,11 +114,37 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
         if (index < dialogue.Count) // 如果索引在有效範圍內
         {
             dialogueText.text = ""; // 清空當前文本
-            foreach (char letter in dialogue[index].ToCharArray()) // 遍歷當前對話字符
+            string currentDialogue = dialogue[index];
+            int i = 0;
+            float lastUpdateTime = Time.realtimeSinceStartup;
+            
+            while (i < currentDialogue.Length)
             {
+                float currentTime = Time.realtimeSinceStartup;
+                if (currentTime - lastUpdateTime >= wordspeed)
+                {
+                    // 處理HTML標籤
+                    if (currentDialogue[i] == '<')
+                    {
+                        int tagEnd = currentDialogue.IndexOf('>', i);
+                        if (tagEnd == -1) tagEnd = currentDialogue.Length;
+                        
+                        // 一次性加入完整標籤
+                        dialogueText.text += currentDialogue.Substring(i, tagEnd - i + 1);
+                        i = tagEnd + 1;
+                    }
+                    else
+                    {
+                        // 正常逐字顯示
+                        dialogueText.text += currentDialogue[i];
+                        i++;
+                    }
+                    
+                    lastUpdateTime = currentTime;
+                }
+                
                 if (dialogueText == null) yield break; // 安全檢查
-                dialogueText.text += letter; // 逐字添加到文本
-                yield return new WaitForSeconds(wordspeed); // 等待指定時間
+                yield return null;
             }
         }
         

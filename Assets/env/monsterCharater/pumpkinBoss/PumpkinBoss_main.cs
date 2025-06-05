@@ -10,6 +10,8 @@ public class PumpkinBoss_main : MonoBehaviour
     private Rigidbody2D rig;
     private NormalMonster_setting normalMonster_setting;
     private float timer = 0f;
+    private float previousXPosition; // 添加移動前位置的變量
+    private bool isFlip = false; // 添加翻轉狀態的變量
     private enum AttackType
     {
         none,
@@ -25,6 +27,7 @@ public class PumpkinBoss_main : MonoBehaviour
     public Light2D headlight;
     public GameObject slashEffect;
     public GameObject slashEffect2;
+    public GameObject spikeEffect;
     void Start()
     {
         ani = GetComponent<Animator>();
@@ -44,6 +47,33 @@ public class PumpkinBoss_main : MonoBehaviour
         else
         {
             ani.SetBool("move",false);
+        }
+        previousXPosition = transform.position.x; //previousXPosition 為移動前位置
+        
+        Vector2 direction = player.transform.position - transform.position;
+        direction.Normalize();
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, normalMonster_setting.movespeed * Time.deltaTime );
+
+        float currentXPosition = transform.position.x;  //currentXPosition 為移動後的位置
+        if (currentXPosition < previousXPosition) //x變小往左移動
+        {
+            if (isFlip == false) 
+            {
+                isFlip = true;
+                var main = spikeEffect.GetComponent<ParticleSystem>().main;
+                main.startRotation = new ParticleSystem.MinMaxCurve(0f);
+            }
+            else{}
+        }
+        if (currentXPosition > previousXPosition) //x變大往右移動
+        {
+            if (isFlip == true)
+            {
+                isFlip = false;
+                var main = spikeEffect.GetComponent<ParticleSystem>().main;
+                main.startRotation = new ParticleSystem.MinMaxCurve(0f);
+            }
+            else{}
         }
         //三秒後要是攻擊方式沒發生變化就抽一次
         timer += Time.deltaTime;
@@ -81,7 +111,7 @@ public class PumpkinBoss_main : MonoBehaviour
     IEnumerator randomSet_attackType()
     {
         yield return new WaitForSeconds(3f);
-        int randomint = Random.Range(0,2);
+        int randomint = Random.Range(0,3);
         switch(randomint)
         {
             case 0:
@@ -112,7 +142,7 @@ public class PumpkinBoss_main : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         ani.SetBool("attack_spike",false);
         yield return new WaitForSeconds(1);
-        if(Vector2.Distance(transform.position,player.transform.position) < 3f)
+        if(Vector2.Distance(transform.position,player.transform.position) < 4f)
         {
             if (player != null)
             {
