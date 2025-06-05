@@ -119,6 +119,7 @@ public class PumpkinBoss_main : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         ani.SetBool("attack_spike",false);
         yield return new WaitForSeconds(1);
+        spikeEffect.GetComponent<Animator>().SetTrigger("play");
         if(Vector2.Distance(transform.position,player.transform.position) < 4f)
         {
             if (player != null)
@@ -152,7 +153,7 @@ public class PumpkinBoss_main : MonoBehaviour
         //蓄力時決定批砍方向
         Vector2 direction = (player.transform.position - transform.position).normalized;
         yield return new WaitForSeconds(1.5f);
-        slashEffect2.SetActive(true);
+        slashEffect2.GetComponent<Animator>().SetTrigger("play");
         if (slashEffect != null)
         {
             GameObject slash = Instantiate(slashEffect, transform.position, Quaternion.identity);
@@ -164,8 +165,10 @@ public class PumpkinBoss_main : MonoBehaviour
             bulletRb.velocity = direction * 70;
             Destroy(slash, 1f);
         }
+        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.75f);
+
         yield return new WaitForSeconds(3);
-        slashEffect2.SetActive(false);
         normalMonster_setting.movespeed = 3;
         headlight.intensity = 5;
         randomSet_attackType();
