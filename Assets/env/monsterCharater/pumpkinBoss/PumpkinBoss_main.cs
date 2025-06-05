@@ -28,12 +28,14 @@ public class PumpkinBoss_main : MonoBehaviour
     public GameObject slashEffect;
     public GameObject slashEffect2;
     public GameObject spikeEffect;
+    private PlayerControl playerControl;
     void Start()
     {
         ani = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         normalMonster_setting = GetComponent<NormalMonster_setting>();
         player = GameObject.Find("player1");
+        playerControl = player.GetComponent<PlayerControl>();
         StartCoroutine(randomSet_attackType());
     }
 
@@ -50,31 +52,6 @@ public class PumpkinBoss_main : MonoBehaviour
         }
         previousXPosition = transform.position.x; //previousXPosition 為移動前位置
         
-        Vector2 direction = player.transform.position - transform.position;
-        direction.Normalize();
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, normalMonster_setting.movespeed * Time.deltaTime );
-
-        float currentXPosition = transform.position.x;  //currentXPosition 為移動後的位置
-        if (currentXPosition < previousXPosition) //x變小往左移動
-        {
-            if (isFlip == false) 
-            {
-                isFlip = true;
-                var main = spikeEffect.GetComponent<ParticleSystem>().main;
-                main.startRotation = new ParticleSystem.MinMaxCurve(0f);
-            }
-            else{}
-        }
-        if (currentXPosition > previousXPosition) //x變大往右移動
-        {
-            if (isFlip == true)
-            {
-                isFlip = false;
-                var main = spikeEffect.GetComponent<ParticleSystem>().main;
-                main.startRotation = new ParticleSystem.MinMaxCurve(0f);
-            }
-            else{}
-        }
         //三秒後要是攻擊方式沒發生變化就抽一次
         timer += Time.deltaTime;
         if (timer >= 5f)
@@ -86,12 +63,12 @@ public class PumpkinBoss_main : MonoBehaviour
         //=================攻擊觸發=================
         if(attackType == AttackType.none)
         {
-            normalMonster_setting.movespeed = 3;
+            normalMonster_setting.movespeed = 2;
         }
         
         if (attackType == AttackType.slash && !isSlash)
         {
-            normalMonster_setting.movespeed = 3;
+            normalMonster_setting.movespeed = 4;
             if(Vector2.Distance(transform.position,player.transform.position) < 5f)
             {
                 StartCoroutine(attack_Slash());
@@ -151,6 +128,7 @@ public class PumpkinBoss_main : MonoBehaviour
                 if (playerRb != null)
                 {
                     playerRb.AddForce(knockbackDirection * 30f, ForceMode2D.Impulse);
+                    playerControl.TakeDamage(40);
                 }
             }
         }
@@ -158,6 +136,7 @@ public class PumpkinBoss_main : MonoBehaviour
         headlight.intensity = 5;
         randomSet_attackType();
         isSpike = false;
+        yield return new WaitForSeconds(0.5f);
     }
     //======================揮劍攻擊======================
     IEnumerator attack_Slash()
@@ -191,6 +170,7 @@ public class PumpkinBoss_main : MonoBehaviour
         headlight.intensity = 5;
         randomSet_attackType();
         isSlash = false;
+        yield return new WaitForSeconds(0.5f);
     }
     //======================法術攻擊======================
     IEnumerator attack_spell()

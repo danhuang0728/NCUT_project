@@ -288,7 +288,7 @@ public class VitaminManager : MonoBehaviour
                 {
                     float currentIntensity = playerLight.intensity;
                     playerLight.intensity = currentIntensity * 1.5f; // 增加50%视野
-                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.blindness);
+                    BuffGroup_manager.instance.setOpenIcon(BuffGroup_manager.BuffType.Night_Vision);
                     Debug.Log($"提升視野亮度至: {playerLight.intensity}");
                 }
                 break;
