@@ -235,7 +235,7 @@ MonoBehaviour:
   HP: 14
   init_HP: 0
   monster: {fileID: 6592979216200263496}
-  movespeed: 1.48
+  movespeed: 1.8
 --- !u!58 &3214541789488166926
 CircleCollider2D:
   m_ObjectHideFlags: 0
