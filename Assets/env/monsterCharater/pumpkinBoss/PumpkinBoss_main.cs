@@ -77,7 +77,7 @@ public class PumpkinBoss_main : MonoBehaviour
         if (attackType == AttackType.spike && !isSpike)
         {
             normalMonster_setting.movespeed = 3;
-            if(Vector2.Distance(transform.position,player.transform.position) < 5f)
+            if(Vector2.Distance(transform.position,player.transform.position) < 3f)
             {
                 StartCoroutine(attack_spike());
             }
