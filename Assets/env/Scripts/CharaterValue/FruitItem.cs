@@ -36,7 +36,7 @@ public class FruitItem : MonoBehaviour
             GuideSystem.Instance.Guide("看到掉落的<color=#009100>水果</color>了嗎?"); 
             GuideSystem.Instance.Guide("維生素會隨著時間減少");
             GuideSystem.Instance.Guide("當維生素低於一定程度時會受到<color=red>負面效果</color>的影響");
-            GuideSystem.Instance.Guide("記得及時補充<color=#009100>水果</color>補充維生素");
+            GuideSystem.Instance.Guide("記得吃<color=#009100>水果</color>補充維生素");
         }
     }
 
