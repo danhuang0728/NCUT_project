@@ -58,6 +58,9 @@ public class NormalMonster_setting : MonoBehaviour
         MediumExpPrefab = GameObject.Find("exp2");
         HighExpPrefab = GameObject.Find("exp3");
 
+        // 自動獲取武器箱預製體
+        boxPrefab = GameObject.Find("WeaponBox");
+
         // 根据等级和武器计算HP
         if (experienceSystem != null && weaponManager != null)
         {
