@@ -57,6 +57,14 @@ public class FruitItem : MonoBehaviour
             // 根据水果类型补充对应的维生素
             VitaminType vitaminType = GetVitaminType(fruitType);
             vitaminManager.AddVitamin(vitaminType, 40f);
+            // 补充其他维生素各10点
+            foreach (VitaminType type in System.Enum.GetValues(typeof(VitaminType)))
+            {
+                if (type != vitaminType)
+                {
+                    vitaminManager.AddVitamin(type, 10f);
+                }
+            }
             introduceFruit(fruitType);
             AudioManager.Instance.PlaySFX("collect_fruit");
             

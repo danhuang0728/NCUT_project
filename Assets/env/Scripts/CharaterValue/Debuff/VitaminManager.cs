@@ -27,11 +27,11 @@ public class VitaminManager : MonoBehaviour
     private Dictionary<VitaminType, VitaminState> vitaminStates = new Dictionary<VitaminType, VitaminState>();
     
     // 常量
-    private const float MAX_VITAMIN_LEVEL = 120f;
+    private const float MAX_VITAMIN_LEVEL = 300f;
     private const float VITAMIN_DECREASE_RATE = 1f; // 每秒减少量
     private const float VITAMIN_INCREASE_AMOUNT = 20f; // 吃到水果时增加量
-    private const float DEBUFF_THRESHOLD = 40f; // 低于此值触发Debuff
-    private const float BUFF_THRESHOLD = 90f; // 高于此值触发Buff
+    private const float DEBUFF_THRESHOLD = 50f; // 低于此值触发Debuff
+    private const float BUFF_THRESHOLD = 200f; // 高于此值触发Buff
 
     private DebuffManager debuffManager;
     private float debugTimer = 0f; // 用于控制Debug输出的计时器
@@ -78,7 +78,7 @@ public class VitaminManager : MonoBehaviour
         // 初始化维生素值和状态
         foreach (VitaminType vitamin in System.Enum.GetValues(typeof(VitaminType)))
         {
-            vitaminLevels[vitamin] = 85f;  // 将初始值设为85
+            vitaminLevels[vitamin] = 175f;  // 将初始值设为175
             vitaminStates[vitamin] = VitaminState.Normal;  // 初始状态为正常
         }
     }

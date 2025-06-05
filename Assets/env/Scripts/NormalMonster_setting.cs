@@ -53,6 +53,11 @@ public class NormalMonster_setting : MonoBehaviour
         damageEffect = GameObject.Find("damage_effect").GetComponent<damage_effect>();
         critical_effect = GameObject.Find("critical_effect").GetComponent<critical_effect>();
 
+        // 自動獲取經驗球預製體
+        LowExpPrefab = GameObject.Find("exp1");
+        MediumExpPrefab = GameObject.Find("exp2");
+        HighExpPrefab = GameObject.Find("exp3");
+
         // 根据等级和武器计算HP
         if (experienceSystem != null && weaponManager != null)
         {
@@ -326,7 +331,7 @@ public class NormalMonster_setting : MonoBehaviour
     private void HandleFruitMonsterDrop()
     {
         float rand = Random.value;
-        if (rand < 0.5f && fruitPrefab != null)
+        if (rand < 0.1f && fruitPrefab != null)  // 將0.5f改為0.1f，使掉落機率變為10%
         {
             GameObject fruit = FruitObjectPool.Instance.GetFruit(monsterFruitType);
             if (fruit != null)
