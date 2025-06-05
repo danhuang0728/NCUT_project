@@ -212,6 +212,7 @@ MonoBehaviour:
   slashEffect: {fileID: 4409639039027391986, guid: eb31d46c32cedec42918d46f5bbed4d8,
     type: 3}
   slashEffect2: {fileID: 1653840639968308009}
+  spikeEffect: {fileID: 0}
 --- !u!114 &6249979630092945647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ MonoBehaviour:
   HP: 50000
   init_HP: 0
   monster: {fileID: 5674199495273061037}
-  movespeed: 5
+  movespeed: 3
 --- !u!58 &7036938200161634020
 CircleCollider2D:
   m_ObjectHideFlags: 0

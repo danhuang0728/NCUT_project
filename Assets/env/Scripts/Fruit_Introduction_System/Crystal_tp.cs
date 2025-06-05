@@ -9,7 +9,8 @@ public class crystal_TP : MonoBehaviour
     public Transform crystal_TP_target;
     private GameObject player_camera;
     private float distance;
-
+    private bool isInRange = false;
+    private float rangeTimer = 0f;
     private void Start()
     {
         crystal_TP_effect_prb.SetActive(false);
@@ -19,11 +20,27 @@ public class crystal_TP : MonoBehaviour
     private void Update()
     {
         distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance < 1.5f && Input.GetKeyDown(KeyCode.E))
+        if (distance < 1.5f)
         {
-            player.transform.position = crystal_TP_target.position;
-            player_camera.transform.position = crystal_TP_target.position;
-            StartCoroutine(TeleportEffect());
+            if (!isInRange)
+            {
+                isInRange = true;
+                rangeTimer = 0f;
+            }
+            rangeTimer += Time.deltaTime;
+            
+            if (rangeTimer >= 0.5f && Input.GetKeyDown(KeyCode.E))
+            {
+                player.transform.position = crystal_TP_target.position;
+                player_camera.transform.position = crystal_TP_target.position;
+                StartCoroutine(TeleportEffect());
+                isInRange = false;
+            }
+        }
+        else
+        {
+            isInRange = false;
+            rangeTimer = 0f;
         }
     }
 
