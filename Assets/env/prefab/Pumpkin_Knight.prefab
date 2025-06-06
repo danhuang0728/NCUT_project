@@ -460,7 +460,7 @@ MonoBehaviour:
   damageEffect: {fileID: 0}
   critical_effect: {fileID: 0}
   isDead: 0
-  HP: 50000
+  HP: 70000
   init_HP: 0
   monster: {fileID: 5674199495273061037}
   movespeed: 3

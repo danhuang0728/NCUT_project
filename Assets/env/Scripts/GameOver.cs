@@ -48,7 +48,14 @@ public class GameOver : MonoBehaviour
     public void save()
     {
         SaveCharacterData();
-        SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
+        if(SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveDataToPlayerPrefs_Tetr();
+        }
+        else
+        {
+            Debug.LogError("能力方塊未正確儲存檔案");
+        }
     }
     public IEnumerator dead()
     {

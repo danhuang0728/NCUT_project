@@ -8,6 +8,7 @@ public class PumpkinBoss_main : MonoBehaviour
     private GameObject player;
     private Animator ani;  
     private Rigidbody2D rig;
+    private End end;
     private NormalMonster_setting normalMonster_setting;
     private float timer = 0f;
     private float previousXPosition; // 添加移動前位置的變量
@@ -40,6 +41,7 @@ public class PumpkinBoss_main : MonoBehaviour
         ani = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         normalMonster_setting = GetComponent<NormalMonster_setting>();
+        end = FindObjectOfType<End>();
         player = GameObject.Find("player1");
         playerControl = player.GetComponent<PlayerControl>();
         StartCoroutine(randomSet_attackType());
@@ -93,8 +95,8 @@ public class PumpkinBoss_main : MonoBehaviour
         }
         if (attackType == AttackType.spike && !isSpike)
         {
-            normalMonster_setting.movespeed = 3;
-            if(Vector2.Distance(transform.position,player.transform.position) < 3f)
+            normalMonster_setting.movespeed = 10;
+            if(Vector2.Distance(transform.position,player.transform.position) < 2.5f)
             {
                 StartCoroutine(attack_spike());
             }
@@ -307,5 +309,9 @@ public class PumpkinBoss_main : MonoBehaviour
         Gizmos.DrawLine(point1, new Vector3(point1.x, point2.y, 0));
         Gizmos.DrawLine(point2, new Vector3(point1.x, point2.y, 0));
         Gizmos.DrawLine(point2, new Vector3(point2.x, point1.y, 0));
+    }
+    //======================死亡後遊戲結束======================
+    private void OnDestroy() {
+        end.startEndCutscene_void();
     }
 }

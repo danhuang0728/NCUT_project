@@ -15,7 +15,7 @@ public class SlashEffect_obj : MonoBehaviour
     void Update()
     {
         //最大生命20%傷害
-        damage = (100+playerControl.Calculating_Values_damage) * 0.2f;
+        damage = (100+playerControl.Calculating_Values_damage) * 0.4f;
     }
     void OnTriggerEnter2D(Collider2D other)
     {

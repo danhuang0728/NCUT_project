@@ -27,7 +27,7 @@ public class Pumpkin_Knight_spawn : MonoBehaviour
     IEnumerator spawnEffect()
     {
         yield return new WaitForSeconds(4f);
-
+        AudioManager.Instance.PlayMusic("Boss_music");
         //激活特效物件
         effect1.SetActive(true);
         effect2.SetActive(true);
