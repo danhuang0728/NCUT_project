@@ -33,6 +33,7 @@ public class PumpkinBoss_main : MonoBehaviour
     public GameObject slashEffect2;
     public GameObject spikeEffect;
     public GameObject spawnEffect;
+    public GameObject PunchLight;
     public Vector3 limitspawnArea_point1 = new Vector3(494.241699f,-121.400566f,0.120918632f);
     public Vector3 limitspawnArea_point2 = new Vector3(529.141724f,-140.120575f,0.120918632f);
     private PlayerControl playerControl;
@@ -233,6 +234,7 @@ public class PumpkinBoss_main : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for(int i = 0; i < 10; i++)
         {
+            PunchLight.SetActive(true);
             //發射火球
             ani.SetTrigger("attack_magic");
             GameObject fireball_clone = Instantiate(fireball, transform.position, Quaternion.identity);
@@ -245,9 +247,10 @@ public class PumpkinBoss_main : MonoBehaviour
             fireball.transform.rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D bulletRb = fireball_clone.GetComponent<Rigidbody2D>();
             bulletRb.velocity = direction * 10;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
+            PunchLight.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
         }
-
         yield return new WaitForSeconds(5);
         normalMonster_setting.movespeed = 3;
         headlight.intensity = 5;
