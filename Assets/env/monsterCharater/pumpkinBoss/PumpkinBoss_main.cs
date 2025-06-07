@@ -47,6 +47,7 @@ public class PumpkinBoss_main : MonoBehaviour
         playerControl = player.GetComponent<PlayerControl>();
         StartCoroutine(randomSet_attackType());
         Debug.Log("攻擊類型"+attackType);
+        PunchLight.SetActive(false);
     }
 
     // Update is called once per frame
@@ -234,9 +235,9 @@ public class PumpkinBoss_main : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for(int i = 0; i < 10; i++)
         {
-            PunchLight.SetActive(true);
             //發射火球
             ani.SetTrigger("attack_magic");
+            PunchLight.SetActive(true);
             GameObject fireball_clone = Instantiate(fireball, transform.position, Quaternion.identity);
             fireball_clone.SetActive(true);
             Vector2 direction = (player.transform.position - transform.position).normalized;
