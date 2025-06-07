@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Healthbar: {fileID: 0}
   monster_type: 1
-  exp_type: 1
+  exp_type: 2
   LowExpPrefab: {fileID: 0}
   MediumExpPrefab: {fileID: 0}
   HighExpPrefab: {fileID: 0}
@@ -233,7 +233,8 @@ MonoBehaviour:
   minspeed: 1
   damageEffect: {fileID: 0}
   critical_effect: {fileID: 0}
-  HP: 5
+  isDead: 0
+  HP: 400
   init_HP: 0
   monster: {fileID: 1499641516396923050}
   movespeed: 2

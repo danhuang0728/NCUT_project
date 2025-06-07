@@ -150,7 +150,8 @@ MonoBehaviour:
   minspeed: 1
   damageEffect: {fileID: 0}
   critical_effect: {fileID: 0}
-  HP: 15
+  isDead: 0
+  HP: 25
   init_HP: 0
   monster: {fileID: 3639035000825220786}
   movespeed: 2
