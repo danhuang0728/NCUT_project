@@ -328,7 +328,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.Strawberry:
                 if(!fruitIntroduced.ContainsKey(FruitType.Strawberry) || !fruitIntroduced[FruitType.Strawberry])
                 {
-                    GuideSystem.Instance.Guide("<color=#ff4500>草莓</color>:富含維生素C、鉀、鎂、鈣、葉酸、膳食纖維");
+                    GuideSystem.Instance.Guide("<color=#ff0000>草莓</color>:富含維生素C、鉀、鎂、鈣、葉酸、膳食纖維");
                     GuideSystem.Instance.Guide("可以預防心臟病、中風、癌症、高血壓及便秘");
                     GuideSystem.Instance.Guide("攝取草莓可以解除掉<color=red>缺血</color>效果");
                     fruitIntroduced[FruitType.Strawberry] = true;
