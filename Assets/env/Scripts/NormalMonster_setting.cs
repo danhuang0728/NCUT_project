@@ -352,6 +352,7 @@ public class NormalMonster_setting : MonoBehaviour
         float rand = Random.value;
         if (rand < 0.1f && fruitPrefab != null)  // 將0.5f改為0.1f，使掉落機率變為10%
         {
+            Debug.Log("掉落水果:" + monsterFruitType);
             GameObject fruit = FruitObjectPool.Instance.GetFruit(monsterFruitType);
             if (fruit != null)
             {

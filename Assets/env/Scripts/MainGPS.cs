@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MainGPS : MonoBehaviour
 {
+    public static MainGPS Instance;
     private GameObject player;
     public GameObject[] targetPoint;
     public float offset_angle = -45; // 偏移角度
     void Start()
     {
+        Instance = this;
         player = FindObjectOfType<PlayerControl>().gameObject;
         transform.position = player.transform.position;
         gameObject.SetActive(false); // 初始隱藏GPS物件
@@ -38,8 +40,8 @@ public class MainGPS : MonoBehaviour
                         
         }
 
-        //暫時限制在第三關
-        if(LevelTrigger.levelFinish > 2)
+        //暫時限制在第5關
+        if(LevelTrigger.levelFinish > 6)
         {
             closeGPS();
         }

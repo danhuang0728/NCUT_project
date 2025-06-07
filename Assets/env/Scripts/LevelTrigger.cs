@@ -100,8 +100,6 @@ public class LevelTrigger : MonoBehaviour
         if (collider2d.IsTouchingLayers(player)) // 進入房間的觸發器 判斷是否進入房間
         {
             LevelTrigger.levelFinish++; // 計算通關進度
-            //GPS關閉
-            playerGPS.closeGPS();
             //進入房間
             if (collider2d != null) // 讓觸發器只能觸發一次
             {
@@ -316,7 +314,7 @@ public class LevelTrigger : MonoBehaviour
         GameObject[] expObjects = GameObject.FindGameObjectsWithTag("exp"); // 獲取所有tag為exp的物件
         Transform playerPosition = playerTransform; // 獲取玩家的位置
         //GPS開啟
-        playerGPS.openGPS();
+        MainGPS.Instance.openGPS();
 
         float duration = 10f; // 設定持續時間為10秒
         float elapsedTime = 0f; // 已經過的時間

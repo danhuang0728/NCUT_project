@@ -175,7 +175,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.Kiwi:
                 if(!fruitIntroduced.ContainsKey(FruitType.Kiwi) || !fruitIntroduced[FruitType.Kiwi])
                 {
-                    GuideSystem.Instance.Guide("<color=#7cfc00>奇異果</color>:富含維生素C、維生素E、葉黃素、β-胡蘿蔔素以及膳食纖維");
+                    GuideSystem.Instance.Guide("<color=#7cfc00>奇異果</color>:富含維生素C、維生素E、β-胡蘿蔔素以及膳食纖維");//
                     GuideSystem.Instance.Guide("可以促進心血管健康，降低高血壓風險");
                     GuideSystem.Instance.Guide("攝取奇異果可以解除掉<color=red>缺血</color>效果");
                     fruitIntroduced[FruitType.Kiwi] = true;
@@ -215,7 +215,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.SugarApple:
                 if(!fruitIntroduced.ContainsKey(FruitType.SugarApple) || !fruitIntroduced[FruitType.SugarApple])
                 {
-                    GuideSystem.Instance.Guide("<color=#7fff00>釋迦</color>:富含蛋白質、碳水化合物、膳食纖維、維生素C、鉀、鈣、磷及鎂");
+                    GuideSystem.Instance.Guide("<color=#7fff00>釋迦</color>:富含蛋白質、碳水化合物、膳食纖維、維生素C");
                     GuideSystem.Instance.Guide("可以維持心血管健康、促進腸胃蠕動、增加飽足感");
                     GuideSystem.Instance.Guide("攝取釋迦可以解除掉<color=red>攻擊力將低</color>效果");
                     fruitIntroduced[FruitType.SugarApple] = true;
@@ -225,7 +225,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.Coconut:
                 if(!fruitIntroduced.ContainsKey(FruitType.Coconut) || !fruitIntroduced[FruitType.Coconut])
                 {
-                    GuideSystem.Instance.Guide("<color=#a0522d>椰子</color>:富含維生素 B1 、維生素 B2 、維生素 C 以及鈣、磷、鐵等微量元素及礦物質");
+                    GuideSystem.Instance.Guide("<color=#a0522d>椰子</color>:富含維生素B1、B2、C以及鈣、磷、鐵等礦物質");
                     GuideSystem.Instance.Guide("可以止咳化痰、改善口腔潰瘍");
                     GuideSystem.Instance.Guide("攝取椰子可以解除掉<color=red>緩速</color>效果");
                     fruitIntroduced[FruitType.Coconut] = true;
@@ -245,7 +245,8 @@ public class FruitItem : MonoBehaviour
             case FruitType.Blueberry:
                 if(!fruitIntroduced.ContainsKey(FruitType.Blueberry) || !fruitIntroduced[FruitType.Blueberry])
                 {
-                    GuideSystem.Instance.Guide("<color=#4169e1>藍莓</color>:富含膳食纖維、維生素C、E、K、葉酸、鈣、鐵、鎂、磷、鉀、鈉、鋅、花青素以及類黃酮");
+                    GuideSystem.Instance.Guide("<color=#4169e1>藍莓</color>:富含膳食纖維、維生素C、E、K、葉酸...");
+                    GuideSystem.Instance.Guide("以及鈣、鐵、鎂、磷、鉀、鈉、鋅、花青素以及類黃酮");
                     GuideSystem.Instance.Guide("可以助注意力集中、養顏美容");
                     GuideSystem.Instance.Guide("攝取藍莓可以解除掉<color=red>攻擊力降低</color>效果");
                     fruitIntroduced[FruitType.Blueberry] = true;
@@ -255,7 +256,8 @@ public class FruitItem : MonoBehaviour
             case FruitType.Mango:
                 if(!fruitIntroduced.ContainsKey(FruitType.Mango) || !fruitIntroduced[FruitType.Mango])
                 {
-                    GuideSystem.Instance.Guide("<color=#ffd700>芒果</color>:富含維生素A、C、ß-胡蘿蔔素、葉黃素、鎂、鉀以及芒果苷");
+                    GuideSystem.Instance.Guide("<color=#ffd700>芒果</color>:富含維生素A、C...");
+                    GuideSystem.Instance.Guide("ß-胡蘿蔔素、葉黃素、鎂、鉀、芒果苷");
                     GuideSystem.Instance.Guide("可以抗癌、維持眼睛健康及改善視力");
                     GuideSystem.Instance.Guide("攝取芒果可以解除掉<color=red>失明</color>效果");
                     fruitIntroduced[FruitType.Mango] = true;
@@ -265,7 +267,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.Pineapple:
                 if(!fruitIntroduced.ContainsKey(FruitType.Pineapple) || !fruitIntroduced[FruitType.Pineapple])
                 {
-                    GuideSystem.Instance.Guide("<color=#EEEE00>鳳梨</color>:富含膳食纖維、維生素C、鉀、鈣、鎂、鋅、類黃酮及鳳梨酵素");
+                    GuideSystem.Instance.Guide("<color=#EEEE00>鳳梨</color>:富含膳食纖維、維生素C、鈣、類黃酮及鳳梨酵素");
                     GuideSystem.Instance.Guide("可以減少運動後肌肉發炎及幫助維持體態");
                     GuideSystem.Instance.Guide("攝取鳳梨可以解除掉<color=red>攻擊力降低</color>效果");
                     fruitIntroduced[FruitType.Pineapple] = true;
@@ -275,7 +277,8 @@ public class FruitItem : MonoBehaviour
             case FruitType.Tomato:
                 if(!fruitIntroduced.ContainsKey(FruitType.Tomato) || !fruitIntroduced[FruitType.Tomato])
                 {
-                    GuideSystem.Instance.Guide("<color=#dc143c>番茄</color>:富含維生素C、K、鉀、茄紅素、β-胡蘿蔔素、綠原酸及柚皮素");
+                    GuideSystem.Instance.Guide("<color=#dc143c>番茄</color>:富含維生素C、K");
+                    GuideSystem.Instance.Guide("以及茄紅素、β-胡蘿蔔素、綠原酸及柚皮素");
                     GuideSystem.Instance.Guide("可以抗氧化、抗老化、保護心臟及有益口腔健康");
                     GuideSystem.Instance.Guide("攝取番茄可以解除掉<color=red>攻擊力降低</color>效果");
                     fruitIntroduced[FruitType.Tomato] = true;
@@ -315,7 +318,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.Longan:
                 if(!fruitIntroduced.ContainsKey(FruitType.Longan) || !fruitIntroduced[FruitType.Longan])
                 {
-                    GuideSystem.Instance.Guide("<color=#d2b48c>龍眼</color>:富含維生素B、C、E、鈣、鎂、鐵、磷、鉀、銅、錳等礦物質");
+                    GuideSystem.Instance.Guide("<color=#d2b48c>龍眼</color>:富含維生素B、C、E、鈣、鎂、鐵、磷、等礦物質");
                     GuideSystem.Instance.Guide("可以預防記憶力下降、保養肌膚與傷口癒合");
                     GuideSystem.Instance.Guide("攝取龍眼可以解除掉<color=red>緩速</color>效果");
                     fruitIntroduced[FruitType.Longan] = true;
@@ -335,7 +338,7 @@ public class FruitItem : MonoBehaviour
             case FruitType.Chili:
                 if(!fruitIntroduced.ContainsKey(FruitType.Chili) || !fruitIntroduced[FruitType.Chili])
                 {
-                    GuideSystem.Instance.Guide("<color=#dc143c>辣椒</color>:富含維生素A、E、K、C、B群、檸檬酸、菸酸、鉀、纖維鐵、鎂等");
+                    GuideSystem.Instance.Guide("<color=#dc143c>辣椒</color>:富含維生素A、C、B群、檸檬酸、菸酸、纖維等");
                     GuideSystem.Instance.Guide("可以維護心臟健康、提高代謝率及瘦身減重");
                     GuideSystem.Instance.Guide("攝取辣椒可以解除掉<color=red>缺血</color>效果");
                     fruitIntroduced[FruitType.Chili] = true;

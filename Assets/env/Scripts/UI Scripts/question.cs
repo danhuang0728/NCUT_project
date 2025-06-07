@@ -196,6 +196,8 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
             if(answer == 1)
             {
                 levelTrigger.CloseTrap();
+                //GPS關閉
+                MainGPS.Instance.closeGPS();
                 isAnswered = true;
             }
         }
@@ -229,6 +231,8 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
             if(answer == 2)
             {
                 levelTrigger.CloseTrap();
+                //GPS關閉
+                MainGPS.Instance.closeGPS();
                 isAnswered = true;
             }
         } 
@@ -262,6 +266,8 @@ public class Question : MonoBehaviour // 定義NPC對話類，繼承自MonoBehav
             if(answer == 3)
             {
                 levelTrigger.CloseTrap();
+                //GPS關閉
+                MainGPS.Instance.closeGPS();
                 isAnswered = true;
             }
         }
