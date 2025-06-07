@@ -12,8 +12,8 @@ public class LevelTrigger : MonoBehaviour
     public Collider2D collider2d;
     public LayerMask player;
     public LayerMask monsterlayer;
-    public int levelminTime = 180;
-    public int levelmaxTime = 180;
+    public int levelminTime = 240;
+    public int levelmaxTime = 240;
     public static int levelFinish = 0;
     [SerializeField] private Transform playerTransform; 
 
