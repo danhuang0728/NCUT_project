@@ -272,18 +272,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Healthbar: {fileID: 0}
-  monster_type: 1
+  monster_type: 2
   exp_type: 1
   LowExpPrefab: {fileID: 0}
   MediumExpPrefab: {fileID: 0}
   HighExpPrefab: {fileID: 0}
-  boxPrefab: {fileID: 5640609810199764700, guid: 2a367c757c996724e8cc707df5f1743d,
-    type: 3}
+  boxPrefab: {fileID: 0}
+  fruitData: {fileID: 0}
+  fruitPrefab: {fileID: 0}
+  monsterFruitType: 0
   maxspeed: 5
   minspeed: 1
   damageEffect: {fileID: 0}
   critical_effect: {fileID: 0}
+  isDead: 0
   HP: 45
+  init_HP: 0
   monster: {fileID: 1898941066597860543}
   movespeed: 3
 --- !u!114 &4313540941053767809

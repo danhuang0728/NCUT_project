@@ -129,6 +129,13 @@ public class RandomSpawn : MonoBehaviour
         if (!levelFightingStates.ContainsKey(levelId))
         {
             levelFightingStates[levelId] = false;
+            Debug.Log($"初始化关卡战斗状态: levelId={levelId}, state=False");
+        }
+        else
+        {
+            // 确保初始状态为false
+            levelFightingStates[levelId] = false;
+            Debug.Log($"重置关卡战斗状态: levelId={levelId}, state=False");
         }
 
         // 設定當前難度為全局難度
@@ -247,14 +254,30 @@ public class RandomSpawn : MonoBehaviour
     void Update()
     {
         // 檢查當前關卡的戰鬥狀態
-        bool currentLevelFighting = TimerPanel.isfighting && levelFightingStates[levelId];
+        bool currentLevelFighting = TimerPanel.isfighting && levelFightingStates.ContainsKey(levelId) && levelFightingStates[levelId];
+        
+        // 添加调试日志，每5秒输出一次状态
+        if (Time.frameCount % 300 == 0) // 约5秒一次（假设60帧/秒）
+        {
+            string stateValue = levelFightingStates.ContainsKey(levelId) ? levelFightingStates[levelId].ToString() : "Not found";
+            Debug.Log($"关卡状态检查: levelId={levelId}, TimerPanel.isfighting={TimerPanel.isfighting}, levelFightingStates={stateValue}, isSpawning={isSpawning}");
+            
+            // 如果应该生成但没有生成，尝试强制启动
+            if (TimerPanel.isfighting && levelFightingStates.ContainsKey(levelId) && levelFightingStates[levelId] && !isSpawning)
+            {
+                Debug.Log($"检测到应该生成但没有生成的情况，尝试重新启动: {levelId}");
+                StartSpawning();
+            }
+        }
         
         if (currentLevelFighting && !isSpawning)
         {
+            Debug.Log($"开始生成怪物: levelId={levelId}");
             StartSpawning();
         }
-        else if (!currentLevelFighting && isSpawning)
+        else if (!TimerPanel.isfighting && isSpawning) // 修改这里，只检查TimerPanel.isfighting
         {
+            Debug.Log($"停止生成怪物: levelId={levelId}");
             StopSpawning();
         }
 
@@ -356,7 +379,37 @@ public class RandomSpawn : MonoBehaviour
         }
     }
 
-    // 開始生成怪物
+    // 直接开始生成怪物，不通过状态检查
+    public void StartSpawnDirectly()
+    {
+        // 强制设置当前关卡的战斗状态
+        if (!levelFightingStates.ContainsKey(levelId))
+        {
+            levelFightingStates[levelId] = true;
+        }
+        else
+        {
+            levelFightingStates[levelId] = true;
+        }
+        
+        // 特殊处理第四关和第五关
+        if (levelId == "(1_7)" || levelId == "(1_10)")
+        {
+            Debug.Log($"{levelId}关特殊处理：直接设置战斗状态并开始生成");
+            // 确保特殊关卡的状态被正确设置
+            TimerPanel.isfighting = true;
+            levelFightingStates[levelId] = true;
+        }
+        
+        // 如果尚未开始生成，则开始生成
+        if (!isSpawning)
+        {
+            Debug.Log($"直接开始生成怪物: levelId={levelId}");
+            StartSpawning();
+        }
+    }
+
+    // 开始生成怪物
     public void StartSpawning()
     {
         if (!isSpawning)
@@ -425,13 +478,29 @@ public class RandomSpawn : MonoBehaviour
     // 修改生成怪物的協程
     private IEnumerator SpawnMonsters()
     {
+        Debug.Log($"开始生成怪物协程: levelId={levelId}, isSpawning={isSpawning}");
+        
+        // 特殊关卡处理
+        bool isSpecialLevel = levelId == "(1_7)" || levelId == "(1_10)";
+        if (isSpecialLevel)
+        {
+            Debug.Log($"{levelId}关怪物生成特殊处理");
+        }
+        
         while (isSpawning)
         {
-            // 檢查是否還有下一個階段
+            // 检查是否还有下一个阶段
             if (currentPhase >= spawnPhases.Length)
             {
                 isSpawning = false;
                 yield break;
+            }
+
+            // 特殊关卡检查
+            if (isSpecialLevel && !levelFightingStates.ContainsKey(levelId))
+            {
+                levelFightingStates[levelId] = true;
+                Debug.Log($"{levelId}关状态修复");
             }
 
             RandomSpawnPhase currentPhaseSettings = spawnPhases[currentPhase];
@@ -598,6 +667,31 @@ public class RandomSpawn : MonoBehaviour
         if (levelFightingStates.ContainsKey(levelId))
         {
             levelFightingStates[levelId] = state;
+            Debug.Log($"设置关卡战斗状态: levelId={levelId}, state={state}");
         }
+        else
+        {
+            // 如果关卡ID不存在，则添加它
+            levelFightingStates.Add(levelId, state);
+            Debug.Log($"添加新关卡战斗状态: levelId={levelId}, state={state}");
+        }
+    }
+
+    // 添加一个方法获取当前实例的levelId
+    public string GetLevelId()
+    {
+        return levelId;
+    }
+
+    // 添加一个方法设置当前实例的levelId
+    public void SetLevelId(string newLevelId)
+    {
+        levelId = newLevelId;
+        // 确保字典中有这个键
+        if (!levelFightingStates.ContainsKey(levelId))
+        {
+            levelFightingStates[levelId] = false;
+        }
+        Debug.Log($"实例levelId已设置为: {levelId}");
     }
 }

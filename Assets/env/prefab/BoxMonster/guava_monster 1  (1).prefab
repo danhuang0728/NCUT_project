@@ -152,6 +152,7 @@ MonoBehaviour:
   minspeed: 1
   damageEffect: {fileID: 0}
   critical_effect: {fileID: 0}
+  isDead: 0
   HP: 140
   init_HP: 0
   monster: {fileID: 6802162418385168808, guid: a9d7c2c0533f9e74f9c7e861e4e9f960, type: 3}

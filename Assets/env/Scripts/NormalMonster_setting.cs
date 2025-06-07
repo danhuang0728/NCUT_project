@@ -22,7 +22,7 @@ public class NormalMonster_setting : MonoBehaviour
     public GameObject LowExpPrefab;    // 低級經驗值預製體
     public GameObject MediumExpPrefab;  // 中級經驗值預製體
     public GameObject HighExpPrefab;    // 高級經驗值預製體
-    public GameObject boxPrefab; // 武器箱預製體
+    [HideInInspector] public GameObject boxPrefab; // 武器箱預製體，自动获取
     public FruitData fruitData; //介紹用怪物資料
     public GameObject fruitPrefab; // 水果掉落物Prefab
     public FruitType monsterFruitType; // 這個怪物會掉落的水果類型

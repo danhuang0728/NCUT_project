@@ -76,6 +76,23 @@ public class LevelTrigger : MonoBehaviour
             repOb.gameObject.SetActive(false);
         }
         Debug.Log($"{spawns_self} ");
+        
+        // 查找并设置对应关卡的RandomSpawn组件的levelId
+        RandomSpawn[] randomSpawns = FindObjectsOfType<RandomSpawn>();
+        foreach (RandomSpawn randomSpawn in randomSpawns)
+        {
+            // 特别处理第四关和第五关
+            if ((selectedOption == "(1_7)" || selectedOption == "(1_10)") && IsNearby(randomSpawn.transform, this.transform, 20f))
+            {
+                Debug.Log($"检测到{selectedOption}关附近的RandomSpawn: {randomSpawn.gameObject.name}");
+                randomSpawn.SetLevelId(selectedOption);
+            }
+            else if (randomSpawn.gameObject.name.Contains(selectedOption))
+            {
+                // 设置每个RandomSpawn的levelId与selectedOption一致
+                randomSpawn.SetLevelId(selectedOption);
+            }
+        }
     }
 
     void Update()
@@ -118,6 +135,75 @@ public class LevelTrigger : MonoBehaviour
         
         TimerPanel.isfighting = true; //設定關卡進行狀態(timer用)
         RandomSpawn.SetLevelFightingState(selectedOption, true); // 設置當前關卡的戰鬥狀態
+        
+        // 添加调试日志
+        Debug.Log($"关卡激活: selectedOption={selectedOption}, isfighting={TimerPanel.isfighting}");
+        
+        // 直接在所有RandomSpawn中查找带有当前关卡名称的组件并激活
+        RandomSpawn[] allRandomSpawns = FindObjectsOfType<RandomSpawn>();
+        Debug.Log($"找到 {allRandomSpawns.Length} 个RandomSpawn组件");
+        
+        bool foundMatchingRandomSpawn = false;
+        foreach (RandomSpawn rs in allRandomSpawns)
+        {
+            Debug.Log($"检查RandomSpawn: {rs.gameObject.name}, levelId={rs.GetLevelId()}");
+            
+            // 检查RandomSpawn对象的名称是否包含当前关卡的标识
+            if (rs.gameObject.name.Contains(selectedOption))
+            {
+                foundMatchingRandomSpawn = true;
+                // 设置此RandomSpawn的levelId并直接开始生成
+                rs.SetLevelId(selectedOption);
+                Debug.Log($"添加新关卡战斗状态: levelId={selectedOption}, state=True");
+                RandomSpawn.SetLevelFightingState(selectedOption, true);
+                
+                // 强制开始生成
+                rs.StartSpawnDirectly();
+            }
+        }
+        
+        // 对于第四关或第五关，尝试通过位置查找
+        if (selectedOption == "(1_7)" || selectedOption == "(1_10)")
+        {
+            Debug.Log($"尝试通过位置查找{selectedOption}关的RandomSpawn");
+            foreach (RandomSpawn rs in allRandomSpawns)
+            {
+                if (IsNearby(rs.transform, this.transform, 20f))
+                {
+                    Debug.Log($"通过位置找到{selectedOption}关的RandomSpawn: {rs.gameObject.name}");
+                    rs.SetLevelId(selectedOption);
+                    RandomSpawn.SetLevelFightingState(selectedOption, true);
+                    rs.StartSpawnDirectly();
+                    foundMatchingRandomSpawn = true;
+                    break;
+                }
+            }
+        }
+        
+        // 如果没有找到匹配的RandomSpawn，输出警告
+        if (!foundMatchingRandomSpawn)
+        {
+            Debug.LogWarning($"警告：没有找到包含 {selectedOption} 的RandomSpawn组件！");
+            
+            // 如果仍然没有找到，直接设置状态
+            RandomSpawn.SetLevelFightingState(selectedOption, true);
+            Debug.Log($"直接设置关卡状态: {selectedOption}=True");
+        }
+
+        // 如果是第四关或第五关且仍然没有找到匹配的RandomSpawn，强制所有RandomSpawn生成怪物
+        if ((selectedOption == "(1_7)" || selectedOption == "(1_10)") && !foundMatchingRandomSpawn)
+        {
+            Debug.LogWarning($"特殊处理：{selectedOption}关未找到匹配的RandomSpawn，尝试激活所有RandomSpawn");
+            
+            // 强制所有RandomSpawn使用当前关ID并开始生成
+            foreach (RandomSpawn rs in allRandomSpawns)
+            {
+                rs.SetLevelId(selectedOption);
+                RandomSpawn.SetLevelFightingState(selectedOption, true);
+                rs.StartSpawnDirectly();
+                Debug.Log($"强制激活RandomSpawn: {rs.gameObject.name} 用于{selectedOption}关");
+            }
+        }
 
         foreach (spawn repOb in spawns_self) 
         {
@@ -168,6 +254,18 @@ public class LevelTrigger : MonoBehaviour
         SpawnShopItems();
         TimerPanel.isfighting = false; //設定關卡進行狀態(timer用)
         RandomSpawn.SetLevelFightingState(selectedOption, false); // 重置當前關卡的戰鬥狀態
+        Debug.Log($"关卡结束: selectedOption={selectedOption}");
+
+        // 查找所有RandomSpawn并停止生成
+        RandomSpawn[] endRandomSpawns = FindObjectsOfType<RandomSpawn>();
+        foreach (RandomSpawn randomSpawn in endRandomSpawns)
+        {
+            if (randomSpawn.gameObject.name.Contains(selectedOption))
+            {
+                Debug.Log($"强制停止当前关卡的RandomSpawn: {randomSpawn.gameObject.name}");
+                // RandomSpawn将在自己的Update方法中检测到TimerPanel.isfighting为false并停止生成
+            }
+        }
 
         foreach (spawn repOb in spawns_self) 
         {
@@ -286,5 +384,12 @@ public class LevelTrigger : MonoBehaviour
             GameObject itemPrefab = shopItemPrefabs[randomIndex];
             Instantiate(itemPrefab, spawnPoints[i].position, Quaternion.identity);
         }
+    }
+
+    // 检查两个Transform是否接近
+    private bool IsNearby(Transform t1, Transform t2, float maxDistance)
+    {
+        float distance = Vector3.Distance(t1.position, t2.position);
+        return distance <= maxDistance;
     }
 }

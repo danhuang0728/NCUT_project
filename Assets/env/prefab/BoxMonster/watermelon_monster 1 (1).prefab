@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8378714209423824524
 Transform:
   m_ObjectHideFlags: 0
@@ -484,6 +484,7 @@ MonoBehaviour:
   minspeed: 1
   damageEffect: {fileID: 0}
   critical_effect: {fileID: 0}
+  isDead: 0
   HP: 150
   init_HP: 0
   monster: {fileID: 6802162418385168808}
@@ -520,9 +521,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01302942, y: -0.041165225}
+  m_Offset: {x: 0.022460127, y: 0.007560335}
   serializedVersion: 2
-  m_Radius: 0.27237335
+  m_Radius: 0.13248378
 --- !u!50 &2943567631016252957
 Rigidbody2D:
   serializedVersion: 4
