@@ -238,6 +238,7 @@ public class PumpkinBoss_main : MonoBehaviour
             //發射火球
             ani.SetTrigger("attack_magic");
             PunchLight.SetActive(true);
+            yield return new WaitForSeconds(0.4f);
             GameObject fireball_clone = Instantiate(fireball, transform.position, Quaternion.identity);
             fireball_clone.SetActive(true);
             Vector2 direction = (player.transform.position - transform.position).normalized;
@@ -248,9 +249,7 @@ public class PumpkinBoss_main : MonoBehaviour
             fireball.transform.rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D bulletRb = fireball_clone.GetComponent<Rigidbody2D>();
             bulletRb.velocity = direction * 10;
-            yield return new WaitForSeconds(0.3f);
-            PunchLight.SetActive(false);
-            yield return new WaitForSeconds(0.2f);
+
         }
         yield return new WaitForSeconds(5);
         normalMonster_setting.movespeed = 3;
