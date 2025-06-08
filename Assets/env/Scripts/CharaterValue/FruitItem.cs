@@ -9,6 +9,12 @@ public class FruitItem : MonoBehaviour
     private VitaminManager vitaminManager;
     public static bool vitaminSys_Introduced = false;
     private static Dictionary<FruitType, bool> fruitIntroduced = new Dictionary<FruitType, bool>();
+    
+    // 磁性吸引相关变量
+    private Transform playerTransform;
+    public float attractRange = 2.3f; // 吸引范围
+    public float attractSpeed = 10f; // 吸引速度
+    private bool isAttracting = false;
 
     private void OnEnable()
     {
@@ -18,6 +24,7 @@ public class FruitItem : MonoBehaviour
     private void ResetFruit()
     {
         isCollected = false;
+        isAttracting = false;
     }
 
     private void Start()
@@ -28,6 +35,9 @@ public class FruitItem : MonoBehaviour
         {
             Debug.LogError("找不到 VitaminManager！");
         }
+        
+        // 获取玩家位置
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         if(!vitaminSys_Introduced)
         {
@@ -37,6 +47,29 @@ public class FruitItem : MonoBehaviour
             GuideSystem.Instance.Guide("維生素會隨著時間減少");
             GuideSystem.Instance.Guide("當維生素低於一定程度時會受到<color=red>負面效果</color>的影響");
             GuideSystem.Instance.Guide("記得吃<color=#009100>水果</color>補充維生素");
+        }
+    }
+    
+    private void Update()
+    {
+        // 磁性吸引功能
+        if (playerTransform != null && !isCollected)
+        {
+            float distance = Vector3.Distance(transform.position, playerTransform.position);
+            
+            // 如果在吸引范围内
+            if (distance <= attractRange)
+            {
+                isAttracting = true;
+                // 计算移动方向
+                Vector3 direction = (playerTransform.position - transform.position).normalized;
+                
+                // 根据距离调整速度（越近越快）
+                float currentSpeed = attractSpeed * (1 - distance / attractRange);
+                
+                // 移动水果
+                transform.position += direction * currentSpeed * Time.deltaTime;
+            }
         }
     }
 
