@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7110820231823895603}
   m_Layer: 0
   m_Name: Sugar apple
-  m_TagString: Untagged
+  m_TagString: exp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 457195927
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: -775984483, guid: 927fc0df2023182419adeb81c1c0aabe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitType: 22
+  attractRange: 2.3
+  attractSpeed: 10
 --- !u!114 &7110820231823895603
 MonoBehaviour:
   m_ObjectHideFlags: 0

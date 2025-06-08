@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5282661404415174368}
   m_Layer: 0
   m_Name: Star fruit
-  m_TagString: Untagged
+  m_TagString: exp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 457195927
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: -27884665, guid: 806229002625f844eb1f26da4a495a34, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitType: 20
+  attractRange: 2.3
+  attractSpeed: 10
 --- !u!114 &5282661404415174368
 MonoBehaviour:
   m_ObjectHideFlags: 0

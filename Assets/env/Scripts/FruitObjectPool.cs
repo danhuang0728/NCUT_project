@@ -70,6 +70,14 @@ public class FruitObjectPool : MonoBehaviour
     {
         GameObject fruit = Instantiate(prefab);
         fruit.SetActive(false);
+        
+        // 设置水果的 Sorting Layer 为 "wall"
+        SpriteRenderer spriteRenderer = fruit.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sortingLayerName = "wall";
+        }
+        
         pool.Enqueue(fruit);
     }
     
