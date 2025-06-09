@@ -892,7 +892,7 @@ GameObject:
   - component: {fileID: 71552182}
   - component: {fileID: 71552183}
   m_Layer: 0
-  m_Name: Light 2D (1)
+  m_Name: Chinese_title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,8 +929,8 @@ MonoBehaviour:
   m_LightType: 2
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.56
+  m_Color: {r: 0.122641504, g: 0.11743502, b: 0.11743502, a: 1}
+  m_Intensity: 0.4
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 038194909741401b4fa35015c93960fda31e2651a3cffaae00000000a9f77af56188bea8
@@ -2011,7 +2011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u65B0\u904A\u6232\n"
+  m_text: "\u958B\u59CB\u904A\u6232"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41b1f64924feb7e48921bf4367269172, type: 2}
   m_sharedMaterial: {fileID: -1188124124736055009, guid: 41b1f64924feb7e48921bf4367269172,
@@ -2039,8 +2039,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.45
-  m_fontSizeBase: 37.45
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 12.07
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2318,7 +2318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &262868123
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2793,8 +2793,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 907.5781, y: -388}
-  m_SizeDelta: {x: 347.16, y: 73.06}
+  m_AnchoredPosition: {x: 908, y: -356.59}
+  m_SizeDelta: {x: 384.09, y: 96.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &379023588
 MonoBehaviour:
@@ -4922,7 +4922,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.943
   m_Color: {r: 0.19247438, g: 0.24705882, b: 0, a: 1}
-  m_Intensity: 0.52
+  m_Intensity: 0.7
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 038194909741401b4fa35015c93960fda31e2651a3cffaae00000000a9f77af56188bea8
@@ -4940,8 +4940,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.21159983, y: 0.06315017, z: 0}
-    m_Extent: {x: 5.9705, y: 4.10655, z: 0}
+    m_Center: {x: 0.19929993, y: 0.15974998, z: 0}
+    m_Extent: {x: 2.6102, y: 0.85675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4949,14 +4949,14 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 3.74
+  m_ShapeLightFalloffSize: 0.4
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -2.0101292, y: -0.26427242, z: 0}
   - {x: 2.2237573, y: -0.29373834, z: 0}
-  - {x: 2.435474, y: 0.37358916, z: 0}
-  - {x: 0.15377516, y: 0.42633513, z: 0}
-  - {x: -1.5681398, y: 0.36740315, z: 0}
+  - {x: 2.406381, y: 0.6208816, z: -0.00000005800574}
+  - {x: 0.14650187, y: 0.5499813, z: -0.00000002465238}
+  - {x: -1.6117796, y: 0.54196244, z: -0.000000035373102}
 --- !u!1 &652382742
 GameObject:
   m_ObjectHideFlags: 0
@@ -6037,8 +6037,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 908.2031, y: -636.9863}
-  m_SizeDelta: {x: 348.41, y: 73.32}
+  m_AnchoredPosition: {x: 910.33, y: -628}
+  m_SizeDelta: {x: 379.43, y: 90.361}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733066282
 MonoBehaviour:
@@ -7203,7 +7203,7 @@ GameObject:
   - component: {fileID: 929204340}
   - component: {fileID: 929204341}
   m_Layer: 0
-  m_Name: Light 2D (2)
+  m_Name: Project_Fruitpath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7240,8 +7240,8 @@ MonoBehaviour:
   m_LightType: 2
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.26
+  m_Color: {r: 0.0075649684, g: 0.3207547, b: 0.045189142, a: 1}
+  m_Intensity: 6.92
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 038194909741401b4fa35015c93960fda31e2651a3cffaae00000000a9f77af56188bea8
@@ -7534,8 +7534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 906.15234, y: -257}
-  m_SizeDelta: {x: 441.5, y: 68.95}
+  m_AnchoredPosition: {x: 909.71985, y: -213}
+  m_SizeDelta: {x: 428.52, y: 106.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &977361403
 MonoBehaviour:
@@ -7875,8 +7875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 907.5781, y: -503.39258}
-  m_SizeDelta: {x: 347.16, y: 73.06}
+  m_AnchoredPosition: {x: 910.39, y: -495}
+  m_SizeDelta: {x: 379.3, y: 95.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995880140
 MonoBehaviour:
@@ -8610,7 +8610,7 @@ GameObject:
   - component: {fileID: 1126397905}
   - component: {fileID: 1126397906}
   m_Layer: 0
-  m_Name: Light 2D (3)
+  m_Name: Underfround_oasis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8647,7 +8647,7 @@ MonoBehaviour:
   m_LightType: 2
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.083704166, g: 0.5377358, b: 0.104929745, a: 1}
   m_Intensity: 2.36
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -10181,8 +10181,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.45
-  m_fontSizeBase: 37.45
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10191,7 +10191,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 10.6
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -12252,8 +12252,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.45
-  m_fontSizeBase: 37.45
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12262,7 +12262,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 10.6
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -14855,8 +14855,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.45
-  m_fontSizeBase: 37.45
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14865,7 +14865,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 10.6
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
