@@ -3,7 +3,7 @@ using UnityEngine;
 public class thrust : MonoBehaviour 
 {
     private float damage = 1f; // 傷害值
-    public float knockbackForce = 5f; // 擊退力度
+    public float knockbackForce = 1.5f; // 擊退力度
     public bool is_evolution_object = false;
     public PlayerControl playerControl; //抓玩家腳本
     private ToggleChildObjects thrust_script;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boomerang_Prb : MonoBehaviour
 {
     public float damage = 10;
-    public float knockbackForce = 10;
+    public float knockbackForce = 0.5f;
     public BoomerangController boomerang;
     public PlayerControl playerControl;
     public int MaxBounce = 3;

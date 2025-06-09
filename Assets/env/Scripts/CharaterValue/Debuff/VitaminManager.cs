@@ -28,7 +28,7 @@ public class VitaminManager : MonoBehaviour
     
     // 常量
     private const float MAX_VITAMIN_LEVEL = 300f;
-    private const float VITAMIN_DECREASE_RATE = 1f; // 每秒减少量
+    private const float VITAMIN_DECREASE_RATE = 1.5f; // 每秒减少量
     private const float VITAMIN_INCREASE_AMOUNT = 20f; // 吃到水果时增加量
     private const float DEBUFF_THRESHOLD = 50f; // 低于此值触发Debuff
     private const float BUFF_THRESHOLD = 200f; // 高于此值触发Buff
