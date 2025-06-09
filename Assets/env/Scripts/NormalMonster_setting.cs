@@ -227,6 +227,10 @@ public class NormalMonster_setting : MonoBehaviour
         if(monster.name.Contains("Pumpkin_monster1"))
         {
             playerControl.HP += 3;
+            VitaminManager.Instance.AddVitamin(VitaminType.A, 10); // 添加維他命
+            VitaminManager.Instance.AddVitamin(VitaminType.B, 10); // 添加維他命
+            VitaminManager.Instance.AddVitamin(VitaminType.C, 10); // 添加維他命
+            VitaminManager.Instance.AddVitamin(VitaminType.D, 10); // 添加維他命
         }
         
 

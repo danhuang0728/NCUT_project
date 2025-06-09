@@ -293,7 +293,7 @@ public class PumpkinBoss_main : MonoBehaviour
         }
         if(spawn_intro == false)
         {
-            GuideSystem.Instance.Guide("(擊敗<color=orange>南瓜分裂體</color>可以<color=green>回復生命</color>)");
+            GuideSystem.Instance.Guide("(擊敗<color=orange>南瓜分裂體</color>可以<color=green>回復生命及少量維生素</color>)");
             spawn_intro = true;
         }
         isSpawn = false;
