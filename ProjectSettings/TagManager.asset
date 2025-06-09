@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - exp
   - XX
+  - Boss
   layers:
   - Default
   - TransparentFX

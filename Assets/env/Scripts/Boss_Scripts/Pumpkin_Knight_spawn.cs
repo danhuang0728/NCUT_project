@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Pumpkin_Knight_spawn : MonoBehaviour
 {
     public static Pumpkin_Knight_spawn instance;
@@ -9,6 +9,8 @@ public class Pumpkin_Knight_spawn : MonoBehaviour
     public GameObject pumpkinPrefab;
     public GameObject effect1;
     public GameObject effect2;
+
+    public Slider BossHealthBar; //南瓜騎士血條
     public Transform spawnPoint;
     void Start()
     {
@@ -27,6 +29,8 @@ public class Pumpkin_Knight_spawn : MonoBehaviour
     IEnumerator spawnEffect()
     {
         yield return new WaitForSeconds(4f);
+        BossHealthBar.gameObject.SetActive(true);
+        TimerPanel.isfighting = false;
         AudioManager.Instance.PlayMusic("Boss_music");
         //激活特效物件
         effect1.SetActive(true);

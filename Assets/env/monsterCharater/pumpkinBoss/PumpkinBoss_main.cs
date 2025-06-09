@@ -9,6 +9,7 @@ public class PumpkinBoss_main : MonoBehaviour
     private Animator ani;  
     private Rigidbody2D rig;
     private End end;
+    public float HP = 70000f;
     private NormalMonster_setting normalMonster_setting;
     private float timer = 0f;
     private float previousXPosition; // 添加移動前位置的變量
@@ -53,14 +54,15 @@ public class PumpkinBoss_main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HP = normalMonster_setting.HP; //引數給UI用的可以不用管
         
         if (normalMonster_setting.movespeed > 0)
         {
-            ani.SetBool("move",true);
+            ani.SetBool("move", true);
         }
         else
         {
-            ani.SetBool("move",false);
+            ani.SetBool("move", false);
         }
         previousXPosition = transform.position.x; //previousXPosition 為移動前位置
         
