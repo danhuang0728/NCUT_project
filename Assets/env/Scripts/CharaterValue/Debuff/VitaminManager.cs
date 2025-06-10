@@ -220,7 +220,7 @@ public class VitaminManager : MonoBehaviour
                 if (playerLight != null)
                 {
                     playerLight.intensity /= 1.5f; // 恢复原来的视野
-                    BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.blindness);
+                    BuffGroup_manager.instance.setCloseIcon(BuffGroup_manager.BuffType.Night_Vision);
                     Debug.Log($"恢復原本視野亮度: {playerLight.intensity}");
                 }
                 break;
