@@ -31,7 +31,7 @@ public class End : MonoBehaviour
     
     public IEnumerator startEndCutscene()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(3f);
         float fadeInElapsedTime = 0;
         while (fadeInElapsedTime < fadeInTime)
         {

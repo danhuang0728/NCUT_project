@@ -35,6 +35,7 @@ public class PumpkinBoss_main : MonoBehaviour
     public GameObject spikeEffect;
     public GameObject spawnEffect;
     public GameObject PunchLight;
+    public GameObject pumpkinBoss_deadAni;
     public Vector3 limitspawnArea_point1 = new Vector3(494.241699f,-121.400566f,0.120918632f);
     public Vector3 limitspawnArea_point2 = new Vector3(529.141724f,-140.120575f,0.120918632f);
     private PlayerControl playerControl;
@@ -317,6 +318,11 @@ public class PumpkinBoss_main : MonoBehaviour
     }
     //======================死亡後遊戲結束======================
     private void OnDestroy() {
+        GameObject pumpkinBoss_deadAni_clone = Instantiate(pumpkinBoss_deadAni, transform.position, Quaternion.identity);
+        pumpkinBoss_deadAni_clone.SetActive(true);
+        pumpkinBoss_deadAni_clone.transform.localScale = new Vector3(1.25f,1.25f,1.25f);
+        pumpkinBoss_deadAni_clone.GetComponent<Animator>().enabled = true;
+        pumpkinBoss_deadAni_clone.GetComponent<Animator>().SetTrigger("dead");
         end.startEndCutscene_void();
     }
 }
