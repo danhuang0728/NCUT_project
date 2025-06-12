@@ -14,7 +14,37 @@ public class player_tetr_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         //按鍵"0"測試全部方塊
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            // 取得所有可能的類型
+            tetr_database.Tetr_type[] allTypes = (tetr_database.Tetr_type[])System.Enum.GetValues(typeof(tetr_database.Tetr_type));
+            
+            // 建立一個新的tetr_database實例並加入每個類型
+            foreach (tetr_database.Tetr_type type in allTypes)
+            {
+                // 檢查是否已經存在此類型
+                bool exists = false;
+                foreach (tetr_database existingTetr in player_tetr_database.tetr_database)
+                {
+                    if (existingTetr.tetr_type == type)
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+                
+                // 如果不存在則建立並加入
+                if (!exists)
+                {
+                    tetr_database newTetr = ScriptableObject.CreateInstance<tetr_database>();
+                    newTetr.tetr_type = type;
+                    player_tetr_database.tetr_database.Add(newTetr);
+                    create_tetr_obj(newTetr);
+                }
+            }
 
+        }
     }
     public static void ClearChildren(Transform parent)
     {
